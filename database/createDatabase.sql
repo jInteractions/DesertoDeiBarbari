@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS desertodeibarbari;
+CREATE DATABASE desertodeibarbari;
+USE desertodeibarbari;
 CREATE TABLE actual_level (
   idactual_level INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   levels_idlevel INTEGER UNSIGNED NOT NULL,
