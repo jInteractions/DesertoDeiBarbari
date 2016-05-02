@@ -10,31 +10,31 @@ Alcuni pianeti iniziano a loro volta una colonizzazione, all’insaputa del gove
 Nel frattempo, sulla Terra, la ricchezza ricava dalla colonizzazione ha generato una società molle, dedita ai peggiori vizi: le spese militari sono state ridotte al minimo, per consentire una vita viziata a tutti gli abitanti.
 
 Anno 3064
-Da un giorno all’altro, la Terra viene attaccata da misteriose astronavi. X, fresco di nomina a Capitano del 42° battaglione contraerea delle United Terrestrial Forces (UTF), viene messo a disposizione della II armata di difesa terrestre, comandata dal Generale Traxis.
+Da un giorno all’altro, la Terra viene attaccata da misteriose astronavi. Shakar, fresco di nomina a Capitano del 8° battaglione contraerea delle United Terrestrial Forces (UTF-8), viene messo a disposizione della II armata di difesa terrestre, comandata dal Generale Traxis.
 
-Il sistema davanti al quale viene messo X riscontra diverse difficoltà: la prima linea di difesa viene annientata brutalmente dalle forze nemiche.
+Il sistema davanti al quale viene messo Shakar riscontra diverse difficoltà: la prima linea di difesa viene annientata brutalmente dalle forze nemiche.
 Fortunatamente il nemico si allontana senza infierire: probabilmente era un’operazione per testare le forze a disposizione dei terrestri.
-Il tempo per risolvere il problema è poco, ma X viene chiamato a rapporto dal Generale Traxis.
+Il tempo per risolvere il problema è poco, ma Shakar viene chiamato a rapporto dal Generale Traxis.
 È ovvio che la politica di gestione delle finanze ha portato a trascurare esageratamente la manutenzione delle strutture militari.
 - Bene, basta prendere dei programmatori più o meno bravi e sistemare il software, giusto signore? -
 Sbagliatissimo.
 Il linguaggio JavaScript, con cui è stato scritto il programma di difesa mondiale è obsoleto, e da almeno 50 anni è scomparso dalla faccia della Terra.
 
 Il Generale comunica di aver cercato negli archivi dei manuali, ma di non aver trovato nulla: probabilmente il Nemico è riuscito ad infiltrarsi nei sistemi e ad eliminare ogni riferimento a tale linguaggio. Chissà come mai. Non avranno usato lo stesso linguaggio per i loro sistemi?
-- X lei ha il compito di sistemare questo software -
-X si reca nei laboratori, dove pochi tecnici incapaci gli lasciano la postazione per poter lavorare sul codice della difesa planetaria.
+- Shakar lei ha il compito di sistemare questo software -
+Shakar si reca nei laboratori, dove pochi tecnici incapaci gli lasciano la postazione per poter lavorare sul codice della difesa planetaria.
 
 —LIVELLI—
 
 ======= SPUNTI ====================
-Ad un certo punto, gironzolando per i laboratori, X incontra Cariatide.
+Ad un certo punto, gironzolando per i laboratori, Shakar incontra Cariatide.
 - È molto tempo che ti osservo, giovanotto -
-Dopo un breve dialogo, dove Cariatide fa i complimenti a X per come ha gestito i problemi, gli rivela di essere un programmatore JS.
-Non lo ha mai detto in giro poiché non si fida di Traxis: ma X gli sembra affidabile.
+Dopo un breve dialogo, dove Cariatide fa i complimenti a Shakar per come ha gestito i problemi, gli rivela di essere un programmatore JS.
+Non lo ha mai detto in giro poiché non si fida di Traxis: ma Shakar gli sembra affidabile.
 
-Altro personaggio importante sarà W, appartenente alla razza aliena che ha attaccato.
-Il gioco prevede infatti di scoprire qual è la razza che ha attaccato la Terra: sarà lui a fornire gradualmente informazioni ad X, prevedendo una scoperta graduale della natura di tale razza.
-W è un rinnegato, che permette ad X di entrare nei sistemi del Nemico, in una o più missioni.
+Altro personaggio importante sarà Rhaw, appartenente alla razza aliena che ha attaccato.
+Il gioco prevede infatti di scoprire qual è la razza che ha attaccato la Terra: sarà lui a fornire gradualmente informazioni ad Shakar, prevedendo una scoperta graduale della natura di tale razza.
+Rhaw è un rinnegato, che permette ad Shakar di entrare nei sistemi del Nemico, in una o più missioni.
 
 Alla fine, si scopre che Traxis è un traditore: era a conoscenza di tale attacco ed ha aiutato la razza del Nemico ad appropriarsi dei manuali JS. La scoperta viene fatta quando, durante un colloquio con lui, gli scappa una frase che sottolinea una conoscenza di JS avanzata da parte del Generale. (decidere cosa migliore)
 
@@ -43,8 +43,11 @@ I pianeti dell’orlo, durante la loro colonizzazione verso le galassie vicine, 
 
 Alla fine sarebbe possibile prendere una scelta: questi ribelli hanno un’idea di trasformazione della società terrestre: il giocatore dovrebbe poter decidere che parte prendere, magari proprio come conclusione del gioco.
 
+================ FILOSOFIA DEGLI IBRIDI ===============
+Gli ibridi sono nati da un contatto tra la civiltà umana dell’Orlo ed una razza di alieni giunta da una galassia confinante, chiamati Esploratori.
+Gli esploratori stanno cercando di riunire tutti i popoli della galassia a fronte di una minaccia più grande, che sta giungendo dai limiti conosciuti dell’universo.
 
-GRADI DELL’ESERCITO TERRESTRE
+=========== GRADI DELL’ESERCITO TERRESTRE =============
 Feldmaresciallo (Field Marshall)
 Generale (General)
 Generale di corpo d'armata (Lieutenant General)
