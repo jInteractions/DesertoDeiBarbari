@@ -22,22 +22,42 @@ var missileCommand = (function () {
       missiliNemico = [],
       identificatoreTimer;
 
-  // Create cities and anti missile batteries at the start of the game
-  var iniziaGioco = function() {
-    // Bottom left position of city
-    basi.push( new Base( 80,  430 ) );
-    basi.push( new Base( 130, 430 ) );
-    basi.push( new Base( 180, 430 ) );
-    basi.push( new Base( 300, 430 ) );
-    basi.push( new Base( 350, 430 ) );
-    basi.push( new Base( 400, 430 ) );
+  // Codici Livelli di Gioco
+  var livelloDueDiProva = function(livelloAttuale){
+    var codiceLivello = 2; // codice corrispondente al livello, es. livello 1, codice 1.
+    if (livelloAttuale <= codiceLivello){
+      // codice del livello da correggere
+      batterieAntiMissile.missiliRimanenti = 3;
+      basi.push( new Base( 80,  430 ) );
 
+    } else {
+      // codice corretto da caricare nei livelli successivi
+      var xIniziale = 80;
+      for (var j = 0; j < 3; j++){
+        basi.push( new Base( xIniziale,  430 ) );
+        xIniziale += 50;
+      }
+      xIniziale = 300;
+      for (var j = 0; j < 3; j++){
+        basi.push( new Base( xIniziale, 430 ) );
+        xIniziale += 50;
+      }
+    }
+  }
+
+  
+  
+  // Create cities and anti missile batteries at the start of the game
+  var iniziaGioco = function(livelloAttuale) {
+    // Bottom left position of city
     // Top middle position of anti missile battery
     batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
     batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
     batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
     inizializzaLivello();
+    livelloDueDiProva(livelloAttuale);
   };
+  
 
   // Reset various variables at the start of a new level
   var inizializzaLivello = function() {
@@ -664,6 +684,6 @@ var missileCommand = (function () {
 })();
 
 $( document ).ready( function() {
-  missileCommand.iniziaGioco();
+  missileCommand.iniziaGioco(1);
   missileCommand.setupListeners();
 });
