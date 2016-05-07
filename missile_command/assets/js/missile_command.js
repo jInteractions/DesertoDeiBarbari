@@ -16,7 +16,8 @@ var missileCommand = (function () {
         tracciamento: 1,
         spento: 0
       },
-      COLORE = ['red', 'yellow', 'white', 'blue', 'purple'];
+      COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
+      COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
 
   // Variables
   var punteggio = 0,
@@ -354,10 +355,13 @@ var missileCommand = (function () {
     this.ampiezza = 2;
     this.altezza = 2;
     this.raggioDiEsplosione = 0;
+		this.animazioneColore = 0;
   }
 
   // Draw the path of a missile or an exploding missile
   Missile.prototype.disegna = function() {
+		this.animazioneColore = (this.animazioneColore + 1) % COLORI.length;
+		
     if( this.stato === MISSILE.attivo ){
       ctx.strokeStyle = this.coloreScia;
       ctx.lineWidth = 2;
@@ -365,12 +369,21 @@ var missileCommand = (function () {
       ctx.moveTo( this.xDiPartenza, this.yDiPartenza );
       ctx.lineTo( this.x, this.y );
       ctx.stroke();
+			
+			ctx.strokeStyle = COLORI[this.animazioneColore];
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo( this.xDiArrivo - 5, this.yDiArrivo - 5);
+      ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo + 5);
+      ctx.moveTo( this.xDiArrivo - 5, this.yDiArrivo + 5);
+      ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo - 5);
+      ctx.stroke();
 
-      ctx.fillStyle = this.colore;
+      ctx.fillStyle = COLORI[this.animazioneColore];
       ctx.fillRect( this.x - 1, this.y - 1, this.ampiezza, this.altezza );
     } else if( this.stato === MISSILE.esplosione ||
                this.stato === MISSILE.implosione ) {
-      ctx.fillStyle = 'white';
+      ctx.fillStyle = COLORI[this.animazioneColore];
       ctx.beginPath();
       ctx.arc( this.x, this.y, this.raggioDiEsplosione, 0, 2 * Math.PI );
       ctx.closePath();
