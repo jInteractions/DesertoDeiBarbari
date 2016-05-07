@@ -22,40 +22,17 @@ var missileCommand = (function () {
       missiliNemico = [],
       identificatoreTimer;
 
-  // Codici Livelli di Gioco
-  var livelloDueDiProva = function(livelloAttuale){
-    var codiceLivello = 2; // codice corrispondente al livello, es. livello 1, codice 1.
-    if (livelloAttuale <= codiceLivello){
-      // codice del livello da correggere
-      batterieAntiMissile.missiliRimanenti = 3;
-      basi.push( new Base( 80,  430 ) );
-
-    } else {
-      // codice corretto da caricare nei livelli successivi
-      var xIniziale = 80;
-      for (var j = 0; j < 3; j++){
-        basi.push( new Base( xIniziale,  430 ) );
-        xIniziale += 50;
-      }
-      xIniziale = 300;
-      for (var j = 0; j < 3; j++){
-        basi.push( new Base( xIniziale, 430 ) );
-        xIniziale += 50;
-      }
-    }
-  }
-
-  
+  var aggiuntaDelleBasi = function(){ console.log("Sto eseguendo la aggiunta delle basi vuote");}
   
   // Create cities and anti missile batteries at the start of the game
-  var iniziaGioco = function(livelloAttuale) {
+  var iniziaGioco = function() {
     // Bottom left position of city
-    // Top middle position of anti missile battery
-    batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
-    batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
-    batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
-    inizializzaLivello();
-    livelloDueDiProva(livelloAttuale);
+   aggiuntaDelleBasi();
+   // Top middle position of anti missile battery
+   batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
+   batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
+   batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
+   inizializzaLivello();
   };
   
 
@@ -217,12 +194,12 @@ var missileCommand = (function () {
   };
 
   // Constructor for a City
-  function Base( x, y ) {
-    this.x = x;
-    this.y = y;
-    this.attivo = true;
-  }
-
+    function Base( x, y ) {
+      this.x = x;
+      this.y = y;
+      this.attivo = true;
+    }
+  
   // Show a city based on its position
   Base.prototype.disegna = function() {
     var x = this.x,
@@ -676,14 +653,65 @@ var missileCommand = (function () {
     });
   };
 
+  var caricaLivelli = function(livelloAttuale){
+    caricaLivello1(livelloAttuale);
+    //caricaLivello2(livelloAttuale);
+
+  };
+  
+  var caricaLivello1 = function(livelloAttuale){
+    var idLivello1 = 1;
+    if (livelloAttuale <= idLivello1) {
+      // Codice che l'utente deve correggere
+      aggiuntaDelleBasi = function() {
+        console.log("Sto eseguendo la aggiunta delle basi piene");
+        Base.prototype.constructor = function Base(x, y) {
+          this.x = x;
+          this.y = y;
+          this.attivo = true;
+        }
+
+        var xIniziale = 80;
+        for (var j = 0; j < 3; j++){
+          basi.push( new Base( xIniziale,  430 ) );
+          xIniziale += 50;
+        }
+      }
+    } else { 
+      // Codice corretto
+      aggiuntaDelleBasi = function() {
+        Base.prototype.constructor = function Base(x, y) {
+          this.x = x;
+          this.y = y;
+          this.attivo = true;
+        }
+
+        var xIniziale = 80;
+        for (var j = 0; j < 3; j++){
+          basi.push( new Base( xIniziale,  430 ) );
+          xIniziale += 50;
+        }
+        xIniziale = 300;
+        for (var j = 0; j < 3; j++){
+          basi.push( new Base( xIniziale, 430 ) );
+          xIniziale += 50;
+        }
+      }
+    } 
+  };
+  
+  
   return {
     iniziaGioco: iniziaGioco,
-    setupListeners: setupListeners
+    setupListeners: setupListeners,
+    caricaLivelli: caricaLivelli
   };
 
 })();
 
 $( document ).ready( function() {
-  missileCommand.iniziaGioco(1);
+  var idLivelloAttuale = 1;
+  missileCommand.caricaLivelli(idLivelloAttuale);
+  missileCommand.iniziaGioco();
   missileCommand.setupListeners();
 });
