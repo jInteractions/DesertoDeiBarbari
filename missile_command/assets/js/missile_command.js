@@ -3,7 +3,7 @@ var missileCommand = (function () {
   var canvas = document.querySelector( 'canvas' ),
       ctx = canvas.getContext( '2d' );
 
-  // Constants
+// Constants
   var CANVAS_WIDTH  = canvas.width,
       CANVAS_HEIGHT = canvas.height,
       MISSILE = {
@@ -11,7 +11,12 @@ var missileCommand = (function () {
         esplosione: 2,
         implosione: 3,
         esploso: 4
-      };
+      },      
+      MIRINO = {
+        tracciamento: 1,
+        spento: 0
+      },
+      COLORE = ['red', 'yellow', 'white', 'blue', 'purple'];
 
   // Variables
   var punteggio = 0,
@@ -37,14 +42,18 @@ var missileCommand = (function () {
   }
   
   // Create cities and anti missile batteries at the start of the game
-  var iniziaGioco = function() {
-    // Bottom left position of city
-   aggiuntaDelleBasi();
-   // Top middle position of anti missile battery
-   batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
-   batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
-   batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
-   inizializzaLivello();
+  var iniziaGioco = function() { 
+  	// Mirino
+    mirino = new Mirino(CANVAS_WIDTH/2.0, CANVAS_HEIGHT/2.0);   
+      
+  	// Bottom left position of city
+  	aggiuntaDelleBasi();
+		
+  	// Top middle position of anti missile battery
+  	batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
+  	batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
+  	batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
+  	inizializzaLivello();
   };
   
 
@@ -205,6 +214,68 @@ var missileCommand = (function () {
     ctx.fill();
   };
 
+	// Costruttore per il mirino
+  function Mirino( x, y ) {
+    this.x = x;
+    this.y = y;
+    this.stato = MIRINO.tracciamento;
+    this.inseguiX = 0;
+    this.inseguiY = 0;
+    this.dx = 0;
+    this.dy = 0;
+  }
+
+  Mirino.prototype.disegna = function() {
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo( this.x - 5, this.y - 5);
+    ctx.lineTo( this.x + 5, this.y + 5);
+    ctx.moveTo( this.x - 5, this.y + 5);
+    ctx.lineTo( this.x + 5, this.y - 5);
+    ctx.stroke();
+  }
+
+  Mirino.prototype.cambiaMira = function() {
+    var xDistanza = this.inseguiX - this.x;
+    var yDistanza = this.inseguiY - this.y;
+    var distanzaPerFrame = 16.0;
+
+    var rapporto = (function() {
+      var distanza = Math.sqrt( Math.pow(xDistanza, 2) + 
+        Math.pow(yDistanza, 2) );
+      return distanza / distanzaPerFrame;
+    })();
+
+    this.dx = xDistanza / rapporto;
+    this.dy = yDistanza / rapporto;
+  }
+
+  Mirino.prototype.update = function() {
+    if(this.stato != MIRINO.tracciamento)
+      return;
+
+    var xDistanza = this.inseguiX - this.x;
+    var yDistanza = this.inseguiY - this.y;
+
+    var distanzaObiettivo = Math.sqrt( Math.pow(xDistanza, 2) + 
+      Math.pow(yDistanza, 2) );
+
+    var spostamentoMirino = Math.sqrt( Math.pow(this.dx, 2) + 
+      Math.pow(this.dy, 2) );
+
+    if(distanzaObiettivo <= spostamentoMirino) {
+      this.x = this.inseguiX;
+      this.y = this.inseguiY;
+      return;
+    }
+
+    if(distanzaObiettivo >= 1.0) {
+      this.x += this.dx;
+      this.y += this.dy;
+    }
+  }
+	
   // Constructor for a City
   function Base( x, y ) {
     this.x = x;
@@ -494,6 +565,8 @@ var missileCommand = (function () {
     disegnaMissiliNemico();
     aggiornaMissiliGiocatore();
     disegnaMissiliGiocatore();
+		aggiornaMirino();
+		disegnaMirino();
     controllaFineLivello();
   };
 
@@ -599,6 +672,14 @@ var missileCommand = (function () {
       missile.disegna();
     });
   };
+	
+	var aggiornaMirino = function() {
+    mirino.update();
+  };
+
+  var disegnaMirino = function() {
+    mirino.disegna();
+  };
 
   // Stop animating a game level
   var stopLivello = function() {
@@ -658,9 +739,22 @@ var missileCommand = (function () {
     $( '.container' ).one( 'click', function() {
       startLivello();
 
-      $( '.container' ).on( 'click', function( event ) {
-        sparoDelGiocatore( event.pageX - this.offsetLeft, 
-                     event.pageY - this.offsetTop );
+			$( '.container' ).on( 'click', function( event ) {
+        sparoDelGiocatore( mirino.x, mirino.y );
+      });
+
+      $( '.container' ).on( 'mouseover', function( event ) {
+        mirino.stato = MIRINO.tracciamento;
+      });
+
+      $( '.container' ).on( 'mouseout', function( ) {
+        mirino.stato = MIRINO.spento;
+      });
+
+      $( '.container' ).on( 'mousemove', function( event ) {
+        mirino.inseguiX = event.pageX - this.offsetLeft;
+        mirino.inseguiY = event.pageY - this.offsetTop;
+        mirino.cambiaMira();
       });
     });
   };
