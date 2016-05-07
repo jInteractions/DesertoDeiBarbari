@@ -22,7 +22,19 @@ var missileCommand = (function () {
       missiliNemico = [],
       identificatoreTimer;
 
-  var aggiuntaDelleBasi = function(){ console.log("Sto eseguendo la aggiunta delle basi vuote");}
+  var aggiuntaDelleBasi = function(){ 
+    // Codice corretto
+    var xIniziale = 80;
+    for (var j = 0; j < 3; j++){
+      basi.push( new Base( xIniziale,  430 ) );
+      xIniziale += 50;
+    }
+    xIniziale = 300;
+    for (var j = 0; j < 3; j++){
+      basi.push( new Base( xIniziale, 430 ) );
+      xIniziale += 50;
+    }
+  }
   
   // Create cities and anti missile batteries at the start of the game
   var iniziaGioco = function() {
@@ -194,11 +206,11 @@ var missileCommand = (function () {
   };
 
   // Constructor for a City
-    function Base( x, y ) {
-      this.x = x;
-      this.y = y;
-      this.attivo = true;
-    }
+  function Base( x, y ) {
+    this.x = x;
+    this.y = y;
+    this.attivo = true;
+  }
   
   // Show a city based on its position
   Base.prototype.disegna = function() {
@@ -663,41 +675,20 @@ var missileCommand = (function () {
     var idLivello1 = 1;
     if (livelloAttuale <= idLivello1) {
       // Codice che l'utente deve correggere
+      Base.prototype.constructor = function Base(x, y) {
+          this.x = x;
+          this.y = y;
+          this.attivo = true;
+      }
       aggiuntaDelleBasi = function() {
         console.log("Sto eseguendo la aggiunta delle basi piene");
-        Base.prototype.constructor = function Base(x, y) {
-          this.x = x;
-          this.y = y;
-          this.attivo = true;
-        }
-
         var xIniziale = 80;
         for (var j = 0; j < 3; j++){
           basi.push( new Base( xIniziale,  430 ) );
           xIniziale += 50;
         }
       }
-    } else { 
-      // Codice corretto
-      aggiuntaDelleBasi = function() {
-        Base.prototype.constructor = function Base(x, y) {
-          this.x = x;
-          this.y = y;
-          this.attivo = true;
-        }
-
-        var xIniziale = 80;
-        for (var j = 0; j < 3; j++){
-          basi.push( new Base( xIniziale,  430 ) );
-          xIniziale += 50;
-        }
-        xIniziale = 300;
-        for (var j = 0; j < 3; j++){
-          basi.push( new Base( xIniziale, 430 ) );
-          xIniziale += 50;
-        }
-      }
-    } 
+    }
   };
   
   
@@ -710,7 +701,7 @@ var missileCommand = (function () {
 })();
 
 $( document ).ready( function() {
-  var idLivelloAttuale = 1;
+  var idLivelloAttuale = 4;
   missileCommand.caricaLivelli(idLivelloAttuale);
   missileCommand.iniziaGioco();
   missileCommand.setupListeners();
