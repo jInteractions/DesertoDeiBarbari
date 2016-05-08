@@ -666,17 +666,15 @@ var missileCommand = (function () {
   };
 
   var caricaLivelli = function(livelloAttuale){
-    caricaLivello1(livelloAttuale);
-    //caricaLivello2(livelloAttuale);
-
+    caricaLivello3(livelloAttuale);
   };
   	
 	// Nota: per sorvrascrivere il costruttore è necessario salvare
 	// il prototipe: "var oldProto = MissileDelGiocatore.prototype;"
 	// in seguito la classe "MissileDelGiocatore = function() {}"
 	// ed infine si riassegna il vecchio prototype "MissileDelGiocatore.prototype = oldProto;"
-	var caricaLivello1 = function(livelloAttuale) {
-    var idLivello1 = 1;
+	var caricaLivello3 = function(livelloAttuale) {
+    var idLivello1 = 3;
 		// Il parametri che agisce sulla velocità è distancePerFrame
     if (livelloAttuale <= idLivello1) {
 			
@@ -721,7 +719,7 @@ var missileCommand = (function () {
 })();
 
 $( document ).ready( function() {
-  var idLivelloAttuale = 1;
+  var idLivelloAttuale = 3;
   missileCommand.caricaLivelli(idLivelloAttuale);
   missileCommand.iniziaGioco();
   missileCommand.setupListeners();
