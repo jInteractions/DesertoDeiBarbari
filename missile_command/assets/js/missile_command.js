@@ -46,7 +46,6 @@ var missileCommand = (function () {
    batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
    inizializzaLivello();
   };
-  
 
   // Reset various variables at the start of a new level
   var inizializzaLivello = function() {
@@ -333,6 +332,7 @@ var missileCommand = (function () {
   // Constructor for the Player's Missile, which is a subclass of Missile
   // and uses Missile's constructor
   function MissileDelGiocatore( indiceTorretta, xDiArrivo, yDiArrivo ) {
+		console.log("Costruttore default");
     // Anti missile battery this missile will be fired from
     var batteriaAntiMissile = batterieAntiMissile[indiceTorretta];
 
@@ -346,12 +346,12 @@ var missileCommand = (function () {
     // of travel so the missiles travel at a constant speed and in the
     // right direction 
     var scala = (function() {
-      var distance = Math.sqrt( Math.pow(distanzaX, 2) + 
+      var distanza = Math.sqrt( Math.pow(distanzaX, 2) + 
                                 Math.pow(distanzaY, 2) ),
           // Make missile fired from central anti missile battery faster
-          distancePerFrame = ( indiceTorretta === 1 ) ? 20 : 12;
+          distanzaPerFrame = ( indiceTorretta === 1 ) ? 20 : 12;
 
-      return distance / distancePerFrame;
+      return distanza / distanzaPerFrame;
     })();
 
     this.dx = distanzaX / scala;
@@ -670,25 +670,45 @@ var missileCommand = (function () {
     //caricaLivello2(livelloAttuale);
 
   };
-  
-  var caricaLivello1 = function(livelloAttuale){
+  	
+	// Nota: per sorvrascrivere il costruttore è necessario salvare
+	// il prototipe: "var oldProto = MissileDelGiocatore.prototype;"
+	// in seguito la classe "MissileDelGiocatore = function() {}"
+	// ed infine si riassegna il vecchio prototype "MissileDelGiocatore.prototype = oldProto;"
+	var caricaLivello1 = function(livelloAttuale) {
     var idLivello1 = 1;
+		// Il parametri che agisce sulla velocità è distancePerFrame
     if (livelloAttuale <= idLivello1) {
-      // Codice che l'utente deve correggere
-      Base.prototype.constructor = function Base(x, y) {
-          this.x = x;
-          this.y = y;
-          this.attivo = true;
-      }
-      aggiuntaDelleBasi = function() {
-        console.log("Sto eseguendo la aggiunta delle basi piene");
-        var xIniziale = 80;
-        for (var j = 0; j < 3; j++){
-          basi.push( new Base( xIniziale,  430 ) );
-          xIniziale += 50;
-        }
-      }
-    }
+			
+			var oldProto = MissileDelGiocatore.prototype;
+			MissileDelGiocatore = function( indiceTorretta, xDiArrivo, yDiArrivo ) {
+				// Anti missile battery this missile will be fired from
+				var batteriaAntiMissile = batterieAntiMissile[indiceTorretta];
+
+				Missile.call( this, { xDiPartenza: batteriaAntiMissile.x,  yDiPartenza: batteriaAntiMissile.y,
+															xDiArrivo: xDiArrivo,     yDiArrivo: yDiArrivo, 
+															colore: 'green', coloreScia: 'blue' } );
+
+				var distanzaX = this.xDiArrivo - this.xDiPartenza,
+						distanzaY = this.yDiArrivo - this.yDiPartenza;
+				// Determine a value to be used to scale the orthogonal directions 
+				// of travel so the missiles travel at a constant speed and in the
+				// right direction 
+				var scala = (function() {
+					var distanza = Math.sqrt( Math.pow(distanzaX, 2) + 
+																		Math.pow(distanzaY, 2) ),
+							// Make missile fired from central anti missile battery faster
+							distanzaPerFrame = ( indiceTorretta === 1 ) ? 1 : 1; // <== ECCO LA MODIFICA
+
+					return distanza / distanzaPerFrame;
+				})();
+
+				this.dx = distanzaX / scala;
+				this.dy = distanzaY / scala;
+				batteriaAntiMissile.missiliRimanenti--;
+			}
+			MissileDelGiocatore.prototype = oldProto;
+		}
   };
   
   
@@ -701,7 +721,7 @@ var missileCommand = (function () {
 })();
 
 $( document ).ready( function() {
-  var idLivelloAttuale = 4;
+  var idLivelloAttuale = 1;
   missileCommand.caricaLivelli(idLivelloAttuale);
   missileCommand.iniziaGioco();
   missileCommand.setupListeners();
