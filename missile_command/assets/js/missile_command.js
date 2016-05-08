@@ -17,7 +17,6 @@ var missileCommand = (function () {
         spento: 0
       },
       COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
-      COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
 
   // Variables
   var punteggio = 0,
