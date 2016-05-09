@@ -772,17 +772,33 @@ var missileCommand = (function () {
   };
 
   var caricaLivelli = function(livelloAttuale){
+		caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
   };
   	
+	var caricaLivello1 = function(livelloAttuale) {
+		var idLivello = 1;
+		if(livelloAttuale <= idLivello) {
+			// Codice che l'utente deve correggere
+			aggiuntaDelleBasi = function() {
+     		console.log("Sto eseguendo la aggiunta delle basi piene");
+       	var xIniziale = 80;
+       	for (var j = 0; j < 3; j++){
+       	basi.push( new Base( xIniziale,  430 ) );
+        	xIniziale += 50;
+      	}
+     	}
+		}
+	}
+	
 	// Nota: per sorvrascrivere il costruttore è necessario salvare
 	// il prototipe: "var oldProto = MissileDelGiocatore.prototype;"
 	// in seguito la classe "MissileDelGiocatore = function() {}"
 	// ed infine si riassegna il vecchio prototype "MissileDelGiocatore.prototype = oldProto;"
 	var caricaLivello3 = function(livelloAttuale) {
-    var idLivello1 = 3;
+    var idLivello = 3;
 		// Il parametri che agisce sulla velocità è distancePerFrame
-    if (livelloAttuale <= idLivello1) {
+    if (livelloAttuale <= idLivello) {
 			
 			var oldProto = MissileDelGiocatore.prototype;
 			MissileDelGiocatore = function( indiceTorretta, xDiArrivo, yDiArrivo ) {
