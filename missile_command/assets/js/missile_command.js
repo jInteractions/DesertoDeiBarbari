@@ -772,7 +772,7 @@ var missileCommand = (function () {
   };
 
   var caricaLivelli = function(livelloAttuale){
-		caricaLivello1(livelloAttuale);
+    caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
   };
   	
@@ -784,10 +784,10 @@ var missileCommand = (function () {
      		console.log("Sto eseguendo la aggiunta delle basi piene");
        	var xIniziale = 80;
        	for (var j = 0; j < 3; j++){
-       	basi.push( new Base( xIniziale,  430 ) );
-        	xIniziale += 50;
-      	}
-     	}
+					basi.push( new Base( xIniziale,  430 ) );
+					xIniziale += 50;
+				}
+      }
 		}
 	}
 	
@@ -841,7 +841,7 @@ var missileCommand = (function () {
 })();
 
 $( document ).ready( function() {
-  var idLivelloAttuale = 3;
+  var idLivelloAttuale = 1;
   missileCommand.caricaLivelli(idLivelloAttuale);
   missileCommand.iniziaGioco();
   missileCommand.setupListeners();
