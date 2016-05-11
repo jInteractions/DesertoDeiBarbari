@@ -25,7 +25,8 @@ var missileCommand = (function () {
       batterieAntiMissile = [],
       missiliGiocatore = [],
       missiliNemico = [],
-      identificatoreTimer;
+      identificatoreTimer,
+      raggioEsplosioneMissileNemico;
 
   var aggiuntaDelleBasi = function(){ 
     // Codice corretto
@@ -72,7 +73,7 @@ var missileCommand = (function () {
     var bersagli = bersagliAttaccabili(),
         numeroMissili = ( (livello + 7) < 30 ) ? livello + 7 : 30;
     for( var i = 0; i < numeroMissili; i++ ) {
-      missiliNemico.push( new MissileNemico(bersagli) );
+      missiliNemico.push( new MissileNemico(bersagli, raggioEsplosioneMissileNemico) );
     }
   };
   
@@ -353,7 +354,8 @@ var missileCommand = (function () {
     this.ampiezza = 2;
     this.altezza = 2;
     this.raggioDiEsplosione = 0;
-		this.animazioneColore = 0;
+    this.animazioneColore = 0;
+    this.massimoRaggioEsplosione = options.massimoRaggioEsplosione;
   }
 
   // Draw the path of a missile or an exploding missile
@@ -397,7 +399,7 @@ var missileCommand = (function () {
     if( this.stato === MISSILE.esplosione ) {
       this.raggioDiEsplosione++;
     }
-    if( this.raggioDiEsplosione > 30 ) {
+    if( this.raggioDiEsplosione > this.massimoRaggioEsplosione ) {
       this.stato = MISSILE.implosione;
     }
     if( this.stato === MISSILE.implosione ) {
@@ -421,7 +423,7 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: batteriaAntiMissile.x,  yDiPartenza: batteriaAntiMissile.y,
                           xDiArrivo: xDiArrivo,     yDiArrivo: yDiArrivo, 
-                          colore: 'green', coloreScia: 'blue' } );
+                          colore: 'green', coloreScia: 'blue', massimoRaggioEsplosione: 30 } );
 
     var distanzaX = this.xDiArrivo - this.xDiPartenza,
         distanzaY = this.yDiArrivo - this.yDiPartenza;
@@ -475,7 +477,7 @@ var missileCommand = (function () {
 
   // Constructor for the Enemy's Missile, which is a subclass of Missile
   // and uses Missile's constructor
-  function MissileNemico( bersagli ) {
+  function MissileNemico( bersagli, raggioEsplosioneMissileNemico ) {
     var xDiPartenza = rand( 0, CANVAS_WIDTH ),
         yDiPartenza = 0,
         // Create some variation in the speed of missiles
@@ -486,7 +488,8 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
                           xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
-                          colore: 'yellow', coloreScia: 'red' } );
+                          colore: 'yellow', coloreScia: 'red',
+                          massimoRaggioEsplosione: raggioEsplosioneMissileNemico } );
 
     framesToTarget = ( 650 - 30 * livello ) / offSpeed;
     if( framesToTarget < 20 ) {
@@ -774,6 +777,7 @@ var missileCommand = (function () {
   var caricaLivelli = function(livelloAttuale){
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
+    caricaLivello13(livelloAttuale);
   };
   	
 	var caricaLivello1 = function(livelloAttuale) {
@@ -831,6 +835,14 @@ var missileCommand = (function () {
 		}
   };
   
+  // Modifica del raggio di esplosione del missile nemico
+  var caricaLivello13 = function(livelloAttuale) {
+    idLivello = 13;
+    if (livelloAttuale <= idLivello) {
+      raggioEsplosioneMissileNemico = 5;
+    }
+  }
+  
   
   return {
     iniziaGioco: iniziaGioco,
@@ -841,7 +853,7 @@ var missileCommand = (function () {
 })();
 
 $( document ).ready( function() {
-  var idLivelloAttuale = 1;
+  var idLivelloAttuale = 13;
   missileCommand.caricaLivelli(idLivelloAttuale);
   missileCommand.iniziaGioco();
   missileCommand.setupListeners();
