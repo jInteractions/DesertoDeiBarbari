@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			function escapeHtml(text) {
+			  var map = {
+				'&': '&amp;',
+				'<': '&lt;',
+				'>': '&gt;',
+				'"': '&quot;',
+				"'": '&#039;'
+			  };
+
+			  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+			}
+			function convert(){
+				var txt = document.getElementById("txt");
+				alert(txt.value);
+				var f = document.getElementById("f");
+				
+				var str = txt.value;
+				var enc = btoa(str);
+				f.src = "data:text/html;base64," + enc;
+				alert(atob(enc));
+			}
+		</script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>
+					<iframe id="f" src="data:text/html;charset=utf-8,%3Chtml%3E%3Chead%3E%3Cscript%3Efunction al(){alert(&#34;ciao a tutti&#34;);}%3C/script%3E%3C/head%3E%3Cbody%3E%3Cinput type=&#34;button&#34; value=&#34 clicca qui&#34 onClick=&#34;al()&#34;/%3E%3C/body%3E%3C/html%3E">
+					</iframe>
+				</td>
+				<td>
+				<textarea  rows="20" cols="50"id="txt">
+					<html>
+						<head>
+							<script>
+								function al(){alert("ciao");}
+							</script>
+						</head>
+						<body>
+							<input type="button" value="clicca qui" onClick="al()"/>
+						</body>
+					</html>
+				</textarea>
+				</td>
+			</tr>
+		</table>
+				<input type="button" value="clicca qui" onClick="convert()" />
+	</body>
+</html>
