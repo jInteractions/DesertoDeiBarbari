@@ -837,7 +837,7 @@ var missileCommand = (function () {
 	var caricaLivello4 = function(livelloAttuale){
     var idLivello = 4;
     if (livelloAttuale <= idLivello) {
-      Missile.prototype.esplodi = function() {
+      MissileDelGiocatore.prototype.esplodi = function() {
         if( this.stato === MISSILE.esplosione ) {
           this.raggioDiEsplosione++;
         }
