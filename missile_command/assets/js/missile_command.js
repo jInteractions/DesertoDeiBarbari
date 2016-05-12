@@ -25,7 +25,8 @@ var missileCommand = (function () {
       batterieAntiMissile = [],
       missiliGiocatore = [],
       missiliNemico = [],
-      identificatoreTimer;
+      identificatoreTimer,
+      raggioEsplosioneNostroMissile = 30;
 
   var aggiuntaDelleBasi = function(){ 
     // Codice corretto
@@ -354,6 +355,7 @@ var missileCommand = (function () {
     this.altezza = 2;
     this.raggioDiEsplosione = 0;
 		this.animazioneColore = 0;
+    this.massimoRaggioEsplosione = options.massimoRaggioEsplosione;
   }
 
   // Draw the path of a missile or an exploding missile
@@ -397,7 +399,7 @@ var missileCommand = (function () {
     if( this.stato === MISSILE.esplosione ) {
       this.raggioDiEsplosione++;
     }
-    if( this.raggioDiEsplosione > 30 ) {
+    if( this.raggioDiEsplosione > this.massimoRaggioEsplosione ) {
       this.stato = MISSILE.implosione;
     }
     if( this.stato === MISSILE.implosione ) {
@@ -421,7 +423,7 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: batteriaAntiMissile.x,  yDiPartenza: batteriaAntiMissile.y,
                           xDiArrivo: xDiArrivo,     yDiArrivo: yDiArrivo, 
-                          colore: 'green', coloreScia: 'blue' } );
+                          colore: 'green', coloreScia: 'blue', massimoRaggioEsplosione: raggioEsplosioneNostroMissile } );
 
     var distanzaX = this.xDiArrivo - this.xDiPartenza,
         distanzaY = this.yDiArrivo - this.yDiPartenza;
@@ -486,7 +488,7 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
                           xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
-                          colore: 'yellow', coloreScia: 'red' } );
+                          colore: 'yellow', coloreScia: 'red', massimoRaggioEsplosione: 30 } );
 
     framesToTarget = ( 650 - 30 * livello ) / offSpeed;
     if( framesToTarget < 20 ) {
@@ -840,7 +842,7 @@ var missileCommand = (function () {
           this.raggioDiEsplosione++;
         }
         // Modificare il seguente valore per indicare quando interrompere l'esplosione ed iniziare l'implosione
-        if( this.raggioDiEsplosione > 10 ) {
+        if( this.raggioDiEsplosione > 3 ) {
           this.stato = MISSILE.implosione;
         }
         if( this.stato === MISSILE.implosione ) {
