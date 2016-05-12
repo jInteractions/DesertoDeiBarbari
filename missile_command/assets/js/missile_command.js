@@ -774,6 +774,7 @@ var missileCommand = (function () {
   var caricaLivelli = function(livelloAttuale){
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
+    caricaLivello4(livelloAttuale);
   };
   	
 	var caricaLivello1 = function(livelloAttuale) {
@@ -831,6 +832,31 @@ var missileCommand = (function () {
 		}
   };
   
+	var caricaLivello4 = function(livelloAttuale){
+    var idLivello = 4;
+    if (livelloAttuale <= idLivello) {
+      Missile.prototype.esplodi = function() {
+        if( this.stato === MISSILE.esplosione ) {
+          this.raggioDiEsplosione++;
+        }
+        // Modificare il seguente valore per indicare quando interrompere l'esplosione ed iniziare l'implosione
+        if( this.raggioDiEsplosione > 10 ) {
+          this.stato = MISSILE.implosione;
+        }
+        if( this.stato === MISSILE.implosione ) {
+          this.raggioDiEsplosione--;
+          if( this.esplosioneATerra ) {
+            // Spiegare che questo è un if contratto
+            ( this.bersaglio[2] instanceof Base ) ? this.bersaglio[2].attivo = false
+                                            : this.bersaglio[2].missiliRimanenti = 0;
+          }
+        }
+        if( this.raggioDiEsplosione < 0 ) {
+          this.stato = MISSILE.esploso;
+        }
+      };
+    }
+  }
   
   return {
     iniziaGioco: iniziaGioco,
