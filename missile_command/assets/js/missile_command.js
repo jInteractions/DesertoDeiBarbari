@@ -73,7 +73,7 @@ var missileCommand = (function () {
     var bersagli = bersagliAttaccabili(),
         numeroMissili = ( (livello + 7) < 30 ) ? livello + 7 : 30;
     for( var i = 0; i < numeroMissili; i++ ) {
-      missiliNemico.push( new MissileNemico(bersagli, raggioEsplosioneMissileNemico) );
+      missiliNemico.push( new MissileNemico(bersagli) );
     }
   };
   
@@ -477,7 +477,7 @@ var missileCommand = (function () {
 
   // Constructor for the Enemy's Missile, which is a subclass of Missile
   // and uses Missile's constructor
-  function MissileNemico( bersagli, raggioEsplosioneMissileNemico ) {
+  function MissileNemico( bersagli ) {
     var xDiPartenza = rand( 0, CANVAS_WIDTH ),
         yDiPartenza = 0,
         // Create some variation in the speed of missiles
@@ -775,9 +775,9 @@ var missileCommand = (function () {
   };
 
   var caricaLivelli = function(livelloAttuale){
+    modificaRaggioEsplosioneMissileNemico(livelloAttuale);
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
-    caricaLivello13(livelloAttuale);
   };
   	
 	var caricaLivello1 = function(livelloAttuale) {
@@ -835,8 +835,8 @@ var missileCommand = (function () {
 		}
   };
   
-  // Modifica del raggio di esplosione del missile nemico
-  var caricaLivello13 = function(livelloAttuale) {
+  // Modifica del raggio di esplosione del missile nemico NB: NO LIVELLO
+  var modificaRaggioEsplosioneMissileNemico = function(livelloAttuale) {
     idLivello = 13;
     if (livelloAttuale <= idLivello) {
       raggioEsplosioneMissileNemico = 5;
