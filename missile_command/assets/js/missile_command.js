@@ -274,7 +274,7 @@ var missileCommand = (function () {
       this.y += this.dy;
     }
   }
-	
+  
   // Constructor for a City
   function Base( x, y ) {
     this.x = x;
@@ -287,7 +287,7 @@ var missileCommand = (function () {
     var x = this.x,
         y = this.y;
 
-    ctx.fillStyle = 'cyan';
+    ctx.fillStyle = "#42EFFF";
     ctx.beginPath();
     ctx.moveTo( x, y );
     ctx.lineTo( x, y - 10 );
@@ -774,6 +774,7 @@ var missileCommand = (function () {
   var caricaLivelli = function(livelloAttuale){
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
+    caricaLivello19(livelloAttuale);
   };
   	
 	var caricaLivello1 = function(livelloAttuale) {
@@ -831,6 +832,81 @@ var missileCommand = (function () {
 		}
   };
   
+  var caricaLivello19 = function(livelloAttuale) {
+    var idLivello = 19;
+		// Il parametri che agisce sulla velocità è distancePerFrame
+    if (livelloAttuale >= idLivello) {
+      Base.prototype.disegna = function(conScudo) {
+        var x = this.x,
+            y = this.y;
+        
+        if(conScudo){
+          var my_gradient = ctx.createLinearGradient(this.x + 15, this.y, 1, this.x + 15, this.y, 3);
+          my_gradient.addColorStop(0,"#FFF7CA");
+          my_gradient.addColorStop(1,"white");
+          ctx.fillStyle = my_gradient;
+          ctx.beginPath();
+          ctx.arc( this.x + 15, this.y, 24, Math.PI, 0 );
+          ctx.closePath();
+          ctx.fill();
+        }
+        
+        ctx.fillStyle = "#42EFFF";
+        ctx.beginPath();
+        ctx.moveTo( x, y );
+        ctx.lineTo( x, y - 10 );
+        ctx.lineTo( x + 10, y - 10 );
+        ctx.lineTo( x + 15, y - 15 );
+        ctx.lineTo( x + 20, y - 10 );
+        ctx.lineTo( x + 30, y - 10 );
+        ctx.lineTo( x + 30, y );
+        ctx.closePath();
+        ctx.fill();
+      };
+      
+      var oldProto = Base.prototype;
+      Base = function(x, y) {
+        this.x = x;
+        this.y = y;
+        this.attivo = true;
+        this.scudo = true;
+      }
+      Base.prototype = oldProto;
+      
+      // Draw all attivo cities
+      disegnaBasi = function() {
+        $.each( basi, function( indice, base ) {
+          if( base.attivo ) {
+            base.disegna(base.scudo);
+          }
+        });
+      };
+      
+      Missile.prototype.esplodi = function() {
+        if( this.stato === MISSILE.esplosione )
+          this.raggioDiEsplosione++;        
+        if( this.raggioDiEsplosione > 30 )
+          this.stato = MISSILE.implosione;        
+        if( this.stato === MISSILE.implosione ) {
+          this.raggioDiEsplosione--;
+          if( this.esplosioneATerra ) {
+            if ( this.bersaglio[2] instanceof Base ) {
+              if (this.bersaglio[2].scudo == true){
+                this.raggioDiEsplosione = 0;
+                this.stato = MISSILE.esploso;
+                this.bersaglio[2].scudo = false;
+              } else
+                this.bersaglio[2].attivo = false;              
+            } else 
+              this.bersaglio[2].missiliRimanenti = 0;            
+          }
+        }
+        if( this.raggioDiEsplosione < 0 )
+          this.stato = MISSILE.esploso;        
+      };
+    }
+    
+  }
   
   return {
     iniziaGioco: iniziaGioco,
@@ -841,7 +917,7 @@ var missileCommand = (function () {
 })();
 
 $( document ).ready( function() {
-  var idLivelloAttuale = 1;
+  var idLivelloAttuale = 19;
   missileCommand.caricaLivelli(idLivelloAttuale);
   missileCommand.iniziaGioco();
   missileCommand.setupListeners();
