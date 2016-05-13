@@ -924,6 +924,7 @@ var missileCommand = (function () {
     caricaLivello3(livelloAttuale);
     caricaLivello4(livelloAttuale);
     caricaLivello14(livelloAttuale);
+    caricaLivello15(livelloAttuale);
     caricaLivello16(livelloAttuale);
     caricaLivello17(livelloAttuale);
   };
@@ -1023,6 +1024,30 @@ var missileCommand = (function () {
           }
           missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x + modificatoreX, y + modificatoreY ) );
         }
+      };
+    }
+  }
+  
+  var caricaLivello15 = function(livelloAttuale) {
+    var idLivello = 15;
+    if (livelloAttuale <= idLivello) {
+      // codice per ridurre la portata dei missili del giocatore
+      // possibile sia ridurre la portata sia in una fascia orientata verso l'altro
+      // sia ridurla in una fascia orientata verso il basso
+      sparoDelGiocatore = function( x, y ) {
+        var limiteInferioreY = 370; // default 370
+        var limiteSuperioreY = 250; // default 50
+        if (y < limiteSuperioreY) {
+          y = limiteSuperioreY;
+        }
+        if (y > limiteInferioreY) {
+          y = limiteInferioreY;
+        }
+        var indiceTorretta = qualeBatteriaAntiMissileUsare( x );
+        if( indiceTorretta === -1 ){ // No missiles left
+          return;
+        }
+        missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x, y ) );        
       };
     }
   }
@@ -1153,7 +1178,7 @@ var missileCommand = (function () {
     if (livelloAttuale <= idLivello) {
       raggioEsplosioneMissileNemico = 30;
     }
-  }
+  }  
   
   return {
     iniziaGioco: iniziaGioco,
