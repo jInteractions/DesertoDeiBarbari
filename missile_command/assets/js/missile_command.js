@@ -923,6 +923,7 @@ var missileCommand = (function () {
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
     caricaLivello4(livelloAttuale);
+    caricaLivello14(livelloAttuale);
     caricaLivello16(livelloAttuale);
     caricaLivello17(livelloAttuale);
   };
@@ -977,7 +978,7 @@ var missileCommand = (function () {
 				this.dx = distanzaX / scala;
 				this.dy = distanzaY / scala;
 				batteriaAntiMissile.missiliRimanenti--;
-			}
+			};
 			MissileDelGiocatore.prototype = oldProto;
 		}
   };
@@ -1003,6 +1004,24 @@ var missileCommand = (function () {
         }
         if( this.raggioDiEsplosione < 0 ) {
           this.stato = MISSILE.esploso;
+        }
+      };
+    }
+  }
+  
+  var caricaLivello14 = function(livelloAttuale) {
+    var idLivello = 14;
+    if (livelloAttuale <= idLivello) {
+      // codice che modifica il sistema di puntamento dei missili del giocatore
+      sparoDelGiocatore = function( x, y ) {
+        var modificatoreX = 30;
+        var modificatoreY = 30;
+        if( y >= 50 && y <= 370 ) {
+          var indiceTorretta = qualeBatteriaAntiMissileUsare( x );
+          if( indiceTorretta === -1 ){ // No missiles left
+            return;
+          }
+          missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x + modificatoreX, y + modificatoreY ) );
         }
       };
     }
