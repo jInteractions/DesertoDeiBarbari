@@ -6,6 +6,8 @@ var missileCommand = (function () {
 // Constants
   var CANVAS_WIDTH  = canvas.width,
       CANVAS_HEIGHT = canvas.height,
+      NUMERO_INTEGRANTI_DI_UNA_BASE = 200,
+      NUMERO_INTEGRANTI_ANTI_MISSILE = 10,
       MISSILE = {
         attivo: 1,
         esplosione: 2,
@@ -20,6 +22,8 @@ var missileCommand = (function () {
 
   // Variables
   var punteggio = 0,
+      popolazioneMorta = 0,
+      popolazioneSopravvissuta = 0,
       livello = 1,
       basi = [],
       batterieAntiMissile = [],
@@ -98,7 +102,8 @@ var missileCommand = (function () {
   var disegnaPunteggio = function() {
     ctx.fillStyle = 'red';
     ctx.font = 'bold 20px arial';
-    ctx.fillText( 'Punteggio ' + punteggio, 80, 15 );
+    ctx.fillText( 'Punteggio ' + punteggio, 15, 25 );
+    ctx.fillText( 'Morti ' + popolazioneMorta, 15, 50 );
   };
 
   // Show message before a level begins
@@ -157,9 +162,11 @@ var missileCommand = (function () {
     ctx.font = 'bold 85px arial';
     ctx.fillText( 'THE END', 70, 260 );
 
-    ctx.fillStyle = 'yellow';
+    ctx.fillStyle = 'black';
     ctx.font = 'bold 26px arial';
-    ctx.fillText( 'Punteggio finale: ' + punteggio, 80, 20 );
+    ctx.fillText( 'Punteggio finale: ' + punteggio, 15, 25 );
+    ctx.fillText( 'Morti: ' + popolazioneMorta, 15, 55 );
+    ctx.fillText( 'Sopravvissuti: ' + popolazioneSopravvissuta, 15, 85 );
     ctx.fillText( 'CLICK PER INIZIARE UNA NUOVA PARTITA', 80, 458 );
   };
 
@@ -403,8 +410,18 @@ var missileCommand = (function () {
     if( this.stato === MISSILE.implosione ) {
       this.raggioDiEsplosione--;
       if( this.esplosioneATerra ) {
-        ( this.bersaglio[2] instanceof Base ) ? this.bersaglio[2].attivo = false
-                                        : this.bersaglio[2].missiliRimanenti = 0;
+        if ( this.bersaglio[2] instanceof Base ) {
+          if (this.bersaglio[2].attivo === true) {
+            this.bersaglio[2].attivo = false;
+            popolazioneMorta += NUMERO_INTEGRANTI_DI_UNA_BASE;
+          }
+        } 
+        else { 
+          if (this.bersaglio[2].missiliRimanenti != 0){
+            this.bersaglio[2].missiliRimanenti = 0;
+            popolazioneMorta += NUMERO_INTEGRANTI_ANTI_MISSILE;
+          }
+        }
       }
     }
     if( this.raggioDiEsplosione < 0 ) {
@@ -624,6 +641,8 @@ var missileCommand = (function () {
   // Handle the end of the game
   var fineGioco = function( missiliRimanenti ) {
     punteggio += missiliRimanenti * 5 * getMultiplier();
+    popolazioneSopravvissuta += totaleBasiSalvate() * 200;
+    popolazioneSopravvissuta += totaleBatterieAntiMissileSalvate() * 10;
     disegnaFineDelGioco();
 
     $( 'body' ).on( 'click', 'div', function() {
@@ -640,6 +659,16 @@ var missileCommand = (function () {
     return totale;
   };
 
+  var totaleBatterieAntiMissileSalvate = function (){
+    var totale = 0;
+    $.each( batterieAntiMissile, function(indice, batteriaAntiMissile) {
+      if( batteriaAntiMissile.missiliRimanenti != 0 ) {
+        totale++;
+      }
+    });
+    return totale;
+  }
+  
   // Get count of undestroyed cities
   var totaleBasiSalvate = function() {
     var totale = 0;
@@ -650,7 +679,7 @@ var missileCommand = (function () {
     });
     return totale;
   };
-
+  
   // Update all enemy missiles and remove those that have esplodid
   var aggiornaMissiliNemico = function() {
     $.each( missiliNemico, function( indice, missile ) {
