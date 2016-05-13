@@ -25,7 +25,8 @@ var missileCommand = (function () {
       batterieAntiMissile = [],
       missiliGiocatore = [],
       missiliNemico = [],
-      identificatoreTimer;
+      identificatoreTimer,
+      velMassima = 1;
 
   var aggiuntaDelleBasi = function(){ 
     // Codice corretto
@@ -69,10 +70,11 @@ var missileCommand = (function () {
 
   // Create a certain number of enemy missiles based on the game level
   var creazioneMissiliNemico = function() {
+    var options = {speed: velMassima};
     var bersagli = bersagliAttaccabili(),
         numeroMissili = ( (livello + 7) < 30 ) ? livello + 7 : 30;
     for( var i = 0; i < numeroMissili; i++ ) {
-      missiliNemico.push( new MissileNemico(bersagli) );
+      missiliNemico.push( new MissileNemico(bersagli, options) );
     }
   };
   
@@ -475,11 +477,11 @@ var missileCommand = (function () {
 
   // Constructor for the Enemy's Missile, which is a subclass of Missile
   // and uses Missile's constructor
-  function MissileNemico( bersagli ) {
+  function MissileNemico( bersagli, options ) {
     var xDiPartenza = rand( 0, CANVAS_WIDTH ),
         yDiPartenza = 0,
         // Create some variation in the speed of missiles
-        offSpeed = rand(80, 120) / 100,
+        offSpeed = options.speed,
         // Randomly pick a obiettivo for this missile
         bersaglio = bersagli[ rand(0, bersagli.length - 1) ],
         framesToTarget;
@@ -774,6 +776,7 @@ var missileCommand = (function () {
   var caricaLivelli = function(livelloAttuale){
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
+    caricaLivello11(livelloAttuale);
   };
   	
 	var caricaLivello1 = function(livelloAttuale) {
@@ -830,6 +833,13 @@ var missileCommand = (function () {
 			MissileDelGiocatore.prototype = oldProto;
 		}
   };
+  
+  var caricaLivello11 = function(livelloAttuale) {
+    var idLivello = 11;
+    if (livelloAttuale <= idLivello) {
+      velMassima = 5;
+    }
+  }
   
   
   return {
