@@ -774,6 +774,7 @@ var missileCommand = (function () {
   var caricaLivelli = function(livelloAttuale){
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
+    caricaLivello17(livelloAttuale);
   };
   	
 	var caricaLivello1 = function(livelloAttuale) {
@@ -830,6 +831,95 @@ var missileCommand = (function () {
 			MissileDelGiocatore.prototype = oldProto;
 		}
   };
+  
+  /*
+    Fino a questo livello saranno offuscate solo le torrette e quindi il nemico sapendo dove sono le basi attaccherà
+    solo quelle dato che distruggendo quelle vince. L'utente aggiungendo le basi ai bersagli offuscati riesce a nascondere
+    la posizione delle basi e in questo modo il nemico non riesce più a distinguere basi da torrette.
+  */
+  var caricaLivello17 = function (livelloAttuale) {
+    var idLivello = 17;
+    if (livelloAttuale <= idLivello) {
+      bersagliAttaccabili = function() {
+        var bersagliOffuscati = [];
+
+        /* Codice che dovrà inserire l'utente
+        $.each( basi, function( indice, base ) {
+          if( base.attivo ) {
+            bersagliOffuscati.push( [base.x + 15, base.y - 10, base] );
+          }
+        });
+        */
+        
+        $.each( batterieAntiMissile, function( indice, batteriaAntiMissile ) {
+          bersagliOffuscati.push( [batteriaAntiMissile.x, batteriaAntiMissile.y, batteriaAntiMissile]);
+        });
+        
+        return calcoloBersagliIdentificabili(bersagliOffuscati);
+      };
+    }
+  }
+  
+  var calcoloBersagliIdentificabili = function (bersagliOffuscati) {
+    var bersagliPossibili = [];
+
+    // Include all active cities
+    $.each( basi, function( indice, base ) {
+      if( base.attivo ) {
+        bersagliPossibili.push( [base.x + 15, base.y - 10, base] );
+      }
+    });
+
+    // Randomly select at most 3 cities to target
+    while( bersagliPossibili.length > 3 ) {
+      bersagliPossibili.splice( rand(0, bersagli.length - 1), 1 );
+    }
+
+    // Include all anti missile batteries
+    $.each( batterieAntiMissile, function( indice, batteriaAntiMissile ) {
+      bersagliPossibili.push( [batteriaAntiMissile.x, batteriaAntiMissile.y, batteriaAntiMissile]);
+    });
+    
+    return calcoloBersagliConfrontandoArray(bersagliPossibili, bersagliOffuscati);
+  }
+  
+  var calcoloBersagliConfrontandoArray = function (bersagliPossibili, bersagliOffuscati){
+    var bersagliDaAttaccare = [];
+    var trovato;
+    for (var i = 0; i < bersagliPossibili.length; i++) {
+      trovato = false;
+      for (var j = 0; j < bersagliOffuscati.length; j++) {
+        if (bersagliPossibili[i].equals(bersagliOffuscati[j]))
+          trovato = true;
+      }
+      if(!trovato)
+        bersagliDaAttaccare.push(bersagliPossibili[i]);
+    }
+    return (bersagliDaAttaccare.length > 0) ? bersagliDaAttaccare : bersagliPossibili;
+  }
+  
+  // aggiungo metodo equals per confrontare due array
+  Array.prototype.equals = function (array) {
+    if (!array)
+      return false;
+ 
+    if (this.length != array.length)
+      return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+      // Check array ricorsivi
+      if (this[i] instanceof Array && array[i] instanceof Array) {
+          if (!this[i].equals(array[i]))
+              return false;       
+      }           
+      else if (this[i] != array[i]) { 
+          return false;   
+      }           
+    }       
+    return true;
+  }
+  // Hide method from for-in loops
+  Object.defineProperty(Array.prototype, "equals", {enumerable: false});
   
   
   return {
