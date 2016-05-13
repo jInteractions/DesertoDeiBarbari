@@ -41,26 +41,29 @@ var missileCommand = (function () {
     }
   }
   
+  var aggiuntaDelleBatterieAntiMissile = function(){
+    batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
+  	batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
+  	batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
+    $.each( batterieAntiMissile, function( indice, batteriaAntiMissile ) {
+      batteriaAntiMissile.missiliRimanenti = 10;
+    });
+  }
+  
   // Create cities and anti missile batteries at the start of the game
   var iniziaGioco = function() { 
   	// Mirino
     mirino = new Mirino(CANVAS_WIDTH/2.0, CANVAS_HEIGHT/2.0);   
       
-  	// Bottom left position of city
   	aggiuntaDelleBasi();
 		
-  	// Top middle position of anti missile battery
-  	batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
-  	batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
-  	batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
+  	aggiuntaDelleBatterieAntiMissile();
+    
   	inizializzaLivello();
   };
 
   // Reset various variables at the start of a new level
   var inizializzaLivello = function() {
-    $.each( batterieAntiMissile, function( indice, batteriaAntiMissile ) {
-      batteriaAntiMissile.missiliRimanenti = 10;
-    });
     missiliGiocatore = [];
     missiliNemico = [];
     creazioneMissiliNemico();
@@ -726,7 +729,6 @@ var missileCommand = (function () {
         return priority2;
       }
     };
-
     if( !batterieAntiMissile[0].haMissiliADisposizione() && 
         !batterieAntiMissile[1].haMissiliADisposizione() &&
         !batterieAntiMissile[2].haMissiliADisposizione() ) {
@@ -774,6 +776,7 @@ var missileCommand = (function () {
   var caricaLivelli = function(livelloAttuale){
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
+    caricaLivello16(livelloAttuale);
   };
   	
 	var caricaLivello1 = function(livelloAttuale) {
@@ -831,6 +834,34 @@ var missileCommand = (function () {
 		}
   };
   
+  /*
+    Livello molto interessante, dato che a livello di codice è molto semplice, basta effettuare il copia incolla della riga
+    batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) ); modificando i valori delle x e delle y.
+    Ma ho pensato che questo livello sarà molto utile per spiegare all'utente come chiedere aiuto a Cariatide in modo 
+    da scoprire dove è stato predisposto lo spazio per le tre batterie anti missile.
+  */
+  var caricaLivello16 = function(livelloAttuale) {
+    var idLivello = 16;
+    if (livelloAttuale <= idLivello) {
+      aggiuntaDelleBatterieAntiMissile = function(){
+        batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
+        
+        /* 
+          Nasconderei il codice seguente all'utente. 
+          E' stato necessario farlo in questo modo, cioè aggiungendo comunque le batterie anti missile ma settando la
+          quantità di missili a 0 perché altrimenti sorgevano tanti bug e per risolverli era necessario modificare in modo
+          sostanzioso il codice e bisognava anche modificare altri livelli creati.
+        */
+        batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
+        batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
+        batterieAntiMissile[0].missiliRimanenti = 10;
+        batterieAntiMissile[2].missiliRimanenti = 0;
+        batterieAntiMissile[1].missiliRimanenti = 0;
+        // Fine codice da nascondere.
+      }
+    }
+  }
+  
   
   return {
     iniziaGioco: iniziaGioco,
@@ -841,7 +872,7 @@ var missileCommand = (function () {
 })();
 
 $( document ).ready( function() {
-  var idLivelloAttuale = 1;
+  var idLivelloAttuale = 17;
   missileCommand.caricaLivelli(idLivelloAttuale);
   missileCommand.iniziaGioco();
   missileCommand.setupListeners();
