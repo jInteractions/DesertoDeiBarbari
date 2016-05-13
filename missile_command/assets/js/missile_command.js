@@ -83,9 +83,15 @@ var missileCommand = (function () {
   // Create a certain number of enemy missiles based on the game level
   var creazioneMissiliNemico = function() {
     var bersagli = bersagliAttaccabili(),
-        numeroMissili = ( (livello + 7) < 30 ) ? livello + 7 : 30;
+      numeroMissili = ( (livello + 7) < 30 ) ? livello + 7 : 30,
+      numeroMissiliSdoppiabili = (( (livello + 7) < 30 ) ? livello + 7 : 30) / 2;
+    
     for( var i = 0; i < numeroMissili; i++ ) {
       missiliNemico.push( new MissileNemico(bersagli) );
+    }
+
+		for( var i = 0; i < numeroMissiliSdoppiabili; i++) {
+      missiliNemico.push( new MissileNemicoDoppio(bersagli, missiliNemico) );
     }
   };
   
@@ -508,8 +514,7 @@ var missileCommand = (function () {
         // Create some variation in the speed of missiles
         offSpeed = rand(80, 120) / 100,
         // Randomly pick a obiettivo for this missile
-        bersaglio = bersagli[ rand(0, bersagli.length - 1) ],
-        framesToTarget;
+        bersaglio = bersagli[ rand(0, bersagli.length - 1) ];
 
     Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
                           xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
@@ -517,12 +522,12 @@ var missileCommand = (function () {
                           massimoRaggioEsplosione: raggioEsplosioneMissileNemico } );
 
 
-    framesToTarget = ( 650 - 30 * livello ) / offSpeed;
-    if( framesToTarget < 20 ) {
-      framesToTarget = 20;
+    this.framesToTarget = ( 650 - 30 * livello ) / offSpeed;
+    if( this.framesToTarget < 20 ) {
+      this.framesToTarget = 20;
     }
-    this.dx = ( this.xDiArrivo - this.xDiPartenza ) / framesToTarget;
-    this.dy = ( this.yDiArrivo - this.yDiPartenza ) / framesToTarget;
+    this.dx = ( this.xDiArrivo - this.xDiPartenza ) / this.framesToTarget;
+    this.dy = ( this.yDiArrivo - this.yDiPartenza ) / this.framesToTarget;
 
     this.bersaglio = bersaglio;
     // Make missiles heading to their target at random times
@@ -571,6 +576,107 @@ var missileCommand = (function () {
     }
   };
 
+  // Missile nemico generato dalla sdoppiamento di un MissileNemicoDoppio
+  function MissileNemicoFrammento( bersaglio, xDiPartenza, yDiPartenza) {
+    this.xDiPartenza = xDiPartenza;
+  	this.yDiPartenza = yDiPartenza;
+    
+		// Create some variation in the speed of missiles
+    var offSpeed = rand(80, 120) / 100,
+    	// Randomly pick a obiettivo for this missile
+      framesToTarget;
+
+    Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
+                          xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
+                          colore: 'yellow', coloreScia: 'red' } );
+
+    framesToTarget = ( 650 - 10 * livello ) / offSpeed;
+    if( framesToTarget < 20 ) {
+      framesToTarget = 20;
+    }
+    this.dx = ( this.xDiArrivo - this.xDiPartenza ) / framesToTarget;
+    this.dy = ( this.yDiArrivo - this.yDiPartenza ) / framesToTarget;
+
+    // Memorizzo il bersaglio del missile per usi futuri
+    this.bersaglio = bersaglio;
+
+    // Make missiles heading to their target at random times
+    this.delay = 0;
+    this.esplosioneATerra = false;
+  }
+	
+	// Make MissileNemicoDoppio inherit from MissileNemico
+	MissileNemicoFrammento.prototype = Object.create( MissileNemico.prototype );
+  MissileNemicoFrammento.prototype.constructor = MissileNemicoFrammento;
+	
+	// Missile nemico che si sdoppia ad un certo punto della discesa
+	function MissileNemicoDoppio ( bersagli, missiliNemico) {
+		MissileNemico.call( this, bersagli );
+		
+		this.delaySplit = rand(0, this.framesToTarget/2);
+		this.alreadySplit = false;
+		this.missiliNemico = missiliNemico;
+	}
+	
+	// Make MissileNemicoDoppio inherit from MissileNemico
+	MissileNemicoDoppio.prototype = Object.create( MissileNemico.prototype );
+  MissileNemicoDoppio.prototype.constructor = MissileNemicoDoppio;
+	
+	// Suddivide il missile aggiungendone un altro con un obiettivo differente
+	MissileNemicoDoppio.prototype.split = function () {
+		var nuoviBersagli = bersagliAttaccabili();
+		
+    // Escludo il bersaglio del missile "padre"
+    nuoviBersagli.filter( function(bersaglio) {
+      return bersaglio !== this.bersaglio  
+    } );
+
+    var nuovoBersaglio;
+    var nMissili = rand(1, 3);
+    for(i = 0; i < nMissili; ++i) {
+      nuovoBersaglio = nuoviBersagli[ rand(0, nuoviBersagli.length - 1) ];
+
+      // Rimuovo il bersaglio dalla lista di quelli disponibili
+      nuoviBersagli.filter( function(bersaglio) {
+        return bersaglio !== nuovoBersaglio    
+      } );
+
+		  missiliNemico.push(
+			  new MissileNemicoFrammento(nuovoBersaglio, this.x, this.y) );
+    }
+    this.alreadySplit = true;
+	}
+	
+	// Update the location and/or stato of an enemy missile.
+  // The missile doesn't begin it's flight until its delay is past.
+	MissileNemicoDoppio.prototype.update = function() {
+    if( this.delay ) {
+      this.delay--;
+      return;
+		}
+		
+		if( this.delaySplit)
+			this.delaySplit--;			
+		else
+			if(this.alreadySplit == false)
+				this.split();
+		
+    if( this.stato === MISSILE.attivo && this.y >= this.yDiArrivo ) {
+      // Missile has hit a ground target (City or Anti Missile Battery)
+      this.x = this.xDiArrivo;
+      this.y = this.yDiArrivo;
+      this.stato = MISSILE.esplosione;
+      this.esplosioneATerra = true;
+    }
+		
+    if( this.stato === MISSILE.attivo ) {
+      this.x += this.dx;
+      this.y += this.dy;
+    } else {
+      this.esplodi();
+    }
+  };	
+  
   // Get targets that may be attacked in a game Level. All targets 
   // selected here may not be attacked, but no target other than those
   // selected here will be attacked in a game level. 
@@ -606,8 +712,8 @@ var missileCommand = (function () {
     disegnaMissiliNemico();
     aggiornaMissiliGiocatore();
     disegnaMissiliGiocatore();
-		aggiornaMirino();
-		disegnaMirino();
+	aggiornaMirino();
+	disegnaMirino();
     controllaFineLivello();
   };
 
