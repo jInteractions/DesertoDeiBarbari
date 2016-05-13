@@ -25,7 +25,8 @@ var missileCommand = (function () {
       batterieAntiMissile = [],
       missiliGiocatore = [],
       missiliNemico = [],
-      identificatoreTimer;
+      identificatoreTimer,
+      raggioEsplosioneMissileNemico = 30;
 
   var aggiuntaDelleBasi = function(){ 
     // Codice corretto
@@ -45,6 +46,10 @@ var missileCommand = (function () {
     batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
   	batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
   	batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
+    caricamentoDeiMissiliNelleBatterieAntiMissile();
+  }
+  
+  var caricamentoDeiMissiliNelleBatterieAntiMissile = function (){
     $.each( batterieAntiMissile, function( indice, batteriaAntiMissile ) {
       batteriaAntiMissile.missiliRimanenti = 10;
     });
@@ -66,6 +71,7 @@ var missileCommand = (function () {
   var inizializzaLivello = function() {
     missiliGiocatore = [];
     missiliNemico = [];
+    caricamentoDeiMissiliNelleBatterieAntiMissile();
     creazioneMissiliNemico();
     disegnaInizioLivello();
   };
@@ -356,7 +362,8 @@ var missileCommand = (function () {
     this.ampiezza = 2;
     this.altezza = 2;
     this.raggioDiEsplosione = 0;
-		this.animazioneColore = 0;
+    this.animazioneColore = 0;
+    this.massimoRaggioEsplosione = options.massimoRaggioEsplosione;
   }
 
   // Draw the path of a missile or an exploding missile
@@ -400,7 +407,7 @@ var missileCommand = (function () {
     if( this.stato === MISSILE.esplosione ) {
       this.raggioDiEsplosione++;
     }
-    if( this.raggioDiEsplosione > 30 ) {
+    if( this.raggioDiEsplosione > this.massimoRaggioEsplosione ) {
       this.stato = MISSILE.implosione;
     }
     if( this.stato === MISSILE.implosione ) {
@@ -424,7 +431,7 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: batteriaAntiMissile.x,  yDiPartenza: batteriaAntiMissile.y,
                           xDiArrivo: xDiArrivo,     yDiArrivo: yDiArrivo, 
-                          colore: 'green', coloreScia: 'blue' } );
+                          colore: 'green', coloreScia: 'blue', massimoRaggioEsplosione: 30 } );
 
     var distanzaX = this.xDiArrivo - this.xDiPartenza,
         distanzaY = this.yDiArrivo - this.yDiPartenza;
@@ -489,7 +496,9 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
                           xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
-                          colore: 'yellow', coloreScia: 'red' } );
+                          colore: 'yellow', coloreScia: 'red',
+                          massimoRaggioEsplosione: raggioEsplosioneMissileNemico } );
+
 
     framesToTarget = ( 650 - 30 * livello ) / offSpeed;
     if( framesToTarget < 20 ) {
@@ -774,8 +783,10 @@ var missileCommand = (function () {
   };
 
   var caricaLivelli = function(livelloAttuale){
+    modificaRaggioEsplosioneMissileNemico(livelloAttuale);
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
+    caricaLivello4(livelloAttuale);
     caricaLivello16(livelloAttuale);
     caricaLivello17(livelloAttuale);
   };
@@ -835,6 +846,32 @@ var missileCommand = (function () {
 		}
   };
   
+	var caricaLivello4 = function(livelloAttuale){
+    var idLivello = 4;
+    if (livelloAttuale <= idLivello) {
+      MissileDelGiocatore.prototype.esplodi = function() {
+        if( this.stato === MISSILE.esplosione ) {
+          this.raggioDiEsplosione++;
+        }
+        // Modificare il seguente valore per indicare quando interrompere l'esplosione ed iniziare l'implosione
+        if( this.raggioDiEsplosione > 5 ) {
+          this.stato = MISSILE.implosione;
+        }
+        if( this.stato === MISSILE.implosione ) {
+          this.raggioDiEsplosione--;
+          if( this.esplosioneATerra ) {
+            // Spiegare che questo è un if contratto
+            ( this.bersaglio[2] instanceof Base ) ? this.bersaglio[2].attivo = false
+                                            : this.bersaglio[2].missiliRimanenti = 0;
+          }
+        }
+        if( this.raggioDiEsplosione < 0 ) {
+          this.stato = MISSILE.esploso;
+        }
+      };
+    }
+  }
+  
   /*
     Livello molto interessante, dato che a livello di codice è molto semplice, basta effettuare il copia incolla della riga
     batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) ); modificando i valori delle x e delle y.
@@ -844,6 +881,12 @@ var missileCommand = (function () {
   var caricaLivello16 = function(livelloAttuale) {
     var idLivello = 16;
     if (livelloAttuale <= idLivello) {
+      caricamentoDeiMissiliNelleBatterieAntiMissile = function (){
+        batterieAntiMissile[0].missiliRimanenti = 10;
+        batterieAntiMissile[2].missiliRimanenti = 0;
+        batterieAntiMissile[1].missiliRimanenti = 0;
+      }
+      
       aggiuntaDelleBatterieAntiMissile = function(){
         batterieAntiMissile.push( new BatteriaAntiMissile( 255, 410 ) );
         
@@ -855,13 +898,12 @@ var missileCommand = (function () {
         */
         batterieAntiMissile.push( new BatteriaAntiMissile( 35,  410 ) );
         batterieAntiMissile.push( new BatteriaAntiMissile( 475, 410 ) );
-        batterieAntiMissile[0].missiliRimanenti = 10;
-        batterieAntiMissile[2].missiliRimanenti = 0;
-        batterieAntiMissile[1].missiliRimanenti = 0;
+        caricamentoDeiMissiliNelleBatterieAntiMissile();
         // Fine codice da nascondere.
       }
     }
   }
+  
   /*
     Fino a questo livello saranno offuscate solo le torrette e quindi il nemico sapendo dove sono le basi attaccherà
     solo quelle dato che distruggendo quelle vince. L'utente aggiungendo le basi ai bersagli offuscati riesce a nascondere
@@ -872,7 +914,7 @@ var missileCommand = (function () {
     if (livelloAttuale <= idLivello) {
       bersagliAttaccabili = function() {
         var bersagliOffuscati = [];
-
+        
         /* Codice che dovrà inserire l'utente
         $.each( basi, function( indice, base ) {
           if( base.attivo ) {
@@ -880,7 +922,6 @@ var missileCommand = (function () {
           }
         });
         */
-        
         $.each( batterieAntiMissile, function( indice, batteriaAntiMissile ) {
           bersagliOffuscati.push( [batteriaAntiMissile.x, batteriaAntiMissile.y, batteriaAntiMissile]);
         });
@@ -951,6 +992,14 @@ var missileCommand = (function () {
   // Hide method from for-in loops
   Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
+  // Modifica del raggio di esplosione del missile nemico NB: NO LIVELLO
+  var modificaRaggioEsplosioneMissileNemico = function(livelloAttuale) {
+    idLivello = 13;
+    if (livelloAttuale <= idLivello) {
+      raggioEsplosioneMissileNemico = 30;
+    }
+  }
+  
   return {
     iniziaGioco: iniziaGioco,
     setupListeners: setupListeners,
