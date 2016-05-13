@@ -841,6 +841,12 @@ var missileCommand = (function () {
       sparoDelGiocatore = function( x, y ) {
         var limiteInferioreY = 370; // default 370
         var limiteSuperioreY = 250; // default 50
+        if (y < limiteSuperioreY) {
+          y = limiteSuperioreY;
+        }
+        if (y > limiteInferioreY) {
+          y = limiteInferioreY;
+        }
         if( y >= limiteSuperioreY && y <= limiteInferioreY ) {
           var indiceTorretta = qualeBatteriaAntiMissileUsare( x );
           if( indiceTorretta === -1 ){ // No missiles left
