@@ -25,8 +25,7 @@ var missileCommand = (function () {
       batterieAntiMissile = [],
       missiliGiocatore = [],
       missiliNemico = [],
-      identificatoreTimer,
-      raggioEsplosioneNostroMissile = 30;
+      identificatoreTimer;
 
   var aggiuntaDelleBasi = function(){ 
     // Codice corretto
@@ -423,7 +422,7 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: batteriaAntiMissile.x,  yDiPartenza: batteriaAntiMissile.y,
                           xDiArrivo: xDiArrivo,     yDiArrivo: yDiArrivo, 
-                          colore: 'green', coloreScia: 'blue', massimoRaggioEsplosione: raggioEsplosioneNostroMissile } );
+                          colore: 'green', coloreScia: 'blue', massimoRaggioEsplosione: 30 } );
 
     var distanzaX = this.xDiArrivo - this.xDiPartenza,
         distanzaY = this.yDiArrivo - this.yDiPartenza;
