@@ -774,6 +774,7 @@ var missileCommand = (function () {
   var caricaLivelli = function(livelloAttuale){
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
+    caricaLivello14(livelloAttuale);
   };
   	
 	var caricaLivello1 = function(livelloAttuale) {
@@ -830,6 +831,24 @@ var missileCommand = (function () {
 			MissileDelGiocatore.prototype = oldProto;
 		}
   };
+  
+  var caricaLivello14 = function(livelloAttuale) {
+    var idLivello = 14;
+    if (livelloAttuale <= idLivello) {
+      // codice che modifica il sistema di puntamento dei missili del giocatore
+      sparoDelGiocatore = function( x, y ) {
+        var modificatoreX = 30;
+        var modificatoreY = 30;
+        if( y >= 50 && y <= 370 ) {
+          var indiceTorretta = qualeBatteriaAntiMissileUsare( x );
+          if( indiceTorretta === -1 ){ // No missiles left
+            return;
+          }
+          missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x + modificatoreX, y + modificatoreY ) );
+        }
+      };
+    }
+  }
   
   
   return {
