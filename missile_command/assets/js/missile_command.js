@@ -25,7 +25,8 @@ var missileCommand = (function () {
       batterieAntiMissile = [],
       missiliGiocatore = [],
       missiliNemico = [],
-      identificatoreTimer;
+      identificatoreTimer,
+      raggioEsplosioneMissileNemico;
 
   var aggiuntaDelleBasi = function(){ 
     // Codice corretto
@@ -353,7 +354,7 @@ var missileCommand = (function () {
     this.ampiezza = 2;
     this.altezza = 2;
     this.raggioDiEsplosione = 0;
-		this.animazioneColore = 0;
+    this.animazioneColore = 0;
     this.massimoRaggioEsplosione = options.massimoRaggioEsplosione;
   }
 
@@ -487,7 +488,9 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
                           xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
-                          colore: 'yellow', coloreScia: 'red', massimoRaggioEsplosione: 30 } );
+                          colore: 'yellow', coloreScia: 'red',
+                          massimoRaggioEsplosione: raggioEsplosioneMissileNemico } );
+
 
     framesToTarget = ( 650 - 30 * livello ) / offSpeed;
     if( framesToTarget < 20 ) {
@@ -773,6 +776,7 @@ var missileCommand = (function () {
   };
 
   var caricaLivelli = function(livelloAttuale){
+    modificaRaggioEsplosioneMissileNemico(livelloAttuale);
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
     caricaLivello4(livelloAttuale);
@@ -841,7 +845,7 @@ var missileCommand = (function () {
           this.raggioDiEsplosione++;
         }
         // Modificare il seguente valore per indicare quando interrompere l'esplosione ed iniziare l'implosione
-        if( this.raggioDiEsplosione > 3 ) {
+        if( this.raggioDiEsplosione > 5 ) {
           this.stato = MISSILE.implosione;
         }
         if( this.stato === MISSILE.implosione ) {
@@ -856,6 +860,14 @@ var missileCommand = (function () {
           this.stato = MISSILE.esploso;
         }
       };
+    }
+  }
+  
+  // Modifica del raggio di esplosione del missile nemico NB: NO LIVELLO
+  var modificaRaggioEsplosioneMissileNemico = function(livelloAttuale) {
+    idLivello = 13;
+    if (livelloAttuale <= idLivello) {
+      raggioEsplosioneMissileNemico = 30;
     }
   }
   
