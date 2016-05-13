@@ -847,13 +847,11 @@ var missileCommand = (function () {
         if (y > limiteInferioreY) {
           y = limiteInferioreY;
         }
-        if( y >= limiteSuperioreY && y <= limiteInferioreY ) {
-          var indiceTorretta = qualeBatteriaAntiMissileUsare( x );
-          if( indiceTorretta === -1 ){ // No missiles left
-            return;
-          }
-            missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x, y ) );
+        var indiceTorretta = qualeBatteriaAntiMissileUsare( x );
+        if( indiceTorretta === -1 ){ // No missiles left
+          return;
         }
+        missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x, y ) );        
       };
     }
   }  
