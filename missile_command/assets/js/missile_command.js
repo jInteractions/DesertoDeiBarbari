@@ -588,7 +588,8 @@ var missileCommand = (function () {
 
     Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
                           xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
-                          colore: 'yellow', coloreScia: 'red' } );
+                          colore: 'yellow', coloreScia: 'red',
+                          massimoRaggioEsplosione: raggioEsplosioneMissileNemico } );
 
     framesToTarget = ( 650 - 10 * livello ) / offSpeed;
     if( framesToTarget < 20 ) {
