@@ -8,6 +8,7 @@ var missileCommand = (function () {
       CANVAS_HEIGHT = canvas.height,
       NUMERO_INTEGRANTI_DI_UNA_BASE = 200,
       NUMERO_INTEGRANTI_ANTI_MISSILE = 10,
+      INDICE_TORRETTA_CENTRALE = 1,
       MISSILE = {
         attivo: 1,
         esplosione: 2,
@@ -928,8 +929,8 @@ var missileCommand = (function () {
     caricaLivello3(livelloAttuale);
     caricaLivello4(livelloAttuale);
     caricaLivello11(livelloAttuale);
-    caricaLivello14(livelloAttuale);
     caricaLivello15(livelloAttuale);
+    caricaLivello14(livelloAttuale);
     caricaLivello16(livelloAttuale);
     caricaLivello17(livelloAttuale);
     caricaLivello19(livelloAttuale);
@@ -975,10 +976,16 @@ var missileCommand = (function () {
 				var scala = (function() {
 					var distanza = Math.sqrt( Math.pow(distanzaX, 2) + 
 																		Math.pow(distanzaY, 2) ),
-							// Make missile fired from central anti missile battery faster
-							distanzaPerFrame = ( indiceTorretta === 1 ) ? 1 : 1; // <== ECCO LA MODIFICA
-
-					return distanza / distanzaPerFrame;
+              velocitaMissile;
+          //start user
+          // Make missile fired from central anti missile battery faster
+          if (indiceTorretta === INDICE_TORRETTA_CENTRALE){
+            velocitaMissile = 2;   //<= velocità torretta centrale
+          } else {
+            velocitaMissile = 1;   //<= velocità torrette esterne
+          }
+          //end user
+					return distanza / velocitaMissile;
 				})();
 
 				this.dx = distanzaX / scala;
@@ -997,9 +1004,12 @@ var missileCommand = (function () {
           this.raggioDiEsplosione++;
         }
         // Modificare il seguente valore per indicare quando interrompere l'esplosione ed iniziare l'implosione
+        this.stato = MISSILE.implosione;
+        /*
         if( this.raggioDiEsplosione > 5 ) {
           this.stato = MISSILE.implosione;
         }
+        */
         if( this.stato === MISSILE.implosione ) {
           this.raggioDiEsplosione--;
           if( this.esplosioneATerra ) {
@@ -1018,7 +1028,7 @@ var missileCommand = (function () {
   var caricaLivello11 = function(livelloAttuale) {
     var idLivello = 11;
     if (livelloAttuale <= idLivello) {
-      velMassimaMissiliNemici = 10;
+      velMassimaMissiliNemici = 2;
     }
   }
   
@@ -1029,13 +1039,19 @@ var missileCommand = (function () {
       sparoDelGiocatore = function( x, y ) {
         var modificatoreX = 30;
         var modificatoreY = 30;
-        if( y >= 50 && y <= 370 ) {
-          var indiceTorretta = qualeBatteriaAntiMissileUsare( x );
-          if( indiceTorretta === -1 ){ // No missiles left
-            return;
-          }
-          missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x + modificatoreX, y + modificatoreY ) );
+        var limiteInferioreY = 370; // default 370
+        var limiteSuperioreY = 250; // default 50
+        if (y - modificatoreY < limiteSuperioreY) {
+          y = limiteSuperioreY;
         }
+        if (y + modificatoreY > limiteInferioreY) {
+          y = limiteInferioreY;
+        }
+        var indiceTorretta = qualeBatteriaAntiMissileUsare( x );
+        if( indiceTorretta === -1 ){ // No missiles left
+          return;
+        }
+        missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x + modificatoreX, y - modificatoreY ) );
       };
     }
   }
@@ -1043,10 +1059,9 @@ var missileCommand = (function () {
   var caricaLivello15 = function(livelloAttuale) {
     var idLivello = 15;
     if (livelloAttuale <= idLivello) {
-      // codice per ridurre la portata dei missili del giocatore
-      // possibile sia ridurre la portata sia in una fascia orientata verso l'altro
-      // sia ridurla in una fascia orientata verso il basso
       sparoDelGiocatore = function( x, y ) {
+        var modificatoreX = 30;
+        var modificatoreY = 30;
         var limiteInferioreY = 370; // default 370
         var limiteSuperioreY = 250; // default 50
         if (y < limiteSuperioreY) {
@@ -1059,7 +1074,7 @@ var missileCommand = (function () {
         if( indiceTorretta === -1 ){ // No missiles left
           return;
         }
-        missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x, y ) );        
+        missiliGiocatore.push( new MissileDelGiocatore( indiceTorretta, x, y ) );
       };
     }
   }
