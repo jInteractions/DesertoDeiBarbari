@@ -26,7 +26,7 @@ var missileCommand = (function () {
       missiliGiocatore = [],
       missiliNemico = [],
       identificatoreTimer,
-      velMassima = 1;
+      velMassimaMissiliNemici = 1;
 
   var aggiuntaDelleBasi = function(){ 
     // Codice corretto
@@ -70,10 +70,11 @@ var missileCommand = (function () {
 
   // Create a certain number of enemy missiles based on the game level
   var creazioneMissiliNemico = function() {
-    var options = {speed: velMassima};
+    var options = {speed: velMassimaMissiliNemici};
     var bersagli = bersagliAttaccabili(),
         numeroMissili = ( (livello + 7) < 30 ) ? livello + 7 : 30;
     for( var i = 0; i < numeroMissili; i++ ) {
+      options.speed = rand(1, velMassimaMissiliNemici);
       missiliNemico.push( new MissileNemico(bersagli, options) );
     }
   };
@@ -837,7 +838,7 @@ var missileCommand = (function () {
   var caricaLivello11 = function(livelloAttuale) {
     var idLivello = 11;
     if (livelloAttuale <= idLivello) {
-      velMassima = 5;
+      velMassimaMissiliNemici = 10;
     }
   }
   
