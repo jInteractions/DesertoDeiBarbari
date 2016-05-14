@@ -30,7 +30,8 @@ var missileCommand = (function () {
       missiliGiocatore = [],
       missiliNemico = [],
       identificatoreTimer,
-      raggioEsplosioneMissileNemico = 30;
+      raggioEsplosioneMissileNemico = 30,
+      velMassimaMissiliNemici = 1;
 
   var aggiuntaDelleBasi = function(){ 
     // Codice corretto
@@ -82,16 +83,19 @@ var missileCommand = (function () {
 
   // Create a certain number of enemy missiles based on the game level
   var creazioneMissiliNemico = function() {
+    var options = {speed: velMassimaMissiliNemici};
     var bersagli = bersagliAttaccabili(),
       numeroMissili = ( (livello + 7) < 30 ) ? livello + 7 : 30,
       numeroMissiliSdoppiabili = (( (livello + 7) < 30 ) ? livello + 7 : 30) / 2;
     
     for( var i = 0; i < numeroMissili; i++ ) {
-      missiliNemico.push( new MissileNemico(bersagli) );
+      options.speed = rand(1, velMassimaMissiliNemici);
+      missiliNemico.push( new MissileNemico(bersagli, options) );
     }
 
 		for( var i = 0; i < numeroMissiliSdoppiabili; i++) {
-      missiliNemico.push( new MissileNemicoDoppio(bersagli, missiliNemico) );
+      options.speed = rand(1, velMassimaMissiliNemici);
+      missiliNemico.push( new MissileNemicoDoppio(bersagli, missiliNemico, options) );
     }
   };
   
@@ -507,13 +511,14 @@ var missileCommand = (function () {
 
   // Constructor for the Enemy's Missile, which is a subclass of Missile
   // and uses Missile's constructor
-  function MissileNemico( bersagli ) {
+  function MissileNemico( bersagli, options ) {
     var xDiPartenza = rand( 0, CANVAS_WIDTH ),
         yDiPartenza = 0,
-        // Create some variation in the speed of missiles
-        offSpeed = rand(80, 120) / 100,
         // Randomly pick a obiettivo for this missile
         bersaglio = bersagli[ rand(0, bersagli.length - 1) ];
+    
+   
+    this.offSpeed = options.speed;
 
     Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
                           xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
@@ -521,7 +526,7 @@ var missileCommand = (function () {
                           massimoRaggioEsplosione: raggioEsplosioneMissileNemico } );
 
 
-    this.framesToTarget = ( 650 - 30 * livello ) / offSpeed;
+    this.framesToTarget = ( 650 - 30 * livello ) / this.offSpeed;
     if( this.framesToTarget < 20 ) {
       this.framesToTarget = 20;
     }
@@ -576,21 +581,21 @@ var missileCommand = (function () {
   };
 
   // Missile nemico generato dalla sdoppiamento di un MissileNemicoDoppio
-  function MissileNemicoFrammento( bersaglio, xDiPartenza, yDiPartenza) {
+  function MissileNemicoFrammento( bersaglio, xDiPartenza, yDiPartenza, options) {
     this.xDiPartenza = xDiPartenza;
   	this.yDiPartenza = yDiPartenza;
     
 		// Create some variation in the speed of missiles
-    var offSpeed = rand(80, 120) / 100,
+    this.offSpeed = options.speed;
     	// Randomly pick a obiettivo for this missile
-      framesToTarget;
+    var framesToTarget;
 
     Missile.call( this, { xDiPartenza: xDiPartenza,  yDiPartenza: yDiPartenza, 
                           xDiArrivo: bersaglio[0], yDiArrivo: bersaglio[1],
                           colore: 'yellow', coloreScia: 'red',
                           massimoRaggioEsplosione: raggioEsplosioneMissileNemico } );
 
-    framesToTarget = ( 650 - 10 * livello ) / offSpeed;
+    framesToTarget = ( 650 - 10 * livello ) / this.offSpeed;
     if( framesToTarget < 20 ) {
       framesToTarget = 20;
     }
@@ -610,8 +615,8 @@ var missileCommand = (function () {
   MissileNemicoFrammento.prototype.constructor = MissileNemicoFrammento;
 	
 	// Missile nemico che si sdoppia ad un certo punto della discesa
-	function MissileNemicoDoppio ( bersagli, missiliNemico) {
-		MissileNemico.call( this, bersagli );
+	function MissileNemicoDoppio ( bersagli, missiliNemico, options) {
+		MissileNemico.call( this, bersagli, options );
 		
 		this.delaySplit = rand(0, this.framesToTarget/2);
 		this.alreadySplit = false;
@@ -642,7 +647,7 @@ var missileCommand = (function () {
       } );
 
 		  missiliNemico.push(
-			  new MissileNemicoFrammento(nuovoBersaglio, this.x, this.y) );
+			  new MissileNemicoFrammento(nuovoBersaglio, this.x, this.y, {speed: this.offSpeed}) );
     }
     this.alreadySplit = true;
 	}
@@ -922,6 +927,7 @@ var missileCommand = (function () {
     caricaLivello1(livelloAttuale);
     caricaLivello3(livelloAttuale);
     caricaLivello4(livelloAttuale);
+    caricaLivello11(livelloAttuale);
     caricaLivello14(livelloAttuale);
     caricaLivello15(livelloAttuale);
     caricaLivello16(livelloAttuale);
@@ -1006,6 +1012,13 @@ var missileCommand = (function () {
           this.stato = MISSILE.esploso;
         }
       };
+    }
+  }
+  
+  var caricaLivello11 = function(livelloAttuale) {
+    var idLivello = 11;
+    if (livelloAttuale <= idLivello) {
+      velMassimaMissiliNemici = 10;
     }
   }
   
