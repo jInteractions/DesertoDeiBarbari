@@ -448,7 +448,6 @@ var missileCommand = (function () {
   // Constructor for the Player's Missile, which is a subclass of Missile
   // and uses Missile's constructor
   function MissileDelGiocatore( indiceTorretta, xDiArrivo, yDiArrivo ) {
-		console.log("Costruttore default");
     // Anti missile battery this missile will be fired from
     var batteriaAntiMissile = batterieAntiMissile[indiceTorretta];
 
@@ -935,7 +934,6 @@ var missileCommand = (function () {
 		if(livelloAttuale <= idLivello) {
 			// Codice che l'utente deve correggere
 			aggiuntaDelleBasi = function() {
-     		console.log("Sto eseguendo la aggiunta delle basi piene");
        	var xIniziale = 80;
        	for (var j = 0; j < 3; j++){
 					basi.push( new Base( xIniziale,  430 ) );
