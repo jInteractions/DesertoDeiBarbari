@@ -1,9 +1,11 @@
+DROP TABLE IF EXISTS dialogs
 CREATE TABLE dialogs (
   iddialog INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   labelCMS VARCHAR(100) NULL,
   PRIMARY KEY(iddialog)
 );
 
+DROP TABLE IF EXISTS helps
 CREATE TABLE helps (
   idhelp INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   dialogs_iddialog INTEGER UNSIGNED NOT NULL,
@@ -17,6 +19,7 @@ CREATE TABLE helps (
   PRIMARY KEY(idhelp)
 );
 
+DROP TABLE IF EXISTS levels
 CREATE TABLE levels (
   idlevel INTEGER UNSIGNED NOT NULL,
   idNextLevel INTEGER UNSIGNED NOT NULL,
@@ -31,6 +34,7 @@ CREATE TABLE levels (
   PRIMARY KEY(idlevel)
 );
 
+DROP TABLE IF EXISTS level_achieved
 CREATE TABLE level_achieved (
   idlevel_achieved INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   levels_idlevel INTEGER UNSIGNED NOT NULL,
@@ -41,6 +45,7 @@ CREATE TABLE level_achieved (
   PRIMARY KEY(idlevel_achieved)
 );
 
+DROP TABLE IF EXISTS lines
 CREATE TABLE lines (
   idline INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   dialogs_iddialog INTEGER UNSIGNED NOT NULL,
@@ -49,6 +54,7 @@ CREATE TABLE lines (
   PRIMARY KEY(idline)
 );
 
+DROP TABLE IF EXISTS titles
 CREATE TABLE titles (
   idtitle INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   levels_idlevel INTEGER UNSIGNED NOT NULL,
@@ -57,6 +63,7 @@ CREATE TABLE titles (
   PRIMARY KEY(idtitle)
 );
 
+DROP TABLE IF EXISTS traslations
 CREATE TABLE traslations (
   idtraslation INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   lines_idline INTEGER UNSIGNED NOT NULL,
@@ -66,7 +73,8 @@ CREATE TABLE traslations (
   PRIMARY KEY(idtraslation)
 );
 
-CREATE TABLE Users (
+DROP TABLE IF EXISTS users
+CREATE TABLE users (
   idUser INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   username VARCHAR(70) NOT NULL,
   email VARCHAR(255) NOT NULL,
