@@ -9,14 +9,7 @@ try{
                             //host      user    passs   DB
     $link = mysqli_connect("localhost", "root", "root", "desertodeibarbari");
 
-    /* check connection */
-    if (mysqli_connect_errno()) {
-        printf("Connect failed: %s\n", mysqli_connect_error());
-        exit();
-    }else{
-        
-        //echo "connection established!!!";
-    }
+    require "dbmanagement/dbconnection.php";
         /* create a prepared statement */
         if ($stmt = $link->prepare( 'INSERT INTO `desertodeibarbari`.`users` ( `username`, `email`,  `bornDate`, `pass`) VALUE (?,?,?,?)')) {
 
@@ -39,10 +32,11 @@ try{
             //echo "IT'S A BUGGGGG!!!!";  
         }
 
-        /* close connection */
-        mysqli_close($link);
+       
+    require "dbmanagement/dbclose.php";
 
     } catch (Exception $e) {
-        echo 'Caught exception: ',  $e->getMessage(), "\n";
+        if($debug)
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
 ?>
