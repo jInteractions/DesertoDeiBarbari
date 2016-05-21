@@ -6,9 +6,7 @@ try{
     $password = md5(md5($_GET["pass"]));
 
 
-                            //host      user    passs   DB
-    $link = mysqli_connect("localhost", "root", "root", "desertodeibarbari");
-
+                            //host      user    passs   DB\
     require "dbmanagement/dbconnection.php";
         /* create a prepared statement */
         if ($stmt = $link->prepare( 'INSERT INTO `desertodeibarbari`.`users` ( `username`, `email`,  `bornDate`, `pass`) VALUE (?,?,?,?)')) {

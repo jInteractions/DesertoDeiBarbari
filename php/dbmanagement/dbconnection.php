@@ -1,7 +1,7 @@
 <?php
     require "dbconfig.php";
     
-    $link = mysqli_connect("localhost", "root", "root", "desertodeibarbari");
+    $connection = mysqli_connect("localhost", "root", "root", "desertodeibarbari");
 
     /* check connection */
     if (mysqli_connect_errno()) {

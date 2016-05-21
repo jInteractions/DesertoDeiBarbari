@@ -21,10 +21,11 @@
                 }
 
                 //echo mysqli_stmt_insert_id($stmt);
+                $id = $stmt->insert_id;
                 /* close statement */
                 mysqli_stmt_close($stmt);
                 //operazione conclusa con successo
-                return 1;
+                return $id;
             }
             else{
                 //echo "IT'S A BUGGGGG!!!!";  
