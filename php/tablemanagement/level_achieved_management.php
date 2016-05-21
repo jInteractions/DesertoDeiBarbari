@@ -33,7 +33,7 @@
     }
     
     function getLevelAchievedFromID($connection, $idLevelAchieved){
-        $query = "SELECT levels_idlevel, Users_idUser, savedCode, points, population FROM level_achieved where idlevel_achieved=?";
+        $query = "SELECT idlevel_achieved, levels_idlevel, Users_idUser, savedCode, points, population FROM level_achieved where idlevel_achieved=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -56,6 +56,7 @@
                 $fields[$i]["savedcode"] = $savedCode;
                 $fields[$i]["points"] = $points;
                 $fields[$i]["population"] = $population;
+                $i = $i + 1;
             }
 
             /* close statement */
@@ -65,7 +66,7 @@
     }
     
     function getLevelAchievedFromLevelID($connection, $idLevel){
-        $query = "SELECT levels_idlevel, Users_idUser, savedCode, points, population FROM level_achieved where levels_idlevel=?";
+        $query = "SELECT idlevel_achieved, levels_idlevel, Users_idUser, savedCode, points, population FROM level_achieved where levels_idlevel=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -88,6 +89,7 @@
                 $fields[$i]["savedcode"] = $savedCode;
                 $fields[$i]["points"] = $points;
                 $fields[$i]["population"] = $population;
+                $i = $i + 1;
             }
 
             /* close statement */
@@ -98,7 +100,7 @@
     
     
     function getLevelAchievedFromUserID($connection, $idUser){
-        $query = "SELECT levels_idlevel, Users_idUser, savedCode, points, population FROM level_achieved where Users_idUser=?";
+        $query = "SELECT idlevel_achieved, levels_idlevel, Users_idUser, savedCode, points, population FROM level_achieved where Users_idUser=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -121,6 +123,7 @@
                 $fields[$i]["savedcode"] = $savedCode;
                 $fields[$i]["points"] = $points;
                 $fields[$i]["population"] = $population;
+                $i = $i + 1;
             }
 
             /* close statement */
@@ -131,7 +134,7 @@
     
     
     function getLevelAchievedFromUserIDAndLevelID($connection, $idLevel, $idUser){
-        $query = "SELECT levels_idlevel, Users_idUser, savedCode, points, population FROM level_achieved where levels_idlevel=? AND Users_idUser=?";
+        $query = "SELECT idlevel_achieved, levels_idlevel, Users_idUser, savedCode, points, population FROM level_achieved where levels_idlevel=? AND Users_idUser=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -154,6 +157,7 @@
                 $fields[$i]["savedcode"] = $savedCode;
                 $fields[$i]["points"] = $points;
                 $fields[$i]["population"] = $population;
+                $i = $i + 1;
             }
 
             /* close statement */

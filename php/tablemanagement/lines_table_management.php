@@ -28,7 +28,7 @@
     }
     
     function getLineFromID($connection, $idLine){
-        $query = "SELECT dialogs_iddialog,position,ucharacter FROM lines_table where idline=?";
+        $query = "SELECT idline, dialogs_iddialog,position,ucharacter FROM lines_table where idline=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -49,6 +49,7 @@
                 $fields[$i]["iddialog"] = $iddialog;
                 $fields[$i]["position"] = $position;
                 $fields[$i]["character"] = $character;
+                $i = $i + 1;
             }
 
             /* close statement */
@@ -59,7 +60,7 @@
     
      
     function getLineFromDialogID($connection, $idDialog){
-        $query = "SELECT dialogs_iddialog,position,ucharacter FROM lines_table where dialogs_iddialog=?";
+        $query = "SELECT idline, dialogs_iddialog,position,ucharacter FROM lines_table where dialogs_iddialog=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -80,6 +81,7 @@
                 $fields[$i]["iddialog"] = $iddialog;
                 $fields[$i]["position"] = $position;
                 $fields[$i]["character"] = $character;
+                $i = $i + 1;
             }
 
             /* close statement */

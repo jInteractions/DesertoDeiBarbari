@@ -28,7 +28,7 @@
     }
     
     function getTitleFromID($connection, $idTitle){
-        $query = "SELECT levels_idlevel, title, ulanguage FROM titles where idtitle=?";
+        $query = "SELECT idtitle, levels_idlevel, title, ulanguage FROM titles where idtitle=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -49,6 +49,7 @@
                 $fields[$i]["idlevel"] = $idlevel;
                 $fields[$i]["title"] = $title;
                 $fields[$i]["language"] = $language;
+                $i = $i + 1;
             }
 
             /* close statement */
@@ -59,7 +60,7 @@
     
      
     function getLineFromLevelID($connection, $idLevel){
-        $query = "SELECT levels_idlevel, title, ulanguage FROM titles where levels_idlevel=?";
+        $query = "SELECT idtitle, levels_idlevel, title, ulanguage FROM titles where levels_idlevel=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -80,6 +81,7 @@
                 $fields[$i]["idlevel"] = $idlevel;
                 $fields[$i]["title"] = $title;
                 $fields[$i]["language"] = $language;
+                $i = $i + 1;
             }
 
             /* close statement */

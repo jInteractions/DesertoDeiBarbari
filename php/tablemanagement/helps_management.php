@@ -9,7 +9,6 @@
                         $cost, 
                         $maxTries, 
                         $labelCMS){
-                            idhelp int(10) UN AI PK 
 
         
          /* create a prepared statement */
@@ -40,12 +39,12 @@
     }
     
     function getHelpFromID($connection, $idHelp){
-        $query = "SELECT dialogs_iddialog,levels_idlevel,position,gamecode,image,cost,maxTries,labelCMS FROM helps where idhelp=?";
+        $query = "SELECT idhelp, dialogs_iddialog,levels_idlevel,position,gamecode,image,cost,maxTries,labelCMS FROM helps where idhelp=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
             /* bind parameters for markers */
-            $stmt->bind_param( "i",$idHelp);
+            $stmt->bind_param( "s",$idHelp);
 
             /* execute statement */
             $stmt->execute();
@@ -66,8 +65,8 @@
                 $fields[$i]["cost"] = $cost;
                 $fields[$i]["maxTries"] = $maxTries;
                 $fields[$i]["labelCMS"] = $labelCMS;
+                $i = $i + 1;
             }
-
             /* close statement */
             $stmt->close();
         }
@@ -76,7 +75,7 @@
     
      
     function getHelpFromDialogID($connection, $idDialog){
-        $query = "SELECT dialogs_iddialog,levels_idlevel,position,gamecode,image,cost,maxTries,labelCMS FROM helps where dialogs_iddialog=?";
+        $query = "SELECT idhelp, dialogs_iddialog,levels_idlevel,position,gamecode,image,cost,maxTries,labelCMS FROM helps where dialogs_iddialog=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -93,6 +92,7 @@
             /* fetch values */
             $i = 0;
             while ($stmt->fetch()) {
+                
                 $fields[$i]["id"] = $id;
                 $fields[$i]["idDialog"] = $dialogs_iddialog;
                 $fields[$i]["idLevel"] = $levels_idlevel;
@@ -102,6 +102,7 @@
                 $fields[$i]["cost"] = $cost;
                 $fields[$i]["maxTries"] = $maxTries;
                 $fields[$i]["labelCMS"] = $labelCMS;
+                $i = $i + 1;
             }
 
             /* close statement */
@@ -112,7 +113,7 @@
     
      
     function getHelpFromLevelID($connection, $idLevel){
-        $query = "SELECT dialogs_iddialog,levels_idlevel,position,gamecode,image,cost,maxTries,labelCMS FROM helps where levels_idlevel=?";
+        $query = "SELECT idhelp, dialogs_iddialog,levels_idlevel,position,gamecode,image,cost,maxTries,labelCMS FROM helps where levels_idlevel=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -138,6 +139,7 @@
                 $fields[$i]["cost"] = $cost;
                 $fields[$i]["maxTries"] = $maxTries;
                 $fields[$i]["labelCMS"] = $labelCMS;
+                $i = $i + 1;
             }
 
             /* close statement */
@@ -148,7 +150,7 @@
     
      
     function getHelpFromLevelIDAndDialogID($connection, $idLevel,$idDialog){
-        $query = "SELECT dialogs_iddialog,levels_idlevel,position,gamecode,image,cost,maxTries,labelCMS FROM helps where levels_idlevel=? AND dialogs_iddialog=?";
+        $query = "SELECT idhelp, dialogs_iddialog,levels_idlevel,position,gamecode,image,cost,maxTries,labelCMS FROM helps where levels_idlevel=? AND dialogs_iddialog=?";
 
         $fields = [];
         if ($stmt = $connection->prepare($query)) {
@@ -174,6 +176,7 @@
                 $fields[$i]["cost"] = $cost;
                 $fields[$i]["maxTries"] = $maxTries;
                 $fields[$i]["labelCMS"] = $labelCMS;
+                $i = $i + 1;
             }
 
             /* close statement */
