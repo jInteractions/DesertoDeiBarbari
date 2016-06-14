@@ -49,7 +49,7 @@ CoreGame.prototype.esplosioneAltriMissili ( missile, ctx ) {
   if ( !missile.esplosioneATerra ) {
     $.each( this.missiliNemici, function( indice, altroMissile ) {
       if ( ctx.isPointInPath( altroMissile.x, altromissile.y )
-          && altroMissile.stato === Missile.attivo ) {
+          && altroMissile.stato === Missile.ATTIVO ) {
         this.punteggio += altroMissile.punteggio;
         altroMissile.stato = Missile.esplosione;
       }
@@ -70,6 +70,7 @@ CoreGame.prototype.bersagliAttaccabili () {
   return bersagli;
 };
 
+// DA SPOSTARE IN LIVELLO
 CoreGame.prototype.startLivello () {
   var fps = 30;
   this.timerProssimoFrame = setInterval( this.prossimoFrame, 1000 / fps );
@@ -78,6 +79,7 @@ CoreGame.prototype.startLivello () {
 CoreGame.prototype.stopLivello () {
   clearInterval( this.timerProssimoFrame );
 };
+// =======================
 
 CoreGame.prototype.calcoloMissiliRimanenti () {
   var tot = 0;
@@ -99,7 +101,7 @@ CoreGame.prototype.calcoloBatterieSalvate () {
 CoreGame.prototype.calcoloBasiSalvate () {
   var tot = 0;
   $.each( this.basi, function( indice, base ) {
-    if ( base.attivo )
+    if ( base.attiva )
       ++tot;
   } );
   return tot;
@@ -180,15 +182,15 @@ CoreGame.prototype.disegnaSfondo () {
 
 CoreGame.prototype.disegnaBasi () {
   $.each( this.basi, function( indice, base ) {
-    if( base.attivo ) {
-      base.disegna();
+    if( base.attiva ) {
+      base.disegna( this.ctx );
     }
   });
 };
 
 CoreGame.prototype.disegnaBatterieAntimissile () {
   $.each( this.batterieAntimissile, function( indice, batteriaAntiMissile ) {
-      batteriaAntimissile.disegna();
+      batteriaAntimissile.disegna( this.ctx );
   });
 };
 
@@ -201,15 +203,15 @@ CoreGame.prototype.disegnaMessaggioInizio () {
 
 CoreGame.prototype.disegnaMissiliNemici () {
   $.each( this.missiliNemici, function( indice, missile ) {
-    if( missile.attivo ) {
-      missile.disegna();
+    if( missile.stato === Missile.ATTIVO ) {
+      missile.disegna(  );
     }
   });
 };
 
 CoreGame.prototype.disegnaMissiliTerrestri () {
   $.each( this.missiliTerrestri, function( indice, missile ) {
-    if( missile.attivo ) {
+    if( missile.stato === Missile.ATTIVO ) {
       missile.disegna();
     }
   });
@@ -222,5 +224,5 @@ CoreGame.prototype.disegnaMinacce () {
 };
 
 CoreGame.prototype.disegnaMirino () {
-  this.mirino.disegna();
+  this.mirino.disegna( this.ctx );
 };
