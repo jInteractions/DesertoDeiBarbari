@@ -2,7 +2,7 @@ var rand = function ( min, max ) {
   return Math.floor( Math.random() * (max - min + 1) ) + min;
 };
 
-function CoreGame ( canvas ) {
+function CoreGame ( canvas, mirino, palette ) {
   this.canvas = canvas;
   this.ctx = canvas.getContext ( '2d' );
   this.COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
@@ -10,15 +10,15 @@ function CoreGame ( canvas ) {
   this.morti;
   this.basi = [];
   this.batterieAntimissile = [];
-  this.missiliTerrestri = [];
   this.missiliNemici = [];
-  this.minacceNemiche = [];
+  this.missiliTerrestri = [];
+  this.minacce = [];
   this.timerProssimoFrame;
-  this.mirino;
-  this.coloreSfondo;
-  this.coloreTerreno;
-  this.coloreTestoPrimario;
-  this.coloreTestoSecondario;
+  this.mirino = mirino;
+  this.coloreSfondo = palette.coloreSfondo;
+  this.coloreTerreno = palette.coloreTerreno;
+  this.coloreTestoPrimario = palette.coloreTestoPrimario;
+  this.coloreTestoSecondario = palette.coloreTestoSecondario;
 };
 
 CoreGame.prototype.prossimoFrame () {
@@ -27,6 +27,8 @@ CoreGame.prototype.prossimoFrame () {
   this.disegnaMissiliNemici();
   this.aggiornaMissiliTerrestri();
   this.disegnaMissiliTerrestri();
+  this.aggiornaMinacce();
+  this.disegnaMinacce();
   this.aggiornaMirino();
   this.disegnaMirino();
 };
@@ -37,6 +39,10 @@ CoreGame.prototype.aggiungiBase = function ( base ) {
 
 CoreGame.prototype.aggiungiBatteriaAntimissile ( batteria ) {
   this.batterieAntimissile.push( batteria );
+};
+
+CoreGame.prototype.aggiungiMinaccia ( minaccia ) {
+  this.minacce.push( minaccia );
 };
 
 CoreGame.prototype.esplosioneAltriMissili ( missile, ctx ) {
@@ -121,6 +127,17 @@ CoreGame.prototype.aggiornaMissiliTerrestri () {
   );
 };
 
+CoreGame.prototype.aggiornaMinacce () {
+  $.each( this.minacce, function( indice, minaccia ) {
+    minaccia.update();
+  });
+  this.minacce = this.minacce.filter(
+    function( minacce ) {
+      return minacce.stato !== Minaccia.ESPLOSO;
+    }
+  );
+};
+
 CoreGame.prototype.aggiornaMirino () {
   mirino.update();
 };
@@ -136,7 +153,6 @@ CoreGame.prototype.disegnaStatoGioco () {
   this.disegnaSfondo();
   this.disegnaBasi();
   this.disegnaBatterieAntimissile();
-  this.disegnaMinacce();
 };
 
 CoreGame.prototype.disegnaSfondo () {
@@ -176,12 +192,6 @@ CoreGame.prototype.disegnaBatterieAntimissile () {
   });
 };
 
-CoreGame.prototype.disegnaMinacce () {
-  $.each( this.minacce, function( indice, minaccia ) {
-      minaccia.disegna();
-  });
-};
-
 CoreGame.prototype.disegnaMessaggioInizio () {
   this.ctx.fillStyle = this.coloreTestoPrimario;
   this.ctx.font = 'bold 20px arial';
@@ -205,8 +215,12 @@ CoreGame.prototype.disegnaMissiliTerrestri () {
   });
 };
 
-CoreGame.prototype.disegnaMissiliNemici () {
-  this.mirino.disegna();
+CoreGame.prototype.disegnaMinacce () {
+  $.each( this.minacce, function( indice, minaccia ) {
+      minaccia.disegna();
+  });
 };
 
-
+CoreGame.prototype.disegnaMirino () {
+  this.mirino.disegna();
+};
