@@ -7,7 +7,7 @@ function MissileNemico ( parametri, bersagli, canvasWidth ) {
     xDiPartenza: xDiPartenza,
     yDiPartenza: yDiPartenza,
     xDiArrivo: bersaglio[ 0 ],
-    yDiArrivo: bersagli[ 1 ],
+    yDiArrivo: bersaglio[ 1 ],
     coloreTestata: parametri.coloreTestata,
     coloreScia: parametri.coloreScia,
     massimoRaggioEsplosione: parametri.massimoRaggioEsplosione
@@ -29,7 +29,7 @@ function MissileNemico ( parametri, bersagli, canvasWidth ) {
 MissileNemico.prototype = Object.create( Missile.prototype );
 MissileNemico.prototype.constructor = MissileNemico;
 
-MissileNemico.prototype.update () {
+MissileNemico.prototype.update = function () {
   if( this.ritardoPartenza === 0 ) {
     --this.ritardoPartenza;
     return;
@@ -72,7 +72,7 @@ function MissileTerrestre ( parametri ) {
 MissileTerrestre.prototype = Object.create( Missile.prototype );
 MissileTerrestre.prototype.constructor = MissileTerrestre;
 
-MissileTerrestre.prototype.update () {
+MissileTerrestre.prototype.update = function () {
   if( this.stato === Missile.ATTIVO && this.y <= this.yDiArrivo ) {
     this.x = this.xDiArrivo;
     this.y = this.yDiArrivo;

@@ -10,7 +10,7 @@ function Mirino ( xIniziale, yIniziale, vel ) {
   this.inseguiY = 0;
   this.dx = 0;
   this.dy = 0;
-  this.distanzaPerFrame = vel; // default 16.0
+  this.distanzaPerFrame = vel;
 };
 
 // Costanti
@@ -73,7 +73,7 @@ function Base ( x, y, vitale, numeroSoldati, colore ) {
   this.attiva;
 };
 
-Base.prototype.disegna ( ctx ) {
+Base.prototype.disegna = function ( ctx ) {
   var x = this.x;
   var y = this.y;
   ctx.fillStyle = this.colore;
@@ -89,7 +89,7 @@ Base.prototype.disegna ( ctx ) {
   ctx.fill();
 };
 
-Base.prototype.distruggiti () {}; // da completare
+Base.prototype.distruggiti = function () {}; // da completare
 
 // BATTERIA ANTIMISSILE
 
@@ -101,7 +101,7 @@ function BatteriaAntimissile ( x, y, nMissili, nSoldati, colori ) {
   this.tipoMunizioni = colori;
 };
 
-BatteriaAntimissile.prototype.disegna ( ctx ) {
+BatteriaAntimissile.prototype.disegna = function ( ctx ) {
   var x, y;
   var delta = [ [0, 0], [-6, 6], [6, 6], [-12, 12], [0, 12],
     [12, 12], [-18, 18], [-6, 18], [6, 18], [18, 18] ];
@@ -124,11 +124,11 @@ BatteriaAntimissile.prototype.disegna ( ctx ) {
   }
 };
 
-BatteriaAntimissile.prototype.controllaMissiliRimanenti () {
+BatteriaAntimissile.prototype.controllaMissiliRimanenti = function () {
   return !!this.numeroMissili;
 };
 
-BatteriaAntimissile.prototype.distruggiti () {}; // da completare
+BatteriaAntimissile.prototype.distruggiti = function () {}; // da completare
 
 // MISSILE
 
@@ -154,7 +154,7 @@ Missile.ESPLOSIONE = 2;
 Missile.IMPLOSIONE = 3;
 Missile.ESPLOSO = 4;
 
-Missile.prototype.esplosioneAltriMissili ( ctx, coreGame ) {
+Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
   if( !this.esplosioneATerra ){
       $.each( coreGame.missiliNemici, function( indice, altroMissile ) {
         if( ctx.isPointInPath( altroMissile.x, altroMissile.y ) &&
@@ -165,7 +165,7 @@ Missile.prototype.esplosioneAltriMissili ( ctx, coreGame ) {
     }
 };
 
-Missile.prototype.disegna ( ctx, coreGame ) {
+Missile.prototype.disegna = function ( ctx, coreGame ) {
   this.animazioneColore = (this.animazioneColore + 1) % COLORI.length;
   if( this.stato === MISSILE.attivo ){
     ctx.strokeStyle = this.coloreScia;
@@ -199,7 +199,7 @@ Missile.prototype.disegna ( ctx, coreGame ) {
   }
 };
 
-Missile.prototype.esplodi () {
+Missile.prototype.esplodi = function () {
   if( this.stato === MISSILE.esplosione ) {
     ++this.raggioDiEsplosione;
   }
