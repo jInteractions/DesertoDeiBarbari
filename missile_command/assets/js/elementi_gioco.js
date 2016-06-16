@@ -197,8 +197,38 @@ Missile.prototype.disegna ( ctx, coreGame ) {
     this.esplosioneAltriMissili( ctx, coreGame );
     ctx.fill();
   }
-  
-  
 };
+
+Missile.prototype.esplodi () {
+  if( this.stato === MISSILE.esplosione ) {
+    ++this.raggioDiEsplosione;
+  }
+  if( this.raggioDiEsplosione > this.massimoRaggioEsplosione ) {
+    this.stato = Missile.IMPLOSIONE;
+  }
+  
+  if( this.stato === Missile.IMPLOSIONE ) {
+    --this.raggioDiEsplosione;
+    if( this.esplosioneATerra ) {
+      if ( this.bersaglio[2] instanceof Base ) {
+        if (this.bersaglio[2].attivo === true) {
+          this.bersaglio[2].attivo = false;
+          // gestire popolazione morta
+        }
+      } 
+      else { 
+        if (this.bersaglio[2].missiliRimanenti != 0){
+          this.bersaglio[2].missiliRimanenti = 0;
+          // gestire popolazione morta
+        }
+      }
+    }
+  }
+  if( this.raggioDiEsplosione < 0 ) {
+    this.stato = Missile.ESPLOSO;
+  }
+};
+
+
 
 // MINACCIA
