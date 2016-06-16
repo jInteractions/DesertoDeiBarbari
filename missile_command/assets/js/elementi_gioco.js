@@ -148,7 +148,7 @@ function Missile ( parametri ) {
   this.massimoRaggioEsplosione = parametri.massimoRaggioEsplosione;
 };
 
-Missile.ATTIVO = 0;
+Missile.ATTIVO = 1;
 Missile.ESPLOSIONE = 2;
 Missile.IMPLOSIONE = 3;
 Missile.ESPLOSO = 4;
@@ -166,6 +166,8 @@ Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
 };
 
 Missile.prototype.disegna = function ( ctx, coreGame ) {
+  console.log("disegna" + this.stato);
+  
   this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
   if( this.stato === Missile.ATTIVO ){
     ctx.strokeStyle = this.coloreScia;
@@ -200,7 +202,7 @@ Missile.prototype.disegna = function ( ctx, coreGame ) {
 };
 
 Missile.prototype.esplodi = function () {
-  if( this.stato === MISSILE.esplosione ) {
+  if( this.stato === Missile.ESPLOSIONE ) {
     ++this.raggioDiEsplosione;
   }
   if( this.raggioDiEsplosione > this.massimoRaggioEsplosione ) {

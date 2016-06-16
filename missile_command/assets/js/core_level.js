@@ -42,7 +42,7 @@ CoreLevel.prototype.setupListeners = function() {
 };
 
 CoreLevel.prototype.sparo = function ( x, y, indiceTorretta ) {
-  this.coreGame.aggiornaMissiliTerrestri( new MissileTerrestre( {
+  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
     xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
     yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
     xDiArrivo: x,
