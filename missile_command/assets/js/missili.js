@@ -28,3 +28,22 @@ function MissileNemico ( parametri, bersagli, canvasWidth ) {
 
 MissileNemico.prototype = Object.create( Missile.prototype );
 MissileNemico.prototype.constructor = MissileNemico;
+
+MissileNemico.prototype.update () {
+  if( this.ritardoPartenza === 0 ) {
+    --this.ritardoPartenza;
+    return;
+  }
+  if( this.stato === Missile.ATTIVO && this.y >= this.yDiArrivo ) {
+    this.x = this.xDiArrivo;
+    this.y = this.yDiArrivo;
+    this.stato = Missile.ESPLOSIONE;
+    this.esplosioneATerra = true;
+  }
+  if( this.stato === Missile.ATTIVO ) {
+    this.x += this.dx;
+    this.y += this.dy;
+  } else {
+    this.esplodi();
+  }
+};
