@@ -110,8 +110,7 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
     x = this.x + delta[i][0];
     y = this.y + delta[i][1];
 
-    // Draw a missile
-    ctx.strokeStyle = tipoMunizioni[i];
+    ctx.strokeStyle = this.tipoMunizioni[i];
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo( x, y );
@@ -153,6 +152,7 @@ Missile.ATTIVO = 0;
 Missile.ESPLOSIONE = 2;
 Missile.IMPLOSIONE = 3;
 Missile.ESPLOSO = 4;
+Missile.COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
 
 Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
   if( !this.esplosioneATerra ){
@@ -166,8 +166,8 @@ Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
 };
 
 Missile.prototype.disegna = function ( ctx, coreGame ) {
-  this.animazioneColore = (this.animazioneColore + 1) % COLORI.length;
-  if( this.stato === MISSILE.attivo ){
+  this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
+  if( this.stato === Missile.ATTIVO ){
     ctx.strokeStyle = this.coloreScia;
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -175,7 +175,7 @@ Missile.prototype.disegna = function ( ctx, coreGame ) {
     ctx.lineTo( this.x, this.y );
     ctx.stroke();
     
-    ctx.strokeStyle = COLORI[this.animazioneColore];
+    ctx.strokeStyle = Missile.COLORI[this.animazioneColore];
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo( this.xDiArrivo - 5, this.yDiArrivo - 5);
@@ -184,12 +184,12 @@ Missile.prototype.disegna = function ( ctx, coreGame ) {
     ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo - 5);
     ctx.stroke();
     
-    ctx.fillStyle = COLORI[this.animazioneColore];
+    ctx.fillStyle = Missile.COLORI[this.animazioneColore];
     ctx.fillRect( this.x - 1, this.y - 1, this.ampiezza, this.altezza );
   }
-  else if ( this.stato === MISSILE.ESPLOSIONE || 
-            this.stato === MISSILE.IMPLOSIONE ) {
-    ctx.fillStyle = COLORI[this.animazioneColore];
+  else if ( this.stato === Missile.ESPLOSIONE || 
+            this.stato === Missile.IMPLOSIONE ) {
+    ctx.fillStyle = Missile.COLORI[this.animazioneColore];
     ctx.beginPath();
     ctx.arc( this.x, this.y, this.raggioDiEsplosione, 0, 2 * Math.PI );
     ctx.closePath();

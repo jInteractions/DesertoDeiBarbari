@@ -1,6 +1,6 @@
 function CoreLevel () {
   this.canvas = document.querySelector( 'canvas' );
-  this.ctx = canvas.getContext( '2d' );
+  this.ctx = this.canvas.getContext( '2d' );
   this.coreGame;
   this.timerProssimoFrame;
 };
@@ -20,22 +20,23 @@ CoreLevel.prototype.creaMinacce = function () {
 };
 
 CoreLevel.prototype.setupListeners = function() {
+  var io = this;
   $( '.container' ).off();
   $( '.container' ).one( 'click', function() {
-    startLivello();
+    io.startLivello();
     $( '.container' ).on( 'click', function( event ) {
-      sparoDelGiocatore( coreGame.mirino.x, coreGame.mirino.y );
+      io.sparo( io.coreGame.mirino.x, io.coreGame.mirino.y, 1 );
     });
     $( '.container' ).on( 'mouseover', function( event ) {
-      coreGame.mirino.stato = Mirino.TRACCIAMENTO;
+      io.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
     });
     $( '.container' ).on( 'mouseout', function( ) {
-      coreGame.mirino.stato = Mirino.SPENTO;
+      io.coreGame.mirino.stato = Mirino.SPENTO;
     });
     $( '.container' ).on( 'mousemove', function( event ) {
-      coreGame.mirino.inseguiX = event.pageX - this.offsetLeft;
-      coreGame.mirino.inseguiY = event.pageY - this.offsetTop;
-      coreGame.mirino.cambiaMira();
+      io.coreGame.mirino.inseguiX = event.pageX - this.offsetLeft;
+      io.coreGame.mirino.inseguiY = event.pageY - this.offsetTop;
+      io.coreGame.mirino.cambiaMira();
     });
   });
 };
@@ -66,34 +67,38 @@ CoreLevel.prototype.inizializzaLivello = function () {
   
   var xIniziale = 80;
   for (var j = 0; j < 3; j++){
-    coreGame.aggiungiBase( new Base( xIniziale,  430, true, 100, 'cyan' ) );
+    this.coreGame.aggiungiBase( new Base( xIniziale,  430, true, 100, 'cyan' ) );
     xIniziale += 50;
   }
   xIniziale = 300;
   for (var j = 0; j < 3; j++){
-    coreGame.aggiungiBase( new Base( xIniziale, 430, true, 100, 'cyan' ) );
+    this.coreGame.aggiungiBase( new Base( xIniziale, 430, true, 100, 'cyan' ) );
     xIniziale += 50;
   }
   
   var colori = [ 'red', 'blue', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red' ];
   
-  coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 35, 410, 10, 10 colori ) );
-  coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 255, 410, 10, 10 colori ) );
-  coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 475, 410, 10, 10 colori ) );
+  this.coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 35, 410, 10, 10, colori ) );
+  this.coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 255, 410, 10, 10, colori ) );
+  this.coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 475, 410, 10, 10, colori ) );
   this.creaMinacce();
   this.setupListeners();
-  this.startLivello();
 };
 
 CoreLevel.prototype.startLivello = function () {
   var fps = 30;
-  this.timerProssimoFrame = setInterval( this.mainLoop, 1000 / fps );
+  this.timerProssimoFrame = setInterval( this.mainLoop.bind( this, this.coreGame ), 1000 / fps );
 };
 
 CoreLevel.prototype.stopLivello = function () {
   clearInterval( this.timerProssimoFrame );
 };
 
-CoreLevel.prototype.mainLoop = function () {
-  this.coreGame.prossimoFrame();
+CoreLevel.prototype.mainLoop = function ( cg ) {
+  cg.prossimoFrame();
 };
+
+$(document).ready( function () {
+  var coreLevel = new CoreLevel();
+  coreLevel.inizializzaLivello();
+} )

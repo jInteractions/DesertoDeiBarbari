@@ -118,7 +118,7 @@ CoreGame.prototype.aggiornaMinacce = function () {
 };
 
 CoreGame.prototype.aggiornaMirino = function () {
-  mirino.update();
+  this.mirino.update();
 };
 
 // Funzioni di disegno
@@ -158,16 +158,18 @@ CoreGame.prototype.disegnaSfondo = function () {
 };
 
 CoreGame.prototype.disegnaBasi = function () {
+  var c = this.ctx;
   $.each( this.basi, function( indice, base ) {
     if( base.attiva ) {
-      base.disegna( this.ctx );
+      base.disegna( c );
     }
   });
 };
 
 CoreGame.prototype.disegnaBatterieAntimissile = function () {
-  $.each( this.batterieAntimissile, function( indice, batteriaAntiMissile ) {
-      batteriaAntimissile.disegna( this.ctx );
+  var c = this.ctx;
+  $.each( this.batterieAntimissile, function( indice, batteriaAntimissile ) {
+      batteriaAntimissile.disegna( c );
   });
 };
 
@@ -175,13 +177,14 @@ CoreGame.prototype.disegnaMessaggioInizio = function () {
   this.ctx.fillStyle = this.coloreTestoPrimario;
   this.ctx.font = 'bold 20px arial';
   this.ctx.fillText( 'ATTACCO IMMINENTE', 130, 180 );
-  this.ctx.fillText( 'CLICK PER ATTIVARE DIFESE' 195, 245 );
+  this.ctx.fillText( 'CLICK PER ATTIVARE DIFESE', 195, 245 );
 };
 
 CoreGame.prototype.disegnaMissiliNemici = function () {
+  var mySelf = this;
   $.each( this.missiliNemici, function( indice, missile ) {
     if( missile.stato === Missile.ATTIVO ) {
-      missile.disegna( ctx, this );
+      missile.disegna( mySelf.ctx, mySelf );
     }
   });
 };
