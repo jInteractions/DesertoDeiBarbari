@@ -158,10 +158,10 @@ CoreGame.prototype.disegnaSfondo = function () {
 };
 
 CoreGame.prototype.disegnaBasi = function () {
-  var c = this.ctx;
+  var mySelf = this;
   $.each( this.basi, function( indice, base ) {
     if( base.attiva ) {
-      base.disegna( c );
+      base.disegna( mySelf.ctx );
     }
   });
 };

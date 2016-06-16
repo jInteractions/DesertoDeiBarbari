@@ -69,8 +69,8 @@ function Base ( x, y, vitale, numeroSoldati, colore ) {
   this.x = x;
   this.y = y;
   this.numeroSoldati = numeroSoldati;
-  this.colore;
-  this.attiva;
+  this.colore = colore;
+  this.attiva = true;
 };
 
 Base.prototype.disegna = function ( ctx ) {
