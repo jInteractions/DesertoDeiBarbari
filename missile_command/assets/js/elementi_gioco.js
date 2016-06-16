@@ -154,7 +154,18 @@ Missile.ESPLOSIONE = 2;
 Missile.IMPLOSIONE = 3;
 Missile.ESPLOSO = 4;
 
-Missile.prototype.disegna ( ctx ) {
+Missile.prototype.esplosioneAltriMissili ( ctx, coreGame ) {
+  if( !this.esplosioneATerra ){
+      $.each( coreGame.missiliNemici, function( indice, altroMissile ) {
+        if( ctx.isPointInPath( altroMissile.x, altroMissile.y ) &&
+            altroMissile.stato === Missile.ATTIVO ) {
+          altroMissile.stato = Missile.ESPLOSIONE;
+        }
+      });
+    }
+};
+
+Missile.prototype.disegna ( ctx, coreGame ) {
   this.animazioneColore = (this.animazioneColore + 1) % COLORI.length;
   if( this.stato === MISSILE.attivo ){
     ctx.strokeStyle = this.coloreScia;
@@ -182,6 +193,9 @@ Missile.prototype.disegna ( ctx ) {
     ctx.beginPath();
     ctx.arc( this.x, this.y, this.raggioDiEsplosione, 0, 2 * Math.PI );
     ctx.closePath();
+    
+    this.esplosioneAltriMissili( ctx, coreGame );
+    ctx.fill();
   }
   
   

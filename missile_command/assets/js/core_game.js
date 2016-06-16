@@ -45,18 +45,6 @@ CoreGame.prototype.aggiungiMinaccia ( minaccia ) {
   this.minacce.push( minaccia );
 };
 
-CoreGame.prototype.esplosioneAltriMissili ( missile, ctx ) {
-  if ( !missile.esplosioneATerra ) {
-    $.each( this.missiliNemici, function( indice, altroMissile ) {
-      if ( ctx.isPointInPath( altroMissile.x, altromissile.y )
-          && altroMissile.stato === Missile.ATTIVO ) {
-        this.punteggio += altroMissile.punteggio;
-        altroMissile.stato = Missile.esplosione;
-      }
-    } );
-  }
-};
-
 CoreGame.prototype.bersagliAttaccabili () {
   var bersagli = [];
   $.each( this.basi, function( indice, base ) {
@@ -204,7 +192,7 @@ CoreGame.prototype.disegnaMessaggioInizio () {
 CoreGame.prototype.disegnaMissiliNemici () {
   $.each( this.missiliNemici, function( indice, missile ) {
     if( missile.stato === Missile.ATTIVO ) {
-      missile.disegna(  );
+      missile.disegna( ctx, this );
     }
   });
 };
@@ -212,7 +200,7 @@ CoreGame.prototype.disegnaMissiliNemici () {
 CoreGame.prototype.disegnaMissiliTerrestri () {
   $.each( this.missiliTerrestri, function( indice, missile ) {
     if( missile.stato === Missile.ATTIVO ) {
-      missile.disegna();
+      missile.disegna( ctx, this );
     }
   });
 };
