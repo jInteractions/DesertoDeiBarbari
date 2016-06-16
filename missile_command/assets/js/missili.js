@@ -47,3 +47,41 @@ MissileNemico.prototype.update () {
     this.esplodi();
   }
 };
+
+function MissileTerrestre ( parametri ) {
+  Missile.call( this, {
+    xDiPartenza: parametri.xDiPartenza,
+    yDiPartenza: parametri.yDiPartenza,
+    xDiArrivo: parametri.xDiArrivo,
+    yDiArrivo: parametri.yDiArrivo,
+    coloreTestata: parametri.coloreTestata,
+    coloreScia: parametri.coloreScia,
+    massimoRaggioEsplosione: parametri.massimoRaggioEsplosione
+  } );
+  var distanzaX = this.xDiArrivo - this.xDiPartenza;
+  var distanzaY = this.yDiArrivo - this.yDiPartenza;
+  var scala = ( function () {
+    var distanza = Math.sqrt( Math.pow( distanzaX, 2 ) + Math.pow( distanzaY, 2 ) );
+    var distanzaPerFrame = parametri.distanzaPerFrame;
+    return distanza / distanzaPerFrame;
+  })();
+  this.dx = distanzaX / scala;
+  this.dy = distanzaY / scala;  
+};
+
+MissileTerrestre.prototype = Object.create( Missile.prototype );
+MissileTerrestre.prototype.constructor = MissileTerrestre;
+
+MissileTerrestre.prototype.update () {
+  if( this.stato === Missile.ATTIVO && this.y <= this.yDiArrivo ) {
+    this.x = this.xDiArrivo;
+    this.y = this.yDiArrivo;
+    this.stato = Missile.ESPLOSIONE;
+  }
+  if( this.stato === Missile.ATTIVO ) {
+    this.x += this.dx;
+    this.y += this.dy;
+  } else {
+    this.esplodi();
+  }
+};
