@@ -139,8 +139,8 @@ function Missile ( parametri ) {
   this.yDiArrivo = parametri.yDiArrivo;
   this.coloreTestata = parametri.colore;
   this.coloreScia = parametri.coloreScia;
-  this.x = parametri.xDiPartenza;
-  this.y = parametri.yDiPartenza;
+  this.x = this.xDiPartenza;
+  this.y = this.yDiPartenza;
   this.stato = Missile.ATTIVO;
   this.ampiezza = 2;
   this.altezza = 2;
@@ -228,7 +228,3 @@ Missile.prototype.esplodi () {
     this.stato = Missile.ESPLOSO;
   }
 };
-
-
-
-// MINACCIA
