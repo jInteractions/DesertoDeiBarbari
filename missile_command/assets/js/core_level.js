@@ -20,23 +20,23 @@ CoreLevel.prototype.creaMinacce = function () {
 };
 
 CoreLevel.prototype.setupListeners = function() {
-  var io = this;
+  var mySelf = this;
   $( '.container' ).off();
   $( '.container' ).one( 'click', function() {
-    io.startLivello();
+    mySelf.startLivello();
     $( '.container' ).on( 'click', function( event ) {
-      io.sparo( io.coreGame.mirino.x, io.coreGame.mirino.y, 1 );
+      mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, 1 );
     });
     $( '.container' ).on( 'mouseover', function( event ) {
-      io.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
+      mySelf.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
     });
     $( '.container' ).on( 'mouseout', function( ) {
-      io.coreGame.mirino.stato = Mirino.SPENTO;
+      mySelf.coreGame.mirino.stato = Mirino.SPENTO;
     });
     $( '.container' ).on( 'mousemove', function( event ) {
-      io.coreGame.mirino.inseguiX = event.pageX - this.offsetLeft;
-      io.coreGame.mirino.inseguiY = event.pageY - this.offsetTop;
-      io.coreGame.mirino.cambiaMira();
+      mySelf.coreGame.mirino.inseguiX = event.pageX - this.offsetLeft;
+      mySelf.coreGame.mirino.inseguiY = event.pageY - this.offsetTop;
+      mySelf.coreGame.mirino.cambiaMira();
     });
   });
 };

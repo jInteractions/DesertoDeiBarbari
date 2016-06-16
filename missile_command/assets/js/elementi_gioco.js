@@ -33,11 +33,11 @@ Mirino.prototype.disegna = function ( ctx ) {
 Mirino.prototype.cambiaMira = function () {
   var xDistanza = this.inseguiX - this.x;
   var yDistanza = this.inseguiY - this.y;
-  var rapporto = (function() {
+  var rapporto = ( function( d ) {
     var distanza = Math.sqrt( Math.pow(xDistanza, 2) + 
                               Math.pow(yDistanza, 2) );
-    return distanza / this.distanzaPerFrame;
-  }) ();
+    return distanza / d;
+  }) ( this.distanzaPerFrame );
   this.dx = xDistanza / rapporto;
   this.dy = yDistanza / rapporto;
 }
