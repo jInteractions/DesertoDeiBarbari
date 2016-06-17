@@ -1,12 +1,13 @@
 function MissileNemico ( parametri, bersagli, canvasWidth ) {
   var xDiPartenza = rand( 0, canvasWidth );
   var yDiPartenza = 0;
-  var bersaglio = bersagli[ rand( 0, bersagli.length - 1 ) ];
+  
+  this.bersaglio = bersagli[ rand( 0, bersagli.length - 1 ) ];
   Missile.call( this, {
     xDiPartenza: xDiPartenza,
     yDiPartenza: yDiPartenza,
-    xDiArrivo: bersaglio.x,
-    yDiArrivo: bersaglio.y,
+    xDiArrivo: this.bersaglio.x,
+    yDiArrivo: this.bersaglio.y,
     coloreTestata: parametri.coloreTestata,
     coloreScia: parametri.coloreScia,
     massimoRaggioEsplosione: parametri.massimoRaggioEsplosione

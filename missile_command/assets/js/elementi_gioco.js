@@ -124,7 +124,7 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
 };
 
 BatteriaAntimissile.prototype.controllaMissiliRimanenti = function () {
-  return !!this.numeroMissili;
+  return this.numeroMissili === 0;
 };
 
 BatteriaAntimissile.prototype.distruggiti = function () {}; // da completare
@@ -206,19 +206,17 @@ Missile.prototype.esplodi = function () {
   if( this.raggioDiEsplosione > this.massimoRaggioEsplosione ) {
     this.stato = Missile.IMPLOSIONE;
   }
-  
   if( this.stato === Missile.IMPLOSIONE ) {
     --this.raggioDiEsplosione;
     if( this.esplosioneATerra ) {
-      if ( this.bersaglio[2] instanceof Base ) {
-        if (this.bersaglio[2].attivo === true) {
-          this.bersaglio[2].attivo = false;
+      if ( this.bersaglio.batteria instanceof Base ) {
+        if ( this.bersaglio.batteria.attiva === true ) {
+          this.bersaglio.batteria.attiva = false;
           // gestire popolazione morta
         }
-      } 
-      else { 
-        if (this.bersaglio[2].missiliRimanenti != 0){
-          this.bersaglio[2].missiliRimanenti = 0;
+      } else { 
+        if ( this.bersaglio.batteria.numeroMissili === 0 ) {
+          this.bersaglio.batteria.numeroMissili = 0;
           // gestire popolazione morta
         }
       }
