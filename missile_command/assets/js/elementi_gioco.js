@@ -205,18 +205,18 @@ Missile.prototype.esplodi = function () {
   }
   if( this.raggioDiEsplosione > this.massimoRaggioEsplosione ) {
     this.stato = Missile.IMPLOSIONE;
-  }
+  }  
   if( this.stato === Missile.IMPLOSIONE ) {
     --this.raggioDiEsplosione;
     if( this.esplosioneATerra ) {
-      if ( this.bersaglio.batteria instanceof Base ) {
-        if ( this.bersaglio.batteria.attiva === true ) {
-          this.bersaglio.batteria.attiva = false;
+      if ( this.bersaglio.tipo instanceof Base ) {
+        if ( this.bersaglio.tipo.attiva === true ) {
+          this.bersaglio.tipo.attiva = false;
           // gestire popolazione morta
         }
-      } else { 
-        if ( this.bersaglio.batteria.numeroMissili === 0 ) {
-          this.bersaglio.batteria.numeroMissili = 0;
+      } else {
+        if ( this.bersaglio.tipo.numeroMissili !== 0 ) {
+          this.bersaglio.tipo.numeroMissili = 0;
           // gestire popolazione morta
         }
       }
@@ -226,3 +226,13 @@ Missile.prototype.esplodi = function () {
     this.stato = Missile.ESPLOSO;
   }
 };
+
+// Utility
+//
+///* funzione di controllo */
+//Base.prototype.getName = function() { 
+//   var funcNameRegex = /function (.{1,})\(/;
+//   var results = (funcNameRegex).exec((this).constructor.toString());
+//   return (results && results.length > 1) ? results[1] : "";
+//};
+///* fine funzione di controllo */

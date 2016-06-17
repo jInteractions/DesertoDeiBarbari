@@ -49,11 +49,11 @@ CoreGame.prototype.bersagliAttaccabili = function () {
   var bersagli = [];
   $.each( this.basi, function( indice, base ) {
     if ( base.attiva ) {
-      bersagli.push( {x: base.x + 15, y: base.y - 10, base: base} );
+      bersagli.push( {x: base.x + 15, y: base.y - 10, tipo: base} );
     }
   } );
   $.each( this.batterieAntimissile, function( indice, batteria ) {
-    bersagli.push( {x: batteria.x, y: batteria.y, batteria: batteria} )
+    bersagli.push( {x: batteria.x, y: batteria.y, tipo: batteria} )
   } );
   return bersagli;
 };
@@ -61,7 +61,7 @@ CoreGame.prototype.bersagliAttaccabili = function () {
 CoreGame.prototype.calcoloMissiliRimanenti = function () {
   var tot = 0;
   $.each ( this.batterieAntimissile, function( indice, batteria ) {
-    tot += batteria.missiliRimanenti;
+    tot += batteria.numeroMissili;
   } );
   return tot;
 };
