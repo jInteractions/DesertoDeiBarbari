@@ -165,9 +165,7 @@ Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
     }
 };
 
-Missile.prototype.disegna = function ( ctx, coreGame ) {
-  console.log("disegna" + this.stato);
-  
+Missile.prototype.disegna = function ( ctx, coreGame ) {  
   this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
   if( this.stato === Missile.ATTIVO ){
     ctx.strokeStyle = this.coloreScia;

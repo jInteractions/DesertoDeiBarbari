@@ -30,7 +30,7 @@ MissileNemico.prototype = Object.create( Missile.prototype );
 MissileNemico.prototype.constructor = MissileNemico;
 
 MissileNemico.prototype.update = function () {
-  if( this.ritardoPartenza === 0 ) {
+  if( this.ritardoPartenza !== 0 ) {
     this.ritardoPartenza--;
     return;
   }
@@ -72,7 +72,6 @@ MissileTerrestre.prototype = Object.create( Missile.prototype );
 MissileTerrestre.prototype.constructor = MissileTerrestre;
 
 MissileTerrestre.prototype.update = function () {
-  console.log("update" + this.stato);
   if( this.stato === Missile.ATTIVO && this.y <= this.yDiArrivo ) {
     this.x = this.xDiArrivo;
     this.y = this.yDiArrivo;

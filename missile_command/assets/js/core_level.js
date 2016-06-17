@@ -5,7 +5,7 @@ function CoreLevel () {
   this.timerProssimoFrame;
 };
 
-CoreLevel.prototype.creaMinacce = function () {
+CoreLevel.prototype.creaMinacce = function () {  
   var bersagli = this.coreGame.bersagliAttaccabili();
   var numeroMissili = 40;
   for( var i = 0; i < numeroMissili; i++ ) {
@@ -42,17 +42,19 @@ CoreLevel.prototype.setupListeners = function() {
 };
 
 CoreLevel.prototype.sparo = function ( x, y, indiceTorretta ) {
-  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
-    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
-    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
-    xDiArrivo: x,
-    yDiArrivo: y,
-    coloreTestata: 'yellow',
-    coloreScia: 'blue',
-    massimoRaggioEsplosione: 30,
-    distanzaPerFrame: 12
-  } ) );
-  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
+  if ( this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili !== 0 ) {
+    this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
+      xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
+      yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
+      xDiArrivo: x,
+      yDiArrivo: y,
+      coloreTestata: 'yellow',
+      coloreScia: 'blue',
+      massimoRaggioEsplosione: 30,
+      distanzaPerFrame: 12
+    } ) );
+    this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
+  }
 };
 
 CoreLevel.prototype.inizializzaLivello = function () { 
