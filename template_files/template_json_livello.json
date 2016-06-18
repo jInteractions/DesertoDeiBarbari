@@ -1,111 +1,7 @@
-{
-  "dialoghi": {
-    "inizio": {
-      "labelCMS":"dialogoInizioX",
-      "battute": [
-        {
-          "traduzioni": [
-            {
-              "lingua": "italiano",
-              "dialogo": [
-                "ciao",
-                "a",
-                "tutti"
-              ]
-            },
-            {
-              "lingua": "inglese",
-              "dialogo": [
-                "Hello",
-                "guys"
-              ]
-            }
-          ],
-          "personaggio": "tartacchia"
-        },
-        {
-          "traduzioni": [
-            {
-              "lingua": "italiano",
-              "dialogo": [
-                "ciao2",
-                "a2",
-                "tutti2"
-              ]
-            },
-            {
-              "lingua": "inglese",
-              "dialogo": [
-                "Hello2",
-                "guys2"
-              ]
-            }
-          ],
-          "personaggio": "reds"
-        }
-      ]
-    },
-    "fine": {
-      "labelCMS":"dialogoFineX",
-      "battute": [
-        {
-          "traduzioni": [
-            {
-              "lingua": "italiano",
-              "dialogo": [
-                "ciao",
-                "a",
-                "tutti"
-              ]
-            },
-            {
-              "lingua": "inglese",
-              "dialogo": [
-                "Hello",
-                "guys"
-              ]
-            }
-          ],
-          "personaggio": "tartacchia"
-        },
-        {
-          "traduzioni": [
-            {
-              "lingua": "italiano",
-              "dialogo": [
-                "ciao2",
-                "a2",
-                "tutti2"
-              ]
-            },
-            {
-              "lingua": "inglese",
-              "dialogo": [
-                "Hello2",
-                "guys2"
-              ]
-            }
-          ],
-          "personaggio": "reds"
-        }
-      ]
-    }
-  },
-  "posizione": "1",
-  "titoli": [
-    {
-      "titolo": "primo livello",
-      "lingua": "italiano"
-    },
-    {
-      "titolo": "first level",
-      "lingua": "inglese"
-    }
-  ],
-  "aiuti": [
-    {
-      "dialogo": {
-        "labelCMS":"labelDialogo1",
+  {
+    "dialoghi": {
+      "inizio": {
+        "labelCMS":"dialogoInizioX",
         "battute": [
           {
             "traduzioni": [
@@ -149,20 +45,139 @@
           }
         ]
       },
-      "posizione": "1",
-      "codice": "qui ci va il codice",
-      "immagine": "path immagine",
-      "costo": "14",
-      "massimo_tentativi": "3",
-      "labelCMS":"aiuto numero1"
-    }
-  ],
-  "codice_da_modificare":"qui ci va il codice da modificare",
-  "codice_di_test":"qui ci va il codice per il test",
-  "id_livello_successivo":"1",
-  "id_livello_successivo_fail":"1",
-  "tempo_massimo":"5",
-  "bad_keywords":["qui","ci","vanno","le","bad","keywords"],
-  "labelCMS":"mio primo livello"
-  
-}
+      "fine": {
+        "labelCMS":"dialogoFineX",
+        "battute": [
+          {
+            "traduzioni": [
+              {
+                "lingua": "italiano",
+                "dialogo": [
+                  "ciao",
+                  "a",
+                  "tutti"
+                ]
+              },
+              {
+                "lingua": "inglese",
+                "dialogo": [
+                  "Hello",
+                  "guys"
+                ]
+              }
+            ],
+            "personaggio": "tartacchia"
+          },
+          {
+            "traduzioni": [
+              {
+                "lingua": "italiano",
+                "dialogo": [
+                  "ciao2",
+                  "a2",
+                  "tutti2"
+                ]
+              },
+              {
+                "lingua": "inglese",
+                "dialogo": [
+                  "Hello2",
+                  "guys2"
+                ]
+              }
+            ],
+            "personaggio": "reds"
+          }
+        ]
+      }
+    },
+    "posizione": "1",
+    "titoli": [
+      {
+        "titolo": "primo livello",
+        "lingua": "italiano"
+      },
+      {
+        "titolo": "first level",
+        "lingua": "inglese"
+      }
+    ],
+    "aiuti": [
+      {
+        "dialogo": {
+          "labelCMS":"labelDialogo1",
+          "battute": [
+            {
+              "traduzioni": [
+                {
+                  "lingua": "italiano",
+                  "dialogo": [
+                    "ciao",
+                    "a",
+                    "tutti"
+                  ]
+                },
+                {
+                  "lingua": "inglese",
+                  "dialogo": [
+                    "Hello",
+                    "guys"
+                  ]
+                }
+              ],
+              "personaggio": "tartacchia"
+            },
+            {
+              "traduzioni": [
+                {
+                  "lingua": "italiano",
+                  "dialogo": [
+                    "ciao2",
+                    "a2",
+                    "tutti2"
+                  ]
+                },
+                {
+                  "lingua": "inglese",
+                  "dialogo": [
+                    "Hello2",
+                    "guys2"
+                  ]
+                }
+              ],
+              "personaggio": "reds"
+            }
+          ]
+        },
+        "posizione": "1",
+        "codice": "qui ci va il codice",
+        "immagine": "path immagine",
+        "costo": "14",
+        "massimo_tentativi": "3",
+        "labelCMS":"aiuto numero1"
+      }
+    ],
+    "files":[
+      {
+        "name":"file1.js",
+        "enabled":"true",
+        "code":"hakuna matata1",
+        "codice_di_test":"qui ci va il codice per il test"
+      },
+      {
+        "name":"file2.js",
+        "enabled":"false",
+        "code":"hakuna matata2",
+        "codice_di_test":"qui ci va il codice per il test"
+      },
+      {
+        "name":"file3.js",
+        "enabled":"true",
+        "code":"hakuna matata3",
+        "codice_di_test":"qui ci va il codice per il test"
+      }
+    ],
+    "bad_keywords":["qui","ci","vanno","le","bad","keywords"],
+    "labelCMS":"mio primo livello"
+    
+  }
