@@ -183,18 +183,14 @@ CoreGame.prototype.disegnaMessaggioInizio = function () {
 CoreGame.prototype.disegnaMissiliNemici = function () {
   var mySelf = this;
   $.each( this.missiliNemici, function( indice, missile ) {
-    if( missile.stato === Missile.ATTIVO ) {
-      missile.disegna( mySelf.ctx, mySelf );
-    }
+    missile.disegna( mySelf.ctx, mySelf );
   });
 };
 
 CoreGame.prototype.disegnaMissiliTerrestri = function () {
   var mySelf = this;
   $.each( this.missiliTerrestri, function( indice, missile ) {
-    //if( missile.stato === Missile.ATTIVO ) {
-      missile.disegna( mySelf.ctx, mySelf );
-    //}
+    missile.disegna( mySelf.ctx, mySelf );
   });
 };
 

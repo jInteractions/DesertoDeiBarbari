@@ -189,6 +189,7 @@ Missile.prototype.disegna = function ( ctx, coreGame ) {
   }
   else if ( this.stato === Missile.ESPLOSIONE || 
             this.stato === Missile.IMPLOSIONE ) {
+    
     ctx.fillStyle = Missile.COLORI[this.animazioneColore];
     ctx.beginPath();
     ctx.arc( this.x, this.y, this.raggioDiEsplosione, 0, 2 * Math.PI );

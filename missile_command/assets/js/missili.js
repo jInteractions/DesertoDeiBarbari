@@ -10,7 +10,7 @@ function MissileNemico ( parametri, bersagli, canvasWidth ) {
     yDiArrivo: this.bersaglio.y,
     coloreTestata: parametri.coloreTestata,
     coloreScia: parametri.coloreScia,
-    massimoRaggioEsplosione: parametri.massimoRaggioEsplosione
+    massimoRaggioEsplosione:          parametri.massimoRaggioEsplosione
   } );
   
   this.velCaduta = parametri.vel;

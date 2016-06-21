@@ -7,7 +7,7 @@ function CoreLevel () {
 
 CoreLevel.prototype.creaMinacce = function () {  
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 40;
+  var numeroMissili = 10;
   for( var i = 0; i < numeroMissili; i++ ) {
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
