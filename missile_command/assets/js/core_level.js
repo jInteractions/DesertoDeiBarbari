@@ -24,8 +24,9 @@ CoreLevel.prototype.setupListeners = function() {
   $( '.container' ).off();
   $( '.container' ).one( 'click', function() {
     mySelf.startLivello();
-    $( '.container' ).on( 'click', function( event ) {
-      mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, 1 );
+    $('.container').focus();
+    $( '.container' ).bind( 'keydown', function( event ) {
+      mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, event.which );
     });
     $( '.container' ).on( 'mouseover', function( event ) {
       mySelf.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
@@ -41,7 +42,23 @@ CoreLevel.prototype.setupListeners = function() {
   });
 };
 
-CoreLevel.prototype.sparo = function ( x, y, indiceTorretta ) {
+CoreLevel.prototype.sparo = function ( x, y, tasto ) {
+  var indiceTorretta = 0;
+  
+  switch(tasto) {
+    case 49:
+      indiceTorretta = 0;
+      break;
+    case 50:
+      indiceTorretta = 1;
+      break;
+    case 51:
+      indiceTorretta = 2;
+      break;
+    default:
+      return;
+  }
+    
   if ( this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili !== 0 ) {
     this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
       xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,

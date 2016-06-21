@@ -25,6 +25,7 @@ h1 {
 .container {
   position: relative;
   background-color: green;
+  outline: none;
 }
 .crosshair {
   width: 470px;

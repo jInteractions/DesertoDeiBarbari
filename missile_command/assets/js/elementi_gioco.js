@@ -119,7 +119,15 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
     ctx.lineTo( x - 2, y + 6 );
     ctx.moveTo( x + 2, y + 10 );
     ctx.lineTo( x + 2, y + 6 );
+    ctx.closePath();
     ctx.stroke();
+    
+//    x = x - 25; y = y + 30;
+//    ctx.fillStyle = 'red';
+//    ctx.beginPath();
+//
+//    ctx.closePath();
+//    ctx.fill();
   }
 };
 
