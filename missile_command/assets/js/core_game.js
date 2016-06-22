@@ -23,6 +23,8 @@ function CoreGame ( canvas, mirino, palette ) {
 
 CoreGame.prototype.prossimoFrame = function () {
   this.disegnaStatoGioco();
+  this.aggiornaBatterieAntimissile();
+  this.disegnaBatterieAntimissile();
   this.aggiornaMissiliNemici();
   this.disegnaMissiliNemici();
   this.aggiornaMissiliTerrestri();
@@ -95,6 +97,12 @@ CoreGame.prototype.aggiornaMissiliNemici = function () {
   );
 };
 
+CoreGame.prototype.aggiornaBatterieAntimissile = function () {
+  $.each( this.batterieAntimissile, function( indice, batteria ) {
+    batteria.update();
+  });
+};
+
 CoreGame.prototype.aggiornaMissiliTerrestri = function () {
   $.each( this.missiliTerrestri, function( indice, missile ) {
     missile.update();
@@ -131,7 +139,6 @@ CoreGame.prototype.disegnaInizioGioco = function () {
 CoreGame.prototype.disegnaStatoGioco = function () {
   this.disegnaSfondo();
   this.disegnaBasi();
-  this.disegnaBatterieAntimissile();
 };
 
 CoreGame.prototype.disegnaSfondo = function () {
@@ -169,6 +176,7 @@ CoreGame.prototype.disegnaBasi = function () {
 CoreGame.prototype.disegnaBatterieAntimissile = function () {
   var c = this.ctx;
   $.each( this.batterieAntimissile, function( indice, batteriaAntimissile ) {
+    if( batteriaAntimissile.stato !== BatteriaAntimissile.DISTRUTTA)
       batteriaAntimissile.disegna( c );
   });
 };

@@ -46,20 +46,13 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
   var indiceTorretta = 0;
   
   switch(tasto) {
-    case 49:
-      indiceTorretta = 0;
-      break;
-    case 50:
-      indiceTorretta = 1;
-      break;
-    case 51:
-      indiceTorretta = 2;
-      break;
-    default:
-      return;
+    case 49: indiceTorretta = 0; break;
+    case 50: indiceTorretta = 1; break;
+    case 51: indiceTorretta = 2; break;
+    default: return;
   }
     
-  if ( this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili !== 0 ) {
+  if ( this.coreGame.batterieAntimissile[ indiceTorretta ].stato === BatteriaAntimissile.ATTIVA ) {
     this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
       xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
       yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
@@ -71,6 +64,7 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
       distanzaPerFrame: 12
     } ) );
     this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
+    this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
   }
 };
 
@@ -97,9 +91,12 @@ CoreLevel.prototype.inizializzaLivello = function () {
   
   var colori = [ 'red', 'blue', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red' ];
   
-  this.coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 35, 410, 10, 10, colori ) );
-  this.coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 255, 410, 10, 10, colori ) );
-  this.coreGame.aggiungiBatteriaAntimissile ( new BatteriaAntimissile( 475, 410, 10, 10, colori ) );
+  this.coreGame.aggiungiBatteriaAntimissile ( 
+    new BatteriaAntimissile( 35, 410, 10, 10, colori, 50, 1000, 70, 3 ) );
+  this.coreGame.aggiungiBatteriaAntimissile ( 
+    new BatteriaAntimissile( 255, 410, 10, 10, colori, 50, 1000, 70, 3) );
+  this.coreGame.aggiungiBatteriaAntimissile ( 
+    new BatteriaAntimissile( 475, 410, 10, 10, colori, 50, 1000, 70, 3) );
   this.creaMinacce();
   this.setupListeners();
 };
