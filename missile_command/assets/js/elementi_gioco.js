@@ -94,7 +94,7 @@ Base.prototype.distruggiti = function () {}; // da completare
 // BATTERIA ANTIMISSILE
 
 function BatteriaAntimissile ( x, y, nMissili, nSoldati, colori, 
-                                Tmin, Tmax, deltaTempo, deltaRaffreddamento ) {
+                               Tmin, Tmax, deltaTempo, deltaRaffreddamento ) {
   // Attributi Posizione
   this.x = x;
   this.y = y;
@@ -253,6 +253,7 @@ Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
         if( ctx.isPointInPath( altroMissile.x, altroMissile.y ) &&
             altroMissile.stato === Missile.ATTIVO ) {
           altroMissile.stato = Missile.ESPLOSIONE;
+          coreGame.aggiornaPunteggioMissiliAbbattuti();
         }
       });
     }
