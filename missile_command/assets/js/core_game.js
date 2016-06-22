@@ -6,20 +6,33 @@ function CoreGame ( canvas, mirino, palette ) {
   this.canvas = canvas;
   this.ctx = canvas.getContext ( '2d' );
   this.COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
-  this.punteggio;
-  this.morti;
+  
+  this.coloreSfondo = palette.coloreSfondo;
+  this.coloreTerreno = palette.coloreTerreno;
+  this.coloreTestoPrimario = palette.coloreTestoPrimario;
+  this.coloreTestoSecondario = palette.coloreTestoSecondario;
+  
   this.basi = [];
   this.batterieAntimissile = [];
   this.missiliNemici = [];
   this.missiliTerrestri = [];
   this.minacce = [];
-  this.timerProssimoFrame;
   this.mirino = mirino;
-  this.coloreSfondo = palette.coloreSfondo;
-  this.coloreTerreno = palette.coloreTerreno;
-  this.coloreTestoPrimario = palette.coloreTestoPrimario;
-  this.coloreTestoSecondario = palette.coloreTestoSecondario;
+  
+  this.timerProssimoFrame;
+  
+  this.punteggio;
+  this.coefficienteOndata = 1.0;
+  this.punteggioMissiliAbbattuti = 0;
+  this.punteggioMissiliRimasti;
+  this.punteggioMinacceAbbattute;
+  this.punteggioTorretteSalvate;
 };
+CoreGame.PUNTI_MISSILE_ABBATTUTO = 50;
+CoreGame.PUNTI_MISSILE_RIMASTO = 50;
+CoreGame.PUNTI_MINACCIA_ABBATTUTA = 50;
+CoreGame.PUNTI_TORRETTA_SALVATA = 50;
+
 
 CoreGame.prototype.prossimoFrame = function () {
   this.disegnaStatoGioco();
@@ -210,4 +223,34 @@ CoreGame.prototype.disegnaMinacce = function () {
 
 CoreGame.prototype.disegnaMirino = function () {
   this.mirino.disegna( this.ctx );
+};
+
+// funzioni di calcolo del punteggio
+
+CoreGame.prototype.aggiornaPunteggio ( punti ) {
+  this.punteggio += punti;
+};
+
+CoreGame.prototype.aggiornaPunteggioMissiliAbbattuti () {
+  ++this.punteggioMissiliAbbattuti;
+  this.aggiornaPunteggio( this.PUNTI_MISSILE_ABBATTUTO * this.coefficienteOndata );
+};
+
+CoreGame.prototype.aggiornaPunteggioMissiliRimasti ( numeroMissili ) {
+  this.punteggioMissiliRimasti += numeroMissili;
+  this.aggiornaPunteggio( this.PUNTI_MISSILE_RIMASTO * this.coefficienteOndata );
+};
+
+CoreGame.prototype.aggiornaPunteggioMinacceAbbattute () {
+  ++this.punteggioMinacceAbbattute;
+  this.aggiornaPunteggio( this.PUNTI_MINACCIA_ABBATTUTA * this.coefficienteOndata );
+};
+
+CoreGame.prototype.aggiornaPunteggioTorretteSalvate ( numeroTorrette ) {
+  this.punteggioTorretteSalvate += numeroTorrette;
+  this.aggiornaPunteggio( this.PUNTI_TORRETTA_SALVATA * this.coefficienteOndata );
+};
+
+CoreGame.aggiornaCoefficienteOndata ( nuovoCoefficiente ) {
+  this.coefficiente = nuovoCoefficiente;
 };
