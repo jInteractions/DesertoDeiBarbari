@@ -227,30 +227,30 @@ CoreGame.prototype.disegnaMirino = function () {
 
 // funzioni di calcolo del punteggio
 
-CoreGame.prototype.aggiornaPunteggio ( punti ) {
+CoreGame.prototype.aggiornaPunteggio = function ( punti ) {
   this.punteggio += punti;
 };
 
-CoreGame.prototype.aggiornaPunteggioMissiliAbbattuti () {
+CoreGame.prototype.aggiornaPunteggioMissiliAbbattuti = function () {
   ++this.punteggioMissiliAbbattuti;
   this.aggiornaPunteggio( this.PUNTI_MISSILE_ABBATTUTO * this.coefficienteOndata );
 };
 
-CoreGame.prototype.aggiornaPunteggioMissiliRimasti ( numeroMissili ) {
+CoreGame.prototype.aggiornaPunteggioMissiliRimasti = function ( numeroMissili ) {
   this.punteggioMissiliRimasti += numeroMissili;
   this.aggiornaPunteggio( this.PUNTI_MISSILE_RIMASTO * this.coefficienteOndata );
 };
 
-CoreGame.prototype.aggiornaPunteggioMinacceAbbattute () {
+CoreGame.prototype.aggiornaPunteggioMinacceAbbattute = function () {
   ++this.punteggioMinacceAbbattute;
   this.aggiornaPunteggio( this.PUNTI_MINACCIA_ABBATTUTA * this.coefficienteOndata );
 };
 
-CoreGame.prototype.aggiornaPunteggioTorretteSalvate ( numeroTorrette ) {
+CoreGame.prototype.aggiornaPunteggioTorretteSalvate = function ( numeroTorrette ) {
   this.punteggioTorretteSalvate += numeroTorrette;
   this.aggiornaPunteggio( this.PUNTI_TORRETTA_SALVATA * this.coefficienteOndata );
 };
 
-CoreGame.aggiornaCoefficienteOndata ( nuovoCoefficiente ) {
+CoreGame.aggiornaCoefficienteOndata = function ( nuovoCoefficiente ) {
   this.coefficiente = nuovoCoefficiente;
 };
