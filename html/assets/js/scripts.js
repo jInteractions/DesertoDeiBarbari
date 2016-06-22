@@ -16,7 +16,18 @@ $(document).ready(function() {
     .on('hide.bs.collapse', function(a) {
       $(a.target).prev('.accordionPanel-heading').removeClass('active');
     });
+  $('#bottoneAiuto').on('click', mostraAiuto);
 });
+
+var mostraAiuto = function(){
+  $('#testoAiuto').html(
+    'Questo è il <b>primo aiuto</b>'
+  );
+  
+  
+  
+};
+
 
 window.onload = function () {
   var word = CodeMirror.fromTextArea(document.getElementById('codesnippet_editable'), {
