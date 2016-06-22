@@ -3,6 +3,10 @@ $(function () {
   $('[data-toggle="popover"]').popover()
 });
 
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})
+
 $(document).ready(function() {
   $('.collapse.in').prev('.accordionPanel-heading').addClass('active');
   $('#accordion, #bs-collapse')
