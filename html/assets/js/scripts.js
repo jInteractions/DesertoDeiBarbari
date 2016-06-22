@@ -17,3 +17,20 @@ $(document).ready(function() {
       $(a.target).prev('.accordionPanel-heading').removeClass('active');
     });
 });
+
+window.onload = function () {
+  var word = CodeMirror.fromTextArea(document.getElementById('codesnippet_editable'), {
+      mode: "javascript",
+      theme: "default",
+      lineNumbers: true
+  });
+  word.setSize("100%", "100%");
+  word.markText({line:1,ch:1},{line:30,ch:10},{readOnly:true});
+  word.markText({line:1,ch:1},{line:30,ch:10},{css: "background-color: #f8f8f8"});
+  word.markText({line:41,ch:10},{line:80,ch:10},{readOnly:true});
+  word.markText({line:41,ch:10},{line:80,ch:10},{css: "background-color: #f8f8f8"});
+  
+};
+
+
+    
