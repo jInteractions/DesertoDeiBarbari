@@ -208,7 +208,8 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
     
     ctx.fillStyle = coloreTesto;
     ctx.font = 'bold 12px arial';
-    ctx.fillText( this.temperatura + " C°", this.x - 10, this.y + 45 );
+    var txt = this.temperatura + " C°";
+    ctx.fillText( txt, this.x - ctx.measureText(txt).width/2, this.y + 45 );
   }
     
   // Anima esplosione
