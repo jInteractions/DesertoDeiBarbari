@@ -135,7 +135,6 @@ BatteriaAntimissile.prototype.update = function ( ) {
   if(this.stato === BatteriaAntimissile.ESPLOSIONE || 
      this.stato === BatteriaAntimissile.IMPLOSIONE) {
     this.esplodi();
-    console.log("esplosione")
     return;
   } 
   if(this.temperatura >= this.temperaturaMassima) {
@@ -199,6 +198,10 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
       ctx.stroke();
     }
 
+    var txt = this.temperatura + " C°";
+    var dx = ctx.measureText(txt).width;
+    var dy = ctx.measureText(txt).height;
+    
     // Scrivi temperatura
     var coloreTesto = 'blue';
     if(this.temperatura <= 200)
@@ -206,10 +209,18 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
     else 
       coloreTesto = 'red';
     
+    /*
+    ctx.fillStyle = 'black';
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+    ctx.rect(this.x - dx/2 - 3, this.y + 10 + 3, this.x - dx/2 - 3 + dx, this.y + 10 + 3 + dy);
+    ctx.stroke();
+    ctx.fill();
+    */
+    
     ctx.fillStyle = coloreTesto;
     ctx.font = 'bold 12px arial';
-    var txt = this.temperatura + " C°";
-    ctx.fillText( txt, this.x - ctx.measureText(txt).width/2, this.y + 45 );
+    ctx.fillText( txt, this.x - dx/2, this.y + 45 );
   }
     
   // Anima esplosione
