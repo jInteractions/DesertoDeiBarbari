@@ -20,6 +20,7 @@ CaricaCodice.PAROLE_VIETATE = [
     'validate', 'onExit', 'objective',
     'this['
 ];
+CaricaCodice.ATTESA_MASSIMA = 2000;
 
 CaricaCodice.prototype.aggiornaCodiceUtente = function () {
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
@@ -89,6 +90,28 @@ CaricaCodice.prototype.trovaErroriSintassi = function ( codice ) {
     }
   }
   return null;
+};
+
+// da correggere
+CaricaCodice.prototype.verificaCicliInfiniti = function ( codice, test ) {
+  codice = codice.replace( /\)\s*{/g, ") {" );
+  codice = codice.replace( /\n\s*while\s*\((.*)\)/g, "\nfor (dummy=0;$1;)" );
+  codice = $.map(codice.split('\n'), function (line, i) {
+    return line.replace( /for\s*\((.*);(.*);(.*)\)\s*{/g,
+      "for ($1, startTime = Date.now();$2;$3){" +
+      "if (Date.now() - startTime > " + CaricaCodice.ATTESA_MASSIMA + ") {" +
+      "throw ({ linea: " + ( i + 1 ) + ", messaggio: \"msgCicloInfinito\" });" );
+  }).join('\n');
+  console.log( codice );
+  try {
+    eval( codice + "\n" + test );
+  } catch ( e ) {
+    console.log( e );
+    if ( e.messaggio === "msgCicloInfinito" ) {
+      console.log( "trovato ciclo infinito" );
+      return e;
+    }
+  }
 };
 
 CaricaCodice.prototype.esecuzioneTest = function () {

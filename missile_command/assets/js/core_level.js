@@ -129,8 +129,6 @@ $(document).ready( function () {
   
   var livello = jsonLivello;
   
-  console.log(livello);
-  
   var caricaCodice = new CaricaCodice([{
                                         nomeFile:
                                         "Autenticazione.js",
@@ -140,14 +138,17 @@ $(document).ready( function () {
                                         "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
                                        }]);
   caricaCodice.aggiornaCodiceUtente();
+  // chiamata alla funzione provvisoria per cicli infiniti
+  caricaCodice.verificaCicliInfiniti( 
+    "var x = function () {for (var i = 0; i < 10; i++) { i--; }};",
+    "console.log(\"42\");"
+  )
+  // ======
   var e = caricaCodice.validazioneCodiceUtente();
   var esiti = [];
   
-  console.log(e)
-  
   if( e.contatoreErrori === 0 ) {
     esiti = caricaCodice.esecuzioneTest();
-    console.log(esiti);
     var coreLevel = new CoreLevel();
     coreLevel.inizializzaLivello(); 
   }
