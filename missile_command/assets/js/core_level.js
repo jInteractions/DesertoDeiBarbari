@@ -1,11 +1,11 @@
-function CoreLevel () {
+function CoreLevel ( ) {
   this.canvas = document.querySelector( 'canvas' );
   this.ctx = this.canvas.getContext( '2d' );
   this.coreGame;
   this.timerProssimoFrame;
 };
 
-CoreLevel.prototype.creaMinacce = function () {  
+CoreLevel.prototype.creaMinacce = function ( ) {  
   var bersagli = this.coreGame.bersagliAttaccabili();
   var numeroMissili = 10;
   for( var i = 0; i < numeroMissili; i++ ) {
@@ -19,7 +19,7 @@ CoreLevel.prototype.creaMinacce = function () {
   }
 };
 
-CoreLevel.prototype.setupListeners = function() {
+CoreLevel.prototype.setupListeners = function( ) {
   var mySelf = this;
   $( '.container' ).off();
   $( '.container' ).one( 'click', function() {
@@ -78,7 +78,7 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
 };
 
-CoreLevel.prototype.inizializzaLivello = function () { 
+CoreLevel.prototype.inizializzaLivello = function ( ) { 
   var mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 16.0 );
   
   this.coreGame = new CoreGame( this.canvas, mirino, {
@@ -126,10 +126,15 @@ CoreLevel.prototype.mainLoop = function ( cg ) {
 
 // Il codice sottostante dovrà essere spostato
 $(document).ready( function () {
+  
+  var livello = jsonLivello;
+  
+  console.log(livello);
+  
   var caricaCodice = new CaricaCodice([{
                                         nomeFile:
                                         "Autenticazione.js",
-                                        codiceUtente: 
+                                        codiceUtente:
                                         "function Autenticazione () {\n\t\n}\n\nAutenticazione.prototype.autenticati = function ( username, password ) {\n\tif(username == \"SWAG\" && password == \"bellofigo\")\n\t\treturn true;\n\telse\n\t\treturn false;\n}",
                                         test:
                                         "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
@@ -145,5 +150,5 @@ $(document).ready( function () {
     console.log(esiti);
     var coreLevel = new CoreLevel();
     coreLevel.inizializzaLivello(); 
-  } 
-} )
+  }
+} );
