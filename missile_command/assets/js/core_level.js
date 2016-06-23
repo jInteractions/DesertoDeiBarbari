@@ -126,9 +126,9 @@ CoreLevel.prototype.mainLoop = function ( cg ) {
 
 // Il codice sottostante dovrà essere spostato
 $(document).ready( function () {
-  var caricaCodice = new CaricaCodice([{codiceUtente: "aaa"}, {codiceUtente: "bbb"}]);
+  var caricaCodice = new CaricaCodice([{codiceUtente: "aaa this["}, {codiceUtente: "bbb"}]);
   caricaCodice.aggiornaCodiceUtente();
-  var e = caricaCodice.validazioneSintattica();
+  var e = caricaCodice.validazioneCodiceUtente();
   console.log(e);
   
   var coreLevel = new CoreLevel();
