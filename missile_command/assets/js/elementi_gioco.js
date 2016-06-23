@@ -62,7 +62,8 @@ Mirino.prototype.update = function () {
   }
 }
 
-// BASE
+/** BASE
+*/
 
 function Base ( x, y, vitale, numeroSoldati, colore ) {
   this.vitale = vitale; // booleano
@@ -91,7 +92,8 @@ Base.prototype.disegna = function ( ctx ) {
 
 Base.prototype.distruggiti = function () {}; // da completare
 
-// BATTERIA ANTIMISSILE
+/** BATTERIA ANTIMISSILE
+*/
 
 function BatteriaAntimissile ( x, y, nMissili, nSoldati, colori, 
                                Tmin, Tmax, deltaTempo, deltaRaffreddamento ) {
@@ -233,7 +235,9 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
     ctx.fill();
   }
 };
-// MISSILE
+
+/** MISSILE
+*/
 
 function Missile ( parametri ) {
   this.xDiPartenza = parametri.xDiPartenza;
@@ -332,6 +336,31 @@ Missile.prototype.esplodi = function () {
     this.stato = Missile.ESPLOSO;
   }
 };
+
+/*
+function AstronaveNemica ( ctx ) {
+  this.x;
+  this.y;
+  
+  this.ctx = ctx;
+}
+
+AstronaveNemica.prototype.disegna() {
+  
+}
+
+AstronaveNemica.prototype.update() {
+  
+}
+
+AstronaveNemica.prototype.esplodi() {
+  
+}
+
+AstronaveNemica.prototype.distruggiti() {
+  
+}
+*/
 
 // Utility
 //
