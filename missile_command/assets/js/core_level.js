@@ -65,6 +65,7 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
     } ) );
     this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
     this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
+    this.coreGame.aggiornaPunteggioMissiliSparati();
   }
 };
 
