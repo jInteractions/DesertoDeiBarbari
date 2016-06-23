@@ -25,7 +25,7 @@ CoreLevel.prototype.setupListeners = function() {
   $( '.container' ).one( 'click', function() {
     mySelf.startLivello();
     $('.container').focus();
-    $( '.container' ).bind( 'keydown', function( event ) {
+    $( '.container' ).bind( 'keyup', function( event ) {
       mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, event.which );
     });
     $( '.container' ).on( 'mouseover', function( event ) {
@@ -42,30 +42,40 @@ CoreLevel.prototype.setupListeners = function() {
   });
 };
 
-CoreLevel.prototype.sparo = function ( x, y, tasto ) {
+CoreLevel.prototype.scegliTorretta = function ( x, y, tasto ) {
   var indiceTorretta = 0;
-  
   switch(tasto) {
     case 49: indiceTorretta = 0; break;
     case 50: indiceTorretta = 1; break;
     case 51: indiceTorretta = 2; break;
-    default: return;
+    default: return -1;
   }
-    
+  
   if ( this.coreGame.batterieAntimissile[ indiceTorretta ].stato === BatteriaAntimissile.ATTIVA ) {
-    this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
-      xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
-      yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
-      xDiArrivo: x,
-      yDiArrivo: y,
-      coloreTestata: 'yellow',
-      coloreScia: 'blue',
-      massimoRaggioEsplosione: 30,
-      distanzaPerFrame: 12
-    } ) );
-    this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
-    this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
+    return indiceTorretta;
   }
+  
+  return -1;
+};
+
+CoreLevel.prototype.sparo = function ( x, y, tasto ) {
+  var indiceTorretta = this.scegliTorretta( x, y, tasto);
+  
+  if( indiceTorretta === -1 )
+    return;
+  
+  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
+    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
+    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
+    xDiArrivo: x,
+    yDiArrivo: y,
+    coloreTestata: 'yellow',
+    coloreScia: 'blue',
+    massimoRaggioEsplosione: 30,
+    distanzaPerFrame: 12
+  } ) );
+  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
+  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
 };
 
 CoreLevel.prototype.inizializzaLivello = function () { 
@@ -101,12 +111,12 @@ CoreLevel.prototype.inizializzaLivello = function () {
   this.setupListeners();
 };
 
-CoreLevel.prototype.startLivello = function () {
+CoreLevel.prototype.startLivello = function ( ) {
   var fps = 30;
   this.timerProssimoFrame = setInterval( this.mainLoop.bind( this, this.coreGame ), 1000 / fps );
 };
 
-CoreLevel.prototype.stopLivello = function () {
+CoreLevel.prototype.stopLivello = function ( ) {
   clearInterval( this.timerProssimoFrame );
 };
 
