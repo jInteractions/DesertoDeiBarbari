@@ -124,7 +124,13 @@ CoreLevel.prototype.mainLoop = function ( cg ) {
   cg.prossimoFrame();
 };
 
+// Il codice sottostante dovrà essere spostato
 $(document).ready( function () {
+  var caricaCodice = new CaricaCodice([{codiceUtente: "aaa"}, {codiceUtente: "bbb"}]);
+  caricaCodice.aggiornaCodiceUtente();
+  var e = caricaCodice.validazioneSintattica();
+  console.log(e);
+  
   var coreLevel = new CoreLevel();
   coreLevel.inizializzaLivello();
 } )
