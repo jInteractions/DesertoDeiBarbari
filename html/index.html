@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -13,10 +14,15 @@
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
+    <!-- Theme style -->
+    <link rel="stylesheet" href="assets/css/AdminLTE.css">
+    <link rel="stylesheet" href="assets/css/skins/skin-blue.css">
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     
@@ -30,7 +36,8 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+  <div class="wrapper">
     <!-- Modal Storia -->
     <div class="modal fade" id="modalDialoghi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
@@ -107,39 +114,90 @@
     
     
     
-    <!-- Fixed navbar -->
-    <nav class="barraNavigazione navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Il Deserto dei Barbari</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Gioca</a></li>
-            <li><a href="#about">Dashboard</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">nome.utente <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
+    <header class="main-header">
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini">
+        <img src="assets/img/DesertoBarbari.png">
+      </span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg">
+        Il Deserto dei Barbari
+      </span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Jack Vane</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <p>
+                  Jack Vane
+                  <small>Livello 1</small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </nav>
-
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Jack Vane</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Connesso</a>
+        </div>
+      </div>
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">Navigazione</li>
+        <li>
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-bar-chart"></i> <span>Statistiche</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
     <!-- Begin page content -->
     <div class="container">
       <div class="riga">
@@ -307,34 +365,28 @@ StringStream.prototype = {
         </div>
       </div>
     </div>
-<!--
-      <div class="row">
-        <div class="col-md-1">
-          <img src="assets/img/200x200.jpg" class="img-responsive"/>
-        </div>
-        <div class="col-md-8">
-          <div class="well well-lg">Large Well</div>
-        </div>
-      </div>
--->
+  </div>
 
-<!--
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Created by Alessio Bortolotti, Sebastian Davrieux, Andrea Segalini &amp; Francesco Trombi.</p>
-      </div>
-    </footer>
--->
-
+</div>
+<!-- ./wrapper -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-    <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script src="assets/js/jquery-2.2.0.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/missile_command.js"></script>
     <script src="assets/js/scripts.js"></script>
+    <script src="assets/js/app.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="assets/js/bootstrap3-wysihtml5.all.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="http://codemirror.net/lib/codemirror.js"></script>

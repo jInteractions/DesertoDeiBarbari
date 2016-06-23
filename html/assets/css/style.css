@@ -7,11 +7,6 @@ html {
   font-size: 14px;
 }
 
-body {
-  /* Margin bottom by footer height */
-  padding-bottom: 60px;
-}
-
 .footer {
   position: absolute;
   bottom: 0;
@@ -46,9 +41,11 @@ e/* Grid styles
 
 /* Custom page CSS
 -------------------------------------------------- */
-body > .container {
-  padding: 0px 5px 0px 5px;
+.container {
+  padding: 1px 0px 0px 0px;
   width: 100%;
+  
+  background-color: #DAEFFC;
 }
 
 .container .text-muted {
