@@ -24,9 +24,11 @@ function CoreGame ( canvas, mirino, palette ) {
   this.punteggio;
   this.coefficienteOndata = 1.0;
   this.punteggioMissiliAbbattuti = 0;
-  this.punteggioMissiliRimasti;
-  this.punteggioMinacceAbbattute;
-  this.punteggioTorretteSalvate;
+  this.punteggioMissiliRimasti = 0;
+  this.punteggioMinacceAbbattute = 0;
+  this.punteggioTorretteSalvate = 0;
+  this.punteggioMissiliSparati = 0;
+  this.punteggioNumeroOndate = 0;
 };
 CoreGame.PUNTI_MISSILE_ABBATTUTO = 50;
 CoreGame.PUNTI_MISSILE_RIMASTO = 50;
@@ -251,6 +253,14 @@ CoreGame.prototype.aggiornaPunteggioTorretteSalvate = function ( numeroTorrette 
   this.aggiornaPunteggio( this.PUNTI_TORRETTA_SALVATA * this.coefficienteOndata );
 };
 
-CoreGame.aggiornaCoefficienteOndata = function ( nuovoCoefficiente ) {
+CoreGame.prototype.aggiornaCoefficienteOndata = function ( nuovoCoefficiente ) {
   this.coefficiente = nuovoCoefficiente;
+};
+
+CoreGame.prototype.aggiornaPunteggioMissiliSparati = function () {
+  ++this.punteggioMissiliSparati;
+};
+
+CoreGame.prototype.aggiornaPunteggioNumeroOndate = function () {
+  ++this.punteggioNumeroOndate;
 };
