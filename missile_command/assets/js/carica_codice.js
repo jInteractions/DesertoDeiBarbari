@@ -1,9 +1,9 @@
-function CaricaCodice ( obiettivi ) {
-  this.obiettivi = obiettivi;
+function CaricaCodice ( fileVirtuali ) {
+  this.fileVirtuali = fileVirtuali;
 };
+
 CaricaCodice.PAROLE_VIETATE = [
     'eval', '.call', 'call(', 'apply', 'bind',
-    'prototype',
     'setTimeout', 'setInterval',
     'requestAnimationFrame', 'mozRequestAnimationFrame',
     'webkitRequestAnimationFrame', 'setImmediate',
@@ -22,31 +22,35 @@ CaricaCodice.PAROLE_VIETATE = [
 ];
 
 CaricaCodice.prototype.aggiornaCodiceUtente = function () {
-  $.each( this.obiettivi, function ( indice, obiettivo ) {
-    //obiettivo.codiceUtente = "function A () { console.log("'Ciao'")}";  
+  $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
+    //fileVirtuale.codiceUtente = "function A () { console.log("'Ciao'")}";  
   } );
-};
-
-CaricaCodice.prototype.validazioneSintattica = function () {
-  
 };
 
 CaricaCodice.prototype.validazioneCodiceUtente = function () {
   var mySelf = this;
+  var contatoreErrori = 0;
+  
   var messaggiErrore = "Parole vietate:\n";
-  $.each( this.obiettivi, function (indice, obiettivo) {
-    var errore = mySelf.controlloParoleVietate( obiettivo.codiceUtente );
-    for ( var i = 0; i < errore.length; i++ ) {
-      messaggiErrore += "Nel file " + obiettivo.nomeFile + ", riga " + errore[i].riga + ", non puoi utilizzare la parola: '" + errore[i].parola + "'\n";
+  $.each( this.fileVirtuali, function (indice, fileVirtuale) {
+    var erroreParole = mySelf.controlloParoleVietate( fileVirtuale.codiceUtente );
+    for ( var i = 0; i < erroreParole.length; i++ ) {
+      messaggiErrore += "Nel file " + fileVirtuale.nomeFile + ", riga " + erroreParole[i].riga + ", non puoi utilizzare la parola: '" + erroreParole[i].parola + "'\n";
+      contatoreErrori++;
     }
   } );
+  
   messaggiErrore += "Errori di sintassi:\n";
-  $.each( this.obiettivi, function ( indice, obiettivo ) {
-    var errore = mySelf.trovaErroriSintassi( obiettivo.codiceUtente );
-    messaggiErrore += "Nel file " + obiettivo.nomeFile + 
-      ": '" + errore.messaggio + "'.\n";
+  $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
+    var erroreSintassi = mySelf.trovaErroriSintassi( fileVirtuale.codiceUtente );
+    if(erroreSintassi !== null) {
+      messaggiErrore += "Nel file " + fileVirtuale.nomeFile + 
+        ": '" + erroreSintassi.messaggio + "'.\n";
+      contatoreErrori++;
+    }
   } );
-  return messaggiErrore;
+  
+  return {contatoreErrori: contatoreErrori, messaggiErrore: messaggiErrore};
 };
 
 CaricaCodice.prototype.controlloParoleVietate = function ( codice ) {
@@ -65,6 +69,8 @@ CaricaCodice.prototype.controlloParoleVietate = function ( codice ) {
 };
 
 CaricaCodice.prototype.trovaErroriSintassi = function ( codice ) {
+  var msgErrore;
+  
   try {
     eval(codice);
   } catch (e) {
@@ -86,5 +92,15 @@ CaricaCodice.prototype.trovaErroriSintassi = function ( codice ) {
 };
 
 CaricaCodice.prototype.esecuzioneTest = function () {
-  
+  var mySelf = this;
+  var esiti = [];
+  $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
+    window.eval( fileVirtuale.codiceUtente );
+  } );
+         
+  $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
+    var risultato = window.eval( fileVirtuale.test );
+    esiti.push( { nomeFile: fileVirtuale.nomeFile, esito: risultato } );
+  } );
+  return esiti;
 };

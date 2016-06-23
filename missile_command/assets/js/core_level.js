@@ -126,11 +126,24 @@ CoreLevel.prototype.mainLoop = function ( cg ) {
 
 // Il codice sottostante dovrà essere spostato
 $(document).ready( function () {
-  var caricaCodice = new CaricaCodice([{codiceUtente: "aaa this["}, {codiceUtente: "bbb"}]);
+  var caricaCodice = new CaricaCodice([{
+                                        nomeFile:
+                                        "Autenticazione.js",
+                                        codiceUtente: 
+                                        "function Autenticazione () {\n\t\n}\n\nAutenticazione.prototype.autenticati = function ( username, password ) {\n\tif(username == \"SWAG\" && password == \"bellofigo\")\n\t\treturn true;\n\telse\n\t\treturn false;\n}",
+                                        test:
+                                        "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
+                                       }]);
   caricaCodice.aggiornaCodiceUtente();
   var e = caricaCodice.validazioneCodiceUtente();
-  console.log(e);
+  var esiti = [];
   
-  var coreLevel = new CoreLevel();
-  coreLevel.inizializzaLivello();
+  console.log(e)
+  
+  if( e.contatoreErrori === 0 ) {
+    esiti = caricaCodice.esecuzioneTest();
+    console.log(esiti);
+    var coreLevel = new CoreLevel();
+    coreLevel.inizializzaLivello(); 
+  } 
 } )
