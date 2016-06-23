@@ -25,6 +25,13 @@ e/* Grid styles
   margin-right: 0px;
 }
 
+.rigaStatistiche {
+  margin-bottom: 5px;
+  padding-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .riga .riga {
   margin-top: 8px;
   margin-left: 0px;
