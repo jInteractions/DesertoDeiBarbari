@@ -23,9 +23,6 @@ var mostraAiuto = function(){
   $('#testoAiuto').html(
     'Questo è il <b>primo aiuto</b>'
   );
-  
-  
-  
 };
 
 
