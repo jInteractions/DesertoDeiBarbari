@@ -129,27 +129,29 @@ $(document).ready( function () {
   
   var livello = jsonLivello;
   
-  var caricaCodice = new CaricaCodice([{
-                                        nomeFile:
-                                        "Autenticazione.js",
-                                        codiceUtente:
-                                        "function Autenticazione () {\n\t\n}\n\nAutenticazione.prototype.autenticati = function ( username, password ) {\n\tif(username == \"SWAG\" && password == \"bellofigo\")\n\t\treturn true;\n\telse\n\t\treturn false;\n}",
-                                        test:
-                                        "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
-                                       }]);
+  var caricaCodice = new CaricaCodice( [ {
+                                          nomeFile:
+                                            "Autenticazione.js",
+                                          codiceUtente:
+                                            "function Autenticazione () {\n\t\n}\n\nAutenticazione.prototype.autenticati = function ( username, password ) {\n\tif(username == \"SWAG\" && password == \"bellofigo\")\n\t\treturn true;\n\telse\n\t\treturn false;\n}",
+                                          test:
+                                            "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
+                                        }, {
+                                          nomeFile:
+                                            "Autenticazione.js",
+                                          codiceUtente:
+                                            "var x = function () {for (var i = 0; i < 10; i++) { i++; } };",
+                                          test:
+                                            "x();",
+                                        } ] );
   caricaCodice.aggiornaCodiceUtente();
-  // chiamata alla funzione provvisoria per cicli infiniti
-  caricaCodice.verificaCicliInfiniti( 
-    "var x = function () {for (var i = 0; i < 10; i++) { i++; }};",
-    "x();"
-  )
-  // ======
   var e = caricaCodice.validazioneCodiceUtente();
-  var esiti = [];
+  console.log(e);
   
-  if( e.contatoreErrori === 0 ) {
+  if(e.erroriCiclo.length === 0) {
     esiti = caricaCodice.esecuzioneTest();
     var coreLevel = new CoreLevel();
-    coreLevel.inizializzaLivello(); 
+    coreLevel.inizializzaLivello();
   }
+  
 } );

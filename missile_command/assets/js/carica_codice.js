@@ -28,7 +28,31 @@ CaricaCodice.prototype.aggiornaCodiceUtente = function () {
   } );
 };
 
+
 CaricaCodice.prototype.validazioneCodiceUtente = function () {
+  var mySelf = this;
+  var errori = { erroriSintassi: [], erroriParole: [], erroriCiclo: [] };
+  
+  $.each( this.fileVirtuali, function ( indice, file) {
+    var e = mySelf.trovaErroriSintassi( file );
+    errori.erroriSintassi = errori.erroriSintassi.concat( e );
+  } );
+         
+  $.each( this.fileVirtuali, function ( indice, file ) {
+    var e = mySelf.controlloParoleVietate( file );
+    errori.erroriParole = errori.erroriParole.concat( e );
+  } );
+
+  $.each( this.fileVirtuali, function ( indice, file ) {
+    var e = mySelf.verificaCicliInfiniti( file );
+    errori.erroriCiclo = errori.erroriCiclo.concat( e );
+  } );
+
+  return errori;
+}
+
+// obsoleta
+CaricaCodice.prototype.validazioneCodiceUtenteOld = function () {
   var mySelf = this;
   var contatoreErrori = 0;
   
@@ -54,22 +78,25 @@ CaricaCodice.prototype.validazioneCodiceUtente = function () {
   return {contatoreErrori: contatoreErrori, messaggiErrore: messaggiErrore};
 };
 
-CaricaCodice.prototype.controlloParoleVietate = function ( codice ) {
+CaricaCodice.prototype.controlloParoleVietate = function ( file ) {
+  var codice = file.codiceUtente;
   var erroriParoleVietate = [];
+  
   var righe = codice.split( '\n' );
   for ( var riga = 1; riga <= righe.length; riga++ ) {
-    var codiceDaTestare = righe.slice( 0, riga ).join( '\n' );
+    var codiceDaTestare = righe.slice( riga - 1, riga ).join( '\n' );
     for ( var i = 0; i < CaricaCodice.PAROLE_VIETATE.length; i++ ) {
       var parolaVietata = CaricaCodice.PAROLE_VIETATE[i];
       if ( codiceDaTestare.indexOf( parolaVietata ) > -1 ) {
-        erroriParoleVietate.push( { parola: parolaVietata, riga: riga } );
+        erroriParoleVietate.push( { file: file.nomeFile, riga: riga, testo: parolaVietata } );
       }
     }
   }
   return erroriParoleVietate;
 };
 
-CaricaCodice.prototype.trovaErroriSintassi = function ( codice ) {
+CaricaCodice.prototype.trovaErroriSintassi = function ( file ) {
+  var codice = file.codiceUtente;
   var msgErrore;
   
   try {
@@ -78,40 +105,47 @@ CaricaCodice.prototype.trovaErroriSintassi = function ( codice ) {
     msgErrore = e.message
   }
   
+  var errori = [];
+  
   var righe = codice.split( '\n' );
   for (var i = 1; i <= righe.length; i++) {
     var codiceDaTestare = righe.slice( 0, i ).join( '\n' );
     try {
       eval( codiceDaTestare );
     } catch ( e ) {
-      if ( e.message === msgErrore ) {
-        return ( { riga: i, messaggio: msgErrore } );
+      if( e.message == msgErrore ) {
+        errori.push( { file: file.nomeFile, riga: i, testo: e.message } );
+        break;
       }
     }
   }
-  return null;
+
+  return errori;
 };
 
-// da correggere
-CaricaCodice.prototype.verificaCicliInfiniti = function ( codice, test ) {
+CaricaCodice.prototype.verificaCicliInfiniti = function ( file ) {
+  var codice = file.codiceUtente;
+  var test = file.test;
+  var errori = [];
+  
   codice = codice.replace( /\)\s*{/g, ") {" );
   codice = codice.replace( /\n\s*while\s*\((.*)\)/g, "\nfor (dummy=0;$1;)" );
   codice = $.map( codice.split( '\n' ), function ( riga, i ) {
     return riga.replace( /for\s*\((.*);(.*);(.*)\)\s*{/g,
       "for ($1, startTime = Date.now();$2;$3){" +
       "if (Date.now() - startTime > " + CaricaCodice.ATTESA_MASSIMA + ") {" +
-      "throw ({ linea: " + ( i + 1 ) + ", messaggio: \"msgCicloInfinito\" });}" );
+      "throw ({ riga: " + ( i + 1 ) + ", testo: \"msgCicloInfinito\" });}" );
   } ).join('\n');
-  console.log( codice );
   try {
     eval( codice + "\n" + test );
   } catch ( e ) {
-    console.log( e );
-    if ( e.messaggio === "msgCicloInfinito" ) {
-      console.log( "trovato ciclo infinito" );
-      return e;
+    if ( e.testo === "msgCicloInfinito" ) {
+      errori.push( { file: file.nomeFile, riga: e.riga, testo: e.testo } );
     }
   }
+  
+  return errori;
+  
 };
 
 CaricaCodice.prototype.esecuzioneTest = function () {
