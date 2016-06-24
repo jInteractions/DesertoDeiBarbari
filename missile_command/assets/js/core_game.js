@@ -131,14 +131,14 @@ CoreGame.prototype.aggiornaMissiliTerrestri = function () {
 };
 
 CoreGame.prototype.aggiornaMinacce = function () {
-  /*$.each( this.minacce, function( indice, minaccia ) {
+  $.each( this.minacce, function( indice, minaccia ) {
     minaccia.update();
   });
   this.minacce = this.minacce.filter(
     function( minacce ) {
-      return minacce.stato !== Minaccia.ESPLOSO;
+      return minacce.stato !== AstronaveNemica.ESPLOSO;
     }
-  );*/
+  );
 };
 
 CoreGame.prototype.aggiornaMirino = function () {
