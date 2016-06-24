@@ -140,8 +140,8 @@ $(document).ready( function () {
   caricaCodice.aggiornaCodiceUtente();
   // chiamata alla funzione provvisoria per cicli infiniti
   caricaCodice.verificaCicliInfiniti( 
-    "var x = function () {for (var i = 0; i < 10; i++) { i--; }};",
-    "console.log(\"42\");"
+    "var x = function () {for (var i = 0; i < 10; i++) { i++; }};",
+    "x();"
   )
   // ======
   var e = caricaCodice.validazioneCodiceUtente();

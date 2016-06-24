@@ -96,12 +96,12 @@ CaricaCodice.prototype.trovaErroriSintassi = function ( codice ) {
 CaricaCodice.prototype.verificaCicliInfiniti = function ( codice, test ) {
   codice = codice.replace( /\)\s*{/g, ") {" );
   codice = codice.replace( /\n\s*while\s*\((.*)\)/g, "\nfor (dummy=0;$1;)" );
-  codice = $.map(codice.split('\n'), function (line, i) {
-    return line.replace( /for\s*\((.*);(.*);(.*)\)\s*{/g,
+  codice = $.map( codice.split( '\n' ), function ( riga, i ) {
+    return riga.replace( /for\s*\((.*);(.*);(.*)\)\s*{/g,
       "for ($1, startTime = Date.now();$2;$3){" +
       "if (Date.now() - startTime > " + CaricaCodice.ATTESA_MASSIMA + ") {" +
-      "throw ({ linea: " + ( i + 1 ) + ", messaggio: \"msgCicloInfinito\" });" );
-  }).join('\n');
+      "throw ({ linea: " + ( i + 1 ) + ", messaggio: \"msgCicloInfinito\" });}" );
+  } ).join('\n');
   console.log( codice );
   try {
     eval( codice + "\n" + test );
