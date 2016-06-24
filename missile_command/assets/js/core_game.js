@@ -41,12 +41,12 @@ CoreGame.prototype.prossimoFrame = function () {
   this.disegnaStatoGioco();
   this.aggiornaBatterieAntimissile();
   this.disegnaBatterieAntimissile();
+  this.aggiornaMinacce();
+  this.disegnaMinacce();
   this.aggiornaMissiliNemici();
   this.disegnaMissiliNemici();
   this.aggiornaMissiliTerrestri();
   this.disegnaMissiliTerrestri();
-  this.aggiornaMinacce();
-  this.disegnaMinacce();
   this.aggiornaMirino();
   this.disegnaMirino();
 };
@@ -131,14 +131,14 @@ CoreGame.prototype.aggiornaMissiliTerrestri = function () {
 };
 
 CoreGame.prototype.aggiornaMinacce = function () {
-  $.each( this.minacce, function( indice, minaccia ) {
+  /*$.each( this.minacce, function( indice, minaccia ) {
     minaccia.update();
   });
   this.minacce = this.minacce.filter(
     function( minacce ) {
       return minacce.stato !== Minaccia.ESPLOSO;
     }
-  );
+  );*/
 };
 
 CoreGame.prototype.aggiornaMirino = function () {

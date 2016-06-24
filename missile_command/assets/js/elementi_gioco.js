@@ -27,6 +27,7 @@ Mirino.prototype.disegna = function ( ctx ) {
   ctx.lineTo( this.x + 5, this.y + 5 );
   ctx.moveTo( this.x - 5, this.y + 5 );
   ctx.lineTo( this.x + 5, this.y - 5 );
+  ctx.closePath();
   ctx.stroke();
 }
 
@@ -282,6 +283,7 @@ Missile.prototype.disegna = function ( ctx, coreGame ) {
     ctx.beginPath();
     ctx.moveTo( this.xDiPartenza, this.yDiPartenza );
     ctx.lineTo( this.x, this.y );
+    ctx.closePath();
     ctx.stroke();
     
     ctx.strokeStyle = Missile.COLORI[this.animazioneColore];
@@ -291,6 +293,7 @@ Missile.prototype.disegna = function ( ctx, coreGame ) {
     ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo + 5);
     ctx.moveTo( this.xDiArrivo - 5, this.yDiArrivo + 5);
     ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo - 5);
+    ctx.closePath();
     ctx.stroke();
     
     ctx.fillStyle = Missile.COLORI[this.animazioneColore];
@@ -337,7 +340,6 @@ Missile.prototype.esplodi = function () {
   }
 };
 
-/*
 function AstronaveNemica ( ctx ) {
   this.x;
   this.y;
@@ -345,22 +347,36 @@ function AstronaveNemica ( ctx ) {
   this.ctx = ctx;
 }
 
-AstronaveNemica.prototype.disegna() {
+AstronaveNemica.prototype.disegna = function () {
+  var ctxW = 510;
+  var ctxH = 460;
+  var h = 50;
+  var b = 200;
+  this.ctx.fillStyle = "#00FF00";
+  this.ctx.beginPath();
+  this.ctx.rect( ctxW / 2 - b / 2, 50, b, h );
+  this.ctx.closePath();
+  this.ctx.fill();
+  
+//  var immagine = new Image(); //document.getElementById( "img_prova" );
+//  immagine.src = "file:///Users/francesco/DesertoDeiBarbari/missile_command/index.html";
+//  immagine.onload = function () {
+//    this.ctx.drawImage( immagine, 0, 0);
+//                       //this.ctx.width / 2 - immagine.width / 2, 100 );
+//  }
+}
+
+AstronaveNemica.prototype.update = function () {
   
 }
 
-AstronaveNemica.prototype.update() {
+AstronaveNemica.prototype.esplodi = function () {
   
 }
 
-AstronaveNemica.prototype.esplodi() {
+AstronaveNemica.prototype.distruggiti = function () {
   
 }
-
-AstronaveNemica.prototype.distruggiti() {
-  
-}
-*/
 
 // Utility
 //

@@ -17,6 +17,10 @@ CoreLevel.prototype.creaMinacce = function ( ) {
       ritardoMassimo: 50
     }, bersagli, this.canvas.width ) );
   }
+  
+  // aggiunta astronave nemica
+  var astronaveNemica = new AstronaveNemica( this.ctx );
+  this.coreGame.aggiungiMinaccia( astronaveNemica ); 
 };
 
 CoreLevel.prototype.setupListeners = function( ) {
