@@ -1,4 +1,5 @@
-var jsonLivello = {  
+var jsonLivello = {
+  "nomeLivello": "L'avventura Comincia",
   "numeroLivello": 0,
 
   "dialogoIniziale": [
@@ -18,6 +19,8 @@ var jsonLivello = {
   "codiceLivello": 
     "LivelloProva ( ) {\n  CoreLevel.call( this );\n  \n  \/\/ Variabile controllo obiettivo\n  this.accesso = false;\n  \n  \/\/ Chiamare i test\n  \n}\n\n\/\/ Ereditariet\u00e0\nLivelloProva.prototype = Object.create( Missile.prototype );\nLivelloProva.prototype.constructor = CoreLevel;\n\n\/\/ Ridefinizione della funzione sparo\nCoreLevel.prototype.sparo = function ( x, y, tasto ) {\n  if ( this.accesso === false ) {\n    console.log(\"Accesso non eseguito! Prego autenticarsi...\");\n    return;\n  }\n  \n  var indiceTorretta = this.scegliTorretta( x, y, tasto);\n  \n  if ( indiceTorretta === -1 )\n    return;\n  \n  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {\n    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,\n    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,\n    xDiArrivo: x,\n    yDiArrivo: y,\n    coloreTestata: 'yellow',\n    coloreScia: 'blue',\n    massimoRaggioEsplosione: 30,\n    distanzaPerFrame: 12\n  } ) );\n  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;\n  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;\n}\n",
    
+  "manuale": "<h3> Il comando IF </h3> <p> Il comando if consente di alterare il percorso di esecuzione del codice... </p> <h3> Il comando IF </h3> <p> Il   comando if consente di alterare il percorso di esecuzione del codice... </p> <h3> Il comando IF </h3> <p> Il comando if consente di alterare il           percorso di esecuzione del codice... </p> <h3> Il comando IF </h3> <p> Il    comando if consente di alterare il percorso di esecuzione del codice...     </p>",
+  
   "fileVirtuali": [
     { "nomeFile": "Autorizzazione.js",
       "consultazione": false,
