@@ -1,0 +1,28 @@
+QUERY
+
+1) Quali livelli ci sono?
+
+2) Quali livelli ha giocato?
+
+3) Quali livelli ha completato?
+
+4) Inserire livello?
+
+5) Prelevare livello base dato id o numero?
+
+6) Varie update
+
+PHP
+
+1) La registrazione codice php
+
+2) Strutture di servizio
+
+AJAX
+
+1) Chiamate per update dinamica dei parametri del livello eseguito: punteggi, statistiche, codice.
+
+NOTE:
+
+Il json contenuto nell'attributo file_virtuali_aggiornati è lo stesso con cui si descrive un livello ma con l'aggiunta di un campo "aiuto_utilizzato", inserito appena dopo il campo "aiuto" che indica se, in quella particolare
+partita, l'aiuto è stato comprato e quindi già disponibile.
