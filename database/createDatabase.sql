@@ -27,6 +27,8 @@ CREATE TABLE livello_eseguito(
 	minacce_abbattute INT NOT NULL DEFAULT 0,
 	missili_lanciati INT NOT NULL DEFAULT 0,
 	missili_rimasti INT NOT NULL DEFAULT 0,
-	torrette_salvate INT NOT NULL DEFAULT 0
-	
+	torrette_salvate INT NOT NULL DEFAULT 0,
+	FOREIGN KEY (idlivello) REFERENCES livello(idlivello),
+	FOREIGN KEY (email) REFERENCES utente(email),
+  PRIMARY KEY (email,idlivello)
 );
