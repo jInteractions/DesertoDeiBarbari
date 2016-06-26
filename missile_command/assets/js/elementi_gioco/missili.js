@@ -22,8 +22,10 @@ Missile.ESPLOSO = 4;
 Missile.COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
 
 Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
+  var missiliInGioco = coreGame.missiliNemici.concat( coreGame.missiliTerrestri );
+  
   if( !this.esplosioneATerra ){
-      $.each( coreGame.missiliNemici, function( indice, altroMissile ) {
+      $.each( missiliInGioco, function( indice, altroMissile ) {
         if( ctx.isPointInPath( altroMissile.x, altroMissile.y ) &&
             altroMissile.stato === Missile.ATTIVO ) {
           altroMissile.stato = Missile.ESPLOSIONE;
@@ -41,16 +43,6 @@ Missile.prototype.disegna = function ( ctx, coreGame ) {
     ctx.beginPath();
     ctx.moveTo( this.xDiPartenza, this.yDiPartenza );
     ctx.lineTo( this.x, this.y );
-    ctx.closePath();
-    ctx.stroke();
-    
-    ctx.strokeStyle = Missile.COLORI[this.animazioneColore];
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo( this.xDiArrivo - 5, this.yDiArrivo - 5);
-    ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo + 5);
-    ctx.moveTo( this.xDiArrivo - 5, this.yDiArrivo + 5);
-    ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo - 5);
     ctx.closePath();
     ctx.stroke();
     
@@ -114,14 +106,26 @@ function MissileNemico ( parametri, bersagli, canvasWidth ) {
   } );
   
   this.velCaduta = parametri.vel;
-  this.frameDistanzaBersaglio = ( 650 - 30 ) / this.velCaduta;
+//  this.frameDistanzaBersaglio = ( 650 - 30 ) / this.velCaduta;
+//  
+//  if ( this.frameDistanzaBersaglio < 20 ) {
+//    this.frameDistanzaBersaglio = 20;
+//  }
+//  
+//  this.dx = ( this.xDiArrivo - this.xDiPartenza ) / this.frameDistanzaBersaglio;
+//  this.dy = ( this.yDiArrivo - this.yDiPartenza ) / this.frameDistanzaBersaglio;
+//  this.ritardoPartenza = rand( 0, parametri.ritardoMassimo );
+//  this.esplosioneATerra = false;
   
-  if ( this.frameDistanzaBersaglio < 20 ) {
-    this.frameDistanzaBersaglio = 20;
-  }
+  var distanzaX = this.xDiArrivo - this.xDiPartenza;
+  var distanzaY = this.yDiArrivo - this.yDiPartenza;
+  var scala = ( function ( d ) {
+    var distanza = Math.sqrt( Math.pow( distanzaX, 2 ) + Math.pow( distanzaY, 2 ) );
+    return distanza / d;
+  })( parametri.vel );
+  this.dx = distanzaX / scala;
+  this.dy = distanzaY / scala;
   
-  this.dx = ( this.xDiArrivo - this.xDiPartenza ) / this.frameDistanzaBersaglio;
-  this.dy = ( this.yDiArrivo - this.yDiPartenza ) / this.frameDistanzaBersaglio;
   this.ritardoPartenza = rand( 0, parametri.ritardoMassimo );
   this.esplosioneATerra = false;
 };
@@ -158,6 +162,9 @@ function MissileTerrestre ( parametri ) {
     coloreScia: parametri.coloreScia,
     massimoRaggioEsplosione: parametri.massimoRaggioEsplosione
   } );
+  
+  this.velCaduta = parametri.distanzaPerFrame;
+  
   var distanzaX = this.xDiArrivo - this.xDiPartenza;
   var distanzaY = this.yDiArrivo - this.yDiPartenza;
   var scala = ( function ( d ) {
@@ -182,5 +189,21 @@ MissileTerrestre.prototype.update = function () {
     this.y += this.dy;
   } else {
     this.esplodi();
+  }
+};
+
+MissileTerrestre.prototype.disegna = function ( ctx, coreGame ) {
+  Missile.prototype.disegna.call( this, ctx, coreGame );
+  
+  if ( this.stato === Missile.ATTIVO ) {
+    ctx.strokeStyle = Missile.COLORI[this.animazioneColore];
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo( this.xDiArrivo - 5, this.yDiArrivo - 5);
+    ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo + 5);
+    ctx.moveTo( this.xDiArrivo - 5, this.yDiArrivo + 5);
+    ctx.lineTo( this.xDiArrivo + 5, this.yDiArrivo - 5);
+    ctx.closePath();
+    ctx.stroke();
   }
 };

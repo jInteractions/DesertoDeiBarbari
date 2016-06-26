@@ -1,14 +1,13 @@
 function AstronaveNemica ( ctx ) {
   var ctxW = 510;
   var ctxH = 460;
-  this.lunghezza = 200;
-  this.altezza = 50;
-
-  this.x = 510 / 2;
-  this.y = 50 + this.altezza/2;
- 
+  this.lunghezza = 299;
+  this.altezza = 54;
   
-  this.stato = AstronaveNemica.ESPLOSIONE;
+  this.x = ctxW/2 - this.lunghezza/2;
+  this.y = 10;
+  
+  this.stato = AstronaveNemica.ATTIVO;
   
   this.raggioDiEsplosione = 0;
   this.raggioDiEsplosioneMinore = 0;
@@ -34,7 +33,7 @@ AstronaveNemica.prototype.disegna = function () {
   if( this.stato === AstronaveNemica.ATTIVO || this.stato === AstronaveNemica.ESPLOSIONE) {    
     this.ctx.fillStyle = "#00FF00";
     this.ctx.beginPath();
-    this.ctx.rect( this.x - this.lunghezza/2, this.y - this.altezza/2,
+    this.ctx.rect( this.x, this.y,
                    this.lunghezza, this.altezza );
     this.ctx.closePath();
     this.ctx.fill();

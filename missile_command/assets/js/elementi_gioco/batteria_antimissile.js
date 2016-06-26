@@ -103,10 +103,7 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
       ctx.stroke();
     }
 
-    var txt = this.temperatura + " C°";
-    var dx = ctx.measureText(txt).width;
-    var dy = ctx.measureText(txt).height;
-    
+    var txt = this.temperatura + " C°";    
     // Scrivi temperatura
     var coloreTesto = 'blue';
     if(this.temperatura <= 200)
@@ -125,6 +122,8 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
     
     ctx.fillStyle = coloreTesto;
     ctx.font = 'bold 12px arial';
+    var dx = ctx.measureText(txt).width;
+    var dy = ctx.measureText(txt).height;
     ctx.fillText( txt, this.x - dx/2, this.y + 45 );
   }
     

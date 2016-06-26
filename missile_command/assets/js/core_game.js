@@ -31,11 +31,15 @@ function CoreGame ( canvas, mirino, palette ) {
   this.punteggioMissiliSparati = 0;
   this.punteggioNumeroOndate = 0;
 };
+
+// Constanti 
+
 CoreGame.PUNTI_MISSILE_ABBATTUTO = 50;
 CoreGame.PUNTI_MISSILE_RIMASTO = 50;
 CoreGame.PUNTI_MINACCIA_ABBATTUTA = 50;
 CoreGame.PUNTI_TORRETTA_SALVATA = 50;
 
+// Funzioni di base
 
 CoreGame.prototype.prossimoFrame = function () {
   this.disegnaStatoGioco();
@@ -74,43 +78,6 @@ CoreGame.prototype.bersagliAttaccabili = function () {
     bersagli.push( {x: batteria.x, y: batteria.y, tipo: batteria} )
   } );
   return bersagli;
-};
-
-CoreGame.prototype.calcoloMissiliRimanenti = function () {
-  var tot = 0;
-  $.each ( this.batterieAntimissile, function( indice, batteria ) {
-    tot += batteria.numeroMissili;
-  } );
-  return tot;
-};
-
-CoreGame.prototype.calcoloBatterieSalvate = function () {
-  var tot = 0;
-  $.each( this.batterieAntimissile, function( indice, batteria ) {
-    if ( batteria.missiliRimanenti != 0 )
-      ++tot;
-  } );
-  return tot;
-};
-
-CoreGame.prototype.calcoloBasiSalvate = function () {
-  var tot = 0;
-  $.each( this.basi, function( indice, base ) {
-    if ( base.attiva )
-      ++tot;
-  } );
-  return tot;
-};
-
-CoreGame.prototype.aggiornaMissiliNemici = function () {
-  $.each( this.missiliNemici, function( indice, missile ) {
-    missile.update();
-  });
-  this.missiliNemici = this.missiliNemici.filter(
-    function( missile ) {
-      return missile.stato !== Missile.ESPLOSO;
-    }
-  );
 };
 
 CoreGame.prototype.aggiornaBatterieAntimissile = function () {
@@ -264,4 +231,41 @@ CoreGame.prototype.aggiornaPunteggioMissiliSparati = function () {
 
 CoreGame.prototype.aggiornaPunteggioNumeroOndate = function () {
   ++this.punteggioNumeroOndate;
+};
+
+CoreGame.prototype.calcoloMissiliRimanenti = function () {
+  var tot = 0;
+  $.each ( this.batterieAntimissile, function( indice, batteria ) {
+    tot += batteria.numeroMissili;
+  } );
+  return tot;
+};
+
+CoreGame.prototype.calcoloBatterieSalvate = function () {
+  var tot = 0;
+  $.each( this.batterieAntimissile, function( indice, batteria ) {
+    if ( batteria.missiliRimanenti != 0 )
+      ++tot;
+  } );
+  return tot;
+};
+
+CoreGame.prototype.calcoloBasiSalvate = function () {
+  var tot = 0;
+  $.each( this.basi, function( indice, base ) {
+    if ( base.attiva )
+      ++tot;
+  } );
+  return tot;
+};
+
+CoreGame.prototype.aggiornaMissiliNemici = function () {
+  $.each( this.missiliNemici, function( indice, missile ) {
+    missile.update();
+  });
+  this.missiliNemici = this.missiliNemici.filter(
+    function( missile ) {
+      return missile.stato !== Missile.ESPLOSO;
+    }
+  );
 };
