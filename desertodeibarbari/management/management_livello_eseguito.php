@@ -1,5 +1,27 @@
 <?php
 /*START SEZIONE SELECT*/
+function selectFrom_LIVELLO_ESEGUITO_idlivello_name_By_email($connection,$email){ 
+	$query="SELECT livello.idlivello, livello.nome FROM livello_eseguito,livello WHERE livello.idlivello = livello_eseguito.idlivello  AND email=?"; 
+	//echo $query;
+	$fields = []; 
+	if ($stmt = $connection->prepare($query)) { 
+		$stmt->bind_param( "s",$email); 
+		$stmt->execute(); 
+		$stmt->bind_result($idlivello, $name); 
+		$i = 0; 
+		while ($stmt->fetch()) { 
+			$fields[$i]["idlivello"] = $idlivello; 
+			$fields[$i]["name"] = $name; 
+			$i = $i + 1; 
+		} 
+		$stmt->close(); 
+	}else
+		echo "error";
+	return $fields; 
+}
+
+
+
 function selectAllFrom_LIVELLO_ESEGUITO($connection){
 	 $query="SELECT email, idlivello, file_virtuali_aggiornati, ondate, punteggio, missili_abbattuti, minacce_abbattute, missili_lanciati, missili_rimasti, torrette_salvate FROM livello_eseguito ";
  	$fields = [];
