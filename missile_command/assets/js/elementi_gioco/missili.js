@@ -90,11 +90,12 @@ Missile.prototype.esplodi = function () {
   }
 };
 
-function MissileNemico ( parametri, bersagli, canvasWidth ) {
-  var xDiPartenza = rand( 0, canvasWidth );
+function MissileNemico ( parametri, bersagli, canvasWidth, xDiPartenza, velCaduta, ritardoPartenza ) {
+  //var xDiPartenza = rand( 0, canvasWidth );
   var yDiPartenza = 0;
   
   this.bersaglio = bersagli[ rand( 0, bersagli.length - 1 ) ];
+  
   Missile.call( this, {
     xDiPartenza: xDiPartenza,
     yDiPartenza: yDiPartenza,
@@ -105,7 +106,7 @@ function MissileNemico ( parametri, bersagli, canvasWidth ) {
     massimoRaggioEsplosione: parametri.massimoRaggioEsplosione
   } );
   
-  this.velCaduta = parametri.vel;
+  this.velCaduta = velCaduta;
 //  this.frameDistanzaBersaglio = ( 650 - 30 ) / this.velCaduta;
 //  
 //  if ( this.frameDistanzaBersaglio < 20 ) {
@@ -122,11 +123,11 @@ function MissileNemico ( parametri, bersagli, canvasWidth ) {
   var scala = ( function ( d ) {
     var distanza = Math.sqrt( Math.pow( distanzaX, 2 ) + Math.pow( distanzaY, 2 ) );
     return distanza / d;
-  })( parametri.vel );
+  })( velCaduta );
   this.dx = distanzaX / scala;
   this.dy = distanzaY / scala;
   
-  this.ritardoPartenza = rand( 0, parametri.ritardoMassimo );
+  this.ritardoPartenza = ritardoPartenza;
   this.esplosioneATerra = false;
 };
 

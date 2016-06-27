@@ -67,22 +67,40 @@ CoreLevel.prototype.mainLoop = function ( cg ) {
 };
 
 // Funzioni proprie del livello
-CoreLevel.prototype.creaMinacce = function ( ) {  
+CoreLevel.prototype.creaMinacce = function ( ) {
+  var ampiezzaAreaPertenza = 50;
+  var ritardoMassimo = 0;
+  var xRand;
+  var velRand;
+  var ritardoRand;
+  
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 0;
-  for( var i = 0; i < numeroMissili; i++ ) {
+  var numeroMissili = 10;
+  for( var i = 0; i < numeroMissili / 2 ; i++ ) {
+    xRand = rand( 0, ampiezzaAreaPertenza );
+    velRand = rand( 2, 2 );
+    ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
       coloreScia: 'red',
-      massimoRaggioEsplosione: 30,
-      vel: rand( 4, 4 ),
-      ritardoMassimo: 2000,
-    }, bersagli, this.canvas.width ) );
+      massimoRaggioEsplosione: 30
+    }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand) );
+  }
+  
+  for( var i = numeroMissili / 2; i < numeroMissili; i++ ) {
+    xRand = rand( this.canvas.width - ampiezzaAreaPertenza, this.canvas.width );
+    velRand = rand( 2, 2 );
+    ritardoRand = rand( 0, ritardoMassimo );
+    this.coreGame.missiliNemici.push( new MissileNemico( {
+      coloreTestata: 'yellow',
+      coloreScia: 'red',
+      massimoRaggioEsplosione: 30
+    }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand) );
   }
   
   // aggiunta astronave nemica
   var astronaveNemica = new AstronaveNemica( this.ctx );
-  //this.coreGame.aggiungiMinaccia( astronaveNemica ); 
+  this.coreGame.aggiungiMinaccia( astronaveNemica ); 
   
   
   var opzioniBatteria = { x: astronaveNemica.x + 40, 
