@@ -48,37 +48,37 @@ function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo ) {
     xDiArrivo: xDiArrivo,
     yDiArrivo: yDiArrivo,
     coloreTestata: 'white',
-    coloreScia: 'yellow',
+    coloreScia: 'white',//'yellow',
     massimoRaggioEsplosione: 50,
     distanzaPerFrame: 0.3
   } );
-  this.coloreCorpo = '#FF00FF';
+  this.coloreCorpo = 'white' //#FF00FF';
 };
 
 MissileNucleare.prototype = Object.create( MissileTerrestre.prototype );
 MissileNucleare.prototype.constructor = MissileNucleare;
 
 MissileNucleare.prototype.disegna = function ( ctx, coreGame ) {
-  //this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
+  this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
   if( this.stato === Missile.ATTIVO ) {
     var n = 40;
     
-    ctx.strokeStyle = this.coloreTestata;
-    ctx.fillStyle = this.coloreTestata;
-    ctx.beginPath();
-    ctx.arc( this.x + this.dx*n, this.y + this.dy*2*n, 2, 0, 2 * Math.PI );
-    ctx.closePath();
-    ctx.stroke();
-    ctx.fill();
-    
     ctx.strokeStyle = this.coloreScia;
-    ctx.fillStyle = this.coloreScia;
+    //ctx.fillStyle = this.coloreScia;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo( this.xDiPartenza, this.yDiPartenza );
     ctx.lineTo( this.x, this.y );
     ctx.closePath();
     ctx.stroke();
+    
+    //console.log( this.animazioneColore );
+    //ctx.strokeStyle = this.animazioneColore;
+    ctx.fillStyle = this.animazioneColore;
+    ctx.beginPath();
+    ctx.arc( this.x + this.dx*n, this.y + this.dy*2.1*n, 2, 0, 2 * Math.PI );
+    ctx.closePath();
+    ctx.fill();
     
     ctx.strokeStyle = this.coloreCorpo;
     ctx.fillStyle = this.coloreCorpo;
@@ -298,7 +298,7 @@ TorrettaAutomatica.prototype.spara = function ( coordinate ) {
 
 TorrettaAutomatica.prototype.disegna = function ( ctx ) {
 this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
-  if( this.stato === BatteriaAntimissile.ATTIVA ) {
+  if( this.stato === BatteriaAntimissile.ATTIVA && this.disegnaScritte === true ) {
     var txt = "[AUTO]";
     // Scrivi temperatura
     var coloreTesto = 'black';    

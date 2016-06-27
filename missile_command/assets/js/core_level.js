@@ -40,7 +40,7 @@ CoreLevel.prototype.inizializzaLivello = function ( ) {
     return ( missile.y > 10 && missile instanceof MissileNemico);
   };
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria, 500, false, filtro, 15, 10, 'blue', this.coreGame) );
+    new TorrettaAutomatica( 0, opzioniBatteria, 500, true, filtro, 15, 10, 'blue', this.coreGame) );
     
   //this.coreGame.aggiungiBatteriaAntimissile ( 
   //  new BatteriaAntimissile( 255, 410, 10, 10, coloreMissili, 50, 1000, 70, 10 ) );
@@ -75,7 +75,7 @@ CoreLevel.prototype.creaMinacce = function ( ) {
   var ritardoRand;
   
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 10;
+  var numeroMissili = 1;
   for( var i = 0; i < numeroMissili / 2 ; i++ ) {
     xRand = rand( 0, ampiezzaAreaPertenza );
     velRand = rand( 2, 2 );
@@ -87,6 +87,7 @@ CoreLevel.prototype.creaMinacce = function ( ) {
     }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand) );
   }
   
+  /*
   for( var i = numeroMissili / 2; i < numeroMissili; i++ ) {
     xRand = rand( this.canvas.width - ampiezzaAreaPertenza, this.canvas.width );
     velRand = rand( 2, 2 );
@@ -97,7 +98,7 @@ CoreLevel.prototype.creaMinacce = function ( ) {
       massimoRaggioEsplosione: 30
     }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand) );
   }
-  
+  */
   // aggiunta astronave nemica
   var astronaveNemica = new AstronaveNemica( this.ctx );
   this.coreGame.aggiungiMinaccia( astronaveNemica ); 
