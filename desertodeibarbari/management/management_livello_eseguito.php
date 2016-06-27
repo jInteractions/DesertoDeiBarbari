@@ -22,6 +22,34 @@ function selectFrom_LIVELLO_ESEGUITO_idlivello_name_By_email($connection,$email)
 
 
 
+
+
+function selectFrom_LIVELLO_ESEGUITO_By_idlivello_email($connection,$idlivello,$email){
+	 $query="SELECT email, idlivello, file_virtuali_aggiornati, ondate, punteggio, missili_abbattuti, minacce_abbattute, missili_lanciati, missili_rimasti, torrette_salvate FROM livello_eseguito WHERE idlivello=? AND email=?";
+ 	$fields = [];
+	if ($stmt = $connection->prepare($query)) {
+		$stmt->bind_param( "ss",$idlivello,$email); 
+		$stmt->execute();
+		$stmt->bind_result($email, $idlivello, $file_virtuali_aggiornati, $ondate, $punteggio, $missili_abbattuti, $minacce_abbattute, $missili_lanciati, $missili_rimasti, $torrette_salvate);
+		$i = 0;
+		while ($stmt->fetch()) {
+			$fields[$i]["email"] = $email;
+			$fields[$i]["idlivello"] = $idlivello;
+			$fields[$i]["file_virtuali_aggiornati"] = $file_virtuali_aggiornati;
+			$fields[$i]["ondate"] = $ondate;
+			$fields[$i]["punteggio"] = $punteggio;
+			$fields[$i]["missili_abbattuti"] = $missili_abbattuti;
+			$fields[$i]["minacce_abbattute"] = $minacce_abbattute;
+			$fields[$i]["missili_lanciati"] = $missili_lanciati;
+			$fields[$i]["missili_rimasti"] = $missili_rimasti;
+			$fields[$i]["torrette_salvate"] = $torrette_salvate;
+			$i = $i + 1;
+		}
+		$stmt->close();
+	}
+	return $fields;
+}
+
 function selectAllFrom_LIVELLO_ESEGUITO($connection){
 	 $query="SELECT email, idlivello, file_virtuali_aggiornati, ondate, punteggio, missili_abbattuti, minacce_abbattute, missili_lanciati, missili_rimasti, torrette_salvate FROM livello_eseguito ";
  	$fields = [];
