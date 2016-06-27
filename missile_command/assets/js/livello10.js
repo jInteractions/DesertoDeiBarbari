@@ -49,7 +49,7 @@ function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo ) {
     yDiArrivo: yDiArrivo,
     coloreTestata: 'white',
     coloreScia: 'yellow',
-    massimoRaggioEsplosione: 200,
+    massimoRaggioEsplosione: 50,
     distanzaPerFrame: 0.3
   } );
   this.coloreCorpo = '#FF00FF';
@@ -97,10 +97,24 @@ MissileNucleare.prototype.disegna = function ( ctx, coreGame ) {
     ctx.arc( this.x, this.y, this.raggioDiEsplosione, 0, 2 * Math.PI );
     ctx.closePath();
     // this.esplosioneAltriMissili( ctx, coreGame );
-    if ( this.y <= coreGame.minacce[ 0 ].y + 53 ) {
+    if ( coreGame.minacce[ 0 ].stato === AstronaveNemica.ATTIVO && this.y <= coreGame.minacce[ 0 ].y + 53 ) {
       coreGame.minacce[ 0 ].distruggiti();
     }
     ctx.fill();
+  }
+};
+
+MissileNucleare.prototype.update = function () {
+  if( this.stato === Missile.ATTIVO && this.y <= this.yDiArrivo ) {
+    this.x = this.xDiArrivo;
+    this.y = this.yDiArrivo;
+    this.stato = Missile.ESPLOSIONE;
+  }
+  if( this.stato === Missile.ATTIVO ) {
+    this.x += this.dx;
+    this.y += this.dy;
+  } else {
+    this.esplodi();
   }
 };
 
