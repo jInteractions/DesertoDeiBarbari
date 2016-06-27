@@ -41,10 +41,10 @@ CoreLevel.prototype.inizializzaLivello = function ( ) {
   };
   this.coreGame.aggiungiBatteriaAntimissile ( 
     new TorrettaAutomatica( 0, opzioniBatteria, 500, false, filtro, 15, 10, 'blue', this.coreGame) );
-    
-  //this.coreGame.aggiungiBatteriaAntimissile ( 
-  //  new BatteriaAntimissile( 255, 410, 10, 10, coloreMissili, 50, 1000, 70, 10 ) );
-  
+
+//  this.coreGame.aggiungiBatteriaAntimissile ( 
+//    new BatteriaAntimissile( 255, 410, 10, 10, coloreMissili, 50, 1000, 70, 10 ) );
+
   this.coreGame.aggiungiBatteriaAntimissile ( 
     new BatteriaAntimissile( 475, 410, 10, 10, coloreMissili, 50, 1000, 70, 10 ) );
   this.creaMinacce();
@@ -113,10 +113,10 @@ CoreLevel.prototype.creaMinacce = function ( ) {
                           deltaTempo: 70, 
                           deltaRaffreddamento: 3};
   var filtro = function ( missile ) {
-    return ( missile.y < 500 && missile.y > astronaveNemica.y && missile instanceof MissileTerrestre );
+    return ( missile.y < 500 && missile.y > astronaveNemica.y && missile instanceof MissileNucleare );
   };
-  //this.coreGame.aggiungiBatteriaAntimissile ( 
-  //  new TorrettaAutomatica( 0, opzioniBatteria, 100, false, filtro, 5, 15, 'red', this.coreGame) );
+  this.coreGame.aggiungiBatteriaAntimissile ( 
+    new TorrettaAutomatica( 0, opzioniBatteria, 500, false, filtro, 2, 10, 'green', this.coreGame) );
   
   var opzioniBatteria = { x: astronaveNemica.x + 260, 
                           y: astronaveNemica.y + 53, 
@@ -127,8 +127,8 @@ CoreLevel.prototype.creaMinacce = function ( ) {
                           Tmax: 1000, 
                           deltaTempo: 70, 
                           deltaRaffreddamento: 3};
-  //this.coreGame.aggiungiBatteriaAntimissile ( 
-  //  new TorrettaAutomatica( 0, opzioniBatteria, 300, false, filtro, 5, 15, 'red', this.coreGame) );
+  this.coreGame.aggiungiBatteriaAntimissile ( 
+    new TorrettaAutomatica( 0, opzioniBatteria, 500, false, filtro, 2, 10, 'green', this.coreGame) );
 };
 CoreLevel.prototype.setupListeners = function( ) {
   var mySelf = this;
@@ -152,6 +152,7 @@ CoreLevel.prototype.setupListeners = function( ) {
     });
   });
 };
+
 CoreLevel.prototype.scegliTorretta = function ( x, y, tasto ) {
   var indiceTorretta = 0;
   switch(tasto) {
