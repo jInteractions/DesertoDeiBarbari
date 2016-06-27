@@ -96,13 +96,15 @@ MissileNucleare.prototype.disegna = function ( ctx, coreGame ) {
     ctx.beginPath();
     ctx.arc( this.x, this.y, this.raggioDiEsplosione, 0, 2 * Math.PI );
     ctx.closePath();
-    
-    this.esplosioneAltriMissili( ctx, coreGame );
+    // this.esplosioneAltriMissili( ctx, coreGame );
+    if ( this.y <= coreGame.minacce[ 0 ].y + 53 ) {
+      coreGame.minacce[ 0 ].distruggiti();
+    }
     ctx.fill();
   }
 };
 
-MissileNucleare.prototype.esplodi = function () {
+MissileNucleare.prototype.esplodi = function () {  
   if( this.stato === Missile.ESPLOSIONE ) {
     this.raggioDiEsplosione += 2;
   }

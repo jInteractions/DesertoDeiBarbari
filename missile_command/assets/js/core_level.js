@@ -55,7 +55,7 @@ CoreLevel.prototype.startLivello = function ( ) {
   var fps = 30;
   this.timerProssimoFrame = setInterval( this.mainLoop.bind( this, this.coreGame ), 1000 / fps );
   
-  this.coreGame.missiliTerrestri.push( new MissileNucleare( 255, 410, 255, 10 ) );
+  this.coreGame.missiliTerrestri.push( new MissileNucleare( 255, 410, 255, this.coreGame.minacce[ 0 ].y + 53 ) );
 };
 
 CoreLevel.prototype.stopLivello = function ( ) {

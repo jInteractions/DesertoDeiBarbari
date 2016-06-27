@@ -50,7 +50,7 @@ AstronaveNemica.prototype.disegna = function () {
     for(var i = 0; i < 10; ++i) {
       this.ctx.fillStyle = 'white';
       this.ctx.beginPath();
-      this.ctx.arc( this.x + this.dx[i], this.y + this.dy[i], this.raggioDiEsplosioneMinore, 0, 2 * Math.PI );
+      this.ctx.arc( this.x + this.lunghezza / 2 + this.dx[i], this.y + this.altezza / 2 + this.dy[i], this.raggioDiEsplosioneMinore, 0, 2 * Math.PI );
       this.ctx.closePath();
       this.ctx.fill();
     }
@@ -73,15 +73,15 @@ AstronaveNemica.prototype.update = function () {
 
 AstronaveNemica.prototype.esplodi = function () {
   if( this.stato === AstronaveNemica.ESPLOSIONE ) {
-    this.raggioDiEsplosione+=2;
-    this.raggioDiEsplosioneMinore++;
+    this.raggioDiEsplosione += 2;
+    ++this.raggioDiEsplosioneMinore;
   }
   if( this.raggioDiEsplosione > 100 ) {
     this.stato = AstronaveNemica.IMPLOSIONE;
   }  
   if( this.stato === AstronaveNemica.IMPLOSIONE ) {
-    this.raggioDiEsplosione-=2;
-    this.raggioDiEsplosioneMinore--;
+    this.raggioDiEsplosione -= 2;
+    --this.raggioDiEsplosioneMinore;
   }
   if( this.raggioDiEsplosione < 0 ) {
     this.stato = AstronaveNemica.ESPLOSO;
@@ -89,5 +89,5 @@ AstronaveNemica.prototype.esplodi = function () {
 }
 
 AstronaveNemica.prototype.distruggiti = function () {
-  
+  this.stato = AstronaveNemica.ESPLOSIONE;
 }
