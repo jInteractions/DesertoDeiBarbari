@@ -48,10 +48,11 @@ function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo ) {
     xDiArrivo: xDiArrivo,
     yDiArrivo: yDiArrivo,
     coloreTestata: 'white',
-    coloreScia: 'white',
-    massimoRaggioEsplosione: 100,
+    coloreScia: 'yellow',
+    massimoRaggioEsplosione: 200,
     distanzaPerFrame: 0.3
   } );
+  this.coloreCorpo = '#FF00FF';
 };
 
 MissileNucleare.prototype = Object.create( MissileTerrestre.prototype );
@@ -60,7 +61,18 @@ MissileNucleare.prototype.constructor = MissileNucleare;
 MissileNucleare.prototype.disegna = function ( ctx, coreGame ) {
   //this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
   if( this.stato === Missile.ATTIVO ) {
+    var n = 40;
+    
+    ctx.strokeStyle = this.coloreTestata;
+    ctx.fillStyle = this.coloreTestata;
+    ctx.beginPath();
+    ctx.arc( this.x + this.dx*n, this.y + this.dy*2*n, 2, 0, 2 * Math.PI );
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    
     ctx.strokeStyle = this.coloreScia;
+    ctx.fillStyle = this.coloreScia;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo( this.xDiPartenza, this.yDiPartenza );
@@ -68,22 +80,14 @@ MissileNucleare.prototype.disegna = function ( ctx, coreGame ) {
     ctx.closePath();
     ctx.stroke();
     
-    var n = 40;
-    
-    ctx.strokeStyle = 'white';
+    ctx.strokeStyle = this.coloreCorpo;
+    ctx.fillStyle = this.coloreCorpo;
     ctx.lineWidth = 4;
     ctx.beginPath();
     ctx.moveTo( this.x + this.dx*n, this.y + this.dy*2*n );
     ctx.lineTo( this.x - this.dx*n, this.y /*+ this.dy*n*/ );
     ctx.closePath();
-    ctx.stroke();
-    
-    ctx.fillStyle = 'white';
-    ctx.beginPath();
-    ctx.arc( this.x + this.dx*n, this.y + this.dy*2*n, 2, 0, 2 * Math.PI );
-    ctx.closePath();
-    ctx.fill();
-    
+    ctx.stroke(); 
   }
   else if ( this.stato === Missile.ESPLOSIONE || 
             this.stato === Missile.IMPLOSIONE ) {
@@ -95,6 +99,21 @@ MissileNucleare.prototype.disegna = function ( ctx, coreGame ) {
     
     this.esplosioneAltriMissili( ctx, coreGame );
     ctx.fill();
+  }
+};
+
+MissileNucleare.prototype.esplodi = function () {
+  if( this.stato === Missile.ESPLOSIONE ) {
+    this.raggioDiEsplosione += 2;
+  }
+  if( this.raggioDiEsplosione > this.massimoRaggioEsplosione ) {
+    this.stato = Missile.IMPLOSIONE;
+  }  
+  if( this.stato === Missile.IMPLOSIONE ) {
+    this.raggioDiEsplosione -= 1;
+  }
+  if( this.raggioDiEsplosione < 0 ) {
+    this.stato = Missile.ESPLOSO;
   }
 };
 
