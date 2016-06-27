@@ -74,7 +74,7 @@ MissileNucleare.prototype.disegna = function ( ctx, coreGame ) {
     
     //console.log( this.animazioneColore );
     //ctx.strokeStyle = this.animazioneColore;
-    ctx.fillStyle = this.animazioneColore;
+    ctx.fillStyle = 'red';
     ctx.beginPath();
     ctx.arc( this.x + this.dx*n, this.y + this.dy*2.1*n, 2, 0, 2 * Math.PI );
     ctx.closePath();
@@ -133,9 +133,7 @@ MissileNucleare.prototype.esplodi = function () {
   }
 };
 
-function TorrettaAutomatica ( indice, opzioniBatteria, tempoRicarica, disegnaScritte, funzioneDiFiltroMissili, 
-                               velMissili, raggioEsplosione, coloreScia, 
-                               coreGame ) {
+function TorrettaAutomatica ( indice, opzioniBatteria, tempoRicarica, disegnaScritte, funzioneDiFiltroMissili, aggancio, velMissili, raggioEsplosione, coloreScia, coreGame ) {
   this.indice = indice;
   
   // Chiamata al costruttore della classe base
@@ -155,6 +153,7 @@ function TorrettaAutomatica ( indice, opzioniBatteria, tempoRicarica, disegnaScr
   this.disegnaScritte = disegnaScritte;
   this.coreGame = coreGame;
   this.funzioneDiFiltroMissili = funzioneDiFiltroMissili;
+  this.aggancio = aggancio;
   
   // Impostazione missili sparati
   this.velMissili = velMissili;
@@ -219,8 +218,11 @@ TorrettaAutomatica.prototype.identificaBersaglio = function ( ) {
         return false;
     return true;
   } );
-  // Esludo i missili già agganciati
-  missiliInGioco = diff(missiliInGioco, this.bersagliAgganciati); 
+  
+  if( this.aggangio === true )
+    // Esludo i missili già agganciati
+    missiliInGioco = diff(missiliInGioco, this.bersagliAgganciati); 
+  
   // Applico un filtro proprio della torretta
   missiliInGioco = missiliInGioco.filter( this.funzioneDiFiltroMissili );
   // Ordino per altezza
