@@ -1,62 +1,50 @@
-function CoreLevel ( ) {
+function CoreLevel ( callbackFineLivello ) {
   this.canvas = document.querySelector( 'canvas' );
   this.ctx = this.canvas.getContext( '2d' );
   this.coreGame;
   this.timerProssimoFrame;
+  this.mirino;
+  this.callbackFineLivello = callbackFineLivello;
 };
 
 // Funzioni base di CoreLevel
-CoreLevel.prototype.inizializzaLivello = function ( ) { 
-  var mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 16.0 );
-  this.coreGame = new CoreGame( this.canvas, mirino, {
-    coloreSfondo: 'black',
-    coloreTerreno: 'yellow',
-    coloreTestoPrimario: 'blue',
-    coloreTestoSecondario: 'red'
-  });
+
+CoreLevel.prototype.inizializzaMirino = function () {
+  this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 16.0 );
+};
+
+CoreLevel.prototype.inizializzaTorrette = function () {};
+
+CoreLevel.prototype.inizializzaBasi = function () {
   this.coreGame.aggiungiBase( new Base( 80,  430, true, 100, 'cyan' ) );
   this.coreGame.aggiungiBase( new Base( 130,  430, true, 100, 'cyan' ) );
   this.coreGame.aggiungiBase( new Base( 180,  430, true, 100, 'cyan' ) );  
   this.coreGame.aggiungiBase( new Base( 300,  430, true, 100, 'cyan' ) );
   this.coreGame.aggiungiBase( new Base( 350,  430, true, 100, 'cyan' ) );
   this.coreGame.aggiungiBase( new Base( 400,  430, true, 100, 'cyan' ) );
-    
-  var coloreMissili = [ 'red', 'blue', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red' ];
-  
-  this.coreGame.aggiungiBatteriaAntimissile ( 
-    new BatteriaAntimissile( 35, 410, 10, 10, coloreMissili, 50, 1000, 70, 10 ) );  
-  
-  
-  var opzioniBatteria = { x: 255, 
-                          y: 410, 
-                          nMissili: 10, 
-                          nSoldati: 10, 
-                          colori: coloreMissili, 
-                          Tmin: 50, 
-                          Tmax: 1000, 
-                          deltaTempo: 70, 
-                          deltaRaffreddamento: 3};
-  var filtro = function ( missile ) {
-    return ( missile.y > 10 && missile instanceof MissileNemico);
-  };
-  this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria, 100, true, filtro, true, 15, 10, 'blue', this.coreGame) );
-    
-  //this.coreGame.aggiungiBatteriaAntimissile ( 
-  //  new BatteriaAntimissile( 255, 410, 10, 10, coloreMissili, 50, 1000, 70, 10 ) );
-  
-  this.coreGame.aggiungiBatteriaAntimissile ( 
-    new BatteriaAntimissile( 475, 410, 10, 10, coloreMissili, 50, 1000, 70, 10 ) );
-  this.creaMinacce();
+};
+
+CoreLevel.prototype.inizializzaLivello = function () { 
+  this.inizializzaMirino();
+  this.coreGame = new CoreGame( this.canvas, this.mirino, {
+    coloreSfondo: 'black',
+    coloreTerreno: 'yellow',
+    coloreTestoPrimario: 'blue',
+    coloreTestoSecondario: 'red'
+  });
+  this.inizializzaTorrette();
+  this.inizializzaBasi();
+  this.inizializzaArmiNemiche();
+  this.inizializzaArmiTerrestri();
   this.setupListeners();
 };
 
+CoreLevel.prototype.inizializzaArmiTerrestri = function () {}
+
+CoreLevel.prototype.inizializzaArmiNemiche = function () {}
+
 CoreLevel.prototype.startLivello = function ( ) {
   var fps = 30;
-  
-  this.missileNucleare = new MissileNucleare( 255, 410, 255, this.coreGame.minacce[ 0 ].y + 53 );
-  this.coreGame.missiliTerrestri.push( this.missileNucleare );
-  
   this.timerProssimoFrame = setInterval( this.mainLoop.bind( this, this.coreGame ), 1000 / fps );
 };
 
@@ -68,75 +56,9 @@ CoreLevel.prototype.mainLoop = function ( cg ) {
   cg.prossimoFrame();
   if( this.verificaFineLivello( ) !== undefined ) {
     this.stopLivello();
-    
-    // eventualmente una schermata
-    
-    // chiamata a call back fine livello
+    this.schermataFineLivello();
+    this.callbackFineLivello( esito );
   }
-};
-
-// Funzioni proprie del livello
-CoreLevel.prototype.creaMinacce = function ( ) {
-  var ampiezzaAreaPertenza = 50;
-  var ritardoMassimo = 1000;
-  var xRand;
-  var velRand;
-  var ritardoRand;
-  
-  var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 100;
-  for( var i = 0; i < numeroMissili / 2 ; i++ ) {
-    xRand = rand( 0, ampiezzaAreaPertenza );
-    velRand = rand( 2, 2 );
-    ritardoRand = rand( 0, ritardoMassimo );
-    this.coreGame.missiliNemici.push( new MissileNemico( {
-      coloreTestata: 'yellow',
-      coloreScia: 'red',
-      massimoRaggioEsplosione: 30
-    }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand) );
-  }
-  
-  for( var i = numeroMissili / 2; i < numeroMissili; i++ ) {
-    xRand = rand( this.canvas.width - ampiezzaAreaPertenza, this.canvas.width );
-    velRand = rand( 2, 2 );
-    ritardoRand = rand( 0, ritardoMassimo );
-    this.coreGame.missiliNemici.push( new MissileNemico( {
-      coloreTestata: 'yellow',
-      coloreScia: 'red',
-      massimoRaggioEsplosione: 30
-    }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand) );
-  }
-  // aggiunta astronave nemica
-  var astronaveNemica = new AstronaveNemica( this.ctx );
-  this.coreGame.aggiungiMinaccia( astronaveNemica ); 
-  
-  var opzioniBatteria = { x: astronaveNemica.x + 40, 
-                          y: astronaveNemica.y + 53, 
-                          nMissili: 10, 
-                          nSoldati: 10, 
-                          colori: [], 
-                          Tmin: 50, 
-                          Tmax: 1000, 
-                          deltaTempo: 70, 
-                          deltaRaffreddamento: 3};
-  var filtro = function ( missile ) {
-    return ( missile.y < 500 && missile.y > astronaveNemica.y && missile instanceof MissileNucleare );
-  };
-  this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria, 1500, false, filtro, false, 1, 10, 'green', this.coreGame) );
-  
-  var opzioniBatteria = { x: astronaveNemica.x + 260, 
-                          y: astronaveNemica.y + 53, 
-                          nMissili: 10, 
-                          nSoldati: 10, 
-                          colori: [], 
-                          Tmin: 50, 
-                          Tmax: 1000, 
-                          deltaTempo: 70, 
-                          deltaRaffreddamento: 3};
-  this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria, 1500, false, filtro, false, 1, 10, 'green', this.coreGame) );
-
 };
 
 CoreLevel.prototype.setupListeners = function( ) {
@@ -198,23 +120,7 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
 };
 
-CoreLevel.prototype.verificaFineLivello = function ( ) {
-  if( this.coreGame.minacce.length === 0 ) {
-    console.log("minaccia sconfitta");
-    return true;  
-  }
-  
-  if( this.coreGame.missiliTerrestri.indexOf ( this.missileNucleare ) < 0 ) {
-    console.log("missile n abbattuto");
-    return false;
-  }
-  
-  if( this.coreGame.basi.filter( function ( base ) { return base.attiva === true } ).length === 0 )  {
-    console.log("basi morte");
-    return false;
-  }
-  return undefined;
-}
+CoreLevel.prototype.verificaFineLivello = function () {}
 
 // Il codice sottostante dovrà essere spostato
 $(document).ready( function () {
@@ -242,7 +148,7 @@ $(document).ready( function () {
   
   if(e.erroriCiclo.length === 0) {
     esiti = caricaCodice.esecuzioneTest();
-    var coreLevel = new CoreLevel();
+    var coreLevel = new Livello10();
     coreLevel.inizializzaLivello();
   }
   
