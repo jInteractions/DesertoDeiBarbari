@@ -3,7 +3,7 @@ function Livello1 ( callbackFineLivello, numeroOndata ) {
 }
 
 Livello1.prototype = Object.create( CoreLevel.prototype );
-Livello1.prototype.constructor = Livello1();
+Livello1.prototype.constructor = Livello1;
 
 Livello1.prototype.inizializzaMirino = function ( ) {
   if ( controlloAccesso() === true ) {

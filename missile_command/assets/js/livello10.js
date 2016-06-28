@@ -11,7 +11,7 @@ function Livello10 ( callbackFineLivello ) {
 }
 
 Livello10.prototype = Object.create( CoreLevel.prototype );
-Livello10.prototype.constructor = Livello10();
+Livello10.prototype.constructor = Livello10;
 
 Livello10.prototype.inizializzaTorrette = function () {
   var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue' ];
