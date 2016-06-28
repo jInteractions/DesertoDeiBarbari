@@ -5,8 +5,7 @@ function CoreLevel ( callbackFineLivello, numeroOndata ) {
   this.timerProssimoFrame;
   this.mirino;
   this.callbackFineLivello = callbackFineLivello;
-  
-  console.log( "a" + numeroOndata );
+
   
   this.numeroOndata = numeroOndata;
 
