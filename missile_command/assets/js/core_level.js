@@ -1,10 +1,11 @@
-function CoreLevel ( callbackFineLivello ) {
+function CoreLevel ( callbackFineLivello, numeroOndata ) {
   this.canvas = document.querySelector( 'canvas' );
   this.ctx = this.canvas.getContext( '2d' );
   this.coreGame;
   this.timerProssimoFrame;
   this.mirino;
   this.callbackFineLivello = callbackFineLivello;
+  this.numeroOndata = numeroOndata;
 };
 
 // Funzioni base di CoreLevel
@@ -32,6 +33,8 @@ CoreLevel.prototype.inizializzaLivello = function () {
     coloreTestoPrimario: 'blue',
     coloreTestoSecondario: 'red'
   });
+  var coeff = this.calcolaCoefficienteOndata();
+  this.coreGame.aggiornaCoefficienteOndata( coeff );
   this.inizializzaTorrette();
   this.inizializzaBasi();
   this.inizializzaArmiNemiche();
@@ -93,7 +96,9 @@ CoreLevel.prototype.scegliTorretta = function ( x, y, tasto ) {
     default: return -1;
   }
   
-  if ( this.coreGame.batterieAntimissile[ indiceTorretta ].stato === BatteriaAntimissile.ATTIVA ) {
+  var torrettaAttuale = this.coreGame.batterieAntimissile[ indiceTorretta ];
+  
+  if ( torrettaAttuale.stato === BatteriaAntimissile.ATTIVA && torrettaAttuale.numeroMissili > 0 ) {
     return indiceTorretta;
   }
   
@@ -122,34 +127,37 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
 
 CoreLevel.prototype.verificaFineLivello = function () {}
 
+CoreLevel.prototype.calcolaCoefficienteOndata = function () {
+  return 1; // default
+}
+
 // Il codice sottostante dovrà essere spostato
+var oldConsole = console;
+
+var console = {};
+console.log = function ( stringa ) {
+  oldConsole.log(stringa);
+  // Qui ci sarà la "append" di codice html al terminale
+}
+
 $(document).ready( function () {
-  
   var livello = jsonLivello;
-  
   var caricaCodice = new CaricaCodice( [ {
-                                          nomeFile:
-                                            "Autenticazione.js",
-                                          codiceUtente:
-                                            "function Autenticazione () {\n\t\n}\n\nAutenticazione.prototype.autenticati = function ( username, password ) {\n\tif(username == \"SWAG\" && password == \"bellofigo\")\n\t\treturn true;\n\telse\n\t\treturn false;\n}",
-                                          test:
-                                            "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
-                                        }, {
-                                          nomeFile:
-                                            "Autenticazione.js",
-                                          codiceUtente:
-                                            "var x = function () {for (var i = 0; i < 10; i++) { i++; } };",
-                                          test:
-                                            "x();",
-                                        } ] );
+      nomeFile: "Autenticazione.js",
+      codiceUtente: "function Autenticazione () {\n\t\n}\n\nAutenticazione.prototype.autenticati = function ( username, password ) {\n\tif(username == \"SWAG\" && password == \"bellofigo\")\n\t\treturn true;\n\telse\n\t\treturn false;\n}",
+      test: "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
+    }, {
+      nomeFile: "Autenticazione.js",
+      codiceUtente: "var x = function () {for (var i = 0; i < 10; i++) { i++; } };",
+      test: "x();",
+  } ] );
   caricaCodice.aggiornaCodiceUtente();
   var e = caricaCodice.validazioneCodiceUtente();
   console.log(e);
   
   if(e.erroriCiclo.length === 0) {
     esiti = caricaCodice.esecuzioneTest();
-    var coreLevel = new Livello10();
+    var coreLevel = new Livello1();
     coreLevel.inizializzaLivello();
   }
-  
 } );

@@ -1,6 +1,7 @@
 var jsonLivello = {
   "nomeLivello": "L'avventura Comincia",
   "numeroLivello": 0,
+  "costoAiuti": 200,
 
   "dialogoIniziale": [
     { "nome": "Ortiz",
