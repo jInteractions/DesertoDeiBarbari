@@ -197,7 +197,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profilo</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Disconessioni</a>
+                  <a href="#" class="btn btn-default btn-flat">Disconessione</a>
                 </div>
               </li>
             </ul>

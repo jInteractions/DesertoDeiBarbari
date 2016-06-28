@@ -36,6 +36,16 @@
   </head>
 
   <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+  <?php
+    require "php/config.php";
+    require "php/generic.php";
+    require "php/management/management_livello_eseguito.php";
+    require "php/management/management_utente.php";
+    session_start();
+    $_SESSION["email"] = "sdavrieux@gmail.com";
+    $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+    $informazioniLivelliEseguiti = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $_SESSION["email"]);
+  ?>
   <div class="wrapper">
     
     <header class="main-header">
@@ -62,25 +72,33 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Jack Vane</span>
+              <img src="assets/img/avatar/Simeoni.png" class="user-image" alt="User Image">
+              <span class="hidden-xs">
+              <?php 
+                if(isset($_SESSION["email"])){
+                  $utente = selectFrom_UTENTE_By_email($connection, $_SESSION["email"]);
+                  echo $utente["alias"];
+                }
+                
+              ?>
+              </span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="assets/img/avatar/Simeoni.png" class="img-circle" alt="User Image">
                 <p>
-                  Jack Vane
+                  <?php echo $utente["email"];?>
                   <small>Livello 1</small>
                 </p>
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Profilo</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat">Disconessione</a>
                 </div>
               </li>
             </ul>
@@ -96,10 +114,12 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="assets/img/avatar/Simeoni.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Jack Vane</p>
+          <p>
+            <?php echo $utente["alias"];?>
+          </p>
           <a href="#"><i class="fa fa-circle text-success"></i> Connesso</a>
         </div>
       </div>
@@ -107,7 +127,15 @@
       <ul class="sidebar-menu">
         <li class="header">Navigazione</li>
         <li>
-          <a href="index.html">
+            <?php 
+              $livelloMax = 0;
+              foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                if($valore["idlivello"] > $livelloMax){
+                  $livelloMax = $valore["idlivello"];
+                }
+              }
+              echo '<a href="index.php?idlivello='.$livelloMax.'">';
+            ?>
             <i class="fa fa-play"></i> <span>Gioca</span>
           </a>
         </li>
@@ -132,32 +160,35 @@
         <!-- small box -->
         <div class="small-box bg-green">
           <div class="inner">
-            <h3>53<sup style="font-size: 20px">%</sup></h3>
+            <h3><?php 
+              $punteggio = 0;
+              foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                $punteggio+=$valore["punteggio"];
+              }
+              echo $punteggio;
+            ?></h3>
 
-            <p>Bounce Rate</p>
+            <p>Punteggio</p>
           </div>
           <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="ion ion-podium"></i>
           </div>
-          <a href="#" class="small-box-footer">
-            More info <i class="fa fa-arrow-circle-right"></i>
-          </a>
         </div>
       </div>
       <div class="col-md-3">
         <!-- small box -->
         <div class="small-box bg-red">
           <div class="inner">
-            <h3>65</h3>
+            <h3><?php 
+              
+              echo $utente["morti"];
+            ?></h3>
 
-            <p>Unique Visitors</p>
+            <p>Morti</p>
           </div>
           <div class="icon">
-            <i class="ion ion-pie-graph"></i>
+            <i class="ion ion-sad"></i>
           </div>
-          <a href="#" class="small-box-footer">
-            More info <i class="fa fa-arrow-circle-right"></i>
-          </a>
         </div>
       </div>
     </div>
@@ -165,18 +196,36 @@
       <!-- /.col -->
         <div class="col-md-3 col-md-offset-2">
           <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+            <span class="info-box-icon"><i class="ion ion-flame"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Likes</span>
-              <span class="info-box-number">41,410</span>
+              <span class="info-box-text">Missili abbattuti</span>
+              <span class="info-box-number"><?php 
+                $missiliAbbattuti = 0;
+                foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                  $missiliAbbattuti+=$valore["missili_abbattuti"];
+                }
+                echo $missiliAbbattuti;
+              ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3">
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion ion-fireball"></i></span>
 
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-                  <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
+            <div class="info-box-content">
+              <span class="info-box-text">Minacce abbattute</span>
+              <span class="info-box-number"><?php 
+                $minacceAbbattute = 0;
+                foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                  $minacceAbbattute+=$valore["minacce_abbattute"];
+                }
+                echo $minacceAbbattute;
+              ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -185,38 +234,17 @@
         <!-- /.col -->
         <div class="col-md-3">
           <div class="info-box bg-yellow">
-            <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+            <span class="info-box-icon"><i class="ion ion-radio-waves"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Events</span>
-              <span class="info-box-number">41,410</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-                  <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-3">
-          <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Comments</span>
-              <span class="info-box-number">41,410</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-                  <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
+              <span class="info-box-text">Missili lanciati</span>
+              <span class="info-box-number"><?php 
+                $missiliLanciati = 0;
+                foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                  $missiliLanciati+=$valore["missili_lanciati"];
+                }
+                echo $missiliLanciati;
+              ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -225,18 +253,17 @@
     <div class="row rigaStatistiche">
       <div class="col-md-3 col-md-offset-2">
         <div class="info-box bg-aqua">
-          <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+          <span class="info-box-icon"><i class="ion ion-speedometer"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Bookmarks</span>
-            <span class="info-box-number">41,410</span>
-
-            <div class="progress">
-              <div class="progress-bar" style="width: 70%"></div>
-            </div>
-                <span class="progress-description">
-                  70% Increase in 30 Days
-                </span>
+            <span class="info-box-text">Missili rimasti</span>
+            <span class="info-box-number"><?php 
+                $missiliRimasti = 0;
+                foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                  $missiliRimasti+=$valore["missili_rimasti"];
+                }
+                echo $missiliRimasti;
+              ?></span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -244,18 +271,17 @@
       <!-- /.col -->
         <div class="col-md-3">
           <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+            <span class="info-box-icon"><i class="ion ion-happy"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Likes</span>
-              <span class="info-box-number">41,410</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-                  <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
+              <span class="info-box-text">Torrette salvate</span>
+              <span class="info-box-number"><?php 
+                $torretteSalvate = 0;
+                foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                  $torretteSalvate+=$valore["torrette_salvate"];
+                }
+                echo $torretteSalvate;
+              ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -263,19 +289,18 @@
         </div>
         <!-- /.col -->
         <div class="col-md-3">
-          <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion-ribbon-b"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Comments</span>
-              <span class="info-box-number">41,410</span>
-
-              <div class="progress">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-                  <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
+              <span class="info-box-text">Ondate superate</span>
+              <span class="info-box-number"><?php 
+                $ondateSuperate = 0;
+                foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                  $ondateSuperate+=$valore["ondate_superate"];
+                }
+                echo $ondateSuperate;
+              ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -286,7 +311,7 @@
         <!-- DONUT CHART -->
         <div class="box box-danger">
           <div class="box-header with-border">
-            <h3 class="box-title">Donut Chart</h3>
+            <h3 class="box-title">Statistica Missili</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -927,40 +952,16 @@
       var pieChart = new Chart(pieChartCanvas);
       var PieData = [
         {
-          value: 700,
+          value: <?php echo $missiliLanciati; ?>,
           color: "#f56954",
           highlight: "#f56954",
-          label: "Chrome"
+          label: "Missili lanciati"
         },
         {
-          value: 500,
+          value: <?php echo $missiliRimasti; ?>,
           color: "#00a65a",
           highlight: "#00a65a",
-          label: "IE"
-        },
-        {
-          value: 400,
-          color: "#f39c12",
-          highlight: "#f39c12",
-          label: "FireFox"
-        },
-        {
-          value: 600,
-          color: "#00c0ef",
-          highlight: "#00c0ef",
-          label: "Safari"
-        },
-        {
-          value: 300,
-          color: "#3c8dbc",
-          highlight: "#3c8dbc",
-          label: "Opera"
-        },
-        {
-          value: 100,
-          color: "#d2d6de",
-          highlight: "#d2d6de",
-          label: "Navigator"
+          label: "Missili rimasti"
         }
       ];
       var pieOptions = {
