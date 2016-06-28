@@ -5,7 +5,7 @@ function Livello1 ( callbackFineLivello, numeroOndata ) {
 Livello1.prototype = Object.create( CoreLevel.prototype );
 Livello1.prototype.constructor = Livello1();
 
-Livello1.prototype.inizializzaMirino = function () {
+Livello1.prototype.inizializzaMirino = function ( ) {
   if ( controlloAccesso() === true ) {
     this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 10.0 );
   } else {
@@ -13,7 +13,7 @@ Livello1.prototype.inizializzaMirino = function () {
   }
 }
 
-Livello1.prototype.inizializzaTorrette = function () {
+Livello1.prototype.inizializzaTorrette = function ( ) {
   var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue'];
   var nMissili = coloreMissili.length;
   var nSoldati = 10;
@@ -33,7 +33,7 @@ Livello1.prototype.inizializzaTorrette = function () {
   );
 }
 
-Livello1.prototype.inizializzaLivello = function () {
+Livello1.prototype.inizializzaLivello = function ( ) {
   this.inizializzaMirino();
   this.coreGame = new CoreGame( this.canvas, this.mirino, {
     coloreSfondo: 'black',
@@ -81,6 +81,11 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
   if( indiceTorretta === -1 )
     return;
   
+  if ( sbloccaSparo() === false ) {
+    console.log("> Sicura attiva!");
+    return;
+  }
+  
   this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
     xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
     yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
@@ -100,6 +105,7 @@ Livello1.prototype.calcolaCoefficienteOndata = function () {
 }
 
 // TAB 1
+
 /*
  __   __  _______  _______         _______  _______  _______  _______ 
 |  | |  ||       ||  _    |       |       ||  _    ||  _    ||  _    |
@@ -121,10 +127,17 @@ Grazie per aver scelto HOB-2000.
 
 // TAB 2
 
-function autenticazioneManuale () {
+/*
+
+Questo codice permette l'autenticazione manuale di un operatore.
+
+ATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione
+            automatica.
+*/
+var autenticazioneManuale = function () {
   // ###START_MODIFICABILE###
   var nome = "captano";
-  var matricola = 0;
+  var matricola = "0";
   var password = "utf";
   var stringaAccesso = "UTF-8" + nome + "&&--"+ password + "%" + matricola;
   // ###END_MODIFICABILE###
@@ -133,6 +146,7 @@ function autenticazioneManuale () {
 }
 
 // test
+/*
 (function () {
   var risultato = autenticazioneManuale();
   if (
@@ -145,10 +159,10 @@ function autenticazioneManuale () {
   } else {
     return false;
   }
-}) ();
+}) ();*/
 
 // interfaccia test - codice utente
-function controlloAccesso () {
+var controlloAccesso = function () {
   var risultato = autenticazioneManuale();
   var nome = risultato[ 0 ];
   var matricola = risultato[ 1 ];
@@ -157,7 +171,7 @@ function controlloAccesso () {
   
   if (
     nome === "Cpt Simeoni"
-    && metricola === "150716"
+    && matricola === "150716"
     && password === "utf-8_tuono"
     && stringa === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
   ) {
@@ -175,7 +189,36 @@ function controlloAccesso () {
   }
 }
 
-
 // TAB 3
 
-function PlanciaComandi () {}
+var verificaPresenzaCervelloOperatore = function ( base, altezza ) {
+  // ###START_MODIFICABILE###
+  var area = base + altezza;
+  // ###END_MODIFICABILE###
+  return area;
+}
+
+// test
+/*
+( function() {
+  var base = rand(1, Math.sqrt(Number.MAX_VALUE));
+  var altezza = rand(1, Math.sqrt(Number.MAX_VALUE));
+  if( base * altezza === verificaPresenzaCervelloOperatore( base, altezza ) ) {
+    return true;
+  } else {
+    return false;
+  }
+} ) (); */
+
+// interfaccia test - codice utente
+var sbloccaSparo = function ( ) {
+  var base = rand(1, Math.sqrt(Number.MAX_VALUE));
+  var altezza = rand(1, Math.sqrt(Number.MAX_VALUE));
+  if( base * altezza === verificaPresenzaCervelloOperatore( base, altezza ) ) {
+    console.log("> Formula corretta, verifica completata.");
+    return true;
+  } else {
+    console.log("> Formula errata, forma di vita intelligente non rilevata.");
+    return false;
+  }
+}

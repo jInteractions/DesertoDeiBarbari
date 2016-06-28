@@ -125,7 +125,19 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
 };
 
-CoreLevel.prototype.verificaFineLivello = function () {}
+CoreLevel.prototype.verificaFineLivello = function ( ) {
+  if ( this.coreGame.missiliNemici.length === 0 ) {
+    var basiAttive = this.coreGame.basi.filter( function ( base ) {
+      return base.attiva === true 
+    } );
+    if( basiAttive.length === 0 )  {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  return undefined;
+}
 
 CoreLevel.prototype.calcolaCoefficienteOndata = function () {
   return 1; // default
@@ -142,21 +154,68 @@ console.log = function ( stringa ) {
 
 $(document).ready( function () {
   var livello = jsonLivello;
-  var caricaCodice = new CaricaCodice( [ {
-      nomeFile: "Autenticazione.js",
-      codiceUtente: "function Autenticazione () {\n\t\n}\n\nAutenticazione.prototype.autenticati = function ( username, password ) {\n\tif(username == \"SWAG\" && password == \"bellofigo\")\n\t\treturn true;\n\telse\n\t\treturn false;\n}",
-      test: "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
-    }, {
-      nomeFile: "Autenticazione.js",
-      codiceUtente: "var x = function () {for (var i = 0; i < 10; i++) { i++; } };",
-      test: "x();",
-  } ] );
+  
+  var jsonLivello = {
+    "nomeLivello": "",
+    "numeroLivello": 0,
+    "costoAiuti": 200,
+
+    "dialogoIniziale": [
+      { "nome": "",
+        "testo": "" },
+      { "nome": "",
+        "testo": "" }
+    ],
+
+    "dialogoFinale": [
+      { "nome": "",
+        "testo": "" },
+      { "nome": "",
+        "testo": "" }
+    ],
+
+    "codiceLivello": "function Livello1 ( callbackFineLivello, numeroOndata ) {\n  CoreLevel.call( this, callbackFineLivello, numeroOndata );\n}\n\nLivello1.prototype = Object.create( CoreLevel.prototype );\nLivello1.prototype.constructor = Livello1();\n\nLivello1.prototype.inizializzaMirino = function ( ) {\n  if ( controlloAccesso() === true ) {\n    this.mirino = new Mirino( this.canvas.width \/ 2, this.canvas.height \/ 2, 10.0 );\n  } else {\n    this.mirino = new Mirino( this.canvas.width \/ 2, this.canvas.height \/ 2, 0 );\n  }\n}\n\nLivello1.prototype.inizializzaTorrette = function ( ) {\n  var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue'];\n  var nMissili = coloreMissili.length;\n  var nSoldati = 10;\n  var Tmin = 50;\n  var Tmax = 1000;\n  var deltaTempo = 70;\n  var deltaRaffreddamento = 3;\n  \n  this.coreGame.aggiungiBatteriaAntimissile(\n    new BatteriaAntimissile ( 35, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento )\n  );\n  this.coreGame.aggiungiBatteriaAntimissile(\n    new BatteriaAntimissile ( 255, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento )\n  );\n  this.coreGame.aggiungiBatteriaAntimissile(\n    new BatteriaAntimissile ( 475, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento )\n  );\n}\n\nLivello1.prototype.inizializzaLivello = function ( ) {\n  this.inizializzaMirino();\n  this.coreGame = new CoreGame( this.canvas, this.mirino, {\n    coloreSfondo: 'black',\n    coloreTerreno: 'yellow',\n    coloreTestoPrimario: 'blue',\n    coloreTestoSecondario: 'red'\n  });\n  this.inizializzaTorrette();\n  this.inizializzaBasi();\n  this.inizializzaArmiNemiche();\n  this.inizializzaArmiTerrestri();\n  \/\/ chiamata alla funzione di autenticazione manuale\n  this.setupListeners();\n}\n\nLivello1.prototype.inizializzaArmiNemiche = function () {\n  var areaPertenza = this.coreGame.canvas.width;\n  var ritardoMassimo = 100;\n  var xRand;\n  var velRand;\n  var ritardoRand;\n  var bersagli = this.coreGame.bersagliAttaccabili();\n  var numeroMissili = 10;\n  \n  for( var i = 0; i < numeroMissili ; i++ ) {\n    xRand = rand( 0, areaPertenza );\n    velRand = rand( 1, 1.5 );\n    ritardoRand = rand( 0, ritardoMassimo );\n    this.coreGame.missiliNemici.push( new MissileNemico( {\n      coloreTestata: 'yellow',\n      coloreScia: 'red',\n      massimoRaggioEsplosione: 30\n    }, bersagli, areaPertenza, xRand, velRand,  ritardoRand) );\n  }\n}\n\nLivello1.prototype.sparo = function ( x, y, tasto ) {\n  var indiceTorretta = this.scegliTorretta( x, y, tasto);\n  var raggio = 30;\n  var xModificata = x + rand( -raggio, raggio );\n  var yModificata = y + rand( -raggio, raggio );\n  var vel = 7;\n  var incrementoTemperatura = 150;\n  \n  if( indiceTorretta === -1 )\n    return;\n  \n  if ( sbloccaSparo() === false ) {\n    console.log(\"> Sicura attiva!\");\n    return;\n  }\n  \n  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {\n    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,\n    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,\n    xDiArrivo: xModificata,\n    yDiArrivo: yModificata,\n    coloreTestata: 'yellow',\n    coloreScia: 'blue',\n    massimoRaggioEsplosione: raggio,\n    distanzaPerFrame: vel\n  } ) );\n  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;\n  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += incrementoTemperatura;\n}\n\nLivello1.prototype.calcolaCoefficienteOndata = function () {\n  return this.numeroOndata * 1.2;\n}\n\n\/\/ interfaccia test - codice utente\nvar controlloAccesso = function () {\n  var risultato = autenticazioneManuale();\n  var nome = risultato[ 0 ];\n  var matricola = risultato[ 1 ];\n  var password = risultato[ 2 ];\n  var stringa = risultato[ 3 ];\n  \n  if (\n    nome === \"Cpt Simeoni\"\n    && matricola === \"150716\"\n    && password === \"utf-8_tuono\"\n    && stringa === risultato[ 0 ] + \"%\" + risultato[ 1 ] + \"<\" + risultato[ 2 ] + \">\"\n  ) {\n    console.log(\"> Informazioni inserite correttamente.\\nBuon proseguimento con il sistema Hob-2000.\\n\");\n    return true;\n  } else {\n    console.log(\n      \"> Nome: \" + nome\n      + \"\\n> Matricola: \" + matricola\n      + \"\\n> Password: \" + Array(password.length + 1).join(\"*\")\n      + \"\\n> Stringa: \" + stringa\n      + \"\\n> Informazioni non corrette.\"\n    );\n    return false;\n  }\n}\n\n\/\/ interfaccia test - codice utente\nvar sbloccaSparo = function ( ) {\n  var base = rand(1, Math.sqrt(Number.MAX_VALUE));\n  var altezza = rand(1, Math.sqrt(Number.MAX_VALUE));\n  if( base * altezza === verificaPresenzaCervelloOperatore( base, altezza ) ) {\n    console.log(\"> Formula corretta, verifica completata.\");\n    return true;\n  } else {\n    console.log(\"> Formula errata, forma di vita intelligente non rilevata.\");\n    return false;\n  }\n}",
+
+    "manuale": "",
+
+    "fileVirtuali": [
+      { "nomeFile": "ResponsoAutenticazione.out",
+        "consultazione": true,
+        "codice":"\/*\n __   __  _______  _______         _______  _______  _______  _______ \n|  | |  ||       ||  _    |       |       ||  _    ||  _    ||  _    |\n|  |_|  ||   _   || |_|   | ____  |____   || | |   || | |   || | |   |\n|       ||  | |  ||       ||____|  ____|  || | |   || | |   || | |   |\n|       ||  |_|  ||  _   |        | ______|| |_|   || |_|   || |_|   |\n|   _   ||       || |_|   |       | |_____ |       ||       ||       |\n|__| |__||_______||_______|       |_______||_______||_______||_______|\nQuesto file \u00e8 stato generato automaticamente dal sistema antimissilistico\nHOB-2000.\n\n\nBuongiorno, sono il sistema antimissilistico HOB-2000, per comunicarvi che\nl'autenticazione automatica \u00e8 fallita. Se proprio desiderate procedere, avete la\npossibilit\u00e0 di utilizzare l'autenticazione manuale.\n\nGrazie per aver scelto HOB-2000.\n*\/"
+      },
+
+      { "nomeFile": "Autenticazione.js",
+        "consultazione": false,
+        "codice":"\/*\n\nQuesto codice permette l'autenticazione manuale di un operatore.\n\nATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione\n            automatica.\n*\/\nvar autenticazioneManuale = function () {\n  \/\/ ###START_MODIFICABILE###\n  var nome = \"captano\";\n  var matricola = \"0\";\n  var password = \"utf\";\n  var stringaAccesso = \"UTF-8\" + nome + \"&&--\"+ password + \"%\" + matricola;\n  \/\/ ###END_MODIFICABILE###\n  \n  return [nome, matricola, password, stringaAccesso];\n}",
+        "test": "(function () {\n  var risultato = autenticazioneManuale();\n  if (\n    risultato[ 0 ] === \"Cpt Simeoni\"\n    && risultato[ 1 ] === \"150716\"\n    && risultato[ 2 ] === \"utf-8_tuono\"\n    && risultato[ 3 ] === risultato[ 0 ] + \"%\" + risultato[ 1 ] + \"<\" + risultato[ 2 ] + \">\"\n  ) {\n    return true;\n  } else {\n    return false;\n  }\n}) ();",
+        "descrizione": "L''accesso alla strumentazione di puntamento è bloccata, è necessario autenticarsi nel sistema manualmente impostando le variabili correttamente nella funzione di autenticazione.",
+        "aiuto": "",
+        "messaggioFallimento": "<b></b>"
+      },
+
+      { "nomeFile": "SbloccoComandoSparo.js",
+        "consultazione": false,
+        "codice": "var verificaPresenzaCervelloOperatore = function ( base, altezza ) {\n  \/\/ ###START_MODIFICABILE###\n  var area = base + altezza;\n  \/\/ ###END_MODIFICABILE###\n  return area;\n}",
+        "test": "( function() {\n  var base = rand(1, Math.sqrt(Number.MAX_VALUE));\n  var altezza = rand(1, Math.sqrt(Number.MAX_VALUE));\n  if( base * altezza === verificaPresenzaCervelloOperatore( base, altezza ) ) {\n    return true;\n  } else {\n    return false;\n  }\n} ) ();",
+        "descrizione": "Il comando di sparo è disattivato, il sistema richieda la verifica della presenza di un operatore umano. Per verificare ciò viene posto un questito a cui rispondere correttamente.",
+        "aiuto": "",
+        "messaggioFallimento": "<b></b>"
+      }
+    ]
+  }
+  
+  window.eval( jsonLivello.codiceLivello );
+  
+  console.log( Livello1 );
+  
+  var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
   caricaCodice.aggiornaCodiceUtente();
   var e = caricaCodice.validazioneCodiceUtente();
   console.log(e);
   
   if(e.erroriCiclo.length === 0) {
     esiti = caricaCodice.esecuzioneTest();
+    console.log( esiti );
     var coreLevel = new Livello1();
     coreLevel.inizializzaLivello();
   }

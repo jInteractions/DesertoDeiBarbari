@@ -24,10 +24,9 @@ CaricaCodice.ATTESA_MASSIMA = 2000;
 
 CaricaCodice.prototype.aggiornaCodiceUtente = function () {
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
-    //fileVirtuale.codiceUtente = "function A () { console.log("'Ciao'")}";  
+    //fileVirtuale.codice =   
   } );
 };
-
 
 CaricaCodice.prototype.validazioneCodiceUtente = function () {
   var mySelf = this;
@@ -79,7 +78,7 @@ CaricaCodice.prototype.validazioneCodiceUtenteOld = function () {
 };
 
 CaricaCodice.prototype.controlloParoleVietate = function ( file ) {
-  var codice = file.codiceUtente;
+  var codice = file.codice;
   var erroriParoleVietate = [];
   
   var righe = codice.split( '\n' );
@@ -96,7 +95,7 @@ CaricaCodice.prototype.controlloParoleVietate = function ( file ) {
 };
 
 CaricaCodice.prototype.trovaErroriSintassi = function ( file ) {
-  var codice = file.codiceUtente;
+  var codice = file.codice;
   var msgErrore;
   
   try {
@@ -124,7 +123,7 @@ CaricaCodice.prototype.trovaErroriSintassi = function ( file ) {
 };
 
 CaricaCodice.prototype.verificaCicliInfiniti = function ( file ) {
-  var codice = file.codiceUtente;
+  var codice = file.codice;
   var test = file.test;
   var errori = [];
   
@@ -152,12 +151,16 @@ CaricaCodice.prototype.esecuzioneTest = function () {
   var mySelf = this;
   var esiti = [];
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
-    window.eval( fileVirtuale.codiceUtente );
+    if( fileVirtuale.consultazione === false ) {
+      window.eval( fileVirtuale.codice );
+    }
   } );
          
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
-    var risultato = window.eval( fileVirtuale.test );
-    esiti.push( { nomeFile: fileVirtuale.nomeFile, esito: risultato } );
+    if( fileVirtuale.consultazione === false ) {
+      var risultato = window.eval( fileVirtuale.test );
+      esiti.push( { nomeFile: fileVirtuale.nomeFile, esito: risultato } );
+    }
   } );
   return esiti;
 };
