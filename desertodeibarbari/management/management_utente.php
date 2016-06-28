@@ -326,7 +326,7 @@ function insertIntoutente($connection,$email, $password, $tutorial, $morti, $ali
 }/*END SEZIONE INSERT*/
 /*START SEZIONE UPDATE*/
 function update_UTENTE_SET_password_WITH_email_AS_KEY($connection,$password_val,$email_val){
-	$query="UPDATE utenteSET password = ? WHERE email=?";
+	$query="UPDATE utente SET password = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$password_val,$email_val);
@@ -336,7 +336,7 @@ function update_UTENTE_SET_password_WITH_email_AS_KEY($connection,$password_val,
 	return $result;
 }
 function update_UTENTE_SET_password_WITH_tutorial_AS_KEY($connection,$password_val,$tutorial_val){
-	$query="UPDATE utenteSET password = ? WHERE tutorial=?";
+	$query="UPDATE utente SET password = ? WHERE tutorial=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$password_val,$tutorial_val);
@@ -346,7 +346,7 @@ function update_UTENTE_SET_password_WITH_tutorial_AS_KEY($connection,$password_v
 	return $result;
 }
 function update_UTENTE_SET_password_WITH_morti_AS_KEY($connection,$password_val,$morti_val){
-	$query="UPDATE utenteSET password = ? WHERE morti=?";
+	$query="UPDATE utente SET password = ? WHERE morti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$password_val,$morti_val);
@@ -356,7 +356,7 @@ function update_UTENTE_SET_password_WITH_morti_AS_KEY($connection,$password_val,
 	return $result;
 }
 function update_UTENTE_SET_password_WITH_alias_AS_KEY($connection,$password_val,$alias_val){
-	$query="UPDATE utenteSET password = ? WHERE alias=?";
+	$query="UPDATE utente SET password = ? WHERE alias=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$password_val,$alias_val);
@@ -366,7 +366,7 @@ function update_UTENTE_SET_password_WITH_alias_AS_KEY($connection,$password_val,
 	return $result;
 }
 function update_UTENTE_SET_tutorial_WITH_email_AS_KEY($connection,$tutorial_val,$email_val){
-	$query="UPDATE utenteSET tutorial = ? WHERE email=?";
+	$query="UPDATE utente SET tutorial = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$tutorial_val,$email_val);
@@ -376,7 +376,7 @@ function update_UTENTE_SET_tutorial_WITH_email_AS_KEY($connection,$tutorial_val,
 	return $result;
 }
 function update_UTENTE_SET_tutorial_WITH_password_AS_KEY($connection,$tutorial_val,$password_val){
-	$query="UPDATE utenteSET tutorial = ? WHERE password=?";
+	$query="UPDATE utente SET tutorial = ? WHERE password=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$tutorial_val,$password_val);
@@ -386,7 +386,7 @@ function update_UTENTE_SET_tutorial_WITH_password_AS_KEY($connection,$tutorial_v
 	return $result;
 }
 function update_UTENTE_SET_tutorial_WITH_morti_AS_KEY($connection,$tutorial_val,$morti_val){
-	$query="UPDATE utenteSET tutorial = ? WHERE morti=?";
+	$query="UPDATE utente SET tutorial = ? WHERE morti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$tutorial_val,$morti_val);
@@ -396,7 +396,7 @@ function update_UTENTE_SET_tutorial_WITH_morti_AS_KEY($connection,$tutorial_val,
 	return $result;
 }
 function update_UTENTE_SET_tutorial_WITH_alias_AS_KEY($connection,$tutorial_val,$alias_val){
-	$query="UPDATE utenteSET tutorial = ? WHERE alias=?";
+	$query="UPDATE utente SET tutorial = ? WHERE alias=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$tutorial_val,$alias_val);
@@ -406,7 +406,7 @@ function update_UTENTE_SET_tutorial_WITH_alias_AS_KEY($connection,$tutorial_val,
 	return $result;
 }
 function update_UTENTE_SET_morti_WITH_email_AS_KEY($connection,$morti_val,$email_val){
-	$query="UPDATE utenteSET morti = ? WHERE email=?";
+	$query="UPDATE utente SET morti = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$morti_val,$email_val);
@@ -416,7 +416,7 @@ function update_UTENTE_SET_morti_WITH_email_AS_KEY($connection,$morti_val,$email
 	return $result;
 }
 function update_UTENTE_SET_morti_WITH_password_AS_KEY($connection,$morti_val,$password_val){
-	$query="UPDATE utenteSET morti = ? WHERE password=?";
+	$query="UPDATE utente SET morti = ? WHERE password=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$morti_val,$password_val);
@@ -426,7 +426,7 @@ function update_UTENTE_SET_morti_WITH_password_AS_KEY($connection,$morti_val,$pa
 	return $result;
 }
 function update_UTENTE_SET_morti_WITH_tutorial_AS_KEY($connection,$morti_val,$tutorial_val){
-	$query="UPDATE utenteSET morti = ? WHERE tutorial=?";
+	$query="UPDATE utente SET morti = ? WHERE tutorial=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$morti_val,$tutorial_val);
@@ -436,7 +436,7 @@ function update_UTENTE_SET_morti_WITH_tutorial_AS_KEY($connection,$morti_val,$tu
 	return $result;
 }
 function update_UTENTE_SET_morti_WITH_alias_AS_KEY($connection,$morti_val,$alias_val){
-	$query="UPDATE utenteSET morti = ? WHERE alias=?";
+	$query="UPDATE utente SET morti = ? WHERE alias=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$morti_val,$alias_val);
@@ -446,7 +446,7 @@ function update_UTENTE_SET_morti_WITH_alias_AS_KEY($connection,$morti_val,$alias
 	return $result;
 }
 function update_UTENTE_SET_alias_WITH_email_AS_KEY($connection,$alias_val,$email_val){
-	$query="UPDATE utenteSET alias = ? WHERE email=?";
+	$query="UPDATE utente SET alias = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$alias_val,$email_val);
@@ -456,7 +456,7 @@ function update_UTENTE_SET_alias_WITH_email_AS_KEY($connection,$alias_val,$email
 	return $result;
 }
 function update_UTENTE_SET_alias_WITH_password_AS_KEY($connection,$alias_val,$password_val){
-	$query="UPDATE utenteSET alias = ? WHERE password=?";
+	$query="UPDATE utente SET alias = ? WHERE password=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$alias_val,$password_val);
@@ -466,7 +466,7 @@ function update_UTENTE_SET_alias_WITH_password_AS_KEY($connection,$alias_val,$pa
 	return $result;
 }
 function update_UTENTE_SET_alias_WITH_tutorial_AS_KEY($connection,$alias_val,$tutorial_val){
-	$query="UPDATE utenteSET alias = ? WHERE tutorial=?";
+	$query="UPDATE utente SET alias = ? WHERE tutorial=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$alias_val,$tutorial_val);
@@ -476,7 +476,7 @@ function update_UTENTE_SET_alias_WITH_tutorial_AS_KEY($connection,$alias_val,$tu
 	return $result;
 }
 function update_UTENTE_SET_alias_WITH_morti_AS_KEY($connection,$alias_val,$morti_val){
-	$query="UPDATE utenteSET alias = ? WHERE morti=?";
+	$query="UPDATE utente SET alias = ? WHERE morti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$alias_val,$morti_val);

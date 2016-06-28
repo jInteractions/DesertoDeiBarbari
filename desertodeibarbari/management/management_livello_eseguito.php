@@ -839,7 +839,7 @@ function insertIntolivello_eseguito($connection, $label){	/* create a prepared s
 }/*END SEZIONE INSERT*/
 /*START SEZIONE UPDATE*/
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_email_AS_KEY($connection,$file_virtuali_aggiornati_val,$email_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE email=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$email_val);
@@ -849,7 +849,7 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_email_AS_KEY(
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_idlivello_AS_KEY($connection,$file_virtuali_aggiornati_val,$idlivello_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE idlivello=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$idlivello_val);
@@ -858,8 +858,18 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_idlivello_AS_
 	}
 	return $result;
 }
+function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_idlivello_email_AS_KEY($connection,$file_virtuali_aggiornati_val,$idlivello_val,$email){
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE idlivello=? AND email=?";
+	$result = 0;
+	if ($stmt = $connection->prepare($query)) {
+		$stmt->bind_param( "sss",$file_virtuali_aggiornati_val,$idlivello_val,$email);
+		$result = $stmt->execute();
+		$stmt->close();
+	}
+	return $result;
+}
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_ondate_AS_KEY($connection,$file_virtuali_aggiornati_val,$ondate_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE ondate=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE ondate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$ondate_val);
@@ -869,7 +879,7 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_ondate_AS_KEY
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_punteggio_AS_KEY($connection,$file_virtuali_aggiornati_val,$punteggio_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE punteggio=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE punteggio=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$punteggio_val);
@@ -879,7 +889,7 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_punteggio_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_missili_abbattuti_AS_KEY($connection,$file_virtuali_aggiornati_val,$missili_abbattuti_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE missili_abbattuti=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE missili_abbattuti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$missili_abbattuti_val);
@@ -889,7 +899,7 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_missili_abbat
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_minacce_abbattute_AS_KEY($connection,$file_virtuali_aggiornati_val,$minacce_abbattute_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE minacce_abbattute=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE minacce_abbattute=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$minacce_abbattute_val);
@@ -899,7 +909,7 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_minacce_abbat
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_missili_lanciati_AS_KEY($connection,$file_virtuali_aggiornati_val,$missili_lanciati_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE missili_lanciati=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE missili_lanciati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$missili_lanciati_val);
@@ -909,7 +919,7 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_missili_lanci
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_missili_rimasti_AS_KEY($connection,$file_virtuali_aggiornati_val,$missili_rimasti_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE missili_rimasti=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE missili_rimasti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$missili_rimasti_val);
@@ -919,7 +929,7 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_missili_rimas
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_torrette_salvate_AS_KEY($connection,$file_virtuali_aggiornati_val,$torrette_salvate_val){
-	$query="UPDATE livello_eseguitoSET file_virtuali_aggiornati = ? WHERE torrette_salvate=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE torrette_salvate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$file_virtuali_aggiornati_val,$torrette_salvate_val);
@@ -929,7 +939,7 @@ function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_torrette_salv
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_email_AS_KEY($connection,$ondate_val,$email_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE email=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$email_val);
@@ -939,7 +949,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_email_AS_KEY($connection,$ondat
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_idlivello_AS_KEY($connection,$ondate_val,$idlivello_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE idlivello=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$idlivello_val);
@@ -949,7 +959,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_idlivello_AS_KEY($connection,$o
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_file_virtuali_aggiornati_AS_KEY($connection,$ondate_val,$file_virtuali_aggiornati_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE file_virtuali_aggiornati=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE file_virtuali_aggiornati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$file_virtuali_aggiornati_val);
@@ -959,7 +969,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_file_virtuali_aggiornati_AS_KEY
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_punteggio_AS_KEY($connection,$ondate_val,$punteggio_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE punteggio=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE punteggio=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$punteggio_val);
@@ -969,7 +979,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_punteggio_AS_KEY($connection,$o
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_missili_abbattuti_AS_KEY($connection,$ondate_val,$missili_abbattuti_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE missili_abbattuti=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE missili_abbattuti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$missili_abbattuti_val);
@@ -979,7 +989,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_missili_abbattuti_AS_KEY($conne
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_minacce_abbattute_AS_KEY($connection,$ondate_val,$minacce_abbattute_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE minacce_abbattute=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE minacce_abbattute=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$minacce_abbattute_val);
@@ -989,7 +999,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_minacce_abbattute_AS_KEY($conne
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_missili_lanciati_AS_KEY($connection,$ondate_val,$missili_lanciati_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE missili_lanciati=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE missili_lanciati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$missili_lanciati_val);
@@ -999,7 +1009,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_missili_lanciati_AS_KEY($connec
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_missili_rimasti_AS_KEY($connection,$ondate_val,$missili_rimasti_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE missili_rimasti=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE missili_rimasti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$missili_rimasti_val);
@@ -1009,7 +1019,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_missili_rimasti_AS_KEY($connect
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_ondate_WITH_torrette_salvate_AS_KEY($connection,$ondate_val,$torrette_salvate_val){
-	$query="UPDATE livello_eseguitoSET ondate = ? WHERE torrette_salvate=?";
+	$query="UPDATE livello_eseguito SET ondate = ? WHERE torrette_salvate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$ondate_val,$torrette_salvate_val);
@@ -1019,7 +1029,7 @@ function update_LIVELLO_ESEGUITO_SET_ondate_WITH_torrette_salvate_AS_KEY($connec
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_email_AS_KEY($connection,$punteggio_val,$email_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE email=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$email_val);
@@ -1029,7 +1039,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_email_AS_KEY($connection,$pu
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_idlivello_AS_KEY($connection,$punteggio_val,$idlivello_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE idlivello=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$idlivello_val);
@@ -1039,7 +1049,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_idlivello_AS_KEY($connection
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_file_virtuali_aggiornati_AS_KEY($connection,$punteggio_val,$file_virtuali_aggiornati_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE file_virtuali_aggiornati=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE file_virtuali_aggiornati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$file_virtuali_aggiornati_val);
@@ -1049,7 +1059,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_file_virtuali_aggiornati_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_ondate_AS_KEY($connection,$punteggio_val,$ondate_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE ondate=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE ondate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$ondate_val);
@@ -1059,7 +1069,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_ondate_AS_KEY($connection,$p
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_missili_abbattuti_AS_KEY($connection,$punteggio_val,$missili_abbattuti_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE missili_abbattuti=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE missili_abbattuti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$missili_abbattuti_val);
@@ -1069,7 +1079,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_missili_abbattuti_AS_KEY($co
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_minacce_abbattute_AS_KEY($connection,$punteggio_val,$minacce_abbattute_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE minacce_abbattute=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE minacce_abbattute=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$minacce_abbattute_val);
@@ -1079,7 +1089,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_minacce_abbattute_AS_KEY($co
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_missili_lanciati_AS_KEY($connection,$punteggio_val,$missili_lanciati_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE missili_lanciati=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE missili_lanciati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$missili_lanciati_val);
@@ -1089,7 +1099,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_missili_lanciati_AS_KEY($con
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_missili_rimasti_AS_KEY($connection,$punteggio_val,$missili_rimasti_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE missili_rimasti=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE missili_rimasti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$missili_rimasti_val);
@@ -1099,7 +1109,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_missili_rimasti_AS_KEY($conn
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_torrette_salvate_AS_KEY($connection,$punteggio_val,$torrette_salvate_val){
-	$query="UPDATE livello_eseguitoSET punteggio = ? WHERE torrette_salvate=?";
+	$query="UPDATE livello_eseguito SET punteggio = ? WHERE torrette_salvate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$punteggio_val,$torrette_salvate_val);
@@ -1109,7 +1119,7 @@ function update_LIVELLO_ESEGUITO_SET_punteggio_WITH_torrette_salvate_AS_KEY($con
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_email_AS_KEY($connection,$missili_abbattuti_val,$email_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE email=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$email_val);
@@ -1119,7 +1129,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_email_AS_KEY($connec
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_idlivello_AS_KEY($connection,$missili_abbattuti_val,$idlivello_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE idlivello=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$idlivello_val);
@@ -1129,7 +1139,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_idlivello_AS_KEY($co
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_file_virtuali_aggiornati_AS_KEY($connection,$missili_abbattuti_val,$file_virtuali_aggiornati_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE file_virtuali_aggiornati=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE file_virtuali_aggiornati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$file_virtuali_aggiornati_val);
@@ -1139,7 +1149,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_file_virtuali_aggior
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_ondate_AS_KEY($connection,$missili_abbattuti_val,$ondate_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE ondate=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE ondate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$ondate_val);
@@ -1149,7 +1159,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_ondate_AS_KEY($conne
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_punteggio_AS_KEY($connection,$missili_abbattuti_val,$punteggio_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE punteggio=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE punteggio=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$punteggio_val);
@@ -1159,7 +1169,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_punteggio_AS_KEY($co
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_minacce_abbattute_AS_KEY($connection,$missili_abbattuti_val,$minacce_abbattute_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE minacce_abbattute=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE minacce_abbattute=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$minacce_abbattute_val);
@@ -1169,7 +1179,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_minacce_abbattute_AS
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_missili_lanciati_AS_KEY($connection,$missili_abbattuti_val,$missili_lanciati_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE missili_lanciati=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE missili_lanciati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$missili_lanciati_val);
@@ -1179,7 +1189,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_missili_lanciati_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_missili_rimasti_AS_KEY($connection,$missili_abbattuti_val,$missili_rimasti_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE missili_rimasti=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE missili_rimasti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$missili_rimasti_val);
@@ -1189,7 +1199,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_missili_rimasti_AS_K
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_torrette_salvate_AS_KEY($connection,$missili_abbattuti_val,$torrette_salvate_val){
-	$query="UPDATE livello_eseguitoSET missili_abbattuti = ? WHERE torrette_salvate=?";
+	$query="UPDATE livello_eseguito SET missili_abbattuti = ? WHERE torrette_salvate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_abbattuti_val,$torrette_salvate_val);
@@ -1199,7 +1209,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_abbattuti_WITH_torrette_salvate_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_email_AS_KEY($connection,$minacce_abbattute_val,$email_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE email=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$email_val);
@@ -1209,7 +1219,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_email_AS_KEY($connec
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_idlivello_AS_KEY($connection,$minacce_abbattute_val,$idlivello_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE idlivello=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$idlivello_val);
@@ -1219,7 +1229,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_idlivello_AS_KEY($co
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_file_virtuali_aggiornati_AS_KEY($connection,$minacce_abbattute_val,$file_virtuali_aggiornati_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE file_virtuali_aggiornati=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE file_virtuali_aggiornati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$file_virtuali_aggiornati_val);
@@ -1229,7 +1239,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_file_virtuali_aggior
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_ondate_AS_KEY($connection,$minacce_abbattute_val,$ondate_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE ondate=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE ondate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$ondate_val);
@@ -1239,7 +1249,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_ondate_AS_KEY($conne
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_punteggio_AS_KEY($connection,$minacce_abbattute_val,$punteggio_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE punteggio=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE punteggio=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$punteggio_val);
@@ -1249,7 +1259,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_punteggio_AS_KEY($co
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_missili_abbattuti_AS_KEY($connection,$minacce_abbattute_val,$missili_abbattuti_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE missili_abbattuti=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE missili_abbattuti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$missili_abbattuti_val);
@@ -1259,7 +1269,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_missili_abbattuti_AS
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_missili_lanciati_AS_KEY($connection,$minacce_abbattute_val,$missili_lanciati_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE missili_lanciati=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE missili_lanciati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$missili_lanciati_val);
@@ -1269,7 +1279,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_missili_lanciati_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_missili_rimasti_AS_KEY($connection,$minacce_abbattute_val,$missili_rimasti_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE missili_rimasti=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE missili_rimasti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$missili_rimasti_val);
@@ -1279,7 +1289,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_missili_rimasti_AS_K
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_torrette_salvate_AS_KEY($connection,$minacce_abbattute_val,$torrette_salvate_val){
-	$query="UPDATE livello_eseguitoSET minacce_abbattute = ? WHERE torrette_salvate=?";
+	$query="UPDATE livello_eseguito SET minacce_abbattute = ? WHERE torrette_salvate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$minacce_abbattute_val,$torrette_salvate_val);
@@ -1289,7 +1299,7 @@ function update_LIVELLO_ESEGUITO_SET_minacce_abbattute_WITH_torrette_salvate_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_email_AS_KEY($connection,$missili_lanciati_val,$email_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE email=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$email_val);
@@ -1299,7 +1309,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_email_AS_KEY($connect
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_idlivello_AS_KEY($connection,$missili_lanciati_val,$idlivello_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE idlivello=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$idlivello_val);
@@ -1309,7 +1319,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_idlivello_AS_KEY($con
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_file_virtuali_aggiornati_AS_KEY($connection,$missili_lanciati_val,$file_virtuali_aggiornati_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE file_virtuali_aggiornati=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE file_virtuali_aggiornati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$file_virtuali_aggiornati_val);
@@ -1319,7 +1329,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_file_virtuali_aggiorn
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_ondate_AS_KEY($connection,$missili_lanciati_val,$ondate_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE ondate=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE ondate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$ondate_val);
@@ -1329,7 +1339,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_ondate_AS_KEY($connec
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_punteggio_AS_KEY($connection,$missili_lanciati_val,$punteggio_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE punteggio=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE punteggio=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$punteggio_val);
@@ -1339,7 +1349,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_punteggio_AS_KEY($con
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_missili_abbattuti_AS_KEY($connection,$missili_lanciati_val,$missili_abbattuti_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE missili_abbattuti=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE missili_abbattuti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$missili_abbattuti_val);
@@ -1349,7 +1359,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_missili_abbattuti_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_minacce_abbattute_AS_KEY($connection,$missili_lanciati_val,$minacce_abbattute_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE minacce_abbattute=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE minacce_abbattute=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$minacce_abbattute_val);
@@ -1359,7 +1369,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_minacce_abbattute_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_missili_rimasti_AS_KEY($connection,$missili_lanciati_val,$missili_rimasti_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE missili_rimasti=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE missili_rimasti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$missili_rimasti_val);
@@ -1369,7 +1379,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_missili_rimasti_AS_KE
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_torrette_salvate_AS_KEY($connection,$missili_lanciati_val,$torrette_salvate_val){
-	$query="UPDATE livello_eseguitoSET missili_lanciati = ? WHERE torrette_salvate=?";
+	$query="UPDATE livello_eseguito SET missili_lanciati = ? WHERE torrette_salvate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_lanciati_val,$torrette_salvate_val);
@@ -1379,7 +1389,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_lanciati_WITH_torrette_salvate_AS_K
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_email_AS_KEY($connection,$missili_rimasti_val,$email_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE email=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$email_val);
@@ -1389,7 +1399,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_email_AS_KEY($connecti
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_idlivello_AS_KEY($connection,$missili_rimasti_val,$idlivello_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE idlivello=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$idlivello_val);
@@ -1399,7 +1409,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_idlivello_AS_KEY($conn
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_file_virtuali_aggiornati_AS_KEY($connection,$missili_rimasti_val,$file_virtuali_aggiornati_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE file_virtuali_aggiornati=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE file_virtuali_aggiornati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$file_virtuali_aggiornati_val);
@@ -1409,7 +1419,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_file_virtuali_aggiorna
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_ondate_AS_KEY($connection,$missili_rimasti_val,$ondate_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE ondate=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE ondate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$ondate_val);
@@ -1419,7 +1429,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_ondate_AS_KEY($connect
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_punteggio_AS_KEY($connection,$missili_rimasti_val,$punteggio_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE punteggio=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE punteggio=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$punteggio_val);
@@ -1429,7 +1439,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_punteggio_AS_KEY($conn
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_missili_abbattuti_AS_KEY($connection,$missili_rimasti_val,$missili_abbattuti_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE missili_abbattuti=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE missili_abbattuti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$missili_abbattuti_val);
@@ -1439,7 +1449,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_missili_abbattuti_AS_K
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_minacce_abbattute_AS_KEY($connection,$missili_rimasti_val,$minacce_abbattute_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE minacce_abbattute=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE minacce_abbattute=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$minacce_abbattute_val);
@@ -1449,7 +1459,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_minacce_abbattute_AS_K
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_missili_lanciati_AS_KEY($connection,$missili_rimasti_val,$missili_lanciati_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE missili_lanciati=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE missili_lanciati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$missili_lanciati_val);
@@ -1459,7 +1469,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_missili_lanciati_AS_KE
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_torrette_salvate_AS_KEY($connection,$missili_rimasti_val,$torrette_salvate_val){
-	$query="UPDATE livello_eseguitoSET missili_rimasti = ? WHERE torrette_salvate=?";
+	$query="UPDATE livello_eseguito SET missili_rimasti = ? WHERE torrette_salvate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$missili_rimasti_val,$torrette_salvate_val);
@@ -1469,7 +1479,7 @@ function update_LIVELLO_ESEGUITO_SET_missili_rimasti_WITH_torrette_salvate_AS_KE
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_email_AS_KEY($connection,$torrette_salvate_val,$email_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE email=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$email_val);
@@ -1479,7 +1489,7 @@ function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_email_AS_KEY($connect
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_idlivello_AS_KEY($connection,$torrette_salvate_val,$idlivello_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE idlivello=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$idlivello_val);
@@ -1489,7 +1499,7 @@ function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_idlivello_AS_KEY($con
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_file_virtuali_aggiornati_AS_KEY($connection,$torrette_salvate_val,$file_virtuali_aggiornati_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE file_virtuali_aggiornati=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE file_virtuali_aggiornati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$file_virtuali_aggiornati_val);
@@ -1499,7 +1509,7 @@ function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_file_virtuali_aggiorn
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_ondate_AS_KEY($connection,$torrette_salvate_val,$ondate_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE ondate=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE ondate=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$ondate_val);
@@ -1509,7 +1519,7 @@ function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_ondate_AS_KEY($connec
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_punteggio_AS_KEY($connection,$torrette_salvate_val,$punteggio_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE punteggio=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE punteggio=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$punteggio_val);
@@ -1519,7 +1529,7 @@ function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_punteggio_AS_KEY($con
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_missili_abbattuti_AS_KEY($connection,$torrette_salvate_val,$missili_abbattuti_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE missili_abbattuti=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE missili_abbattuti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$missili_abbattuti_val);
@@ -1529,7 +1539,7 @@ function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_missili_abbattuti_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_minacce_abbattute_AS_KEY($connection,$torrette_salvate_val,$minacce_abbattute_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE minacce_abbattute=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE minacce_abbattute=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$minacce_abbattute_val);
@@ -1539,7 +1549,7 @@ function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_minacce_abbattute_AS_
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_missili_lanciati_AS_KEY($connection,$torrette_salvate_val,$missili_lanciati_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE missili_lanciati=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE missili_lanciati=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$missili_lanciati_val);
@@ -1549,7 +1559,7 @@ function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_missili_lanciati_AS_K
 	return $result;
 }
 function update_LIVELLO_ESEGUITO_SET_torrette_salvate_WITH_missili_rimasti_AS_KEY($connection,$torrette_salvate_val,$missili_rimasti_val){
-	$query="UPDATE livello_eseguitoSET torrette_salvate = ? WHERE missili_rimasti=?";
+	$query="UPDATE livello_eseguito SET torrette_salvate = ? WHERE missili_rimasti=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$torrette_salvate_val,$missili_rimasti_val);

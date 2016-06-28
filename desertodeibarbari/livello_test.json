@@ -1,5 +1,5 @@
 {
-  "nomeLivello": "L'avventura Comincia",
+  "nomeLivello": "L avventura Comincia",
   "numeroLivello": 0,
 
   "dialogoIniziale": [
@@ -30,7 +30,7 @@
         "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
       "descrizione": "Devi forzare il sistema per accedere...",
       "aiuto": "Guarda che <b>dovresti</b>... ",
-      "messaggioFallimento": "L'Autenticazione è fallita..."
+      "messaggioFallimento": "L'Autenticazione e fallita..."
     },
 
     { "nomeFile": "AltriCodice.js",
@@ -41,7 +41,7 @@
         "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
       "descrizione": "Devi forzare il sistema per accedere...",
       "aiuto": "Guarda che <b>dovresti</b>... ",
-      "messaggioFallimento": "L'Autenticazione è fallita..."
+      "messaggioFallimento": "L'Autenticazione e fallita..."
     }
   ]
 }

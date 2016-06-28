@@ -18,25 +18,22 @@ function selectAllFrom_LIVELLO($connection){
 	}
 	return $fields;
 }
-
 function selectFrom_LIVELLO_By_idlivello($connection,$value){
-  $query="SELECT idlivello, numero, nome, json FROM livello WHERE idlivello=?";
+	 $query="SELECT idlivello, numero, nome, json FROM livello WHERE idlivello=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
 		$stmt->execute();
 		$stmt->bind_result($idlivello, $numero, $nome, $json);
-		while ($stmt->fetch()) {
-			$fields["idlivello"] = $idlivello;
-			$fields["numero"] = $numero;
-      $fields["nome"] = $nome;
-      $fields["json"] = $json;
-		}
+		$stmt->fetch();
+		$fields["idlivello"] = $idlivello;
+		$fields["numero"] = $numero;
+		$fields["nome"] = $nome;
+		$fields["json"] = $json;
 		$stmt->close();
 	}
 	return $fields;
 }
-
 function selectFrom_LIVELLO_By_numero($connection,$value){
 	 $query="SELECT idlivello, numero, nome, json FROM livello WHERE numero=?";
  	$fields = [];
@@ -279,7 +276,7 @@ function insertIntolivello($connection, $label){	/* create a prepared statement 
 }/*END SEZIONE INSERT*/
 /*START SEZIONE UPDATE*/
 function update_LIVELLO_SET_numero_WITH_idlivello_AS_KEY($connection,$numero_val,$idlivello_val){
-	$query="UPDATE livelloSET numero = ? WHERE idlivello=?";
+	$query="UPDATE livello SET numero = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$numero_val,$idlivello_val);
@@ -289,7 +286,7 @@ function update_LIVELLO_SET_numero_WITH_idlivello_AS_KEY($connection,$numero_val
 	return $result;
 }
 function update_LIVELLO_SET_numero_WITH_nome_AS_KEY($connection,$numero_val,$nome_val){
-	$query="UPDATE livelloSET numero = ? WHERE nome=?";
+	$query="UPDATE livello SET numero = ? WHERE nome=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$numero_val,$nome_val);
@@ -299,7 +296,7 @@ function update_LIVELLO_SET_numero_WITH_nome_AS_KEY($connection,$numero_val,$nom
 	return $result;
 }
 function update_LIVELLO_SET_numero_WITH_json_AS_KEY($connection,$numero_val,$json_val){
-	$query="UPDATE livelloSET numero = ? WHERE json=?";
+	$query="UPDATE livello SET numero = ? WHERE json=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$numero_val,$json_val);
@@ -309,7 +306,7 @@ function update_LIVELLO_SET_numero_WITH_json_AS_KEY($connection,$numero_val,$jso
 	return $result;
 }
 function update_LIVELLO_SET_nome_WITH_idlivello_AS_KEY($connection,$nome_val,$idlivello_val){
-	$query="UPDATE livelloSET nome = ? WHERE idlivello=?";
+	$query="UPDATE livello SET nome = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$nome_val,$idlivello_val);
@@ -319,7 +316,7 @@ function update_LIVELLO_SET_nome_WITH_idlivello_AS_KEY($connection,$nome_val,$id
 	return $result;
 }
 function update_LIVELLO_SET_nome_WITH_numero_AS_KEY($connection,$nome_val,$numero_val){
-	$query="UPDATE livelloSET nome = ? WHERE numero=?";
+	$query="UPDATE livello SET nome = ? WHERE numero=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$nome_val,$numero_val);
@@ -329,7 +326,7 @@ function update_LIVELLO_SET_nome_WITH_numero_AS_KEY($connection,$nome_val,$numer
 	return $result;
 }
 function update_LIVELLO_SET_nome_WITH_json_AS_KEY($connection,$nome_val,$json_val){
-	$query="UPDATE livelloSET nome = ? WHERE json=?";
+	$query="UPDATE livello SET nome = ? WHERE json=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$nome_val,$json_val);
@@ -339,7 +336,7 @@ function update_LIVELLO_SET_nome_WITH_json_AS_KEY($connection,$nome_val,$json_va
 	return $result;
 }
 function update_LIVELLO_SET_json_WITH_idlivello_AS_KEY($connection,$json_val,$idlivello_val){
-	$query="UPDATE livelloSET json = ? WHERE idlivello=?";
+	$query="UPDATE livello SET json = ? WHERE idlivello=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$json_val,$idlivello_val);
@@ -349,7 +346,7 @@ function update_LIVELLO_SET_json_WITH_idlivello_AS_KEY($connection,$json_val,$id
 	return $result;
 }
 function update_LIVELLO_SET_json_WITH_numero_AS_KEY($connection,$json_val,$numero_val){
-	$query="UPDATE livelloSET json = ? WHERE numero=?";
+	$query="UPDATE livello SET json = ? WHERE numero=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$json_val,$numero_val);
@@ -359,7 +356,7 @@ function update_LIVELLO_SET_json_WITH_numero_AS_KEY($connection,$json_val,$numer
 	return $result;
 }
 function update_LIVELLO_SET_json_WITH_nome_AS_KEY($connection,$json_val,$nome_val){
-	$query="UPDATE livelloSET json = ? WHERE nome=?";
+	$query="UPDATE livello SET json = ? WHERE nome=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$json_val,$nome_val);
