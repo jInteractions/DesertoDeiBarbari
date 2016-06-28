@@ -6,7 +6,11 @@ Livello1.prototype = Object.create( CoreLevel.prototype );
 Livello1.prototype.constructor = Livello1();
 
 Livello1.prototype.inizializzaMirino = function () {
-  this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 10.0 );
+  if ( controlloAccesso() === true ) {
+    this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 10.0 );
+  } else {
+    this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 0 );
+  }
 }
 
 Livello1.prototype.inizializzaTorrette = function () {
@@ -119,9 +123,9 @@ Grazie per aver scelto HOB-2000.
 
 function autenticazioneManuale () {
   // ###START_MODIFICABILE###
-  var nome = "";
+  var nome = "captano";
   var matricola = 0;
-  var password = "*****";
+  var password = "utf";
   var stringaAccesso = "UTF-8" + nome + "&&--"+ password + "%" + matricola;
   // ###END_MODIFICABILE###
   
@@ -152,14 +156,21 @@ function controlloAccesso () {
   var stringa = risultato[ 3 ];
   
   if (
-    risultato[ 0 ] === "Cpt Simeoni"
-    && risultato[ 1 ] === "150716"
-    && risultato[ 2 ] === "utf-8_tuono"
-    && risultato[ 3 ] === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
+    nome === "Cpt Simeoni"
+    && metricola === "150716"
+    && password === "utf-8_tuono"
+    && stringa === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
   ) {
     console.log("> Informazioni inserite correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
     return true;
   } else {
+    console.log(
+      "> Nome: " + nome
+      + "\n> Matricola: " + matricola
+      + "\n> Password: " + Array(password.length + 1).join("*")
+      + "\n> Stringa: " + stringa
+      + "\n> Informazioni non corrette."
+    );
     return false;
   }
 }
