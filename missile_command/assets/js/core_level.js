@@ -1,4 +1,4 @@
-function CoreLevel ( callbackFineLivello, numeroOndata ) {
+function CoreLevel ( callbackFineLivello ) {
   this.canvas = document.querySelector( 'canvas' );
   this.ctx = this.canvas.getContext( '2d' );
   this.coreGame;
@@ -6,14 +6,58 @@ function CoreLevel ( callbackFineLivello, numeroOndata ) {
   this.mirino;
   this.callbackFineLivello = callbackFineLivello;
 
-  
-  this.numeroOndata = numeroOndata;
+  this.numeroOndata = 1;
 
   // Parametri di disegno schermata iniziale
   this.numeroSchermata = 0;  
 };
 
+/*
+CoreLevel.prototype.inizializzaLivello = function () { 
+  
+};*/
+
+CoreLevel.prototype.inizializzaOndata = function ( numeroOndata ) {
+  var mySelf = this;
+  
+  this.numeroOndata = numeroOndata;
+  
+  this.inizializzaMirino();
+  this.coreGame = new CoreGame( this.canvas, this.mirino, {
+    coloreSfondo: 'black',
+    coloreTerreno: 'yellow',
+    coloreTestoPrimario: 'blue',
+    coloreTestoSecondario: 'red'
+  });
+  var coeff = this.calcolaCoefficienteOndata();
+  this.coreGame.aggiornaCoefficienteOndata( coeff );
+  this.inizializzaTorrette();
+  
+  if( this.numeroOndata === 1 ) {
+    this.inizializzaBasi();
+  } else {
+    console.log( this.basi )
+    $.each( this.basi, function ( indice, base ) {
+      //console.log( base );
+      base.coreGame = mySelf.coreGame
+    } );
+    mySelf.coreGame.basi = mySelf.basi;
+  }
+  
+  this.inizializzaArmiNemiche();
+  this.inizializzaArmiTerrestri();
+}
+
 // Funzioni base di CoreLevel
+
+CoreLevel.prototype.inizializzaBasi = function () {
+  this.coreGame.aggiungiBase( new Base( 80,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new Base( 180,  430, true, 100, 'cyan', this.coreGame ) );  
+  this.coreGame.aggiungiBase( new Base( 130,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new Base( 300,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new Base( 350,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new Base( 400,  430, true, 100, 'cyan', this.coreGame ) );
+};
 
 CoreLevel.prototype.inizializzaMirino = function () {
   this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 16.0 );
@@ -37,31 +81,6 @@ CoreLevel.prototype.inizializzaTorrette = function () {
   this.coreGame.aggiungiBatteriaAntimissile(
     new BatteriaAntimissile ( 475, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
   );
-};
-
-CoreLevel.prototype.inizializzaBasi = function () {
-  this.coreGame.aggiungiBase( new Base( 80,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 130,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 180,  430, true, 100, 'cyan', this.coreGame ) );  
-  this.coreGame.aggiungiBase( new Base( 300,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 350,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 400,  430, true, 100, 'cyan', this.coreGame ) );
-};
-
-CoreLevel.prototype.inizializzaLivello = function () { 
-  this.inizializzaMirino();
-  this.coreGame = new CoreGame( this.canvas, this.mirino, {
-    coloreSfondo: 'black',
-    coloreTerreno: 'yellow',
-    coloreTestoPrimario: 'blue',
-    coloreTestoSecondario: 'red'
-  });
-  var coeff = this.calcolaCoefficienteOndata();
-  this.coreGame.aggiornaCoefficienteOndata( coeff );
-  this.inizializzaTorrette();
-  this.inizializzaBasi();
-  this.inizializzaArmiNemiche();
-  this.inizializzaArmiTerrestri();
 };
 
 CoreLevel.prototype.preparazioneAvvio = function () {
@@ -129,7 +148,9 @@ CoreLevel.prototype.stopLivello = function ( ) {
 
 CoreLevel.prototype.proceduraFineOndata = function () {
   var cg = this.coreGame;
-
+  
+  this.basi = this.coreGame.basi;
+  
   cg.calcoloMissiliRimasti();
   cg.calcoloBatterieSalvate( 2 );
   
@@ -252,11 +273,20 @@ console.log = function ( stringa ) {
 }
 */
 
-var callback = function ( risultatoOndata ) {
-  console.log( risultatoOndata ); 
-}
-
-$(document).ready( function () {
+$(document).ready( function () {  
+  var callback = function ( risultatoOndata ) {
+    if( risultatoOndata.esito === true ) {
+      console.log(coreLevel);
+      ++nOndata;
+      coreLevel.inizializzaOndata(nOndata);
+      coreLevel.mostraSchermataIniziale();
+    } else {
+      console.log("morto")
+      coreLevel.inizializzaOndata(1);
+      coreLevel.mostraSchermataGameOver();
+    }
+  }
+  
   var livello = jsonLivello;
   
   var jsonLivello = {
@@ -315,11 +345,13 @@ $(document).ready( function () {
   var e = caricaCodice.validazioneCodiceUtente();
   console.log(e);
   
+  nOndata = 1;
+  
   if(e.erroriCiclo.length === 0) {
     esiti = caricaCodice.esecuzioneTest();
     console.log( esiti );
-    var coreLevel = new Livello10( callback, 1 );
-    coreLevel.inizializzaLivello();
+    var coreLevel = new Livello1( callback );
+    coreLevel.inizializzaOndata(nOndata);
     coreLevel.mostraSchermataIniziale();
   }
 } );
