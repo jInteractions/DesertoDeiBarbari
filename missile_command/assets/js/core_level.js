@@ -245,9 +245,7 @@ $(document).ready( function () {
   }
   
   window.eval( jsonLivello.codiceLivello );
-  
-  //console.log( Livello1 );
-  
+    
   var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
   caricaCodice.aggiornaCodiceUtente();
   var e = caricaCodice.validazioneCodiceUtente();
