@@ -51,8 +51,6 @@ e/* Grid styles
 .container {
   padding: 1px 0px 0px 0px;
   width: 100%;
-  
-  background-color: #DAEFFC;
 }
 
 .container .text-muted {

@@ -1,17 +1,16 @@
 <?php
 /*START SEZIONE SELECT*/
 function selectAllFrom_UTENTE($connection){
-	 $query="SELECT email, password, tutorial, morti, alias FROM utente ";
+	 $query="SELECT email, password, tutorial, alias FROM utente ";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->execute();
-		$stmt->bind_result($email, $password, $tutorial, $morti, $alias);
+		$stmt->bind_result($email, $password, $tutorial, $alias);
 		$i = 0;
 		while ($stmt->fetch()) {
 			$fields[$i]["email"] = $email;
 			$fields[$i]["password"] = $password;
 			$fields[$i]["tutorial"] = $tutorial;
-			$fields[$i]["morti"] = $morti;
 			$fields[$i]["alias"] = $alias;
 			$i = $i + 1;
 		}
@@ -20,17 +19,16 @@ function selectAllFrom_UTENTE($connection){
 	return $fields;
 }
 function selectFrom_UTENTE_By_email($connection,$value){
-  $query="SELECT email, password, tutorial, morti, alias FROM utente WHERE email=?";
+	 $query="SELECT email, password, tutorial, alias FROM utente WHERE email=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
 		$stmt->execute();
-		$stmt->bind_result($email, $password, $tutorial, $morti, $alias);
+		$stmt->bind_result($email, $password, $tutorial, $alias);
 		while ($stmt->fetch()) {
 			$fields["email"] = $email;
 			$fields["password"] = $password;
 			$fields["tutorial"] = $tutorial;
-			$fields["morti"] = $morti;
 			$fields["alias"] = $alias;
 		}
 		$stmt->close();
@@ -38,18 +36,17 @@ function selectFrom_UTENTE_By_email($connection,$value){
 	return $fields;
 }
 function selectFrom_UTENTE_By_password($connection,$value){
-	 $query="SELECT email, password, tutorial, morti, alias FROM utente WHERE password=?";
+	 $query="SELECT email, password, tutorial, alias FROM utente WHERE password=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
 		$stmt->execute();
-		$stmt->bind_result($email, $password, $tutorial, $morti, $alias);
+		$stmt->bind_result($email, $password, $tutorial, $alias);
 		$i = 0;
 		while ($stmt->fetch()) {
 			$fields[$i]["email"] = $email;
 			$fields[$i]["password"] = $password;
 			$fields[$i]["tutorial"] = $tutorial;
-			$fields[$i]["morti"] = $morti;
 			$fields[$i]["alias"] = $alias;
 			$i = $i + 1;
 		}
@@ -58,38 +55,17 @@ function selectFrom_UTENTE_By_password($connection,$value){
 	return $fields;
 }
 function selectFrom_UTENTE_By_tutorial($connection,$value){
-	 $query="SELECT email, password, tutorial, morti, alias FROM utente WHERE tutorial=?";
+	 $query="SELECT email, password, tutorial, alias FROM utente WHERE tutorial=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
 		$stmt->execute();
-		$stmt->bind_result($email, $password, $tutorial, $morti, $alias);
+		$stmt->bind_result($email, $password, $tutorial, $alias);
 		$i = 0;
 		while ($stmt->fetch()) {
 			$fields[$i]["email"] = $email;
 			$fields[$i]["password"] = $password;
 			$fields[$i]["tutorial"] = $tutorial;
-			$fields[$i]["morti"] = $morti;
-			$fields[$i]["alias"] = $alias;
-			$i = $i + 1;
-		}
-		$stmt->close();
-	}
-	return $fields;
-}
-function selectFrom_UTENTE_By_morti($connection,$value){
-	 $query="SELECT email, password, tutorial, morti, alias FROM utente WHERE morti=?";
- 	$fields = [];
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "s",$value);
-		$stmt->execute();
-		$stmt->bind_result($email, $password, $tutorial, $morti, $alias);
-		$i = 0;
-		while ($stmt->fetch()) {
-			$fields[$i]["email"] = $email;
-			$fields[$i]["password"] = $password;
-			$fields[$i]["tutorial"] = $tutorial;
-			$fields[$i]["morti"] = $morti;
 			$fields[$i]["alias"] = $alias;
 			$i = $i + 1;
 		}
@@ -98,18 +74,17 @@ function selectFrom_UTENTE_By_morti($connection,$value){
 	return $fields;
 }
 function selectFrom_UTENTE_By_alias($connection,$value){
-	 $query="SELECT email, password, tutorial, morti, alias FROM utente WHERE alias=?";
+	 $query="SELECT email, password, tutorial, alias FROM utente WHERE alias=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
 		$stmt->execute();
-		$stmt->bind_result($email, $password, $tutorial, $morti, $alias);
+		$stmt->bind_result($email, $password, $tutorial, $alias);
 		$i = 0;
 		while ($stmt->fetch()) {
 			$fields[$i]["email"] = $email;
 			$fields[$i]["password"] = $password;
 			$fields[$i]["tutorial"] = $tutorial;
-			$fields[$i]["morti"] = $morti;
 			$fields[$i]["alias"] = $alias;
 			$i = $i + 1;
 		}
@@ -153,18 +128,6 @@ function selectCOUNTFrom_UTENTE_By_tutorial($connection,$value){
 	return $max;
 	}
 }
-function selectCOUNTFrom_UTENTE_By_morti($connection,$value){
-	 $query="SELECT COUNT(*) FROM utente WHERE morti=?";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "s",$value);
-		$stmt->execute();
-		$stmt->bind_result($max);
-		$i = 0;
-		$stmt->fetch(); 
-		$stmt->close();
-	return $max;
-	}
-}
 function selectCOUNTFrom_UTENTE_By_alias($connection,$value){
 	 $query="SELECT COUNT(*) FROM utente WHERE alias=?";
  	if ($stmt = $connection->prepare($query)) {
@@ -188,17 +151,6 @@ function selectMAX_tutorial_From_UTENTE($connection,$value){
 	}
 	return NULL;
 }
-function selectMAX_morti_From_UTENTE($connection,$value){
-	 $query="SELECT MAX(morti) FROM utente ";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->execute();
-		$stmt->bind_result($max);
-		$stmt->fetch(); 
-		$stmt->close();
-		return $max;
-	}
-	return NULL;
-}
 function selectMIN_tutorial_From_UTENTE($connection,$value){
 	 $query="SELECT MIN(tutorial) FROM utente ";
  	if ($stmt = $connection->prepare($query)) {
@@ -210,30 +162,8 @@ function selectMIN_tutorial_From_UTENTE($connection,$value){
 	}
 	return NULL;
 }
-function selectMIN_morti_From_UTENTE($connection,$value){
-	 $query="SELECT MIN(morti) FROM utente ";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->execute();
-		$stmt->bind_result($min);
-		$stmt->fetch(); 
-		$stmt->close();
-		return $min;
-	}
-	return NULL;
-}
 function selectAVERAGE_tutorial_From_UTENTE($connection,$value){
 	 $query="SELECT AV(tutorial) FROM utente ";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->execute();
-		$stmt->bind_result($av);
-		$stmt->fetch(); 
-		$stmt->close();
-		return $av;
-	}
-	return NULL;
-}
-function selectAVERAGE_morti_From_UTENTE($connection,$value){
-	 $query="SELECT AV(morti) FROM utente ";
  	if ($stmt = $connection->prepare($query)) {
 		$stmt->execute();
 		$stmt->bind_result($av);
@@ -279,16 +209,6 @@ function deleteFrom_UTENTE_By_tutorial($connection,$value){
 	}
 	return $result;
 }
-function deleteFrom_UTENTE_By_morti($connection,$value){
-	$query="DELETE FROM utente WHERE morti=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "s",$value);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
 function deleteFrom_UTENTE_By_alias($connection,$value){
 	$query="DELETE FROM utente WHERE alias=?";
 	$result = 0;
@@ -302,10 +222,10 @@ function deleteFrom_UTENTE_By_alias($connection,$value){
 /*END SEZIONE DELETE*/
 
 /*START SEZIONE INSERT*/
-function insertIntoutente($connection,$email, $password, $tutorial, $morti, $alias){	/* create a prepared statement */
-	if ($stmt = $connection->prepare( 'INSERT INTO utente (email, password, tutorial, morti, alias) VALUES (?, ?, ?, ?, ?)')) {
+function insertIntoutente($connection, $label){	/* create a prepared statement */
+	if ($stmt = $connection->prepare( 'INSERT INTO utente (email, password, tutorial, alias) VALUES (?, ?, ?, ?)')) {
 		/* bind parameters for markers */
-		$stmt->bind_param( "sssss",$email, $password, $tutorial, $morti, $alias);
+		$stmt->bind_param( "ssss",$email, $password, $tutorial, $alias);
 		/* execute query */   
 		if (!$stmt->execute() && $debug) {
 			echo $stmt->error;
@@ -343,16 +263,6 @@ function update_UTENTE_SET_password_WITH_tutorial_AS_KEY($connection,$password_v
 	}
 	return $result;
 }
-function update_UTENTE_SET_password_WITH_morti_AS_KEY($connection,$password_val,$morti_val){
-	$query="UPDATE utenteSET password = ? WHERE morti=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$password_val,$morti_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
 function update_UTENTE_SET_password_WITH_alias_AS_KEY($connection,$password_val,$alias_val){
 	$query="UPDATE utenteSET password = ? WHERE alias=?";
 	$result = 0;
@@ -383,61 +293,11 @@ function update_UTENTE_SET_tutorial_WITH_password_AS_KEY($connection,$tutorial_v
 	}
 	return $result;
 }
-function update_UTENTE_SET_tutorial_WITH_morti_AS_KEY($connection,$tutorial_val,$morti_val){
-	$query="UPDATE utenteSET tutorial = ? WHERE morti=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$tutorial_val,$morti_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
 function update_UTENTE_SET_tutorial_WITH_alias_AS_KEY($connection,$tutorial_val,$alias_val){
 	$query="UPDATE utenteSET tutorial = ? WHERE alias=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$tutorial_val,$alias_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_UTENTE_SET_morti_WITH_email_AS_KEY($connection,$morti_val,$email_val){
-	$query="UPDATE utenteSET morti = ? WHERE email=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$morti_val,$email_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_UTENTE_SET_morti_WITH_password_AS_KEY($connection,$morti_val,$password_val){
-	$query="UPDATE utenteSET morti = ? WHERE password=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$morti_val,$password_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_UTENTE_SET_morti_WITH_tutorial_AS_KEY($connection,$morti_val,$tutorial_val){
-	$query="UPDATE utenteSET morti = ? WHERE tutorial=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$morti_val,$tutorial_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_UTENTE_SET_morti_WITH_alias_AS_KEY($connection,$morti_val,$alias_val){
-	$query="UPDATE utenteSET morti = ? WHERE alias=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$morti_val,$alias_val);
 		$result = $stmt->execute();
 		$stmt->close();
 	}
@@ -468,16 +328,6 @@ function update_UTENTE_SET_alias_WITH_tutorial_AS_KEY($connection,$alias_val,$tu
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$alias_val,$tutorial_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_UTENTE_SET_alias_WITH_morti_AS_KEY($connection,$alias_val,$morti_val){
-	$query="UPDATE utenteSET alias = ? WHERE morti=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$alias_val,$morti_val);
 		$result = $stmt->execute();
 		$stmt->close();
 	}

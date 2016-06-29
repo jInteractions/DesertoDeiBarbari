@@ -43,7 +43,9 @@
     require "php/management/management_livello.php";
     require "php/management/management_utente.php";
     session_start();
-    $_SESSION["email"] = "sdavrieux@gmail.com";
+    if (!(isset($_SESSION["email"]) && $_SESSION["email"] != '')) {
+      $_SESSION["email"] = "sdavrieux@gmail.com";
+    }
     if(isset($_GET["idlivello"])){
         $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
         $informazioniLivelloAttuale = selectFrom_LIVELLO_By_idlivello($connection,$_GET["idlivello"]);
@@ -236,7 +238,7 @@
           </a>
         </li>
         <li>
-          <a href="statistiche.html">
+          <a href="statistiche.php">
             <i class="fa fa-bar-chart"></i> <span>Statistiche</span>
           </a>
         </li>

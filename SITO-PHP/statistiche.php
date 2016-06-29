@@ -36,15 +36,17 @@
   </head>
 
   <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
-  <?php
+  <?php 
     require "php/config.php";
     require "php/generic.php";
     require "php/management/management_livello_eseguito.php";
+    require "php/management/management_livello.php";
     require "php/management/management_utente.php";
     session_start();
-    $_SESSION["email"] = "sdavrieux@gmail.com";
+    $_SESSION["email"] = "trombi@gmail.com";
     $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
     $informazioniLivelliEseguiti = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $_SESSION["email"]);
+    $informazioniLivelliEsistenti = selectAllFrom_LIVELLO($connection); 
   ?>
   <div class="wrapper">
     
@@ -79,7 +81,6 @@
                   $utente = selectFrom_UTENTE_By_email($connection, $_SESSION["email"]);
                   echo $utente["alias"];
                 }
-                
               ?>
               </span>
             </a>
@@ -88,7 +89,7 @@
               <li class="user-header">
                 <img src="assets/img/avatar/Simeoni.png" class="img-circle" alt="User Image">
                 <p>
-                  <?php echo $utente["email"];?>
+                  <?php  echo $utente["email"];?>
                   <small>Livello 1</small>
                 </p>
               </li>
@@ -156,7 +157,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <div class="row rigaStatistiche">
-      <div class="col-md-3 col-md-offset-3">
+      <div class="col-md-5 col-md-offset-2">
         <!-- small box -->
         <div class="small-box bg-green">
           <div class="inner">
@@ -165,7 +166,7 @@
               foreach($informazioniLivelliEseguiti as $chiave => $valore) {
                 $punteggio+=$valore["punteggio"];
               }
-              echo $punteggio;
+              echo $punteggio; 
             ?></h3>
 
             <p>Punteggio</p>
@@ -175,13 +176,16 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <!-- small box -->
         <div class="small-box bg-red">
           <div class="inner">
             <h3><?php 
-              
-              echo $utente["morti"];
+              $morti = 0;
+              foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                $morti+=$valore["morti"];
+              }
+              echo $morti; 
             ?></h3>
 
             <p>Morti</p>
@@ -205,7 +209,7 @@
                 foreach($informazioniLivelliEseguiti as $chiave => $valore) {
                   $missiliAbbattuti+=$valore["missili_abbattuti"];
                 }
-                echo $missiliAbbattuti;
+                echo $missiliAbbattuti; 
               ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -224,7 +228,7 @@
                 foreach($informazioniLivelliEseguiti as $chiave => $valore) {
                   $minacceAbbattute+=$valore["minacce_abbattute"];
                 }
-                echo $minacceAbbattute;
+                echo $minacceAbbattute; 
               ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -243,7 +247,7 @@
                 foreach($informazioniLivelliEseguiti as $chiave => $valore) {
                   $missiliLanciati+=$valore["missili_lanciati"];
                 }
-                echo $missiliLanciati;
+                echo $missiliLanciati; 
               ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -262,7 +266,7 @@
                 foreach($informazioniLivelliEseguiti as $chiave => $valore) {
                   $missiliRimasti+=$valore["missili_rimasti"];
                 }
-                echo $missiliRimasti;
+                echo $missiliRimasti; 
               ?></span>
           </div>
           <!-- /.info-box-content -->
@@ -280,7 +284,7 @@
                 foreach($informazioniLivelliEseguiti as $chiave => $valore) {
                   $torretteSalvate+=$valore["torrette_salvate"];
                 }
-                echo $torretteSalvate;
+                echo $torretteSalvate; 
               ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -297,9 +301,9 @@
               <span class="info-box-number"><?php 
                 $ondateSuperate = 0;
                 foreach($informazioniLivelliEseguiti as $chiave => $valore) {
-                  $ondateSuperate+=$valore["ondate_superate"];
+                  $ondateSuperate+=$valore["ondate"];
                 }
-                echo $ondateSuperate;
+                echo $ondateSuperate; 
               ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -311,7 +315,7 @@
         <!-- DONUT CHART -->
         <div class="box box-danger">
           <div class="box-header with-border">
-            <h3 class="box-title">Statistica Missili</h3>
+            <h3 class="box-title">Missili</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -327,7 +331,7 @@
         <!-- /.box -->
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Area Chart</h3>
+            <h3 class="box-title">Morti</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -337,7 +341,7 @@
           </div>
           <div class="box-body">
             <div class="chart">
-              <canvas id="areaChart" style="height:250px"></canvas>
+              <canvas id="areaChartMorti" style="height:250px"></canvas>
             </div>
           </div>
           <!-- /.box-body -->
@@ -347,7 +351,7 @@
       <div class="col-md-6">
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Area Chart</h3>
+            <h3 class="box-title">Punteggio</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -357,7 +361,7 @@
           </div>
           <div class="box-body">
             <div class="chart">
-              <canvas id="areaChart1" style="height:250px"></canvas>
+              <canvas id="areaChartPunteggio" style="height:250px"></canvas>
             </div>
           </div>
           <!-- /.box-body -->
@@ -365,7 +369,7 @@
         <!-- /.box -->
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Area Chart</h3>
+            <h3 class="box-title">Ondate</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -375,7 +379,7 @@
           </div>
           <div class="box-body">
             <div class="chart">
-              <canvas id="areaChart2" style="height:250px"></canvas>
+              <canvas id="areaChartOndate" style="height:250px"></canvas>
             </div>
           </div>
           <!-- /.box-body -->
@@ -387,438 +391,61 @@
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">Data Table With Full Features</h3>
+            <h3 class="box-title">Classifica mondiale</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
+                <th>Alias</th>
+                <th>Punteggio</th>
+                <th>Morti</th>
+                <th>Ondate</th>
+                <th>Missili abbattuti</th>
+                <th>Minacce abbattute</th>
+                <th>Missili lanciati</th>
+                <th>Missili rimasti</th>
+                <th>Torrette salvate</th>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 4.0
-                </td>
-                <td>Win 95+</td>
-                <td> 4</td>
-                <td>X</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 5.0
-                </td>
-                <td>Win 95+</td>
-                <td>5</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 5.5
-                </td>
-                <td>Win 95+</td>
-                <td>5.5</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet
-                  Explorer 6
-                </td>
-                <td>Win 98+</td>
-                <td>6</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>Internet Explorer 7</td>
-                <td>Win XP SP2+</td>
-                <td>7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Trident</td>
-                <td>AOL browser (AOL desktop)</td>
-                <td>Win XP</td>
-                <td>6</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 1.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 1.5</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 2.0</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Firefox 3.0</td>
-                <td>Win 2k+ / OSX.3+</td>
-                <td>1.9</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Camino 1.0</td>
-                <td>OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Camino 1.5</td>
-                <td>OSX.3+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Netscape 7.2</td>
-                <td>Win 95+ / Mac OS 8.6-9.2</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Netscape Browser 8</td>
-                <td>Win 98SE+</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Netscape Navigator 9</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.0</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.1</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.1</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.2</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.2</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.3</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.3</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.4</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.4</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.5</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.5</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.6</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>1.6</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.7</td>
-                <td>Win 98+ / OSX.1+</td>
-                <td>1.7</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Mozilla 1.8</td>
-                <td>Win 98+ / OSX.1+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Seamonkey 1.1</td>
-                <td>Win 98+ / OSX.2+</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Gecko</td>
-                <td>Epiphany 2.20</td>
-                <td>Gnome</td>
-                <td>1.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Webkit</td>
-                <td>Safari 1.2</td>
-                <td>OSX.3</td>
-                <td>125.5</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Webkit</td>
-                <td>Safari 1.3</td>
-                <td>OSX.3</td>
-                <td>312.8</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Webkit</td>
-                <td>Safari 2.0</td>
-                <td>OSX.4+</td>
-                <td>419.3</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Webkit</td>
-                <td>Safari 3.0</td>
-                <td>OSX.4+</td>
-                <td>522.1</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Webkit</td>
-                <td>OmniWeb 5.5</td>
-                <td>OSX.4+</td>
-                <td>420</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Webkit</td>
-                <td>iPod Touch / iPhone</td>
-                <td>iPod</td>
-                <td>420.1</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Webkit</td>
-                <td>S60</td>
-                <td>S60</td>
-                <td>413</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Opera 7.0</td>
-                <td>Win 95+ / OSX.1+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Opera 7.5</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Opera 8.0</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Opera 8.5</td>
-                <td>Win 95+ / OSX.2+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Opera 9.0</td>
-                <td>Win 95+ / OSX.3+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Opera 9.2</td>
-                <td>Win 88+ / OSX.3+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Opera 9.5</td>
-                <td>Win 88+ / OSX.3+</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Opera for Wii</td>
-                <td>Wii</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Nokia N800</td>
-                <td>N800</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Presto</td>
-                <td>Nintendo DS browser</td>
-                <td>Nintendo DS</td>
-                <td>8.5</td>
-                <td>C/A<sup>1</sup></td>
-              </tr>
-              <tr>
-                <td>KHTML</td>
-                <td>Konqureror 3.1</td>
-                <td>KDE 3.1</td>
-                <td>3.1</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>KHTML</td>
-                <td>Konqureror 3.3</td>
-                <td>KDE 3.3</td>
-                <td>3.3</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>KHTML</td>
-                <td>Konqureror 3.5</td>
-                <td>KDE 3.5</td>
-                <td>3.5</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Tasman</td>
-                <td>Internet Explorer 4.5</td>
-                <td>Mac OS 8-9</td>
-                <td>-</td>
-                <td>X</td>
-              </tr>
-              <tr>
-                <td>Tasman</td>
-                <td>Internet Explorer 5.1</td>
-                <td>Mac OS 7.6-9</td>
-                <td>1</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>Tasman</td>
-                <td>Internet Explorer 5.2</td>
-                <td>Mac OS 8-X</td>
-                <td>1</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>Misc</td>
-                <td>NetFront 3.1</td>
-                <td>Embedded devices</td>
-                <td>-</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>Misc</td>
-                <td>NetFront 3.4</td>
-                <td>Embedded devices</td>
-                <td>-</td>
-                <td>A</td>
-              </tr>
-              <tr>
-                <td>Misc</td>
-                <td>Dillo 0.8</td>
-                <td>Embedded devices</td>
-                <td>-</td>
-                <td>X</td>
-              </tr>
-              <tr>
-                <td>Misc</td>
-                <td>Links</td>
-                <td>Text only</td>
-                <td>-</td>
-                <td>X</td>
-              </tr>
-              <tr>
-                <td>Misc</td>
-                <td>Lynx</td>
-                <td>Text only</td>
-                <td>-</td>
-                <td>X</td>
-              </tr>
-              <tr>
-                <td>Misc</td>
-                <td>IE Mobile</td>
-                <td>Windows Mobile 6</td>
-                <td>-</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>Misc</td>
-                <td>PSP browser</td>
-                <td>PSP</td>
-                <td>-</td>
-                <td>C</td>
-              </tr>
-              <tr>
-                <td>Other browsers</td>
-                <td>All others</td>
-                <td>-</td>
-                <td>-</td>
-                <td>U</td>
-              </tr>
+              <?php 
+                $utenti = selectAllFrom_UTENTE($connection); 
+                foreach($utenti as $chiave => $utente) {
+                  echo '<tr>';
+                  echo '<td>'.$utente["alias"].'</td>';
+                  $livelliEseguitiUtente = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $utente["email"]);
+                  $punteggioUtente = 0;
+                  $mortiUtente = 0;
+                  $ondateUtente = 0;
+                  $missiliAbbatutiUtente = 0;
+                  $minacceAbbatuteUtente = 0;
+                  $missiliLanciatiUtente = 0;
+                  $missiliRimastiUtente = 0;
+                  $torretteSalvateUtente = 0;
+                  foreach($livelliEseguitiUtente as $chiave => $livelloEseguitoUtente) {
+                    $punteggioUtente += $livelloEseguitoUtente["punteggio"];
+                    $mortiUtente += $livelloEseguitoUtente["morti"];
+                    $ondateUtente += $livelloEseguitoUtente["ondate"];
+                    $missiliAbbatutiUtente += $livelloEseguitoUtente["missili_abbattuti"];
+                    $minacceAbbatuteUtente += $livelloEseguitoUtente["minacce_abbatute"];
+                    $missiliLanciatiUtente += $livelloEseguitoUtente["missili_lanciati"];
+                    $missiliRimastiUtente += $livelloEseguitoUtente["missili_rimasti"];
+                    $torretteSalvateUtente += $livelloEseguitoUtente["torrette_salvate"];
+                  }
+                  echo '<td>'.$punteggioUtente.'</td>';
+                  echo '<td>'.$mortiUtente.'</td>';
+                  echo '<td>'.$ondateUtente.'</td>';
+                  echo '<td>'.$missiliAbbatutiUtente.'</td>';
+                  echo '<td>'.$minacceAbbatuteUtente.'</td>';
+                  echo '<td>'.$missiliLanciatiUtente.'</td>';
+                  echo '<td>'.$missiliRimastiUtente.'</td>';
+                  echo '<td>'.$torretteSalvateUtente.'</td>';
+                  echo '</tr>';
+                }
+              ?>
               </tbody>
-              <tfoot>
-              <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-              </tr>
-              </tfoot>
             </table>
           </div>
           <!-- /.box-body -->
@@ -865,36 +492,101 @@
       //--------------
 
       // Get context with jQuery - using jQuery's .get() method.
-      var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
-      var areaChartCanvas1 = $("#areaChart1").get(0).getContext("2d");
-      var areaChartCanvas2 = $("#areaChart2").get(0).getContext("2d");
+    
+      var areaChartCanvasMorti = $("#areaChartMorti").get(0).getContext("2d");
+      var areaChartCanvasPunteggio = $("#areaChartPunteggio").get(0).getContext("2d");
+      var areaChartCanvasOndate = $("#areaChartOndate").get(0).getContext("2d");
       // This will get the first returned node in the jQuery collection.
-      var areaChart = new Chart(areaChartCanvas);
-      var areaChart1 = new Chart(areaChartCanvas1);
-      var areaChart2 = new Chart(areaChartCanvas2);
+      var areaChartMorti = new Chart(areaChartCanvasMorti);
+      var areaChartPunteggio = new Chart(areaChartCanvasPunteggio);
+      var areaChartOndate = new Chart(areaChartCanvasOndate);
 
-      var areaChartData = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+      var areaChartDataPunteggio = {
+        labels: [<?php 
+            foreach($informazioniLivelliEsistenti as $chiave => $valore) {
+              if($chiave + 1 == count($informazioniLivelliEseguiti))
+                echo '"'.$valore["nome"].'"';
+              else
+                echo '"'.$valore["nome"].'", ';
+            }
+            ?>],
         datasets: [
           {
-            label: "Electronics",
-            fillColor: "rgba(210, 214, 222, 1)",
-            strokeColor: "rgba(210, 214, 222, 1)",
-            pointColor: "rgba(210, 214, 222, 1)",
-            pointStrokeColor: "#c1c7d1",
+            label: "Punteggio",
+            fillColor: "#b9e9b2",
+            strokeColor: "#53c743",
+            pointColor: "#53c743",
+            pointStrokeColor: "#53c743",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81, 56, 55, 40]
-          },
+            data:  [<?php 
+            foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+              if($chiave + 1 == count($informazioniLivelliEseguiti))
+                echo $valore["punteggio"];
+              else
+                echo $valore["punteggio"].', ';
+            }
+            ?>]
+          }
+        ]
+      };
+      
+      var areaChartDataMorti = {
+        labels: [<?php 
+            foreach($informazioniLivelliEsistenti as $chiave => $valore) {
+              if($chiave + 1 == count($informazioniLivelliEseguiti))
+                echo '"'.$valore["nome"].'"';
+              else
+                echo '"'.$valore["nome"].'", ';
+            }
+            ?>],
+        datasets: [
           {
-            label: "Digital Goods",
-            fillColor: "rgba(60,141,188,0.9)",
-            strokeColor: "rgba(60,141,188,0.8)",
-            pointColor: "#3b8bba",
-            pointStrokeColor: "rgba(60,141,188,1)",
+            label: "Punteggio",
+            fillColor: "#b9e9b2",
+            strokeColor: "#53c743",
+            pointColor: "#53c743",
+            pointStrokeColor: "#53c743",
             pointHighlightFill: "#fff",
-            pointHighlightStroke: "rgba(60,141,188,1)",
-            data: [28, 48, 40, 19, 86, 27, 90]
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data:  [<?php 
+            foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+              if($chiave + 1 == count($informazioniLivelliEseguiti))
+                echo $valore["morti"];
+              else
+                echo $valore["morti"].', ';
+            }
+            ?>]
+          }
+        ]
+      };
+      
+      var areaChartDataOndate = {
+        labels: [<?php 
+            foreach($informazioniLivelliEsistenti as $chiave => $valore) {
+              if($chiave + 1 == count($informazioniLivelliEseguiti))
+                echo '"'.$valore["nome"].'"';
+              else
+                echo '"'.$valore["nome"].'", ';
+            }
+            ?>],
+        datasets: [
+          {
+            label: "Punteggio",
+            fillColor: "#b9e9b2",
+            strokeColor: "#53c743",
+            pointColor: "#53c743",
+            pointStrokeColor: "#53c743",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data:  [<?php 
+            foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+              if($chiave + 1 == count($informazioniLivelliEseguiti))
+                echo $valore["ondate"];
+              else
+                echo $valore["ondate"].', ';
+            }
+            ?>]
           }
         ]
       };
@@ -939,9 +631,9 @@
       };
 
       //Create the line chart
-      areaChart.Line(areaChartData, areaChartOptions);
-      areaChart1.Line(areaChartData, areaChartOptions);
-      areaChart2.Line(areaChartData, areaChartOptions);
+      areaChartMorti.Line(areaChartDataMorti, areaChartOptions);
+      areaChartPunteggio.Line(areaChartDataPunteggio, areaChartOptions);
+      areaChartOndate.Line(areaChartDataOndate, areaChartOptions);
 
       
       //-------------
@@ -958,7 +650,7 @@
           label: "Missili lanciati"
         },
         {
-          value: <?php echo $missiliRimasti; ?>,
+          value: <?php echo $missiliRimasti;  ?>,
           color: "#00a65a",
           highlight: "#00a65a",
           label: "Missili rimasti"
@@ -997,12 +689,12 @@
         "lengthChange": false,
         "searching": false,
         "ordering": true,
+        "order": [[ 1, "desc" ]],
         "info": true,
         "autoWidth": false
         }
       );
     });
     </script>
-    
   </body>
 </html>
