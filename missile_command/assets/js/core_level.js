@@ -36,9 +36,7 @@ CoreLevel.prototype.inizializzaOndata = function ( numeroOndata ) {
   if( this.numeroOndata === 1 ) {
     this.inizializzaBasi();
   } else {
-    console.log( this.basi )
     $.each( this.basi, function ( indice, base ) {
-      //console.log( base );
       base.coreGame = mySelf.coreGame
     } );
     mySelf.coreGame.basi = mySelf.basi;
@@ -126,6 +124,7 @@ CoreLevel.prototype.mostraSchermataGameOver = function () {
   ctx.font = 'bold 20px arial';
   ctx.fillText( 'HAI PERSO', this.canvas.width/2, this.canvas.height/2 - 20 );
   ctx.fillStyle = this.coreGame.coloreTestoSecondario;
+  console.log( this.numeroOndata );
   ctx.fillText( 'Ondata ' + this.numeroOndata, this.canvas.width/2, this.canvas.height/2 + 20 );
   ctx.textAlign = "start";
   $( '.container' ).off();                    
@@ -276,7 +275,6 @@ console.log = function ( stringa ) {
 $(document).ready( function () {  
   var callback = function ( risultatoOndata ) {
     if( risultatoOndata.esito === true ) {
-      console.log(coreLevel);
       ++nOndata;
       coreLevel.inizializzaOndata(nOndata);
       coreLevel.mostraSchermataIniziale();
