@@ -4,7 +4,6 @@ CREATE TABLE utente(
 	email varchar(250) NOT NULL PRIMARY KEY ,
 	password varchar(250) NOT NULL,
 	tutorial int NOT NULL DEFAULT 0,
-	morti INT NOT NULL DEFAULT 0,
 	alias varchar(100) NOT NULL
 );
 
@@ -13,7 +12,8 @@ CREATE TABLE livello(
 	idlivello INT PRIMARY KEY AUTO_INCREMENT,
 	numero INT NOT NULL,
 	nome varchar(250) NOT NULL,
-	json TEXT NOT NULL
+	json TEXT NOT NULL,
+	morti INT NOT NULL DEFAULT 0,
 );
 
 DROP TABLE IF EXISTS livello_eseguito;

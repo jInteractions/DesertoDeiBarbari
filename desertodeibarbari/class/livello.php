@@ -4,6 +4,7 @@
 		var numero;
 		var nome;
 		var json;
+		var morti;
 
 	} 
 ?>
