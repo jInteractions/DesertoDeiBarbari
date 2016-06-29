@@ -309,7 +309,7 @@
                   </div>
                   <div class="riga center-block">
                     <div class="col-md-2 text-center">
-                      <button type="button" class="bottone btn btn-lg btn-success center-block" data-toggle="tooltip" data-placement="bottom" title="Success description">
+                      <button type="button" class="bottone btn btn-lg btn-success center-block" data-toggle="tooltip" data-placement="bottom" title="Success description" id="bottoneCaricaCodice">
                         <span class="iconaReset glyphicon glyphicon-play" aria-hidden="true"></span>
                         Avvia
                       </button>
@@ -323,7 +323,6 @@
                     <div class="col-md-4 text-center">
                       <button type="button" class="bottone btn btn-lg btn-warning center-block" data-toggle="tooltip" data-placement="bottom" title="Warning description">
                         Livello successivo
-                        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
                       </button>
                     </div>
                     <div class="col-md-3 text-center">
@@ -382,14 +381,13 @@
         </div>
         <div class="col-md-5 colonna">
           <div class="divExternalGame">
-            <div class="gameContainer">
+            <div class="gameContainer" tabindex="1">
               <div class="crosshair"/>
             </div>
             <canvas width="510" height="460"></canvas>
           </div>
           <div class="pannelloTerminale panel panel-success">
             <div class="panel-body terminale" id="terminale">
-              Basic panel example
             </div>
           </div>
         </div>
@@ -412,7 +410,15 @@
       $.widget.bridge('uibutton', $.ui.button);
     </script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/missile_command.js"></script>
+    <script src="missile_command/core_game.js"></script>
+    <script src="missile_command/core_level.js"></script>
+    <script src="missile_command/carica_codice.js"></script>
+<!--    <script src="missile_command/livello1-corretto.js"></script>-->
+    <script src="missile_command/elementi_gioco/base.js"></script>
+    <script src="missile_command/elementi_gioco/minacce.js"></script>
+    <script src="missile_command/elementi_gioco/mirino.js"></script>
+    <script src="missile_command/elementi_gioco/missili.js"></script>
+    <script src="missile_command/elementi_gioco/batteria_antimissile.js"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/app.js"></script>
     <!-- Bootstrap WYSIHTML5 -->
@@ -420,6 +426,8 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script>
+      var editorCodice = [];
+      var coreLevel;
       function editor(id){
         var x = CodeMirror.fromTextArea(id, {
             mode: "javascript",
@@ -429,6 +437,7 @@
             width: "100%",
             autoRefresh: true
         });
+        return x;
       };
       function mostraAiuto(indice){
         var testoAiutoStr = "#testoAiuto" + indice;
@@ -440,18 +449,72 @@
        $(document).on("click", "button.bottoneAiutoClass" , function() {
             mostraAiuto(this.id.replace("bottoneAiuto", ""));
         });
+        $("#bottoneCaricaCodice").click(ricaricaCodice);
         $('textarea').each(function(){
            if( $(this).attr('id').match('codesnippet_editable.*') ) {
               codesnippet = document.getElementById($(this).attr('id'));
-              editor(codesnippet);
+              var identificatoreCodice = parseInt($(this).attr('id').replace("codesnippet_editable", ""));
+              editorCodice[identificatoreCodice] = editor(codesnippet);
            }
         });
         
+       ricaricaCodice();
+       
         /*word.markText({line:1,ch:1},{line:30,ch:10},{readOnly:true});
         word.markText({line:1,ch:1},{line:30,ch:10},{css: "background-color: #f8f8f8"});
         word.markText({line:41,ch:10},{line:80,ch:10},{readOnly:true});
         word.markText({line:41,ch:10},{line:80,ch:10},{css: "background-color: #f8f8f8"});*/
-      });
+       
+     });
+      
+     var ricaricaCodice = function (){
+       var callback = function ( risultatoOndata ) {
+          if( risultatoOndata.esito === true ) {
+            ++nOndata;
+            coreLevel.inizializzaLivello(nOndata);
+            coreLevel.mostraSchermataIniziale();
+          } else {
+            console.log("morto")
+            coreLevel.inizializzaLivello(1);
+            coreLevel.mostraSchermataGameOver();
+          }
+        }
+       
+        var jsonLivello = <?php echo $informazioniLivelloAttuale["json"] ?>;
+        window.eval( jsonLivello.codiceLivello );
+        var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
+        caricaCodice.aggiornaCodiceUtente();
+        var e = caricaCodice.validazioneCodiceUtente();
+        console.log(e);
+
+        $.each(e.erroriSintassi, function(indice, errore) {
+          $("#terminale").append(errore.file + ": " + errore.testo + " " + errore.riga + "<br>");
+        });
+        $.each(e.erroreParole, function(indice, errore) {
+          $("#terminale").append(errore.file + ": " + errore.testo + " " + errore.riga + "<br>");
+        });
+        $.each(e.erroriCiclo, function(indice, errore) {
+          $("#terminale").append(errore.file + ": " + errore.testo + " " + errore.riga + "<br>");
+        });
+        
+       
+        nOndata = 1;
+
+        if(e.erroriCiclo.length === 0) {
+          esiti = caricaCodice.esecuzioneTest();
+          //console.log( esiti );
+          console.log(coreLevel);
+          if(coreLevel != undefined) {
+            clearInterval(coreLevel.intervalloSchermata);      
+            console.log("Cleared interval");
+          }
+            
+          coreLevel = new Livello1( callback );
+          coreLevel.inizializzaLivello(nOndata);
+          coreLevel.mostraSchermataIniziale();
+        }
+     }    
+      
     </script>
     <script src="http://codemirror.net/lib/codemirror.js"></script>
     <script src="https://codemirror.net/addon/display/autorefresh.js"></script>

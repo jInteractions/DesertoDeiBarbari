@@ -78,6 +78,7 @@ code {
   height: 460px;
   margin: 0 auto;
   position: relative;
+  outline: none;
   background-color: green;
 }
 
