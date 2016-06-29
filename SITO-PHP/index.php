@@ -44,7 +44,7 @@
     require "php/management/management_utente.php";
     session_start();
     if (!(isset($_SESSION["email"]) && $_SESSION["email"] != '')) {
-      $_SESSION["email"] = "sdavrieux@gmail.com";
+      $_SESSION["email"] = "trombi@gmail.com";
     }
     if(isset($_GET["idlivello"])){
         $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
@@ -120,7 +120,7 @@
     <?php 
       foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
       {
-        if($valore["consultazione"]===true){
+        if($valore["consultazione"]===false){
           echo '<div class="modal fade" id="modalAiuto'.$chiave.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
     ?>
           <!-- Modal check aiuti -->
@@ -134,7 +134,7 @@
                   <h4 class="modal-title" id="myModalLabel">Aiuto di <?php echo $valore["nomeFile"] ?></h4>
                 </div>
                 <div class="modal-body">
-                  <h3>Sei sicuro di voler utilizzare un token aiuto? Costerà AGGIUNGERE COSTO</h3>
+                  <h3>Sei sicuro di voler utilizzare un token aiuto? Costerà <?php echo $jsonLivello["costoAiuti"]; ?> punti del tuo punteggio esperienza!</h3>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -275,7 +275,7 @@
                               echo '<li class="active">';
                             else
                               echo '<li>';
-                            echo '<a href="#tab'.$chiave.'default" data-toggle="tab">';
+                            echo '<a href="#tab'.$chiave.'default" id="tab'.$chiave.'default" data-toggle="tab">';
                             echo $valore["nomeFile"];
                         ?>                      
                             <span class="iconaReset glyphicon glyphicon-repeat" aria-hidden="true"/>
@@ -347,13 +347,13 @@
                   <?php 
                     foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
                     {
-                      if($valore["consultazione"]===true){
+                      if($valore["consultazione"]===false){
                   ?>
                         <p>
                           <?php echo $valore["descrizione"]; ?>
                         </p>
                         <?php
-                          echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
+                          echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
                           echo '<p id="testoAiuto'.$chiave.'" />';
                       }
                     }
@@ -410,6 +410,7 @@
       $.widget.bridge('uibutton', $.ui.button);
     </script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/chiamateAjax.js"></script>
     <script src="missile_command/core_game.js"></script>
     <script src="missile_command/core_level.js"></script>
     <script src="missile_command/carica_codice.js"></script>
@@ -441,9 +442,9 @@
       };
       function mostraAiuto(indice){
         var testoAiutoStr = "#testoAiuto" + indice;
-        $(testoAiutoStr).html(
-          "Questo è l'aiuto numero <b>" + indice + "</b>"
-        );
+        var titoloCodice = $("#tab"+indice+"default").text();
+        var nomeBottoneAiuto = "#buttonModalAiuto" + indice;
+        getHelp(<?php echo $_GET["idlivello"]; ?>, titoloCodice, testoAiutoStr, "<?php echo $_SESSION["email"]; ?>", nomeBottoneAiuto);
       };
      $(document).ready(function () {
        $(document).on("click", "button.bottoneAiutoClass" , function() {
