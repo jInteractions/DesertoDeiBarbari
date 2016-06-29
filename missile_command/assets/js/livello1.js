@@ -13,26 +13,6 @@ Livello1.prototype.inizializzaMirino = function ( ) {
   }
 }
 
-Livello1.prototype.inizializzaTorrette = function ( ) {
-  var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue'];
-  var nMissili = coloreMissili.length;
-  var nSoldati = 10;
-  var Tmin = 50;
-  var Tmax = 1000;
-  var deltaTempo = 70;
-  var deltaRaffreddamento = 3;
-  
-  this.coreGame.aggiungiBatteriaAntimissile(
-    new BatteriaAntimissile ( 35, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento )
-  );
-  this.coreGame.aggiungiBatteriaAntimissile(
-    new BatteriaAntimissile ( 255, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento )
-  );
-  this.coreGame.aggiungiBatteriaAntimissile(
-    new BatteriaAntimissile ( 475, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento )
-  );
-}
-
 Livello1.prototype.inizializzaLivello = function ( ) {
   this.inizializzaMirino();
   this.coreGame = new CoreGame( this.canvas, this.mirino, {
@@ -104,6 +84,47 @@ Livello1.prototype.calcolaCoefficienteOndata = function () {
   return this.numeroOndata * 1.2;
 }
 
+// interfaccia test - codice utente
+var controlloAccesso = function () {
+  var risultato = autenticazioneManuale();
+  var nome = risultato[ 0 ];
+  var matricola = risultato[ 1 ];
+  var password = risultato[ 2 ];
+  var stringa = risultato[ 3 ];
+  
+  if (
+    nome === "Cpt Simeoni"
+    && matricola === "150716"
+    && password === "utf-8_tuono"
+    && stringa === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
+  ) {
+    console.log("> Informazioni inserite correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
+    return true;
+  } else {
+    console.log(
+      "> Nome: " + nome
+      + "\n> Matricola: " + matricola
+      + "\n> Password: " + Array(password.length + 1).join("*")
+      + "\n> Stringa: " + stringa
+      + "\n> Informazioni non corrette."
+    );
+    return false;
+  }
+}
+
+// interfaccia test - codice utente
+var sbloccaSparo = function ( ) {
+  var base = rand(1, Math.sqrt(Number.MAX_VALUE));
+  var altezza = rand(1, Math.sqrt(Number.MAX_VALUE));
+  if( base * altezza === verificaPresenzaCervelloOperatore( base, altezza ) ) {
+    console.log("> Formula corretta, verifica completata.");
+    return true;
+  } else {
+    console.log("> Formula errata, forma di vita intelligente non rilevata.");
+    return false;
+  }
+}
+
 // TAB 1
 
 /*
@@ -161,34 +182,6 @@ var autenticazioneManuale = function () {
   }
 }) ();*/
 
-// interfaccia test - codice utente
-var controlloAccesso = function () {
-  var risultato = autenticazioneManuale();
-  var nome = risultato[ 0 ];
-  var matricola = risultato[ 1 ];
-  var password = risultato[ 2 ];
-  var stringa = risultato[ 3 ];
-  
-  if (
-    nome === "Cpt Simeoni"
-    && matricola === "150716"
-    && password === "utf-8_tuono"
-    && stringa === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
-  ) {
-    console.log("> Informazioni inserite correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
-    return true;
-  } else {
-    console.log(
-      "> Nome: " + nome
-      + "\n> Matricola: " + matricola
-      + "\n> Password: " + Array(password.length + 1).join("*")
-      + "\n> Stringa: " + stringa
-      + "\n> Informazioni non corrette."
-    );
-    return false;
-  }
-}
-
 // TAB 3
 
 var verificaPresenzaCervelloOperatore = function ( base, altezza ) {
@@ -209,16 +202,3 @@ var verificaPresenzaCervelloOperatore = function ( base, altezza ) {
     return false;
   }
 } ) (); */
-
-// interfaccia test - codice utente
-var sbloccaSparo = function ( ) {
-  var base = rand(1, Math.sqrt(Number.MAX_VALUE));
-  var altezza = rand(1, Math.sqrt(Number.MAX_VALUE));
-  if( base * altezza === verificaPresenzaCervelloOperatore( base, altezza ) ) {
-    console.log("> Formula corretta, verifica completata.");
-    return true;
-  } else {
-    console.log("> Formula errata, forma di vita intelligente non rilevata.");
-    return false;
-  }
-}

@@ -34,7 +34,7 @@ Livello10.prototype.inizializzaTorrette = function () {
   this.coreGame.aggiungiBatteriaAntimissile ( 
     new TorrettaAutomatica( 0, opzioniBatteria1, 100, true, filtro, true, 15, 10, 'blue', this.coreGame) );
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new BatteriaAntimissile( 255, 410, 10, 10, coloreMissili, 50, 1000, 70, 10 ) );
+    new BatteriaAntimissile( 255, 410, 10, 10, coloreMissili, 50, 1000, 70, 10, this.coreGame ) );
   var opzioniBatteria2 = { 
     x: 475, 
     y: 410, 
@@ -306,16 +306,19 @@ function TorrettaAutomatica ( indice, opzioniBatteria, tempoRicarica, disegnaScr
   this.indice = indice;
   
   // Chiamata al costruttore della classe base
-  BatteriaAntimissile.call( this, 
-                            opzioniBatteria.x, 
-                            opzioniBatteria.y, 
-                            opzioniBatteria.nMissili, 
-                            opzioniBatteria.nSoldati, 
-                            opzioniBatteria.colori, 
-                            opzioniBatteria.Tmin, 
-                            opzioniBatteria.Tmax, 
-                            opzioniBatteria.deltaTempo, 
-                            opzioniBatteria.deltaRaffreddamento );
+  BatteriaAntimissile.call(
+    this, 
+    opzioniBatteria.x, 
+    opzioniBatteria.y, 
+    opzioniBatteria.nMissili, 
+    opzioniBatteria.nSoldati, 
+    opzioniBatteria.colori, 
+    opzioniBatteria.Tmin, 
+    opzioniBatteria.Tmax, 
+    opzioniBatteria.deltaTempo, 
+    opzioniBatteria.deltaRaffreddamento,
+    coreGame
+  );
   
   // Impostazioni torretta
   this.tempoRicarica = tempoRicarica;

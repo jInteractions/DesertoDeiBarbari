@@ -29,6 +29,7 @@ function CoreGame ( canvas, mirino, palette ) {
   this.punteggioTorretteSalvate = 0;
   this.punteggioMissiliSparati = 0;
   this.punteggioNumeroOndate = 0;
+  this.punteggioMorti = 0;
 };
 
 // Constanti 
@@ -231,6 +232,11 @@ CoreGame.prototype.aggiornaPunteggioMissiliSparati = function () {
 CoreGame.prototype.aggiornaPunteggioNumeroOndate = function () {
   ++this.punteggioNumeroOndate;
 };
+
+CoreGame.prototype.aggiornaPunteggioMorti = function ( morti ) {
+  this.punteggioMorti += morti;
+  console.log(this.punteggioMorti);
+}
 
 CoreGame.prototype.calcoloMissiliRimanenti = function () {
   var tot = 0;

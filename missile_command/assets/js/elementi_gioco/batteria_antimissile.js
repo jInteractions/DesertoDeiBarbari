@@ -1,5 +1,7 @@
 function BatteriaAntimissile ( x, y, nMissili, nSoldati, colori, 
-                               Tmin, Tmax, deltaTempo, deltaRaffreddamento ) {
+                               Tmin, Tmax, deltaTempo, deltaRaffreddamento, coreGame ) {
+  this.coreGame = coreGame;
+  
   // Attributi Posizione
   this.x = x;
   this.y = y;
@@ -76,6 +78,7 @@ BatteriaAntimissile.prototype.esplodi = function () {
 BatteriaAntimissile.prototype.distruggiti = function ( ) {
   clearInterval(this.timerRaffreddamento);
   this.stato = BatteriaAntimissile.ESPLOSIONE;
+  this.coreGame.aggiornaPunteggioMorti( this.numeroSoldati );
 }
 
 BatteriaAntimissile.prototype.disegna = function ( ctx ) {

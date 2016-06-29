@@ -75,12 +75,12 @@ Missile.prototype.esplodi = function () {
       if ( this.bersaglio.tipo instanceof Base ) {
         if ( this.bersaglio.tipo.attiva === true ) {
           this.bersaglio.tipo.attiva = false;
-          // gestire popolazione morta
+          this.bersaglio.tipo.distruggiti();
         }
       } else {
-        if ( this.bersaglio.tipo.stato !== BatteriaAntimissile.DISTRUTTA ) {
-          this.bersaglio.tipo.stato = BatteriaAntimissile.DISTRUTTA;
-          // gestire popolazione morta
+        if ( this.bersaglio.tipo.stato === BatteriaAntimissile.ATTIVA ) {
+          this.bersaglio.tipo.stato = BatteriaAntimissile.ESPLOSIONE;
+          this.bersaglio.tipo.distruggiti();
         }
       }
     }

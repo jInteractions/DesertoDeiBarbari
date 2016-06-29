@@ -1,4 +1,5 @@
-function Base ( x, y, vitale, numeroSoldati, colore ) {
+function Base ( x, y, vitale, numeroSoldati, colore, coreGame ) {
+  this.coreGame = coreGame;
   this.vitale = vitale; // booleano
   this.x = x;
   this.y = y;
@@ -23,4 +24,6 @@ Base.prototype.disegna = function ( ctx ) {
   ctx.fill();
 };
 
-Base.prototype.distruggiti = function () {};
+Base.prototype.distruggiti = function () {
+  this.coreGame.aggiornaPunteggioMorti( this.numeroSoldati );
+};
