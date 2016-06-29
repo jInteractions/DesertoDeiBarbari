@@ -216,7 +216,8 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
     coloreScia: 'blue',
     massimoRaggioEsplosione: 30,
     distanzaPerFrame: 7
-  } ) );
+  }, this.coreGame ) );
+  
   this.coreGame.aggiornaPunteggioMissiliSparati();
   this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;

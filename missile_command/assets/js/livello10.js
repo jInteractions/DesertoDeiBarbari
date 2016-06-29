@@ -152,6 +152,7 @@ Livello10.prototype.sparo = function ( x, y, tasto ) {
     massimoRaggioEsplosione: 30,
     distanzaPerFrame: 7
   }, this.coreGame ) );
+  this.coreGame.aggiornaPunteggioMissiliSparati();
   this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
 }

@@ -228,6 +228,7 @@ CoreGame.prototype.aggiornaCoefficienteOndata = function ( nuovoCoefficiente ) {
 
 CoreGame.prototype.aggiornaPunteggioMissiliSparati = function () {
   ++this.punteggioMissiliSparati;
+  console.log("missilisparati: " + this.punteggioMissiliSparati)
 };
 
 CoreGame.prototype.aggiornaPunteggioNumeroOndate = function () {

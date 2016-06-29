@@ -76,6 +76,7 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
     massimoRaggioEsplosione: raggio,
     distanzaPerFrame: vel
   }, this.coreGame ) );
+  this.coreGame.aggiornaPunteggioMissiliSparati();
   this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += incrementoTemperatura;
 }
