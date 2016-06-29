@@ -10,6 +10,7 @@
 		var missili_lanciati;
 		var missili_rimasti;
 		var torrette_salvate;
+		var morti;
 
 	} 
 ?>

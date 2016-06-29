@@ -6,13 +6,14 @@ function selectAllFrom_UTENTE($connection){
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->execute();
 		$stmt->bind_result($email, $password, $tutorial, $alias);
-		
-		$stmt->fetch();
-        $fields["email"] = $email;
-        $fields["password"] = $password;
-        $fields["tutorial"] = $tutorial;
-        $fields["alias"] = $alias;
-
+		$i = 0;
+		while ($stmt->fetch()) {
+			$fields[$i]["email"] = $email;
+			$fields[$i]["password"] = $password;
+			$fields[$i]["tutorial"] = $tutorial;
+			$fields[$i]["alias"] = $alias;
+			$i = $i + 1;
+		}
 		$stmt->close();
 	}
 	return $fields;

@@ -1,35 +1,36 @@
 <?php
 /*START SEZIONE SELECT*/
 function selectAllFrom_LIVELLO($connection){
-	 $query="SELECT idlivello, numero, nome, json, morti FROM livello ";
+	 $query="SELECT idlivello, numero, nome, json FROM livello ";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->execute();
-		$stmt->bind_result($idlivello, $numero, $nome, $json, $morti);
-		$stmt->fetch();
-        $fields["idlivello"] = $idlivello;
-        $fields["numero"] = $numero;
-        $fields["nome"] = $nome;
-        $fields["json"] = $json;
-        $fields["morti"] = $morti;
-		$stmt->close();
-	}
-	return $fields;
-}
-function selectFrom_LIVELLO_By_idlivello($connection,$value){
-	 $query="SELECT idlivello, numero, nome, json, morti FROM livello WHERE idlivello=?";
- 	$fields = [];
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "s",$value);
-		$stmt->execute();
-		$stmt->bind_result($idlivello, $numero, $nome, $json, $morti);
+		$stmt->bind_result($idlivello, $numero, $nome, $json);
 		$i = 0;
 		while ($stmt->fetch()) {
 			$fields[$i]["idlivello"] = $idlivello;
 			$fields[$i]["numero"] = $numero;
 			$fields[$i]["nome"] = $nome;
 			$fields[$i]["json"] = $json;
-			$fields[$i]["morti"] = $morti;
+			$i = $i + 1;
+		}
+		$stmt->close();
+	}
+	return $fields;
+}
+function selectFrom_LIVELLO_By_idlivello($connection,$value){
+	 $query="SELECT idlivello, numero, nome, json FROM livello WHERE idlivello=?";
+ 	$fields = [];
+	if ($stmt = $connection->prepare($query)) {
+		$stmt->bind_param( "s",$value);
+		$stmt->execute();
+		$stmt->bind_result($idlivello, $numero, $nome, $json);
+		$i = 0;
+		while ($stmt->fetch()) {
+			$fields["idlivello"] = $idlivello;
+			$fields["numero"] = $numero;
+			$fields["nome"] = $nome;
+			$fields["json"] = $json;
 			$i = $i + 1;
 		}
 		$stmt->close();
@@ -37,19 +38,18 @@ function selectFrom_LIVELLO_By_idlivello($connection,$value){
 	return $fields;
 }
 function selectFrom_LIVELLO_By_numero($connection,$value){
-	 $query="SELECT idlivello, numero, nome, json, morti FROM livello WHERE numero=?";
+	 $query="SELECT idlivello, numero, nome, json FROM livello WHERE numero=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
 		$stmt->execute();
-		$stmt->bind_result($idlivello, $numero, $nome, $json, $morti);
+		$stmt->bind_result($idlivello, $numero, $nome, $json);
 		$i = 0;
 		while ($stmt->fetch()) {
 			$fields[$i]["idlivello"] = $idlivello;
 			$fields[$i]["numero"] = $numero;
 			$fields[$i]["nome"] = $nome;
 			$fields[$i]["json"] = $json;
-			$fields[$i]["morti"] = $morti;
 			$i = $i + 1;
 		}
 		$stmt->close();
@@ -57,19 +57,18 @@ function selectFrom_LIVELLO_By_numero($connection,$value){
 	return $fields;
 }
 function selectFrom_LIVELLO_By_nome($connection,$value){
-	 $query="SELECT idlivello, numero, nome, json, morti FROM livello WHERE nome=?";
+	 $query="SELECT idlivello, numero, nome, json FROM livello WHERE nome=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
 		$stmt->execute();
-		$stmt->bind_result($idlivello, $numero, $nome, $json, $morti);
+		$stmt->bind_result($idlivello, $numero, $nome, $json);
 		$i = 0;
 		while ($stmt->fetch()) {
 			$fields[$i]["idlivello"] = $idlivello;
 			$fields[$i]["numero"] = $numero;
 			$fields[$i]["nome"] = $nome;
 			$fields[$i]["json"] = $json;
-			$fields[$i]["morti"] = $morti;
 			$i = $i + 1;
 		}
 		$stmt->close();
@@ -77,39 +76,18 @@ function selectFrom_LIVELLO_By_nome($connection,$value){
 	return $fields;
 }
 function selectFrom_LIVELLO_By_json($connection,$value){
-	 $query="SELECT idlivello, numero, nome, json, morti FROM livello WHERE json=?";
+	 $query="SELECT idlivello, numero, nome, json FROM livello WHERE json=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
 		$stmt->execute();
-		$stmt->bind_result($idlivello, $numero, $nome, $json, $morti);
+		$stmt->bind_result($idlivello, $numero, $nome, $json);
 		$i = 0;
 		while ($stmt->fetch()) {
 			$fields[$i]["idlivello"] = $idlivello;
 			$fields[$i]["numero"] = $numero;
 			$fields[$i]["nome"] = $nome;
 			$fields[$i]["json"] = $json;
-			$fields[$i]["morti"] = $morti;
-			$i = $i + 1;
-		}
-		$stmt->close();
-	}
-	return $fields;
-}
-function selectFrom_LIVELLO_By_morti($connection,$value){
-	 $query="SELECT idlivello, numero, nome, json, morti FROM livello WHERE morti=?";
- 	$fields = [];
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "s",$value);
-		$stmt->execute();
-		$stmt->bind_result($idlivello, $numero, $nome, $json, $morti);
-		$i = 0;
-		while ($stmt->fetch()) {
-			$fields[$i]["idlivello"] = $idlivello;
-			$fields[$i]["numero"] = $numero;
-			$fields[$i]["nome"] = $nome;
-			$fields[$i]["json"] = $json;
-			$fields[$i]["morti"] = $morti;
 			$i = $i + 1;
 		}
 		$stmt->close();
@@ -164,18 +142,6 @@ function selectCOUNTFrom_LIVELLO_By_json($connection,$value){
 	return $max;
 	}
 }
-function selectCOUNTFrom_LIVELLO_By_morti($connection,$value){
-	 $query="SELECT COUNT(*) FROM livello WHERE morti=?";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "s",$value);
-		$stmt->execute();
-		$stmt->bind_result($max);
-		$i = 0;
-		$stmt->fetch(); 
-		$stmt->close();
-	return $max;
-	}
-}
 function selectMAX_idlivello_From_LIVELLO($connection,$value){
 	 $query="SELECT MAX(idlivello) FROM livello ";
  	if ($stmt = $connection->prepare($query)) {
@@ -189,17 +155,6 @@ function selectMAX_idlivello_From_LIVELLO($connection,$value){
 }
 function selectMAX_numero_From_LIVELLO($connection,$value){
 	 $query="SELECT MAX(numero) FROM livello ";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->execute();
-		$stmt->bind_result($max);
-		$stmt->fetch(); 
-		$stmt->close();
-		return $max;
-	}
-	return NULL;
-}
-function selectMAX_morti_From_LIVELLO($connection,$value){
-	 $query="SELECT MAX(morti) FROM livello ";
  	if ($stmt = $connection->prepare($query)) {
 		$stmt->execute();
 		$stmt->bind_result($max);
@@ -231,17 +186,6 @@ function selectMIN_numero_From_LIVELLO($connection,$value){
 	}
 	return NULL;
 }
-function selectMIN_morti_From_LIVELLO($connection,$value){
-	 $query="SELECT MIN(morti) FROM livello ";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->execute();
-		$stmt->bind_result($min);
-		$stmt->fetch(); 
-		$stmt->close();
-		return $min;
-	}
-	return NULL;
-}
 function selectAVERAGE_idlivello_From_LIVELLO($connection,$value){
 	 $query="SELECT AV(idlivello) FROM livello ";
  	if ($stmt = $connection->prepare($query)) {
@@ -255,17 +199,6 @@ function selectAVERAGE_idlivello_From_LIVELLO($connection,$value){
 }
 function selectAVERAGE_numero_From_LIVELLO($connection,$value){
 	 $query="SELECT AV(numero) FROM livello ";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->execute();
-		$stmt->bind_result($av);
-		$stmt->fetch(); 
-		$stmt->close();
-		return $av;
-	}
-	return NULL;
-}
-function selectAVERAGE_morti_From_LIVELLO($connection,$value){
-	 $query="SELECT AV(morti) FROM livello ";
  	if ($stmt = $connection->prepare($query)) {
 		$stmt->execute();
 		$stmt->bind_result($av);
@@ -321,23 +254,13 @@ function deleteFrom_LIVELLO_By_json($connection,$value){
 	}
 	return $result;
 }
-function deleteFrom_LIVELLO_By_morti($connection,$value){
-	$query="DELETE FROM livello WHERE morti=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "s",$value);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
 /*END SEZIONE DELETE*/
 
 /*START SEZIONE INSERT*/
 function insertIntolivello($connection, $label){	/* create a prepared statement */
-	if ($stmt = $connection->prepare( 'INSERT INTO livello (numero, nome, json, morti) VALUES (?, ?, ?, ?)')) {
+	if ($stmt = $connection->prepare( 'INSERT INTO livello (numero, nome, json) VALUES (?, ?, ?)')) {
 		/* bind parameters for markers */
-		$stmt->bind_param( "ssss",$numero, $nome, $json, $morti);
+		$stmt->bind_param( "sss",$numero, $nome, $json);
 		/* execute query */   
 		if (!$stmt->execute() && $debug) {
 			echo $stmt->error;
@@ -385,16 +308,6 @@ function update_LIVELLO_SET_numero_WITH_json_AS_KEY($connection,$numero_val,$jso
 	}
 	return $result;
 }
-function update_LIVELLO_SET_numero_WITH_morti_AS_KEY($connection,$numero_val,$morti_val){
-	$query="UPDATE livelloSET numero = ? WHERE morti=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$numero_val,$morti_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
 function update_LIVELLO_SET_nome_WITH_idlivello_AS_KEY($connection,$nome_val,$idlivello_val){
 	$query="UPDATE livelloSET nome = ? WHERE idlivello=?";
 	$result = 0;
@@ -425,16 +338,6 @@ function update_LIVELLO_SET_nome_WITH_json_AS_KEY($connection,$nome_val,$json_va
 	}
 	return $result;
 }
-function update_LIVELLO_SET_nome_WITH_morti_AS_KEY($connection,$nome_val,$morti_val){
-	$query="UPDATE livelloSET nome = ? WHERE morti=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$nome_val,$morti_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
 function update_LIVELLO_SET_json_WITH_idlivello_AS_KEY($connection,$json_val,$idlivello_val){
 	$query="UPDATE livelloSET json = ? WHERE idlivello=?";
 	$result = 0;
@@ -460,56 +363,6 @@ function update_LIVELLO_SET_json_WITH_nome_AS_KEY($connection,$json_val,$nome_va
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "ss",$json_val,$nome_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_LIVELLO_SET_json_WITH_morti_AS_KEY($connection,$json_val,$morti_val){
-	$query="UPDATE livelloSET json = ? WHERE morti=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$json_val,$morti_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_LIVELLO_SET_morti_WITH_idlivello_AS_KEY($connection,$morti_val,$idlivello_val){
-	$query="UPDATE livelloSET morti = ? WHERE idlivello=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$morti_val,$idlivello_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_LIVELLO_SET_morti_WITH_numero_AS_KEY($connection,$morti_val,$numero_val){
-	$query="UPDATE livelloSET morti = ? WHERE numero=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$morti_val,$numero_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_LIVELLO_SET_morti_WITH_nome_AS_KEY($connection,$morti_val,$nome_val){
-	$query="UPDATE livelloSET morti = ? WHERE nome=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$morti_val,$nome_val);
-		$result = $stmt->execute();
-		$stmt->close();
-	}
-	return $result;
-}
-function update_LIVELLO_SET_morti_WITH_json_AS_KEY($connection,$morti_val,$json_val){
-	$query="UPDATE livelloSET morti = ? WHERE json=?";
-	$result = 0;
-	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$morti_val,$json_val);
 		$result = $stmt->execute();
 		$stmt->close();
 	}

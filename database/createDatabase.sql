@@ -12,8 +12,7 @@ CREATE TABLE livello(
 	idlivello INT PRIMARY KEY AUTO_INCREMENT,
 	numero INT NOT NULL,
 	nome varchar(250) NOT NULL,
-	json TEXT NOT NULL,
-	morti INT NOT NULL DEFAULT 0,
+	json TEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS livello_eseguito;
@@ -28,6 +27,7 @@ CREATE TABLE livello_eseguito(
 	missili_lanciati INT NOT NULL DEFAULT 0,
 	missili_rimasti INT NOT NULL DEFAULT 0,
 	torrette_salvate INT NOT NULL DEFAULT 0,
+	morti INT NOT NULL DEFAULT 0,
 	FOREIGN KEY (idlivello) REFERENCES livello(idlivello),
 	FOREIGN KEY (email) REFERENCES utente(email),
   PRIMARY KEY (email,idlivello)
