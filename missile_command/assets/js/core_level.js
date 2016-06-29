@@ -119,7 +119,7 @@ CoreLevel.prototype.inizializzaArmiNemiche = function () {}
 CoreLevel.prototype.startLivello = function ( ) {
   this.setupListeners();
   var fps = 30;
-  this.timerProssimoFrame = setInterval( this.mainLoop.bind( this, this.coreGame ), 1000 / fps );
+  this.timerProssimoFrame = setInterval( this.mainLoop.bind( this ), 1000 / fps );
 };
 
 CoreLevel.prototype.stopLivello = function ( ) {
@@ -127,15 +127,39 @@ CoreLevel.prototype.stopLivello = function ( ) {
   $( '.container' ).off();
 };
 
-CoreLevel.prototype.mainLoop = function ( cg ) {
-  cg.prossimoFrame();
-  if( this.verificaFineLivello( ) === false ) {
+CoreLevel.prototype.proceduraFineOndata = function () {
+  var cg = this.coreGame;
+
+  cg.calcoloMissiliRimasti();
+  cg.calcoloBatterieSalvate();
+  
+  var risultatoOndata = {
+    esito: this.verificaFineLivello(),
+    punteggio: cg.punteggio,
+    missiliAbbattuti: cg.punteggioMissiliAbbattuti,
+    missiliRimasti: cg.punteggioMissiliRimasti,
+    minacceAbbattute: cg.punteggioMinacceAbbattute,
+    torretteSalvate: cg.punteggioTorretteSalvate,
+    missiliSparati: cg.punteggioMissiliSparati,
+    morti: cg.punteggioMorti
+  };
+  
+  this.callbackFineLivello( risultatoOndata );
+}
+
+CoreLevel.prototype.mainLoop = function () { 
+  var esito = this.verificaFineLivello();
+  if ( esito === false ) {
     this.stopLivello();
     this.mostraSchermataGameOver();
-    this.callbackFineLivello( esito );
-  } else if ( this.verificaFineLivello() === true ) {
+    this.proceduraFineOndata();
+  } else if ( esito === true ) {
     this.stopLivello();
-    this.callbackFineLivello( true );
+    this.proceduraFineOndata();
+  }
+  
+  if ( esito === undefined ) {
+    this.coreGame.prossimoFrame();
   }
 };
 
@@ -193,6 +217,7 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
     massimoRaggioEsplosione: 30,
     distanzaPerFrame: 7
   } ) );
+  this.coreGame.aggiornaPunteggioMissiliSparati();
   this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
 };
@@ -212,7 +237,7 @@ CoreLevel.prototype.verificaFineLivello = function ( ) {
 }
 
 CoreLevel.prototype.calcolaCoefficienteOndata = function () {
-  return 1; // default
+  return 1.0; // default
 }
 
 // Il codice sottostante dovrà essere spostato
@@ -226,8 +251,8 @@ console.log = function ( stringa ) {
 }
 */
 
-var callback = function ( esito ) {
-  return 
+var callback = function ( risultatoOndata ) {
+  console.log( risultatoOndata ); 
 }
 
 $(document).ready( function () {
@@ -282,7 +307,7 @@ $(document).ready( function () {
     ]
   }
   
-  window.eval( jsonLivello.codiceLivello );
+  //window.eval( jsonLivello.codiceLivello );
   
   var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
   caricaCodice.aggiornaCodiceUtente();
@@ -292,7 +317,7 @@ $(document).ready( function () {
   if(e.erroriCiclo.length === 0) {
     esiti = caricaCodice.esecuzioneTest();
     console.log( esiti );
-    var coreLevel = new Livello1( function ( esito ) {}, 1 );
+    var coreLevel = new Livello10( callback, 1 );
     coreLevel.inizializzaLivello();
     coreLevel.mostraSchermataIniziale();
   }

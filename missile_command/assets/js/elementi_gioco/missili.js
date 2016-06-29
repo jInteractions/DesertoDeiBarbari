@@ -1,4 +1,5 @@
-function Missile ( parametri ) {
+function Missile ( parametri, coreGame ) {
+  this.coreGame = coreGame;
   this.xDiPartenza = parametri.xDiPartenza;
   this.yDiPartenza = parametri.yDiPartenza;
   this.xDiArrivo = parametri.xDiArrivo;
@@ -29,7 +30,6 @@ Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
         if( ctx.isPointInPath( altroMissile.x, altroMissile.y ) &&
             altroMissile.stato === Missile.ATTIVO ) {
           altroMissile.stato = Missile.ESPLOSIONE;
-          coreGame.aggiornaPunteggioMissiliAbbattuti();
         }
       });
     }
@@ -90,8 +90,7 @@ Missile.prototype.esplodi = function () {
   }
 };
 
-function MissileNemico ( parametri, bersagli, canvasWidth, xDiPartenza, velCaduta, ritardoPartenza ) {
-  //var xDiPartenza = rand( 0, canvasWidth );
+function MissileNemico ( parametri, bersagli, canvasWidth, xDiPartenza, velCaduta, ritardoPartenza, coreGame ) {
   var yDiPartenza = 0;
   
   this.bersaglio = bersagli[ rand( 0, bersagli.length - 1 ) ];
@@ -104,19 +103,9 @@ function MissileNemico ( parametri, bersagli, canvasWidth, xDiPartenza, velCadut
     coloreTestata: parametri.coloreTestata,
     coloreScia: parametri.coloreScia,
     massimoRaggioEsplosione: parametri.massimoRaggioEsplosione
-  } );
+  }, coreGame );
   
   this.velCaduta = velCaduta;
-//  this.frameDistanzaBersaglio = ( 650 - 30 ) / this.velCaduta;
-//  
-//  if ( this.frameDistanzaBersaglio < 20 ) {
-//    this.frameDistanzaBersaglio = 20;
-//  }
-//  
-//  this.dx = ( this.xDiArrivo - this.xDiPartenza ) / this.frameDistanzaBersaglio;
-//  this.dy = ( this.yDiArrivo - this.yDiPartenza ) / this.frameDistanzaBersaglio;
-//  this.ritardoPartenza = rand( 0, parametri.ritardoMassimo );
-//  this.esplosioneATerra = false;
   
   var distanzaX = this.xDiArrivo - this.xDiPartenza;
   var distanzaY = this.yDiArrivo - this.yDiPartenza;
@@ -153,7 +142,7 @@ MissileNemico.prototype.update = function () {
   }
 };
 
-function MissileTerrestre ( parametri ) {
+function MissileTerrestre ( parametri, coreGame ) {
   Missile.call( this, {
     xDiPartenza: parametri.xDiPartenza,
     yDiPartenza: parametri.yDiPartenza,
@@ -162,7 +151,7 @@ function MissileTerrestre ( parametri ) {
     coloreTestata: parametri.coloreTestata,
     coloreScia: parametri.coloreScia,
     massimoRaggioEsplosione: parametri.massimoRaggioEsplosione
-  } );
+  }, coreGame );
   
   this.velCaduta = parametri.distanzaPerFrame;
   

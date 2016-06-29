@@ -46,7 +46,7 @@ Livello1.prototype.inizializzaArmiNemiche = function () {
       coloreTestata: 'yellow',
       coloreScia: 'red',
       massimoRaggioEsplosione: 30
-    }, bersagli, areaPertenza, xRand, velRand,  ritardoRand) );
+    }, bersagli, areaPertenza, xRand, velRand,  ritardoRand, this.coreGame) );
   }
 }
 
@@ -75,7 +75,7 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
     coloreScia: 'blue',
     massimoRaggioEsplosione: raggio,
     distanzaPerFrame: vel
-  } ) );
+  }, this.coreGame ) );
   this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += incrementoTemperatura;
 }

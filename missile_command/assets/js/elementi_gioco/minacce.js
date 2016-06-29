@@ -1,4 +1,5 @@
-function AstronaveNemica ( ctx ) {
+function AstronaveNemica ( ctx, coreGame ) {
+  this.coreGame = coreGame;
   var ctxW = 510;
   var ctxH = 460;
   this.lunghezza = 299;
@@ -90,4 +91,5 @@ AstronaveNemica.prototype.esplodi = function () {
 
 AstronaveNemica.prototype.distruggiti = function () {
   this.stato = AstronaveNemica.ESPLOSIONE;
+  this.coreGame.aggiornaPunteggioMinacceAbbattute();
 }

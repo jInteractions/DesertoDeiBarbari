@@ -5,8 +5,8 @@ var diff = function ( a1, a2 ) {
   return newA;
 };
 
-function Livello10 ( callbackFineLivello ) {
-  CoreLevel.call( this, callbackFineLivello );
+function Livello10 ( callbackFineLivello, numeroOndata ) {
+  CoreLevel.call( this, callbackFineLivello, numeroOndata );
   this.missileNucleare;
 }
 
@@ -23,7 +23,7 @@ Livello10.prototype.inizializzaTorrette = function () {
   var opzioniBatteria1 = { 
     x: 35, 
     y: 410, 
-    nMissili: 10, 
+    nMissili: 0, 
     nSoldati: 10, 
     colori: coloreMissili, 
     Tmin: 50, 
@@ -38,7 +38,7 @@ Livello10.prototype.inizializzaTorrette = function () {
   var opzioniBatteria2 = { 
     x: 475, 
     y: 410, 
-    nMissili: 10, 
+    nMissili: 0, 
     nSoldati: 10, 
     colori: coloreMissili, 
     Tmin: 50, 
@@ -51,7 +51,7 @@ Livello10.prototype.inizializzaTorrette = function () {
 }
 
 Livello10.prototype.inizializzaArmiTerrestri = function () {
-  this.missileNucleare = new MissileNucleare( 255, 410, 255, this.coreGame.minacce[ 0 ].y + 53 );
+  this.missileNucleare = new MissileNucleare( 255, 410, 255, this.coreGame.minacce[ 0 ].y + 53, this.coreGame );
   this.coreGame.missiliTerrestri.push( this.missileNucleare );
 }
 
@@ -62,7 +62,7 @@ Livello10.prototype.inizializzaArmiNemiche = function () {
   var velRand;
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 100;
+  var numeroMissili = 10;
   
   for( var i = 0; i < numeroMissili / 2 ; i++ ) {
     xRand = rand( 0, ampiezzaAreaPertenza );
@@ -72,7 +72,7 @@ Livello10.prototype.inizializzaArmiNemiche = function () {
       coloreTestata: 'yellow',
       coloreScia: 'red',
       massimoRaggioEsplosione: 30
-    }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand) );
+    }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand, this.coreGame) );
   }
   
   for( var i = numeroMissili / 2; i < numeroMissili; i++ ) {
@@ -83,16 +83,16 @@ Livello10.prototype.inizializzaArmiNemiche = function () {
       coloreTestata: 'yellow',
       coloreScia: 'red',
       massimoRaggioEsplosione: 30
-    }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand) );
+    }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand, this.coreGame ) );
   }
   
-  var astronaveNemica = new AstronaveNemica( this.ctx );
+  var astronaveNemica = new AstronaveNemica( this.ctx, this.coreGame );
   this.coreGame.aggiungiMinaccia( astronaveNemica );
   
   var opzioniBatteria1 = {
     x: astronaveNemica.x + 40, 
     y: astronaveNemica.y + 53, 
-    nMissili: 10, 
+    nMissili: 0, 
     nSoldati: 10, 
     colori: [], 
     Tmin: 50, 
@@ -106,11 +106,11 @@ Livello10.prototype.inizializzaArmiNemiche = function () {
   };
   
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria1, 1500, false, filtro, false, 1, 10, 'green', this.coreGame) );
+    new TorrettaAutomatica( 0, opzioniBatteria1, 1500000, false, filtro, false, 1, 10, 'green', this.coreGame) );
   var opzioniBatteria2 = { 
     x: astronaveNemica.x + 260, 
     y: astronaveNemica.y + 53, 
-    nMissili: 10, 
+    nMissili: 0, 
     nSoldati: 10, 
     colori: [], 
     Tmin: 50, 
@@ -119,7 +119,7 @@ Livello10.prototype.inizializzaArmiNemiche = function () {
     deltaRaffreddamento: 3
   };
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria2, 1500, false, filtro, false, 1, 10, 'green', this.coreGame) );
+    new TorrettaAutomatica( 0, opzioniBatteria2, 1500000, false, filtro, false, 1, 10, 'green', this.coreGame) );
 }
 
 Livello10.prototype.scegliTorretta = function ( x, y, tasto ) {
@@ -151,19 +151,17 @@ Livello10.prototype.sparo = function ( x, y, tasto ) {
     coloreScia: 'blue',
     massimoRaggioEsplosione: 30,
     distanzaPerFrame: 7
-  } ) );
+  }, this.coreGame ) );
   this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
   this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
 }
 
 Livello10.prototype.verificaFineLivello = function ( ) {
   if( this.coreGame.minacce.length === 0 ) {
-    console.log("minaccia sconfitta");
     return true;  
   }
   
   if( this.coreGame.missiliTerrestri.indexOf ( this.missileNucleare ) < 0 ) {
-    console.log("missile n abbattuto");
     return false;
   }
   
@@ -174,9 +172,10 @@ Livello10.prototype.verificaFineLivello = function ( ) {
   return undefined;
 }
 
-function MissileTorretta ( parametri, torretta ) {
+function MissileTorretta ( parametri, torretta, coreGame ) {
   this.torretta = torretta;
-  MissileTerrestre.call( this, parametri );
+  this.coreGame = coreGame;
+  MissileTerrestre.call( this, parametri, coreGame );
 };
 
 MissileTorretta.prototype = Object.create( MissileTerrestre.prototype );
@@ -210,7 +209,7 @@ MissileTorretta.prototype.disegna = function ( ctx, coreGame ) {
   Missile.prototype.disegna.call( this, ctx, coreGame );
 };
 
-function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo ) {
+function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo, coreGame ) {
   MissileTerrestre.call( this, {
     xDiPartenza: xDiPartenza,
     yDiPartenza: yDiPartenza,
@@ -220,7 +219,7 @@ function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo ) {
     coloreScia: 'white',//'yellow',
     massimoRaggioEsplosione: 50,
     distanzaPerFrame: 0.3
-  } );
+  }, coreGame );
   this.coloreCorpo = 'white' //#FF00FF';
 };
 
@@ -457,7 +456,7 @@ TorrettaAutomatica.prototype.spara = function ( coordinate ) {
     coloreTestata: 'yellow',
     coloreScia: this.coloreScia,
     massimoRaggioEsplosione: this.raggioDiEsplosione,
-    distanzaPerFrame: this.velMissili }, this );
+    distanzaPerFrame: this.velMissili }, this, this.coreGame );
   this.coreGame.missiliTerrestri.push(missile);
   
   clearTimeout(this.timerRicarica);

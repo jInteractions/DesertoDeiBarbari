@@ -21,7 +21,7 @@ function CoreGame ( canvas, mirino, palette ) {
   
   this.timerProssimoFrame;
   
-  this.punteggio;
+  this.punteggio = 0;
   this.coefficienteOndata = 1.0;
   this.punteggioMissiliAbbattuti = 0;
   this.punteggioMissiliRimasti = 0;
@@ -199,26 +199,27 @@ CoreGame.prototype.disegnaMirino = function () {
 
 CoreGame.prototype.aggiornaPunteggio = function ( punti ) {
   this.punteggio += punti;
+  console.log(this.punteggio);
 };
 
 CoreGame.prototype.aggiornaPunteggioMissiliAbbattuti = function () {
   ++this.punteggioMissiliAbbattuti;
-  this.aggiornaPunteggio( this.PUNTI_MISSILE_ABBATTUTO * this.coefficienteOndata );
+  this.aggiornaPunteggio( CoreGame.PUNTI_MISSILE_ABBATTUTO * this.coefficienteOndata );
 };
 
 CoreGame.prototype.aggiornaPunteggioMissiliRimasti = function ( numeroMissili ) {
   this.punteggioMissiliRimasti += numeroMissili;
-  this.aggiornaPunteggio( this.PUNTI_MISSILE_RIMASTO * this.coefficienteOndata );
+  this.aggiornaPunteggio( CoreGame.PUNTI_MISSILE_RIMASTO * this.punteggioMissiliRimasti * this.coefficienteOndata );
 };
 
 CoreGame.prototype.aggiornaPunteggioMinacceAbbattute = function () {
   ++this.punteggioMinacceAbbattute;
-  this.aggiornaPunteggio( this.PUNTI_MINACCIA_ABBATTUTA * this.coefficienteOndata );
+  this.aggiornaPunteggio( CoreGame.PUNTI_MINACCIA_ABBATTUTA * this.coefficienteOndata );
 };
 
 CoreGame.prototype.aggiornaPunteggioTorretteSalvate = function ( numeroTorrette ) {
   this.punteggioTorretteSalvate += numeroTorrette;
-  this.aggiornaPunteggio( this.PUNTI_TORRETTA_SALVATA * this.coefficienteOndata );
+  this.aggiornaPunteggio( CoreGame.PUNTI_TORRETTA_SALVATA * this.punteggioTorretteSalvate * this.coefficienteOndata );
 };
 
 CoreGame.prototype.aggiornaCoefficienteOndata = function ( nuovoCoefficiente ) {
@@ -235,24 +236,24 @@ CoreGame.prototype.aggiornaPunteggioNumeroOndate = function () {
 
 CoreGame.prototype.aggiornaPunteggioMorti = function ( morti ) {
   this.punteggioMorti += morti;
-  console.log(this.punteggioMorti);
+  console.log("morti: " + this.punteggioMorti);
 }
 
-CoreGame.prototype.calcoloMissiliRimanenti = function () {
+CoreGame.prototype.calcoloMissiliRimasti = function () {
   var tot = 0;
   $.each ( this.batterieAntimissile, function( indice, batteria ) {
     tot += batteria.numeroMissili;
   } );
-  return tot;
+  this.aggiornaPunteggioMissiliRimasti( tot );
 };
 
 CoreGame.prototype.calcoloBatterieSalvate = function () {
   var tot = 0;
   $.each( this.batterieAntimissile, function( indice, batteria ) {
-    if ( batteria.missiliRimanenti != 0 )
+    if ( batteria.missiliRimanenti != 0 && batteria instanceof BatteriaAntimissile )
       ++tot;
   } );
-  return tot;
+  this.aggiornaPunteggioTorretteSalvate( tot );
 };
 
 CoreGame.prototype.calcoloBasiSalvate = function () {
@@ -268,6 +269,13 @@ CoreGame.prototype.aggiornaMissiliNemici = function () {
   $.each( this.missiliNemici, function( indice, missile ) {
     missile.update();
   });
+  var mySelf = this;
+  $.each( this.missiliNemici, function( indice, missile ) {
+    if ( missile.stato === Missile.ESPLOSO ) {
+      mySelf.aggiornaPunteggioMissiliAbbattuti();
+    }
+  });
+  
   this.missiliNemici = this.missiliNemici.filter(
     function( missile ) {
       return missile.stato !== Missile.ESPLOSO;
