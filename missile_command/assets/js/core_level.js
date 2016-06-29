@@ -81,7 +81,19 @@ CoreLevel.prototype.mostraSchermataIniziale = function () {
     clearInterval( mySelf.intervalloSchermata );
     mySelf.preparazioneAvvio();
   } );                     
-} 
+}
+
+CoreLevel.prototype.mostraSchermataGameOver = function () {
+  var ctx = this.ctx;
+  ctx.fillStyle = this.coreGame.coloreTestoPrimario;
+  ctx.textAlign = "center"; 
+  ctx.font = 'bold 20px arial';
+  ctx.fillText( 'HAI PERSO', this.canvas.width/2, this.canvas.height/2 - 20 );
+  ctx.fillStyle = this.coreGame.coloreTestoSecondario;
+  ctx.fillText( 'Ondata ' + this.numeroOndata, this.canvas.width/2, this.canvas.height/2 + 20 );
+  ctx.textAlign = "start";
+  $( '.container' ).off();                    
+}
 
 CoreLevel.prototype.inizializzaArmiTerrestri = function () {}
 
@@ -98,10 +110,13 @@ CoreLevel.prototype.stopLivello = function ( ) {
 
 CoreLevel.prototype.mainLoop = function ( cg ) {
   cg.prossimoFrame();
-  if( this.verificaFineLivello( ) !== undefined ) {
+  if( this.verificaFineLivello( ) === false ) {
     this.stopLivello();
-    this.schermataFineLivello();
-    this.callbackFineLivello( esito );
+    this.mostraSchermataGameOver();
+    this.callbackFineLivello( false );
+  } else if ( this.verificaFineLivello() === true ) {
+    this.stopLivello();
+    this.callbackFineLivello( true );
   }
 };
 
@@ -254,7 +269,7 @@ $(document).ready( function () {
   if(e.erroriCiclo.length === 0) {
     esiti = caricaCodice.esecuzioneTest();
     console.log( esiti );
-    var coreLevel = new Livello1( null, 1 );
+    var coreLevel = new Livello1( function ( esito ) {}, 1 );
     coreLevel.inizializzaLivello();
     coreLevel.mostraSchermataIniziale();
   }
