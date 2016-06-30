@@ -12,12 +12,7 @@ function CoreLevel ( callbackFineLivello ) {
   this.numeroSchermata = 0;  
 };
 
-/*
-CoreLevel.prototype.inizializzaLivello = function () { 
-  
-};*/
-
-CoreLevel.prototype.inizializzaOndata = function ( numeroOndata ) {
+CoreLevel.prototype.inizializzaLivello = function ( numeroOndata ) {
   var mySelf = this;
   
   this.numeroOndata = numeroOndata;
@@ -119,6 +114,7 @@ CoreLevel.prototype.mostraSchermataIniziale = function () {
 
 CoreLevel.prototype.mostraSchermataGameOver = function () {
   var ctx = this.ctx;
+  var mySelf = this;
   ctx.fillStyle = this.coreGame.coloreTestoPrimario;
   ctx.textAlign = "center"; 
   ctx.font = 'bold 20px arial';
@@ -127,7 +123,11 @@ CoreLevel.prototype.mostraSchermataGameOver = function () {
   console.log( this.numeroOndata );
   ctx.fillText( 'Ondata ' + this.numeroOndata, this.canvas.width/2, this.canvas.height/2 + 20 );
   ctx.textAlign = "start";
-  $( '.container' ).off();                    
+  $( '.container' ).off();
+  $( '.container' ).one( 'click', function() {
+    console.log( "click" );
+    mySelf.mostraSchermataIniziale();
+  } );
 }
 
 CoreLevel.prototype.inizializzaArmiTerrestri = function () {}
@@ -276,11 +276,10 @@ $(document).ready( function () {
   var callback = function ( risultatoOndata ) {
     if( risultatoOndata.esito === true ) {
       ++nOndata;
-      coreLevel.inizializzaOndata(nOndata);
+      coreLevel.inizializzaLivello(nOndata);
       coreLevel.mostraSchermataIniziale();
     } else {
-      console.log("morto")
-      coreLevel.inizializzaOndata(1);
+      coreLevel.inizializzaLivello(1);
       coreLevel.mostraSchermataGameOver();
     }
   }
@@ -348,8 +347,8 @@ $(document).ready( function () {
   if(e.erroriCiclo.length === 0) {
     esiti = caricaCodice.esecuzioneTest();
     console.log( esiti );
-    var coreLevel = new Livello1( callback );
-    coreLevel.inizializzaOndata(nOndata);
+    var coreLevel = new Livello10( callback );
+    coreLevel.inizializzaLivello(nOndata);
     coreLevel.mostraSchermataIniziale();
   }
 } );

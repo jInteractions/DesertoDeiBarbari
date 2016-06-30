@@ -5,8 +5,8 @@ var diff = function ( a1, a2 ) {
   return newA;
 };
 
-function Livello10 ( callbackFineLivello, numeroOndata ) {
-  CoreLevel.call( this, callbackFineLivello, numeroOndata );
+function Livello10 ( callbackFineLivello ) {
+  CoreLevel.call( this, callbackFineLivello );
   this.missileNucleare;
 }
 
