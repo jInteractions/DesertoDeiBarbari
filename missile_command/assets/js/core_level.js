@@ -338,7 +338,7 @@ $(document).ready( function () {
   //window.eval( jsonLivello.codiceLivello );
   
   var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
-  caricaCodice.aggiornaCodiceUtente();
+  //caricaCodice.aggiornaCodiceUtente();
   var e = caricaCodice.validazioneCodiceUtente();
   console.log(e);
   
