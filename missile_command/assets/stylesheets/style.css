@@ -22,7 +22,7 @@ h1 {
   padding: 10px;
   color: #333;
 }
-.container {
+.gameContainer {
   position: relative;
   background-color: green;
   outline: none;

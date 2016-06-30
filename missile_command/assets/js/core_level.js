@@ -105,8 +105,8 @@ CoreLevel.prototype.mostraSchermataIniziale = function () {
     mySelf.numeroSchermata = (mySelf.numeroSchermata + 1) % 2;
   }, 500 );
   
-  $( '.container' ).off();
-  $( '.container' ).one( 'click', function() {
+  $( '.gameContainer' ).off();
+  $( '.gameContainer' ).one( 'click', function() {
     clearInterval( mySelf.intervalloSchermata );
     mySelf.preparazioneAvvio();
   } );                     
@@ -123,8 +123,8 @@ CoreLevel.prototype.mostraSchermataGameOver = function () {
   console.log( this.numeroOndata );
   ctx.fillText( 'Ondata ' + this.numeroOndata, this.canvas.width/2, this.canvas.height/2 + 20 );
   ctx.textAlign = "start";
-  $( '.container' ).off();
-  $( '.container' ).one( 'click', function() {
+  $( '.gameContainer' ).off();
+  $( '.gameContainer' ).one( 'click', function() {
     console.log( "click" );
     mySelf.mostraSchermataIniziale();
   } );
@@ -142,7 +142,7 @@ CoreLevel.prototype.startLivello = function ( ) {
 
 CoreLevel.prototype.stopLivello = function ( ) {
   clearInterval( this.timerProssimoFrame );
-  $( '.container' ).off();
+  $( '.gameContainer' ).off();
 };
 
 CoreLevel.prototype.proceduraFineOndata = function () {
@@ -185,20 +185,21 @@ CoreLevel.prototype.mainLoop = function () {
 
 CoreLevel.prototype.setupListeners = function( ) {
   var mySelf = this;
-  $( '.container' ).off();
-  $( '.container' ).focus();
-  $( '.container' ).bind( 'keyup', function( event ) {
+  $( '.gameContainer' ).off();
+  $( '.gameContainer' ).focus();
+  $( '.gameContainer' ).bind( 'keyup', function( event ) {
     mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, event.which );
   });
-  $( '.container' ).on( 'mouseover', function( event ) {
+  $( '.gameContainer' ).on( 'mouseover', function( event ) {
     mySelf.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
   });
-  $( '.container' ).on( 'mouseout', function( ) {
+  $( '.gameContainer' ).on( 'mouseout', function( ) {
     mySelf.coreGame.mirino.stato = Mirino.SPENTO;
   });
-  $( '.container' ).on( 'mousemove', function( event ) {
-    mySelf.coreGame.mirino.inseguiX = event.pageX - this.offsetLeft;
-    mySelf.coreGame.mirino.inseguiY = event.pageY - this.offsetTop;
+  $( '.gameContainer' ).on( 'mousemove', function( event ) {
+    var offset = $(".gameContainer").offset();
+    mySelf.coreGame.mirino.inseguiX = event.pageX - offset.left;
+    mySelf.coreGame.mirino.inseguiY = event.pageY - offset.top;
     mySelf.coreGame.mirino.cambiaMira();
   });
 };
@@ -269,8 +270,7 @@ var console = {};
 console.log = function ( stringa ) {
   oldConsole.log(stringa);
   // Qui ci sarà la "append" di codice html al terminale
-}
-*/
+}*/
 
 $(document).ready( function () {  
   var callback = function ( risultatoOndata ) {

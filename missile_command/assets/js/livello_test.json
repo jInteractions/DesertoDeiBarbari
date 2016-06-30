@@ -1,6 +1,6 @@
 var jsonLivello = {
-  "nomeLivello": "L'avventura Comincia",
-  "numeroLivello": 0,
+  "nomeLivello": "L'avventura Continua",
+  "numeroLivello": 1,
   "costoAiuti": 200,
 
   "dialogoIniziale": [
@@ -18,7 +18,7 @@ var jsonLivello = {
   ],
 
   "codiceLivello": 
-    "LivelloProva ( ) {\n  CoreLevel.call( this );\n  \n  \/\/ Variabile controllo obiettivo\n  this.accesso = false;\n  \n  \/\/ Chiamare i test\n  \n}\n\n\/\/ Ereditariet\u00e0\nLivelloProva.prototype = Object.create( Missile.prototype );\nLivelloProva.prototype.constructor = CoreLevel;\n\n\/\/ Ridefinizione della funzione sparo\nCoreLevel.prototype.sparo = function ( x, y, tasto ) {\n  if ( this.accesso === false ) {\n    console.log(\"Accesso non eseguito! Prego autenticarsi...\");\n    return;\n  }\n  \n  var indiceTorretta = this.scegliTorretta( x, y, tasto);\n  \n  if ( indiceTorretta === -1 )\n    return;\n  \n  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {\n    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,\n    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,\n    xDiArrivo: x,\n    yDiArrivo: y,\n    coloreTestata: 'yellow',\n    coloreScia: 'blue',\n    massimoRaggioEsplosione: 30,\n    distanzaPerFrame: 12\n  } ) );\n  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;\n  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;\n}\n",
+    "function Livello1 ( callbackFineLivello ) {\n  CoreLevel.call( this, callbackFineLivello );\n}\n\nLivello1.prototype = Object.create( CoreLevel.prototype );\nLivello1.prototype.constructor = Livello1;\n\nLivello1.prototype.inizializzaMirino = function ( ) {\n  this.mirino = new Mirino( this.canvas.width \/ 2, this.canvas.height \/ 2, 10.0 );\n}\n\nLivello1.prototype.inizializzaLivello = function ( numeroOndata ) {\n  this.numeroOndata = numeroOndata;\n  \n  this.inizializzaMirino();\n  this.coreGame = new CoreGame( this.canvas, this.mirino, {\n    coloreSfondo: 'black',\n    coloreTerreno: 'yellow',\n    coloreTestoPrimario: 'blue',\n    coloreTestoSecondario: 'red'\n  });\n  this.inizializzaTorrette();\n  this.inizializzaBasi();\n  this.inizializzaArmiNemiche();\n  this.inizializzaArmiTerrestri();\n  \/\/ chiamata alla funzione di autenticazione manuale\n  this.setupListeners();\n}\n\nLivello1.prototype.inizializzaArmiNemiche = function () {\n  var areaPertenza = this.coreGame.canvas.width;\n  var ritardoMassimo = 200;\n  var xRand;\n  var velRand;\n  var ritardoRand;\n  var bersagli = this.coreGame.bersagliAttaccabili();\n  var numeroMissili = 15;\n  \n  for( var i = 0; i < numeroMissili ; i++ ) {\n    xRand = rand( 0, this.canvas.width );\n    velRand = rand( 1, 1.5 );\n    ritardoRand = rand( 0, ritardoMassimo );\n    this.coreGame.missiliNemici.push( new MissileNemico( {\n      coloreTestata: 'yellow',\n      coloreScia: 'red',\n      massimoRaggioEsplosione: 30\n    }, bersagli, areaPertenza, xRand, velRand,  ritardoRand, this.coreGame) );\n  }\n}\n\nLivello1.prototype.sparo = function ( x, y, tasto ) {\n  var indiceTorretta = this.scegliTorretta( x, y, tasto);\n  var raggio = 30;\n  var xModificata = x; \/\/+ rand( -raggio, raggio );\n  var yModificata = y; \/\/+ rand( -raggio, raggio );\n  var vel = 7;\n  var incrementoTemperatura = 20;\n  \n  if( indiceTorretta === -1 )\n    return;\n   \n  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {\n    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,\n    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,\n    xDiArrivo: xModificata,\n    yDiArrivo: yModificata,\n    coloreTestata: 'yellow',\n    coloreScia: 'blue',\n    massimoRaggioEsplosione: raggio,\n    distanzaPerFrame: vel\n  }, this.coreGame ) );\n  this.coreGame.aggiornaPunteggioMissiliSparati();\n  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;\n  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += incrementoTemperatura;\n}\n\nLivello1.prototype.calcolaCoefficienteOndata = function () {\n  return this.numeroOndata * 1.2;\n}",
    
   "manuale": "<h3> Il comando IF </h3> <p> Il comando if consente di alterare il percorso di esecuzione del codice... </p> <h3> Il comando IF </h3> <p> Il   comando if consente di alterare il percorso di esecuzione del codice... </p> <h3> Il comando IF </h3> <p> Il comando if consente di alterare il           percorso di esecuzione del codice... </p> <h3> Il comando IF </h3> <p> Il    comando if consente di alterare il percorso di esecuzione del codice...     </p>",
   
@@ -31,7 +31,7 @@ var jsonLivello = {
         "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
       "descrizione": "Devi forzare il sistema per accedere...",
       "aiuto": "Guarda che <b>dovresti</b>... ",
-      "messaggioFallimento": "L'Autenticazione è fallita..."
+      "messaggioFallimento": "L'Autenticazione e fallita..."
     },
 
     { "nomeFile": "AltriCodice.js",
@@ -42,7 +42,7 @@ var jsonLivello = {
         "(function () {\n\tvar a = new Autenticazione();\n\treturn a.autenticati(\"SWAX\", \"bellogianda\");\n}) ();",
       "descrizione": "Devi forzare il sistema per accedere...",
       "aiuto": "Guarda che <b>dovresti</b>... ",
-      "messaggioFallimento": "L'Autenticazione è fallita..."
+      "messaggioFallimento": "L'Autenticazione e fallita..."
     }
   ]
 }

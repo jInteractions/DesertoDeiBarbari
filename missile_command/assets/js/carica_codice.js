@@ -24,7 +24,9 @@ CaricaCodice.ATTESA_MASSIMA = 2000;
 
 CaricaCodice.prototype.aggiornaCodiceUtente = function () {
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
-    //fileVirtuale.codice =   
+      //fileVirtuale.codice = $("")
+      console.log(editorCodice[indice].getValue());
+      fileVirtuale.codice = editorCodice[indice].getValue();
   } );
 };
 
@@ -152,13 +154,15 @@ CaricaCodice.prototype.esecuzioneTest = function () {
   var esiti = [];
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
     if( fileVirtuale.consultazione === false ) {
+      console.log( window.eval( fileVirtuale.codice ) );
       window.eval( fileVirtuale.codice );
     }
   } );
          
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
     if( fileVirtuale.consultazione === false ) {
-      var risultato = window.eval( fileVirtuale.test );
+//      var risultato = window.eval( fileVirtuale.test );
+      risultato = null;
       esiti.push( { nomeFile: fileVirtuale.nomeFile, esito: risultato } );
     }
   } );
