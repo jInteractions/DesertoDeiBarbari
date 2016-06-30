@@ -1,11 +1,11 @@
-function Livello2 ( callbackFineLivello, numeroOndata ) {
-  CoreLevel.call( this, callbackFineLivello, numeroOndata );
+function Livello2 ( callbackFineLivello ) {
+  CoreLevel.call( this, callbackFineLivello );
 }
 
-Livello2.prototype.Object.create( CoreLevel.prototype );
+Livello2.prototype = Object.create( CoreLevel.prototype );
 Livello2.prototype.constructor = Livello2;
 
-Livello1.prototype.inizializzaMirino = function () {
+Livello2.prototype.inizializzaMirino = function () {
   this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 10.0 );
 }
 
@@ -35,7 +35,7 @@ Livello2.prototype.sparo = function ( x, y, tasto ) {
   var raggio = 30;
   var xModificata = x;
   var yModificata = y;
-  if ( controlloPermessiCalibrazione() === false && controlloConfigurazioneParametriPianeti() === false ) {
+  if ( controlloPermessiCalibrazione() === false || controlloConfigurazioneParametriPianeti() === false ) {
     xModificata += rand( -raggio, raggio );
     yModificata += rand( -raggio, raggio );
   }
@@ -44,11 +44,6 @@ Livello2.prototype.sparo = function ( x, y, tasto ) {
   
   if( indiceTorretta === -1 )
     return;
-  
-  if ( sbloccaSparo() === false ) {
-    console.log("> Sicura attiva!");
-    return;
-  }
   
   this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
     xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
@@ -102,7 +97,7 @@ var controlloConfigurazioneParametriPianeti = function () {
     && atmosfera === "respirabile"
     && settore === 7
   ) {
-    console.log("> Configurazione sistema antimissile...\n>Pianeta Bastiani.\n>Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
+    console.log("> Configurazione sistema antimissile...\n> Pianeta Bastiani.\n> Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
     return true;
   } else {
     console.log(
@@ -119,14 +114,14 @@ var controlloConfigurazioneParametriPianeti = function () {
 
 // TAB 1
 
-// ###START_MODIFICABILE###
-var sbloccoCalibrazione = false;
-// ###END_MODIFICABILE###
-var accessoConfigurazionePianeti = false;
-var codicePianeta;
+var _codicePianeta;
 
 
 var sbloccoPermessiCalibrazione = function () {
+  // ###START_MODIFICABILE###
+  var sbloccoCalibrazione = false;
+  // ###END_MODIFICABILE###
+  var accessoConfigurazionePianeti = false;
   var codiceDefault = 3;
   var codiceBastiani = 2;
   
@@ -136,12 +131,12 @@ var sbloccoPermessiCalibrazione = function () {
   // ###START_MODIFICABILE###
   if ( accessoConfigurazionePianeti === true ) {
     // ###END_MODIFICABILE###
-    codicePianeta = codiceDefault;
+    _codicePianeta = codiceDefault;
   } else {
-    codicePianeta = codiceBastiani;
+    _codicePianeta = codiceBastiani;
   }
   
-  return [sbloccoCalibrazione, accessoConfigurazionePianeti, codicePianeta]
+  return [sbloccoCalibrazione, accessoConfigurazionePianeti, _codicePianeta]
 }
 
 // test
@@ -170,44 +165,44 @@ var configurazioneParametriPianeti = function () {
   var settoreGalattico;
   
   // ###START_MODIFICABILE###
-  if ( codicePianeta === 1 ) {
+  if ( _codicePianeta === 1 ) {
     nomePianeta = "Terra";
     forzaGravitazionale = 1;
     vento = 1;
     atmosfera = "respirabile";
     settoreGalattico = 0;
-  } else if ( codicePianeta === 2 ) {
+  } else if ( _codicePianeta === 2 ) {
     nomePianeta = "Buzzati";
     forzaGravitazionale = 2;
     vento = 19.06;
     atmosfera = "respirabile";
     settoreGalattico = 5;
-  } else if ( codicePianeta === 3 ) {
+  } else if ( _codicePianeta === 3 ) {
     nomePianeta = "Colombre";
     forzaGravitazionale = 0.5;
     vento = 0.7;
     atmosfera = "non_respirabile";
     settoreGalattico = 6;
-  } else if ( codicePianeta === 4 ) {
+  } else if ( _codicePianeta === 4 ) {
     nomePianeta = "Buttafuoco";
     forzaGravitazionale = 4.5;
     vento = 80;
     atmosfera = "non_respirabile";
     settoreGalattico = 3;
-  } else if ( codicePianeta === 5 ) {
+  } else if ( _codicePianeta === 5 ) {
     nomePianeta = "Barnabo";
     forzaGravitazionale = 13;
     vento = 0;
     atmosfera = "parzialmente_respirabile";
     settoreGalattico = 1;
-  } else if ( codicePianeta === 6 ) {
+  } else if ( _codicePianeta === 6 ) {
     nomePianeta = "Bastiani";
     forzaGravitazionale = 4.2;
     vento = 23;
     atmosfera = "respirabile";
     settoreGalattico = 7;
     // ###END_MODIFICABILE###
-  } else if ( codicePianeta === "00110111" ) {
+  } else if ( _codicePianeta === "00110111" ) {
     nomePianeta = "01000001 01101110 01100111 01110101 01110011 01110100 01101001 01101110 01100001";
     forzaGravitazionale = "00110010 00101110 00110011";
     vento = "01101110 01101111 01101110 01011111 01110000 01110010 01100101 01110011 01100101 01101110 01110100 01100101";

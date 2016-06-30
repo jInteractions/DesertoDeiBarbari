@@ -1,5 +1,5 @@
-function Livello1 ( callbackFineLivello, numeroOndata ) {
-  CoreLevel.call( this, callbackFineLivello, numeroOndata );
+function Livello1 ( callbackFineLivello ) {
+  CoreLevel.call( this, callbackFineLivello );
 }
 
 Livello1.prototype = Object.create( CoreLevel.prototype );
