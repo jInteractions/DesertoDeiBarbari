@@ -9,6 +9,114 @@ Livello1.prototype.inizializzaMirino = function () {
   this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 10.0 );
 }
 
+Livello2.prototype.inizializzaArmiNemiche = function () {
+  var areaPertenza = this.coreGame.canvas.width;
+  var ritardoMassimo = 100;
+  var xRand;
+  var velRand;
+  var ritardoRand;
+  var bersagli = this.coreGame.bersagliAttaccabili();
+  var numeroMissili = 10;
+  
+  for( var i = 0; i < numeroMissili ; i++ ) {
+    xRand = rand( 0, areaPertenza );
+    velRand = rand( 1, 1.5 );
+    ritardoRand = rand( 0, ritardoMassimo );
+    this.coreGame.missiliNemici.push( new MissileNemico( {
+      coloreTestata: 'yellow',
+      coloreScia: 'red',
+      massimoRaggioEsplosione: 30
+    }, bersagli, areaPertenza, xRand, velRand,  ritardoRand, this.coreGame) );
+  }
+}
+
+Livello2.prototype.sparo = function ( x, y, tasto ) {
+  var indiceTorretta = this.scegliTorretta( x, y, tasto);
+  var raggio = 30;
+  var xModificata = x;
+  var yModificata = y;
+  if ( controlloPermessiCalibrazione() === false && controlloConfigurazioneParametriPianeti() === false ) {
+    xModificata += rand( -raggio, raggio );
+    yModificata += rand( -raggio, raggio );
+  }
+  var vel = 7;
+  var incrementoTemperatura = 150;
+  
+  if( indiceTorretta === -1 )
+    return;
+  
+  if ( sbloccaSparo() === false ) {
+    console.log("> Sicura attiva!");
+    return;
+  }
+  
+  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
+    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
+    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
+    xDiArrivo: xModificata,
+    yDiArrivo: yModificata,
+    coloreTestata: 'yellow',
+    coloreScia: 'blue',
+    massimoRaggioEsplosione: raggio,
+    distanzaPerFrame: vel
+  }, this.coreGame ) );
+  this.coreGame.aggiornaPunteggioMissiliSparati();
+  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
+  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += incrementoTemperatura;
+}
+
+// interfaccia test - codice utente
+
+var controlloPermessiCalibrazione = function () {
+  var risultato = sbloccoPermessiCalibrazione();
+  if (
+    risultato[ 0 ] === true
+    && risultato[ 1 ] === true
+    && risultato[ 2 ] === 2
+  ) {
+    console.log("> Permessi di calibrazione mira sbloccati.\n Procedere al sistema di configurazione planetario.\n");
+    return true;
+  } else {
+    console.log(
+      "> Sblocco Calibrazione: " + risultato[ 0 ]
+      + "\n> Accesso Configurazione Pianeti: " + risultato[ 1 ]
+      + "\n> Codice Pianeta: " + risultato[ 2 ]
+      + "\n> Informazioni non corrette."
+    );
+    return false;
+  } 
+}
+
+var controlloConfigurazioneParametriPianeti = function () {
+  var risultato = configurazioneParametriPianeti();
+  var nome = risultato[ 0 ];
+  var grav = risultato[ 1 ];
+  var vento = risultato[ 2 ];
+  var atmosfera = risultato[ 3 ];
+  var settore = risultato[ 4 ];
+  
+  if (
+    nome === "Bastiani"
+    && grav === 4.2
+    && vento === 23
+    && atmosfera === "respirabile"
+    && settore === 7
+  ) {
+    console.log("> Configurazione sistema antimissile...\n>Pianeta Bastiani.\n>Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
+    return true;
+  } else {
+    console.log(
+      "> Nome pianeta: " + nome
+      + "\n> Forza Gravitazionale: " + grav
+      + "\n> Vento: " + vento
+      + "\n> Atmosfera: " + atmosfera
+      + "\n> Settore Galattico: " + settore
+      + "\n> Informazioni non corrette."
+    );
+    return false;
+  }
+}
+
 // TAB 1
 
 // ###START_MODIFICABILE###
@@ -18,7 +126,7 @@ var accessoConfigurazionePianeti = false;
 var codicePianeta;
 
 
-var controlloPermessiCalibrazione = function () {
+var sbloccoPermessiCalibrazione = function () {
   var codiceDefault = 3;
   var codiceBastiani = 2;
   
@@ -39,7 +147,7 @@ var controlloPermessiCalibrazione = function () {
 // test
 
 /* (function () {
-  var risultato = controlloPermessiCalibrazione();
+  var risultato = sbloccoPermessiCalibrazione();
   if (
     risultato[ 0 ] === true
     && risultato[ 1 ] === true
