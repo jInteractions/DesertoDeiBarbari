@@ -12,7 +12,15 @@ Livello4.prototype.inizializzaMirino = function () {
 Livello4.prototype.inizializzaArmiNemiche = function () {
   var batteria;
   
-  if ( controlloArmaNemicaSabotata () === true ) {
+  hackingPassword();
+  
+  if ( _login === false ) {
+    console.log("\n> Autenticazione per salvataggio modifiche al sistema Ibrido non riuscita.");
+  } else {
+    console.log("\n> Autenticazione per il salvataggio modifiche al sistema Ibrido riuscita.")
+  }
+  
+  if ( controlloArmaNemicaSabotata() === true && _login === true ) {
     batteria = controlloInizializzazioneBatteriaAntiterrestri();
   } else {
     batteria = new BatteriaAntiterrestre();
@@ -118,14 +126,37 @@ var controlloArmaNemicaSabotata = function () {
 var controlloInizializzazioneBatteriaAntiterrestri = function () {
   var batteria = inizializzaBatteriaAntiterrestri();
   if ( batteria instanceof ArmaNemicaSabotata ) {
-    console.log("\n> Arma nemica sabotata correttamente. Procedere all'autenticazione di sicurezza.");
+    console.log("\n> Arma nemica sabotata correttamente.");
   } else {
     console.log("\n> Arma nemica non sabotata!");
   }
   return batteria;
 }
 
+var _simboli = ['0', '1', '2'];
 
+var _password = [
+  _simboli[ rand( 0, 2 ) ],
+  _simboli[ rand( 0, 2 ) ],
+  _simboli[ rand( 1, 2 ) ]
+];
+
+var _login = false;
+
+var autenticazioneOperatoreIbrido = function ( tentativo ) {
+  if (
+    tentativo[0] === _password[0]
+    && tentativo[1] === _password[1]
+    && tentativo[2] === _password[2]
+  ) {
+    console.log("\n> Password trovata.");
+    _login = true;
+    return true;
+  } else {
+    _login = false;
+    return false;
+  }
+}
 
 // TAB 1
   
@@ -173,4 +204,44 @@ var inizializzaBatteriaAntiterrestri = function () {
   } else {
     return false;
   }
+}) (); */
+
+// TAB 3
+
+var _simboli = ['0', '1', '2'];
+
+var generaPassword = function ( combinazioniPossibili, combinazione, k ) {
+  // ###START_MODIFICABILE###
+  if (k === 2)
+    combinazioniPossibili.push( combinazione.slice( 0 ) );
+  else {
+  	var i = 0;
+    for( i; i < 3; ++i ) {
+      combinazione[ k ] = _simboli[ i ];
+      generaPassword( combinazioniPossibili, combinazione, k + 1 );
+    }
+  }
+  // ###END_MODIFICABILE###
+}
+
+var hackingPassword = function () {
+  var combinazioniPossibili = [];
+  var combinazione = ['0', '0', '0'];
+  generaPassword( combinazioniPossibili, combinazione, 0 );
+  
+  var hacking = false;
+  
+  for ( var i = 0; i < combinazioniPossibili.length; ++i ) {
+    hacking = autenticazioneOperatoreIbrido( combinazioniPossibili[ i ] );
+    if ( hacking === true ) {
+      break;
+    }
+  }
+  return hacking;
+}
+
+// test
+/* (function () {
+  var risultato = _login;
+  return risultato;
 }) (); */
