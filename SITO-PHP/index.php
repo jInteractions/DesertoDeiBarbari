@@ -43,9 +43,7 @@
     require "php/management/management_livello.php";
     require "php/management/management_utente.php";
     session_start();
-    if (!(isset($_SESSION["email"]) && $_SESSION["email"] != '')) {
-      $_SESSION["email"] = "trombi@gmail.com";
-    }
+    $_SESSION["email"] = "trombi@gmail.com";
     if(isset($_GET["idlivello"])){
         $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
         $informazioniLivelloAttuale = selectFrom_LIVELLO_By_idlivello($connection,$_GET["idlivello"]);
@@ -315,7 +313,7 @@
                       </button>
                     </div>
                     <div class="col-md-3 text-center">
-                      <button type="button" class="bottone btn btn-lg btn-info center-block" data-toggle="tooltip" data-placement="bottom" title="Info description">
+                      <button type="button" class="bottone btn btn-lg btn-info center-block" data-toggle="tooltip" data-placement="bottom" title="Info description" id="bottoneResetCodice">
                         <span class="iconaReset glyphicon glyphicon-repeat" aria-hidden="true"></span>
                         Riavvia Livello
                       </button>
@@ -429,7 +427,9 @@
     <script>
       var editorCodice = [];
       var coreLevel;
-      function editor(id){
+      var nOndata;
+      
+      var editor = function (id){
         var x = CodeMirror.fromTextArea(id, {
             mode: "javascript",
             theme: "default",
@@ -440,42 +440,48 @@
         });
         return x;
       };
-      function mostraAiuto(indice){
+      
+      var mostraAiuto = function(indice){
         var testoAiutoStr = "#testoAiuto" + indice;
         var titoloCodice = $("#tab"+indice+"default").text();
         var nomeBottoneAiuto = "#buttonModalAiuto" + indice;
         getHelp(<?php echo $_GET["idlivello"]; ?>, titoloCodice, testoAiutoStr, "<?php echo $_SESSION["email"]; ?>", nomeBottoneAiuto);
       };
+      
+      var resetTuttiCodici = function (){
+        for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
+            resetCodiceUtente(<?php echo $_GET["idlivello"]; ?>, $("#tab" + i + "default").text(), editorCodice[i]);
+        }
+      };
+      
      $(document).ready(function () {
-       $(document).on("click", "button.bottoneAiutoClass" , function() {
+        $(document).on("click", "button.bottoneAiutoClass" , function() {
             mostraAiuto(this.id.replace("bottoneAiuto", ""));
         });
+        $("#bottoneResetCodice").click(resetTuttiCodici);
         $("#bottoneCaricaCodice").click(ricaricaCodice);
         $('textarea').each(function(){
            if( $(this).attr('id').match('codesnippet_editable.*') ) {
-              codesnippet = document.getElementById($(this).attr('id'));
+              var codesnippet = document.getElementById($(this).attr('id'));
               var identificatoreCodice = parseInt($(this).attr('id').replace("codesnippet_editable", ""));
+              console.log(codesnippet);
               editorCodice[identificatoreCodice] = editor(codesnippet);
+              console.log(editorCodice[identificatoreCodice].getValue());
            }
         });
         
        ricaricaCodice();
        
-        /*word.markText({line:1,ch:1},{line:30,ch:10},{readOnly:true});
-        word.markText({line:1,ch:1},{line:30,ch:10},{css: "background-color: #f8f8f8"});
-        word.markText({line:41,ch:10},{line:80,ch:10},{readOnly:true});
-        word.markText({line:41,ch:10},{line:80,ch:10},{css: "background-color: #f8f8f8"});*/
-       
      });
       
      var ricaricaCodice = function (){
-       var callback = function ( risultatoOndata ) {
+        var callback = function ( risultatoOndata ) {
           if( risultatoOndata.esito === true ) {
             ++nOndata;
             coreLevel.inizializzaLivello(nOndata);
             coreLevel.mostraSchermataIniziale();
           } else {
-            console.log("morto")
+            nOndata = 1;
             coreLevel.inizializzaLivello(1);
             coreLevel.mostraSchermataGameOver();
           }
@@ -502,9 +508,8 @@
         nOndata = 1;
 
         if(e.erroriCiclo.length === 0) {
-          esiti = caricaCodice.esecuzioneTest();
+          var esiti = caricaCodice.esecuzioneTest();
           //console.log( esiti );
-          console.log(coreLevel);
           if(coreLevel != undefined) {
             clearInterval(coreLevel.intervalloSchermata);      
             console.log("Cleared interval");

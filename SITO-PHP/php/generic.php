@@ -10,7 +10,7 @@
 			}
 		}else{
 			if($debug)
-				echo "<h1>Connection established!!!</h1>";
+				echo "<h1>Connection established</h1>";
 		}
 		return $connection;
 	}

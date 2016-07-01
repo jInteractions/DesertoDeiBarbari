@@ -19,7 +19,7 @@ function selectAllFrom_LIVELLO($connection){
 	return $fields;
 }
 function selectFrom_LIVELLO_By_idlivello($connection,$value){
-	 $query="SELECT idlivello, numero, nome, json FROM livello WHERE idlivello=?";
+  $query="SELECT idlivello, numero, nome, json FROM livello WHERE idlivello=?";
  	$fields = [];
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "s",$value);
