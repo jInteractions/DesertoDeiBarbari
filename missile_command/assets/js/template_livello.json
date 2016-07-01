@@ -1,0 +1,48 @@
+var jsonLivello = {
+  "nomeLivello": "",
+  "numeroLivello": 0,
+  "costoAiuti": 200,
+
+  "dialogoIniziale": [
+    { "nome": "",
+      "testo": "" },
+    { "nome": "",
+      "testo": "" }
+  ],
+
+  "dialogoFinale": [
+    { "nome": "",
+      "testo": "" },
+    { "nome": "",
+      "testo": "" }
+  ],
+
+  "codiceLivello": "",
+   
+  "manuale": "",
+  
+  "fileVirtuali": [
+    { "nomeFile": "",
+      "consultazione": true,
+      "codice": "",
+    },
+    
+    { "nomeFile": "",
+      "consultazione": false,
+      "codice": "",
+      "test": "",
+      "descrizione": "",
+      "aiuto": "",
+      "messaggioFallimento": ""
+    },
+    
+    { "nomeFile": "",
+      "consultazione": false,
+      "codice": "",
+      "test": "",
+      "descrizione": "",
+      "aiuto": "",
+      "messaggioFallimento": ""
+    }
+  ]
+}
