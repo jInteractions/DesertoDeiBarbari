@@ -273,11 +273,13 @@
                               echo '<li class="active">';
                             else
                               echo '<li>';
-                            echo '<a href="#tab'.$chiave.'default" id="tab'.$chiave.'default" data-toggle="tab">';
+                            echo '<a href="#tab'.$chiave.'default" class="tab'.$chiave.'default" data-toggle="tab">';
                             echo $valore["nomeFile"];
+                            echo '<span class="iconaReset glyphicon glyphicon-repeat" id="resetCode'.$chiave.'" aria-hidden="true"/>';
+                            echo '</a>';
                         ?>                      
-                            <span class="iconaReset glyphicon glyphicon-repeat" aria-hidden="true"/>
-                          </a>
+                            
+                          
                         </li>
                         <?php 
                             $primo=false;
@@ -307,20 +309,20 @@
                   </div>
                   <div class="riga center-block">
                     <div class="col-md-2 text-center">
-                      <button type="button" class="bottone btn btn-lg btn-success center-block" data-toggle="tooltip" data-placement="bottom" title="Success description" id="bottoneCaricaCodice">
-                        <span class="iconaReset glyphicon glyphicon-play" aria-hidden="true"></span>
-                        Avvia
+                      <button type="button" class="bottone btn btn-lg btn-success center-block" data-toggle="tooltip" data-placement="bottom" title="Effettua il test del codice modificato" id="bottoneCaricaCodice">
+                        Avvia <span class="iconaReset glyphicon glyphicon-play" aria-hidden="true"></span>
+                         
                       </button>
                     </div>
                     <div class="col-md-3 text-center">
-                      <button type="button" class="bottone btn btn-lg btn-info center-block" data-toggle="tooltip" data-placement="bottom" title="Info description" id="bottoneResetCodice">
-                        <span class="iconaReset glyphicon glyphicon-repeat" aria-hidden="true"></span>
-                        Riavvia Livello
+                      <button type="button" class="bottone btn btn-lg btn-success center-block" data-toggle="tooltip" data-placement="bottom" title="Salva il codice nel cloud" id="bottoneSalvaCodice">
+                        Salva codice <span class="iconaReset glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+                         
                       </button>
                     </div>
                     <div class="col-md-4 text-center">
-                      <button type="button" class="bottone btn btn-lg btn-warning center-block" data-toggle="tooltip" data-placement="bottom" title="Warning description">
-                        Livello successivo
+                      <button type="button" class="bottone btn btn-lg btn-warning center-block" data-toggle="tooltip" data-placement="bottom" title="Vai al livello successivo" id="bottoneLivelloSuccessivo">
+                        Livello successivo <span class="iconaReset glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                       </button>
                     </div>
                     <div class="col-md-3 text-center">
@@ -443,23 +445,54 @@
       
       var mostraAiuto = function(indice){
         var testoAiutoStr = "#testoAiuto" + indice;
-        var titoloCodice = $("#tab"+indice+"default").text();
+        var titoloCodice = $(".tab"+indice+"default").text();
         var nomeBottoneAiuto = "#buttonModalAiuto" + indice;
         getHelp(<?php echo $_GET["idlivello"]; ?>, titoloCodice, testoAiutoStr, "<?php echo $_SESSION["email"]; ?>", nomeBottoneAiuto);
       };
       
-      var resetTuttiCodici = function (){
-        for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
-            resetCodiceUtente(<?php echo $_GET["idlivello"]; ?>, $("#tab" + i + "default").text(), editorCodice[i]);
-        }
+      var resetCodice = function (id){
+          resetCodiceUtente(<?php echo $_GET["idlivello"]; ?>, $(".tab" + id + "default").text(), editorCodice[id]);
       };
       
      $(document).ready(function () {
+        $("#bottoneLivelloSuccessivo").prop("disabled",true);
         $(document).on("click", "button.bottoneAiutoClass" , function() {
             mostraAiuto(this.id.replace("bottoneAiuto", ""));
         });
-        $("#bottoneResetCodice").click(resetTuttiCodici);
         $("#bottoneCaricaCodice").click(ricaricaCodice);
+        $("#bottoneSalvaCodice").click( function () {
+          var jsonFileVirtuali;
+          var conAiuti = [<?php 
+                $primoGiro = true;
+                foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
+                {
+                  if($valore["consultazione"]===false){
+                    if ($primoGiro){
+                      echo $chiave;
+                      $primoGiro = false;
+                    } else
+                      echo ", ".$chiave;
+                  }
+                }
+          ?>];
+          jsonFileVirtuali = '"fileVirtuali": [';
+          for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
+            console.log("Ciclo for " + i);
+            if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop('disabled')){
+              console.log("Entrato indexOf disabled");
+              jsonFileVirtuali = jsonFileVirtuali + '{ "nomeFile": "' + $(".tab"+i+"default").text() + '", "codice": "' + editorCodice[i].getValue() + '", "aiutoUtilizzato": true }';
+            } else{
+              console.log("Entrato else");
+              jsonFileVirtuali = jsonFileVirtuali + '{ "nomeFile": "' + $(".tab"+i+"default").text() + '", "codice": "' + editorCodice[i].getValue() + '", "aiutoUtilizzato": false }';
+            }
+            if(i!=(<?php echo count($jsonLivello["fileVirtuali"]); ?>-1))
+              jsonFileVirtuali = jsonFileVirtuali + ",";
+          }
+          jsonFileVirtuali = jsonFileVirtuali +"]"
+          console.log(jsonFileVirtuali);
+          updateCodiceUtente(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", jsonFileVirtuali);
+        });
+        
         $('textarea').each(function(){
            if( $(this).attr('id').match('codesnippet_editable.*') ) {
               var codesnippet = document.getElementById($(this).attr('id'));
@@ -469,6 +502,13 @@
               console.log(editorCodice[identificatoreCodice].getValue());
            }
         });
+        for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
+          $("#resetCode"+i).click( function () {
+            var resetCodeId = $(this).attr('id').replace('resetCode', '');
+            resetCodice(resetCodeId);
+            console.log("Reset code ID:" + resetCodeId);
+          }); 
+        }
         
        ricaricaCodice();
        

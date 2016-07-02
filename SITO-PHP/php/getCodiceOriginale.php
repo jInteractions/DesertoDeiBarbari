@@ -8,7 +8,7 @@
     $json = json_decode($result["json"]);
     
     foreach ($json->fileVirtuali as $file) {
-      if(strcmp($file->nomeFile, $_GET["nomefile"])){
+      if(strcmp($file->nomeFile, $_GET["nomefile"])===0){
         echo $file->codice;
         exit();
       }
@@ -16,7 +16,4 @@
 	}
 	else
 		echo "{'result':'error'}";
-
-
-
 ?>

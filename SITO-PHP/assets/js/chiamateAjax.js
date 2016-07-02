@@ -36,3 +36,23 @@ var resetCodiceUtente = function (livello, nomefile, editorCodice){
         }
     });
 };
+
+
+
+var updateCodiceUtente = function (livello,email,filevirtuali){
+    $.ajax({
+        type: "GET",
+        url: host + "php/setCodiceUtente.php",
+        data: "idlivello=" + livello + "&" +
+        "email=" + email+ "&" +
+        "usercode=" + escape(filevirtuali),
+        dataType: "text",
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error);
+        }
+    });
+}
