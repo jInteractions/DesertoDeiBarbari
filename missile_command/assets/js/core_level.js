@@ -115,13 +115,12 @@ CoreLevel.prototype.mostraSchermataIniziale = function () {
 CoreLevel.prototype.mostraSchermataGameOver = function () {
   var ctx = this.ctx;
   var mySelf = this;
-  ctx.fillStyle = this.coreGame.coloreTestoPrimario;
-  ctx.textAlign = "center"; 
-  ctx.font = 'bold 20px arial';
-  ctx.fillText( 'HAI PERSO', this.canvas.width/2, this.canvas.height/2 - 20 );
   ctx.fillStyle = this.coreGame.coloreTestoSecondario;
-  console.log( this.numeroOndata );
-  ctx.fillText( 'Ondata ' + this.numeroOndata, this.canvas.width/2, this.canvas.height/2 + 20 );
+  ctx.textAlign = "center"; 
+  ctx.font = 'bold 30px arial';
+  ctx.fillText( 'HAI PERSO', this.canvas.width/2, this.canvas.height/2 );
+  //ctx.fillStyle = this.coreGame.coloreTestoSecondario;
+  //ctx.fillText( 'Ondata ' + mySelf.numeroOndata, this.canvas.width/2, this.canvas.height/2 + 20 );
   ctx.textAlign = "start";
   $( '.gameContainer' ).off();
   $( '.gameContainer' ).one( 'click', function() {
