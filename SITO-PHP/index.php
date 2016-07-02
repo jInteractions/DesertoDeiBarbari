@@ -310,19 +310,19 @@
                   <div class="riga center-block">
                     <div class="col-md-2 text-center">
                       <button type="button" class="bottone btn btn-lg btn-success center-block" data-toggle="tooltip" data-placement="bottom" title="Effettua il test del codice modificato" id="bottoneCaricaCodice">
-                        Avvia <span class="iconaReset glyphicon glyphicon-play" aria-hidden="true"></span>
+                        Avvia <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
                          
                       </button>
                     </div>
                     <div class="col-md-3 text-center">
                       <button type="button" class="bottone btn btn-lg btn-success center-block" data-toggle="tooltip" data-placement="bottom" title="Salva il codice nel cloud" id="bottoneSalvaCodice">
-                        Salva codice <span class="iconaReset glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+                        Salva codice <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
                          
                       </button>
                     </div>
                     <div class="col-md-4 text-center">
                       <button type="button" class="bottone btn btn-lg btn-warning center-block" data-toggle="tooltip" data-placement="bottom" title="Vai al livello successivo" id="bottoneLivelloSuccessivo">
-                        Livello successivo <span class="iconaReset glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        Livello successivo <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                       </button>
                     </div>
                     <div class="col-md-3 text-center">
@@ -477,19 +477,15 @@
           ?>];
           jsonFileVirtuali = '"fileVirtuali": [';
           for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
-            console.log("Ciclo for " + i);
             if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop('disabled')){
-              console.log("Entrato indexOf disabled");
               jsonFileVirtuali = jsonFileVirtuali + '{ "nomeFile": "' + $(".tab"+i+"default").text() + '", "codice": "' + editorCodice[i].getValue() + '", "aiutoUtilizzato": true }';
             } else{
-              console.log("Entrato else");
               jsonFileVirtuali = jsonFileVirtuali + '{ "nomeFile": "' + $(".tab"+i+"default").text() + '", "codice": "' + editorCodice[i].getValue() + '", "aiutoUtilizzato": false }';
             }
             if(i!=(<?php echo count($jsonLivello["fileVirtuali"]); ?>-1))
               jsonFileVirtuali = jsonFileVirtuali + ",";
           }
           jsonFileVirtuali = jsonFileVirtuali +"]"
-          console.log(jsonFileVirtuali);
           updateCodiceUtente(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", jsonFileVirtuali);
         });
         

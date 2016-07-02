@@ -755,7 +755,8 @@ code {
 }
 
 .iconaReset {
-  margin-left: 10px;
+  margin-left: 30px;
+  cursor: pointer;
 }
 
 
