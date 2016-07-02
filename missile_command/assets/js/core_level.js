@@ -57,7 +57,7 @@ CoreLevel.prototype.inizializzaMirino = function () {
 };
 
 CoreLevel.prototype.inizializzaTorrette = function () {
-  var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue'];
+  var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
   var nMissili = coloreMissili.length;
   var nSoldati = 10;
   var Tmin = 50;
@@ -215,9 +215,10 @@ CoreLevel.prototype.scegliTorretta = function ( x, y, tasto ) {
   
   var torrettaAttuale = this.coreGame.batterieAntimissile[ indiceTorretta ];
   
-  if ( torrettaAttuale.stato === BatteriaAntimissile.ATTIVA && torrettaAttuale.numeroMissili > 0 ) {
+  if ( torrettaAttuale.stato === BatteriaAntimissile.ATTIVA 
+      && torrettaAttuale.numeroMissili > 0 
+      && torrettaAttuale.blocco === false )  
     return indiceTorretta;
-  }
   
   return -1;
 };
@@ -339,21 +340,21 @@ $(document).ready( function () {
     ]
   }
   
-  window.eval( jsonLivello.codiceLivello );
+  //window.eval( jsonLivello.codiceLivello );
   
-  var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
-  // caricaCodice.aggiornaCodiceUtente();
-  var e = caricaCodice.validazioneCodiceUtente();
-  console.log(e);
+  //var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
+  //caricaCodice.aggiornaCodiceUtente();
+  //var e = caricaCodice.validazioneCodiceUtente();
+  //console.log(e);
   
   nOndata = 1;
-  if(e.erroriCiclo.length === 0 
-    && e.erroriSintassi.length === 0
-    && e.erroriParole.length === 0 ) {
-    esiti = caricaCodice.esecuzioneTest();
-    console.log( esiti );
-    var coreLevel = new Livello4( callback );
+  //if(e.erroriCiclo.length === 0 
+  //  && e.erroriSintassi.length === 0
+  //  && e.erroriParole.length === 0 ) {
+  //  esiti = caricaCodice.esecuzioneTest();
+  //  console.log( esiti );
+    var coreLevel = new Livello5( callback );
     coreLevel.inizializzaLivello( nOndata );
     coreLevel.mostraSchermataIniziale();
-  }
+  //}
 } );
