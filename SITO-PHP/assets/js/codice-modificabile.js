@@ -8,12 +8,12 @@ var determinaPartiModificabili = function ( codice ) {
   for( var i = 0; i < lineeCodice.length; ++i) {
     var lineaCorrente = lineeCodice[i];
 
-    if (lineaCorrente.indexOf("###START_MODIFICABILE") === 0) {
+    if (lineaCorrente.indexOf("\/\/###START_MODIFICABILE") === 0) {
       lineeCodice.splice(i, 1);
       i--;
       delimitatori[contatore] = {inizio: null, fine: null}
       delimitatori[contatore].inizio = i + 1;     
-    } else if (lineaCorrente.indexOf("###END_MODIFICABILE") === 0) {
+    } else if (lineaCorrente.indexOf("\/\/###END_MODIFICABILE") === 0) {
       lineeCodice.splice(i, 1);
       i--;
       delimitatori[contatore].fine = i + 1; 
@@ -65,8 +65,8 @@ var salvaCodiceEditor = function ( editor ) {
     var delimitatore = delimitatori[i].find();
     fine = delimitatore.from.line;
 
-    lineeCodice.splice(fine + offset, 0, "###END_MODIFICABILE"); offset++;
-    lineeCodice.splice(inizio - 1 + offset, 0, "###START_MODIFICABILE"); offset++;  
+    lineeCodice.splice(fine + offset, 0, "\/\/###END_MODIFICABILE"); offset++;
+    lineeCodice.splice(inizio - 1 + offset, 0, "\/\/###START_MODIFICABILE"); offset++;  
 
     inizio = delimitatore.to.line;
   }
