@@ -53,6 +53,22 @@ function selectFrom_LIVELLO_ESEGUITO_idlivello_name_By_email($connection,$idlive
 }
 
 
+function select_file_virtuali_aggiornati_From_LIVELLO_ESEGUITO_By_idlivello_email($connection,$idlivello,$email){
+  $query="SELECT file_virtuali_aggiornati FROM livello_eseguito WHERE idlivello=? AND email=?";
+ 	$risultato;
+	if ($stmt = $connection->prepare($query)) {
+		$stmt->bind_param( "ss",$idlivello,$email);
+		$stmt->execute();
+		$stmt->bind_result($file_virtuali_aggiornati);
+		while ($stmt->fetch()) {
+			$risultato = $file_virtuali_aggiornati;
+		}
+		$stmt->close();
+	}
+	return $risultato;
+}
+
+
 function selectFrom_LIVELLO_ESEGUITO_By_email($connection,$value){
 	 $query="SELECT email, idlivello, file_virtuali_aggiornati, ondate, punteggio, missili_abbattuti, minacce_abbattute, missili_lanciati, missili_rimasti, torrette_salvate, morti FROM livello_eseguito WHERE email=?";
  	$fields = [];

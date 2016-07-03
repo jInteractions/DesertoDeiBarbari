@@ -41,19 +41,15 @@
     require "php/config.php";
     require "php/generic.php";
     require "php/management/management_livello.php";
+    require "php/management/management_livello_eseguito.php";
     require "php/management/management_utente.php";
     session_start();
     $_SESSION["email"] = "trombi@gmail.com";
     if(isset($_GET["idlivello"])){
         $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
         $informazioniLivelloAttuale = selectFrom_LIVELLO_By_idlivello($connection,$_GET["idlivello"]);
-    }
-    else{
-        if(isset($_GET["numero"])){
-            $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
-            $informazioniLivelloAttuale = selectFrom_LIVELLO_By_numero($connection,$_GET["numero"]);
-        } else 
-            $informazioniLivelloAttuale = "Error";
+        $fileVirtualiAggiornati = select_file_virtuali_aggiornati_From_LIVELLO_ESEGUITO_By_idlivello_email ($connection, $_GET["idlivello"], $_SESSION["email"]);
+        $fileVirtualiAggiornati = json_decode($fileVirtualiAggiornati, true);
     }
   ?>
   <div class="wrapper">
@@ -293,14 +289,26 @@
                             $primo=true;
                             foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
                             {
-                              if($primo)
-                                echo '<div class="tab-pane codePanel fade in active" id="tab'.$chiave.'default">';
-                              else
-                                echo '<div class="tab-pane codePanel fade" id="tab'.$chiave.'default">';
-                              echo '<textarea rows="4" cols="50" name="codesnippet_editable" id="codesnippet_editable'.$chiave.'">';
-                              echo $valore["codice"];                    
-                              echo '</textarea> </div>';
-                              $primo=false;
+                              if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
+                                if($primo)
+                                  echo '<div class="tab-pane codePanel fade in active" id="tab'.$chiave.'default">';
+                                else
+                                  echo '<div class="tab-pane codePanel fade" id="tab'.$chiave.'default">';
+                                echo '<textarea rows="4" cols="50" name="codesnippet_editable" id="codesnippet_editable'.$chiave.'">';
+                                echo $valore["codice"];                    
+                                echo '</textarea> </div>';
+                                $primo=false;
+                              } else {
+                                if($primo)
+                                  echo '<div class="tab-pane codePanel fade in active" id="tab'.$chiave.'default">';
+                                else
+                                  echo '<div class="tab-pane codePanel fade" id="tab'.$chiave.'default">';
+                                echo '<textarea rows="4" cols="50" name="codesnippet_editable" id="codesnippet_editable'.$chiave.'">';
+                                echo $fileVirtualiAggiornati["fileVirtuali"][$chiave]["codice"];                    
+                                echo '</textarea> </div>';
+                                $primo=false;
+                              }
+                              
                             }
                           ?>
                         
@@ -348,13 +356,23 @@
                     foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
                     {
                       if($valore["consultazione"]===false){
+                        if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
                   ?>
-                        <p>
-                          <?php echo $valore["descrizione"]; ?>
-                        </p>
+                          <p>
+                            <?php echo $valore["descrizione"]; ?>
+                          </p>
                         <?php
                           echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
                           echo '<p id="testoAiuto'.$chiave.'" />';
+                        } else {
+                         ?>
+                          <p>
+                            <?php echo $valore["descrizione"]; ?>
+                          </p>
+                        <?php
+                          echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'" disabled>Aiuto</button>';
+                          echo '<p id="testoAiuto'.$chiave.'">'.$valore["aiuto"].'</p>';
+                        }
                       }
                     }
                   ?>
@@ -447,47 +465,54 @@
         var testoAiutoStr = "#testoAiuto" + indice;
         var titoloCodice = $(".tab"+indice+"default").text();
         var nomeBottoneAiuto = "#buttonModalAiuto" + indice;
+        funzioneSalvaCodice();
         getHelp(<?php echo $_GET["idlivello"]; ?>, titoloCodice, testoAiutoStr, "<?php echo $_SESSION["email"]; ?>", nomeBottoneAiuto);
       };
       
       var resetCodice = function (id){
           resetCodiceUtente(<?php echo $_GET["idlivello"]; ?>, $(".tab" + id + "default").text(), editorCodice[id]);
       };
-      
+      var funzioneSalvaCodice = function (){
+        var jsonFileVirtuali;
+        var conAiuti = [<?php 
+              $primoGiro = true;
+              foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
+              {
+                if($valore["consultazione"]===false){
+                  if ($primoGiro){
+                    echo $chiave;
+                    $primoGiro = false;
+                  } else
+                    echo ", ".$chiave;
+                }
+              }
+        ?>];
+
+        var richiestoAiuto = [];
+        var nomeFile = [];
+        var codiceUtente = "";
+
+        for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
+          if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop('disabled')){
+            richiestoAiuto[i] = "true";
+            nomeFile[i] = $(".tab"+i+"default").text();
+            codiceUtente = codiceUtente + (escape(editorCodice[i].getValue()+"########FineCodiceUtente########"));
+          } else {
+            richiestoAiuto[i] = "false";
+            nomeFile[i] = $(".tab"+i+"default").text();
+            codiceUtente = codiceUtente + (escape(editorCodice[i].getValue()+"########FineCodiceUtente########"));
+          }
+        }
+
+        updateCodiceUtente(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", richiestoAiuto, nomeFile, codiceUtente);
+      };
      $(document).ready(function () {
         $("#bottoneLivelloSuccessivo").prop("disabled",true);
         $(document).on("click", "button.bottoneAiutoClass" , function() {
             mostraAiuto(this.id.replace("bottoneAiuto", ""));
         });
         $("#bottoneCaricaCodice").click(ricaricaCodice);
-        $("#bottoneSalvaCodice").click( function () {
-          var jsonFileVirtuali;
-          var conAiuti = [<?php 
-                $primoGiro = true;
-                foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
-                {
-                  if($valore["consultazione"]===false){
-                    if ($primoGiro){
-                      echo $chiave;
-                      $primoGiro = false;
-                    } else
-                      echo ", ".$chiave;
-                  }
-                }
-          ?>];
-          jsonFileVirtuali = '"fileVirtuali": [';
-          for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
-            if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop('disabled')){
-              jsonFileVirtuali = jsonFileVirtuali + '{ "nomeFile": "' + $(".tab"+i+"default").text() + '", "codice": "' + editorCodice[i].getValue() + '", "aiutoUtilizzato": true }';
-            } else{
-              jsonFileVirtuali = jsonFileVirtuali + '{ "nomeFile": "' + $(".tab"+i+"default").text() + '", "codice": "' + editorCodice[i].getValue() + '", "aiutoUtilizzato": false }';
-            }
-            if(i!=(<?php echo count($jsonLivello["fileVirtuali"]); ?>-1))
-              jsonFileVirtuali = jsonFileVirtuali + ",";
-          }
-          jsonFileVirtuali = jsonFileVirtuali +"]"
-          updateCodiceUtente(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", jsonFileVirtuali);
-        });
+        $("#bottoneSalvaCodice").click(funzioneSalvaCodice);
         
         $('textarea').each(function(){
            if( $(this).attr('id').match('codesnippet_editable.*') ) {

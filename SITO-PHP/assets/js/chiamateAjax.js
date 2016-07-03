@@ -39,19 +39,31 @@ var resetCodiceUtente = function (livello, nomefile, editorCodice){
 
 
 
-var updateCodiceUtente = function (livello,email,filevirtuali){
+var updateCodiceUtente = function (livello, email, richiestoAiuto, nomeFile, codiceUtente){
+    console.log("idlivello=" + livello);
+    console.log("email=" + email);
+    console.log("richiestoAiuto=" + JSON.stringify(richiestoAiuto));
+    console.log("nomeFile=" + JSON.stringify(nomeFile));
+    console.log("codiceUtente=" + JSON.stringify(codiceUtente));
     $.ajax({
         type: "GET",
         url: host + "php/setCodiceUtente.php",
         data: "idlivello=" + livello + "&" +
-        "email=" + email+ "&" +
-        "usercode=" + escape(filevirtuali),
+        "email=" + email + "&" +
+        "richiestoAiuto=" + JSON.stringify(richiestoAiuto)+ "&" +
+        "nomeFile=" + JSON.stringify(nomeFile) + "&" +
+        "codiceUtente=" + codiceUtente,
         dataType: "text",
         success: function (result) {
             console.log(result);
         },
         error: function (error) {
             console.log(error);
+            console.log("idlivello=" + livello);
+            console.log("email=" + email);
+            console.log("richiestoAiuto=" + richiestoAiuto);
+            console.log("nomeFile=" + nomeFile);
+            console.log("codiceUtente=" + codiceUtente);
             alert(error);
         }
     });
