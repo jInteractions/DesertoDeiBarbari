@@ -352,7 +352,7 @@ $(document).ready( function () {
   //  && e.erroriParole.length === 0 ) {
   //  esiti = caricaCodice.esecuzioneTest();
   //  console.log( esiti );
-    var coreLevel = new Livello5( callback );
+    var coreLevel = new Livello6( callback );
     coreLevel.inizializzaLivello( nOndata );
     coreLevel.mostraSchermataIniziale();
   //}
