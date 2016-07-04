@@ -218,7 +218,7 @@ var meccanismoCaricamento = function ( ) {
   var caricatoreTorretta = [];
   var proiettiliScartati = [];
   
-  //###START_MODIFICABILE###
+//###START_MODIFICABILE###
   for( i = 0; i < magazzino.length; ++i ) {
     var proiettile = magazzino[i];
     
@@ -237,7 +237,7 @@ var meccanismoCaricamento = function ( ) {
     if( caricatoreTorretta.length >= 10 )
       break;
   }
-  //###END_MODIFICABILE###
+//###END_MODIFICABILE###
   
   return caricatoreTorretta;
 }
@@ -267,17 +267,17 @@ function () {
 
 var sistemaRaffreddamento = function ( ) {
   T = rilevaTemperatura();
-  //###START_MODIFICABILE###
+//###START_MODIFICABILE###
   var sogliaTemperaturaMinima = 500;
-  //###END_MODIFICABILE###
+//###END_MODIFICABILE###
   
   if( T >= 799 ) {
-    //###START_MODIFICABILE###
+//###START_MODIFICABILE###
     while( T === sogliaTemperaturaMinima ) {
       azionaPompeRaffreddamento();
       T = rilevaTemperatura();
     }
-    //###END_MODIFICABILE###
+//###END_MODIFICABILE###
   }
 }
 
