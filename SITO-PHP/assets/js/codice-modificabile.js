@@ -39,15 +39,16 @@ var inserisciCodiceEditor = function ( editor, codice ) {
     var fine = delimitatori[i].inizio;
     editor.markText( { line: inizio, ch: 0 },
                      { line: fine, ch: 0 }, 
-                     { readOnly: true, css: "background: grey" } );
+                     { readOnly: true, className: "disabled" } );
     var inizio = delimitatori[i].fine;
   }
   editor.markText( {line: inizio, ch:0},
                    {line: lineaFinale, ch:0}, 
-                   {readOnly: true, css: "background: grey"} );
+                   {readOnly: true, className: "disabled"} );
 
   editor.clearHistory();
   editor.refresh();
+  $('.CodeMirror-line:has(span.disabled)').css("background-color","red");
 };
 
 /** Estrae il codice dall'editor, reinserisce i marcatori 
