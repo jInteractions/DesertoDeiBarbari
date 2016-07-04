@@ -211,11 +211,9 @@ var inizializzaBatteriaAntiterrestri = function () {
 var _simboli = ['0', '1', '2'];
 
 var generaPassword = function ( combinazioniPossibili, combinazione, k ) {
-  //###START_MODIFICABILE###
+  // ###START_MODIFICABILE###
   if (k === 2)
-  //###END_MODIFICABILE###
     combinazioniPossibili.push( combinazione.slice( 0 ) );
-  //###START_MODIFICABILE###
   else {
   	var i = 0;
     for( i; i < 3; ++i ) {
@@ -223,7 +221,7 @@ var generaPassword = function ( combinazioniPossibili, combinazione, k ) {
       generaPassword( combinazioniPossibili, combinazione, k + 1 );
     }
   }
-  //###END_MODIFICABILE###
+  // ###END_MODIFICABILE###
 }
 
 var hackingPassword = function () {

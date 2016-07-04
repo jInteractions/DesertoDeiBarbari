@@ -44,12 +44,12 @@ CoreLevel.prototype.inizializzaLivello = function ( numeroOndata ) {
 // Funzioni base di CoreLevel
 
 CoreLevel.prototype.inizializzaBasi = function () {
-  this.coreGame.aggiungiBase( new Base( 80,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 180,  430, true, 100, 'cyan', this.coreGame ) );  
-  this.coreGame.aggiungiBase( new Base( 130,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 300,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 350,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 400,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 80,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 180,  430, true, 100, 'cyan', this.coreGame ) );  
+  this.coreGame.aggiungiBase( new BaseMilitare( 130,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 300,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 350,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 400,  430, true, 100, 'cyan', this.coreGame ) );
 };
 
 CoreLevel.prototype.inizializzaMirino = function () {
@@ -247,7 +247,7 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
 CoreLevel.prototype.verificaFineLivello = function ( ) {
   if ( this.coreGame.missiliNemici.length === 0 ) {
     var basiAttive = this.coreGame.basi.filter( function ( base ) {
-      return base.attiva === true 
+      return base.attiva === true && base.vitale === true;
     } );
     if( basiAttive.length === 0 )  {
       return false;
@@ -261,16 +261,6 @@ CoreLevel.prototype.verificaFineLivello = function ( ) {
 CoreLevel.prototype.calcolaCoefficienteOndata = function () {
   return 1.0; // default
 }
-
-// Il codice sottostante dovrà essere spostato
-/*
-var oldConsole = console;
-
-var console = {};
-console.log = function ( stringa ) {
-  oldConsole.log(stringa);
-  // Qui ci sarà la "append" di codice html al terminale
-}*/
 
 $(document).ready( function () {  
   var callback = function ( risultatoOndata ) {

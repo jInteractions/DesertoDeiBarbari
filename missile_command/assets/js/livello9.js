@@ -6,12 +6,12 @@ Livello9.prototype = Object.create( CoreLevel.prototype );
 Livello9.prototype.constructor = Livello9;
 
 CoreLevel.prototype.inizializzaBasi = function () {
-  this.coreGame.aggiungiBase( new Base( 80,  430, false, 100, 'red', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 130,  430, true, 100, 'cyan', this.coreGame ) );  
-  this.coreGame.aggiungiBase( new Base( 180,  430, false, 100, 'red', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 300,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 350,  430, false, 100, 'red', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 400,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 80,  430, false, 100, 'red', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 130,  430, true, 100, 'cyan', this.coreGame ) );  
+  this.coreGame.aggiungiBase( new BaseMilitare( 180,  430, false, 100, 'red', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 300,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 350,  430, false, 100, 'red', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 400,  430, true, 100, 'cyan', this.coreGame ) );
 };
 
 Livello9.prototype.inizializzaArmiNemiche = function ( ) {
@@ -25,11 +25,9 @@ Livello9.prototype.inizializzaArmiNemiche = function ( ) {
   $.each( this.esaminaCanaliRadio(), function ( i, b ) {
     bersagliPrioritari.push( {x: b.x + 15, y: b.y - 10, tipo: b} )
   } );  
-  
-  console.log( bersagliPrioritari )
-  
+    
   var bersagliNonBasi = this.coreGame.bersagliAttaccabili().filter( function( b ) {
-    if( b.tipo instanceof Base )
+    if( b.tipo instanceof BaseMilitare )
       return false;
     return true;
   } );
@@ -40,15 +38,11 @@ Livello9.prototype.inizializzaArmiNemiche = function ( ) {
       bersagliPrioritariEsauriti = false;
   } )
   
-  console.log( bersagliPrioritariEsauriti );
-  
   if( bersagliPrioritariEsauriti === true ) {
     var bersagli = this.coreGame.bersagliAttaccabili();
   } else {
     var bersagli = bersagliNonBasi.concat( bersagliPrioritari );   
   }
-  
-  console.log( bersagli );
   
   var numeroMissili = 50;
   for( var i = 0; i < numeroMissili ; i++ ) {
@@ -78,12 +72,8 @@ Livello9.prototype.esaminaCanaliRadio = function ( ) {
     var id = "";
     if( b.vitale === true ) {
       id += "AX" + i; 
-      //console.log( b )
-      //console.log( true )
     } else {
       id += "BX" + i;
-      //console.log( b )
-      //console.log( false )
     }
     var messaggio = ""; 
     for( var j = 0; j < rand(10, 20); ++j )
@@ -92,21 +82,13 @@ Livello9.prototype.esaminaCanaliRadio = function ( ) {
     tx.inviaMessaggio( id, messaggio, i );
   } );
   
-  codificaSegnale( canale );
-  
   var bersagliPrioritari = [];
   
-  console.log( canale )
   $.each( canale, function( i, c ) {
-    
-    console.log( c.radioIdentificatore );
-    console.log( c.radioIdentificatore.indexOf("AX") )
     if( c.radioIdentificatore.indexOf("AX") >= 0)
       bersagliPrioritari.push( basi[i] );
   } );
-  
-  console.log( bersagliPrioritari );
-  
+    
   return bersagliPrioritari;
 }
 
