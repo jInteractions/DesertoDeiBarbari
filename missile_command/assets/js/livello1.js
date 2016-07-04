@@ -95,7 +95,7 @@ var controlloAccesso = function () {
   
   if (
     nome === "Cpt Simeoni"
-    && matricola === "150716"
+    && matricola === 150716
     && password === "utf-8_tuono"
     && stringa === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
   ) {
@@ -159,7 +159,7 @@ ATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione
 var autenticazioneManuale = function () {
   // ###START_MODIFICABILE###
   var nome = "captano";
-  var matricola = "0";
+  var matricola = 0;
   var password = "utf";
   var stringaAccesso = "UTF-8" + nome + "&&--"+ password + "%" + matricola;
   // ###END_MODIFICABILE###
@@ -173,7 +173,7 @@ var autenticazioneManuale = function () {
   var risultato = autenticazioneManuale();
   if (
     risultato[ 0 ] === "Cpt Simeoni"
-    && risultato[ 1 ] === "150716"
+    && risultato[ 1 ] === 150716
     && risultato[ 2 ] === "utf-8_tuono"
     && risultato[ 3 ] === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
   ) {
