@@ -29,9 +29,9 @@ function Livello5 ( callbackFineLivello ) {
   ];
   
   this.torretta = [];
-  this.torretta[0] = new TorrettaDestra( _magazzino, new _Caricatore( ), new _Compressore( ), new _Generatore( ), new _Mirino( ));
+  this.torretta[0] = new TorrettaSinistra( _magazzino, new _Caricatore( ), new _Compressore( ), new _Generatore( ), new _Mirino( ));
   this.torretta[1] = new TorrettaCentrale( _magazzino, new _Caricatore( ), new _Compressore( ), new _Generatore( ), new _Mirino( ));
-  this.torretta[2] = new TorrettaSinistra( _magazzino, new _Caricatore( ), new _Compressore( ), new _Generatore( ), new _Mirino( ));
+  this.torretta[2] = new TorrettaDestra( _magazzino, new _Caricatore( ), new _Compressore( ), new _Generatore( ), new _Mirino( ));
   
   this.torretta[0].caricaMissile(); 
   this.torretta[1].caricaMissile();
