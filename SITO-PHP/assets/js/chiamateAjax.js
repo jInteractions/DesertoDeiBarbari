@@ -28,7 +28,8 @@ var resetCodiceUtente = function (livello, nomefile, editorCodice){
           var codice = result.replace("<h1>Connection established</h1>", "");
           console.log(livello);
           console.log(nomefile);
-          editorCodice.setValue(codice);
+          //editorCodice.setValue(codice);
+          inserisciCodiceEditor(editorCodice, codice);
           console.log(codice);
         },
         error: function (error) {

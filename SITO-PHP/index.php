@@ -494,6 +494,7 @@
     </script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/chiamateAjax.js"></script>
+    <script src="assets/js/codice-modificabile.js"></script>
     <script src="missile_command/core_game.js"></script>
     <script src="missile_command/core_level.js"></script>
     <script src="missile_command/carica_codice.js"></script>
@@ -524,6 +525,7 @@
             width: "100%",
             autoRefresh: true
         });
+        inserisciCodiceEditor(x, x.getValue());
         return x;
       };
       
@@ -562,11 +564,11 @@
           if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop('disabled')){
             richiestoAiuto[i] = "true";
             nomeFile[i] = $(".tab"+i+"default").text();
-            codiceUtente = codiceUtente + (escape(editorCodice[i].getValue()+"########FineCodiceUtente########"));
+            codiceUtente = codiceUtente + (escape(salvaCodiceEditor(editorCodice[i])+"########FineCodiceUtente########"));
           } else {
             richiestoAiuto[i] = "false";
             nomeFile[i] = $(".tab"+i+"default").text();
-            codiceUtente = codiceUtente + (escape(editorCodice[i].getValue()+"########FineCodiceUtente########"));
+            codiceUtente = codiceUtente + (escape(salvaCodiceEditor(editorCodice[i])+"########FineCodiceUtente########"));
           }
         }
 
@@ -588,16 +590,13 @@
            if( $(this).attr('id').match('codesnippet_editable.*') ) {
               var codesnippet = document.getElementById($(this).attr('id'));
               var identificatoreCodice = parseInt($(this).attr('id').replace("codesnippet_editable", ""));
-              console.log(codesnippet);
               editorCodice[identificatoreCodice] = editor(codesnippet);
-              console.log(editorCodice[identificatoreCodice].getValue());
            }
         });
         for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
           $("#resetCode"+i).click( function () {
             var resetCodeId = $(this).attr('id').replace('resetCode', '');
             resetCodice(resetCodeId);
-            console.log("Reset code ID:" + resetCodeId);
           }); 
         }
         
@@ -630,7 +629,6 @@
         var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
         caricaCodice.aggiornaCodiceUtente();
         var e = caricaCodice.validazioneCodiceUtente();
-        console.log(e);
 
         $.each(e.erroriSintassi, function(indice, errore) {
           $("#terminale").append(errore.file + ": " + errore.testo + " alla riga " + errore.riga + "<br>");
@@ -651,7 +649,6 @@
           && e.erroriParole.length === 0 ) {
 
           esiti = caricaCodice.esecuzioneTest();
-          console.log( esiti );
           risoltoTuttiObiettivi = true;
           $.each(esiti, function (i, esito){
             var obiettivo = esito.nomeFile.replace('.','');
@@ -678,8 +675,7 @@
           }
 
           if(coreLevel != undefined) {
-            clearInterval(coreLevel.intervalloSchermata);      
-            console.log("Cleared interval");
+            clearInterval(coreLevel.intervalloSchermata);  
           }
 
           coreLevel = new Livello1( callback );

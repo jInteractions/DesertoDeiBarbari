@@ -39,12 +39,12 @@ var inserisciCodiceEditor = function ( editor, codice ) {
     var fine = delimitatori[i].inizio;
     editor.markText( { line: inizio, ch: 0 },
                      { line: fine, ch: 0 }, 
-                     { readOnly: true, css: "background: red" } );
+                     { readOnly: true, css: "background: grey" } );
     var inizio = delimitatori[i].fine;
   }
   editor.markText( {line: inizio, ch:0},
                    {line: lineaFinale, ch:0}, 
-                   {readOnly: true, css: "background: red"} );
+                   {readOnly: true, css: "background: grey"} );
 
   editor.clearHistory();
   editor.refresh();
