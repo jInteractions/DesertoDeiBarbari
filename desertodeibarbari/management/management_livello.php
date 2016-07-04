@@ -257,7 +257,7 @@ function deleteFrom_LIVELLO_By_json($connection,$value){
 /*END SEZIONE DELETE*/
 
 /*START SEZIONE INSERT*/
-function insertIntolivello($connection, $label){	/* create a prepared statement */
+function insertIntolivello($connection, $label, $numero,$nome,$json){	/* create a prepared statement */
 	if ($stmt = $connection->prepare( 'INSERT INTO livello (numero, nome, json) VALUES (?, ?, ?)')) {
 		/* bind parameters for markers */
 		$stmt->bind_param( "sss",$numero, $nome, $json);
