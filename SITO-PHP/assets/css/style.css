@@ -753,7 +753,7 @@ code {
 }
 
 .pannelloTerminale {
-  margin-top: 10px;
+  margin-top: 3px;
 }
 
 .iconaReset {
@@ -798,3 +798,5 @@ code {
     border-color: cornflowerblue;
     padding-bottom: 5px;
 }
+
+

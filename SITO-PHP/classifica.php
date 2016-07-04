@@ -43,7 +43,7 @@
     require "php/management/management_livello.php";
     require "php/management/management_utente.php";
     session_start();
-    $_SESSION["email"] = "sdavrieux@gmail.com";
+    $_SESSION["email"] = "trombi@gmail.com";
     $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
     $informazioniLivelliEseguiti = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $_SESSION["email"]);
     $informazioniLivelliEsistenti = selectAllFrom_LIVELLO($connection); 
@@ -141,12 +141,12 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="dashboard.php">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="statistiche.php">
+          <a href="#">
             <i class="fa fa-bar-chart"></i> <span>Statistiche</span>
           </a>
         </li>
@@ -161,57 +161,70 @@
   </aside>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <div class="row rigaDashboard">
-      <?php 
-      foreach($informazioniLivelliEsistenti as $chiave => $valore) {
-        $livelloDisponibile=false;
-        $livelloSuccessivoDisponibile=false;
-        foreach($informazioniLivelliEseguiti as $chiaveEseguito => $valoreEseguito) {
-          if($valore["idlivello"]===$valoreEseguito["idlivello"])
-            $livelloDisponibile=true;
-          if(($valore["idlivello"]+1)===$valoreEseguito["idlivello"])
-            $livelloSuccessivoDisponibile=true;
-        }
-        if($livelloDisponibile)
-          echo '<div class="small-box box-dashboard bg-green-active">';
-        else
-          echo '<div class="small-box box-dashboard bg-green-active">';
-      ?>
-        <div class="inner">
-          <h3><?php echo $valore["nome"] ?></h3>
-
-          <p><?php 
-                if($livelloSuccessivoDisponibile)
-                  echo "Livello completato!";
-                else
-                  if (!$livelloDisponibile)
-                    echo "Livello non ancora sbloccato";
-                  else
-                    echo "Livello da completare";
-          ?></p>
-                  
-                    
+    <div class="row rigaStatistiche">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Classifica mondiale</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>Alias</th>
+                <th>Punteggio</th>
+                <th>Morti</th>
+                <th>Ondate</th>
+                <th>Missili abbattuti</th>
+                <th>Minacce abbattute</th>
+                <th>Missili lanciati</th>
+                <th>Missili rimasti</th>
+                <th>Torrette salvate</th>
+              </tr>
+              </thead>
+              <tbody>
+              <?php 
+                $utenti = selectAllFrom_UTENTE($connection); 
+                foreach($utenti as $chiave => $utente) {
+                  echo '<tr>';
+                  echo '<td>'.$utente["alias"].'</td>';
+                  $livelliEseguitiUtente = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $utente["email"]);
+                  $punteggioUtente = 0;
+                  $mortiUtente = 0;
+                  $ondateUtente = 0;
+                  $missiliAbbatutiUtente = 0;
+                  $minacceAbbatuteUtente = 0;
+                  $missiliLanciatiUtente = 0;
+                  $missiliRimastiUtente = 0;
+                  $torretteSalvateUtente = 0;
+                  foreach($livelliEseguitiUtente as $chiave => $livelloEseguitoUtente) {
+                    $punteggioUtente += $livelloEseguitoUtente["punteggio"];
+                    $mortiUtente += $livelloEseguitoUtente["morti"];
+                    $ondateUtente += $livelloEseguitoUtente["ondate"];
+                    $missiliAbbatutiUtente += $livelloEseguitoUtente["missili_abbattuti"];
+                    $minacceAbbatuteUtente += $livelloEseguitoUtente["minacce_abbatute"];
+                    $missiliLanciatiUtente += $livelloEseguitoUtente["missili_lanciati"];
+                    $missiliRimastiUtente += $livelloEseguitoUtente["missili_rimasti"];
+                    $torretteSalvateUtente += $livelloEseguitoUtente["torrette_salvate"];
+                  }
+                  echo '<td>'.$punteggioUtente.'</td>';
+                  echo '<td>'.$mortiUtente.'</td>';
+                  echo '<td>'.$ondateUtente.'</td>';
+                  echo '<td>'.$missiliAbbatutiUtente.'</td>';
+                  echo '<td>'.$minacceAbbatuteUtente.'</td>';
+                  echo '<td>'.$missiliLanciatiUtente.'</td>';
+                  echo '<td>'.$missiliRimastiUtente.'</td>';
+                  echo '<td>'.$torretteSalvateUtente.'</td>';
+                  echo '</tr>';
+                }
+              ?>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.box-body -->
         </div>
-        <div class="icon">
-          <?php 
-          if($livelloSuccessivoDisponibile)
-            echo '<i class="ion ion-thumbsup"></i>';
-          else
-            if (!$livelloDisponibile)
-              echo '<i class="ion ion-locked"></i>';
-            else
-              echo '<i class="ion ion-alert-circled"></i>';?>
-          
-        </div>
-      <?php
-        if($livelloDisponibile)
-          echo '<a href="index.php?idlivello='.$valore["idlivello"].'" class="small-box-footer">Gioca livello <i class="fa fa-arrow-circle-right"></i></a>';
-      ?>
-        
       </div>
-      <?php 
-      } 
-      ?>
     </div>
   </div>
 
@@ -237,5 +250,24 @@
     <script src="assets/js/bootstrap3-wysihtml5.all.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- DataTables -->
+    <script src="assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/datatables/dataTables.bootstrap.min.js"></script>
+    
+    <script>
+    $(function () {
+    
+      $('#example1').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "order": [[ 1, "desc" ]],
+        "info": true,
+        "autoWidth": false
+        }
+      );
+    });
+    </script>
   </body>
 </html>

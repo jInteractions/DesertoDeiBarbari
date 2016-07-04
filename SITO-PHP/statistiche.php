@@ -141,13 +141,18 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="dashboard.php">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li>
           <a href="#">
             <i class="fa fa-bar-chart"></i> <span>Statistiche</span>
+          </a>
+        </li>
+        <li>
+          <a href="classifica.php">
+            <i class="ion ion-podium"></i> <span>Classifica</span>
           </a>
         </li>
       </ul>
@@ -383,71 +388,6 @@
         <!-- /.box -->
       </div>
     </div>
-    <div class="row rigaStatistiche">
-      <div class="col-md-12">
-        <div class="box">
-          <div class="box-header">
-            <h3 class="box-title">Classifica mondiale</h3>
-          </div>
-          <!-- /.box-header -->
-          <div class="box-body">
-            <table id="example1" class="table table-bordered table-striped">
-              <thead>
-              <tr>
-                <th>Alias</th>
-                <th>Punteggio</th>
-                <th>Morti</th>
-                <th>Ondate</th>
-                <th>Missili abbattuti</th>
-                <th>Minacce abbattute</th>
-                <th>Missili lanciati</th>
-                <th>Missili rimasti</th>
-                <th>Torrette salvate</th>
-              </tr>
-              </thead>
-              <tbody>
-              <?php 
-                $utenti = selectAllFrom_UTENTE($connection); 
-                foreach($utenti as $chiave => $utente) {
-                  echo '<tr>';
-                  echo '<td>'.$utente["alias"].'</td>';
-                  $livelliEseguitiUtente = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $utente["email"]);
-                  $punteggioUtente = 0;
-                  $mortiUtente = 0;
-                  $ondateUtente = 0;
-                  $missiliAbbatutiUtente = 0;
-                  $minacceAbbatuteUtente = 0;
-                  $missiliLanciatiUtente = 0;
-                  $missiliRimastiUtente = 0;
-                  $torretteSalvateUtente = 0;
-                  foreach($livelliEseguitiUtente as $chiave => $livelloEseguitoUtente) {
-                    $punteggioUtente += $livelloEseguitoUtente["punteggio"];
-                    $mortiUtente += $livelloEseguitoUtente["morti"];
-                    $ondateUtente += $livelloEseguitoUtente["ondate"];
-                    $missiliAbbatutiUtente += $livelloEseguitoUtente["missili_abbattuti"];
-                    $minacceAbbatuteUtente += $livelloEseguitoUtente["minacce_abbatute"];
-                    $missiliLanciatiUtente += $livelloEseguitoUtente["missili_lanciati"];
-                    $missiliRimastiUtente += $livelloEseguitoUtente["missili_rimasti"];
-                    $torretteSalvateUtente += $livelloEseguitoUtente["torrette_salvate"];
-                  }
-                  echo '<td>'.$punteggioUtente.'</td>';
-                  echo '<td>'.$mortiUtente.'</td>';
-                  echo '<td>'.$ondateUtente.'</td>';
-                  echo '<td>'.$missiliAbbatutiUtente.'</td>';
-                  echo '<td>'.$minacceAbbatuteUtente.'</td>';
-                  echo '<td>'.$missiliLanciatiUtente.'</td>';
-                  echo '<td>'.$missiliRimastiUtente.'</td>';
-                  echo '<td>'.$torretteSalvateUtente.'</td>';
-                  echo '</tr>';
-                }
-              ?>
-              </tbody>
-            </table>
-          </div>
-          <!-- /.box-body -->
-        </div>
-      </div>
-    </div>
   </div>
 
 </div>
@@ -680,16 +620,6 @@
       // You can switch between pie and douhnut using the method below.
       pieChart.Doughnut(PieData, pieOptions);
     
-      $('#example1').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "order": [[ 1, "desc" ]],
-        "info": true,
-        "autoWidth": false
-        }
-      );
     });
     </script>
   </body>

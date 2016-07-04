@@ -292,13 +292,18 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="dashboard.php">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li>
           <a href="statistiche.php">
             <i class="fa fa-bar-chart"></i> <span>Statistiche</span>
+          </a>
+        </li>
+        <li>
+          <a href="classifica.php">
+            <i class="ion ion-podium"></i> <span>Classifica</span>
           </a>
         </li>
       </ul>
