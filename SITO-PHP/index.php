@@ -523,7 +523,10 @@
             lineNumbers: true,
             height: "100%",
             width: "100%",
-            autoRefresh: true
+            autoRefresh: true,
+            styleActiveLine: true,
+            lineWrapping: true,
+            matchBrackets: true
         });
         inserisciCodiceEditor(x, x.getValue());
         return x;
