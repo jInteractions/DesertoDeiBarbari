@@ -30,13 +30,19 @@ Livello6.prototype.calcolaCoefficienteOndata = function ( ) {
   return this.numeroOndata * 1.2;
 }
 
-CoreLevel.prototype.setupListeners = function( ) { 
+Livello6.prototype.setupListeners = function( ) { 
   var mySelf = this;
   $( '.gameContainer' ).off();
   $( '.gameContainer' ).focus();
+  
+  /*
   $( '.gameContainer' ).bind( 'keyup', function( event ) {
     mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, event.which );
   });
+  */
+  azionamentoComandiPlancia( '.gameContainer', this.coreGame.batterieAntimissile, this.coreGame.mirino,
+                           this );
+  
   $( '.gameContainer' ).on( 'mouseover', function( event ) {
     mySelf.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
   });
@@ -49,9 +55,11 @@ CoreLevel.prototype.setupListeners = function( ) {
     mySelf.coreGame.mirino.inseguiY = event.pageY - offset.top;
     mySelf.coreGame.mirino.cambiaMira();
   });
+  
+  
 }
 
-CoreLevel.prototype.scegliTorretta = function ( x, y, tasto ) {
+Livello6.prototype.scegliTorretta = function ( x, y, tasto ) {
   var indiceTorretta = 0;
   switch(tasto) {
     case 49: indiceTorretta = 0; break;
@@ -70,46 +78,110 @@ CoreLevel.prototype.scegliTorretta = function ( x, y, tasto ) {
   return -1;
 };
 
+Livello6.prototype.sparo = function ( x, y, torretta ) {
+  if( torretta === undefined )
+    return;
+  
+  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
+    xDiPartenza: torretta.x,
+    yDiPartenza: torretta.y,
+    xDiArrivo: x,
+    yDiArrivo: y,
+    coloreTestata: 'yellow',
+    coloreScia: 'blue',
+    massimoRaggioEsplosione: 30,
+    distanzaPerFrame: 7
+  }, this.coreGame ) );
+  
+  this.coreGame.aggiornaPunteggioMissiliSparati();
+  torretta.munizioni--;
+  torretta.temperatura += 50;
+  var temperaturaMinima = 500
+  torretta.temperaturaSblocco = temperaturaMinima;
+  if( torretta.temperatura >= 899 ) {
+    torretta.blocco = true;
+  };
+}
 
+var azionaComandoSparo = function ( chiamante, torrettaSelezionata, sistema, x, y ) {
+  sistema.sparo( x, y, torrettaSelezionata );
+}
+  
+// TAB 1
 
-var x = function ( torrette ) {
-  $( planciaComanda ).bind( 'keyup', function ( ) {
+var azionamentoComandiPlancia = function ( planciaComanda, torrette, mirino, sistema ) {
+  // Comandi plancia azionati da tastiera
+  $( planciaComanda ).bind( 'keyup', function ( tastoPremuto ) {
     var torrettaSelezionata;
-    if( tastoPremuto === '1' )
+    if( tastoPremuto.which === 49 ) // tasto 1
       torrettaSelezionata = torrette[0];
-    if( tastoPremuto === '2' )
+    if( tastoPremuto.which === 50 ) // tasto 2
       torrettaSelezionata = torrette[1];
-    if( tastoPremuto === '3' )
+    if( tastoPremuto.which === 51 ) // tasto 3
       torrettaSelezionata = torrette[2];
     
     var x = mirino.x;
     var y = mirino.y;
     
-    azionaComandoSparo( torrettaSelezionata, x, y );
+    azionaComandoSparo( 'keyup', torrettaSelezionata, sistema, x, y );
   } );
   
+  //###START_MODIFICABILE###
+  // Comandi plancia azionati da click del mouse
   $( planciaComanda ).on( 'click', function ( ) {
-    // Non fa nulla
-  } )  
+
+  } );
+  //###END_MODIFICABILE###
 }
+
+// test
+
+/*( 
+  function () {
+    return true;
+  }
+) ();*/
+
+// TAB 2
 
 var torrettaVicina = function ( torrette, x, y ) {
   var torrettaSelezionata;
   
-  if( 0 <= x && x <= 170 )
+  if( 0 <= x && x < 170 ) {
     torrettaSelezionata = torrette[0];
-  if( 0 <= x && x <= 170 )
+  }
+  if( 170 <= x && x < 340 ) {
     torrettaSelezionata = torrette[1];
-  if( 0 <= x && x <= 170 )
-    torrettaSelezionata = torrette[2];  
+  }
+  if( 340 <= x && x <= 510 ) {
+    torrettaSelezionata = torrette[2];
+  }
+  
+  if( nonFunzionante(torrettaSelezionata) )
+    torrettaSelezionata = torrette[1];
+  if( nonFunzionante(torrettaSelezionata) )
+    torrettaSelezionata = torrette[0];
+  if( nonFunzionante(torrettaSelezionata) )
+    torrettaSelezionata = torrette[2];
+  
+  return torrettaSelezionata;
+}
+
+var nonFunzionante = function ( torretta ) {
+  if( torretta.stato === BatteriaAntimissile.ATTIVA &&
+      torretta.munizioni > 0 &&
+      torretta.blocco === false )
+    return true;
+  else
+    return false;
 }
 
 
+/*
+var torrettaSelezionata;
+var x = mirino.x;
+var y = mirino.y;
 
-
-
-
-
-
-
-
+torrettaSelezionata = torrettaVicina( torrette, x, y )
+azionaComandoSparo( 'click', torrettaSelezionata, sistema, x, y );
+*/
