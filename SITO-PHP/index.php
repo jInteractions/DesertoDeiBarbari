@@ -108,7 +108,72 @@
         </div>
       </div>
     </div>
-  
+    
+    
+    <div class="modal fade" id="modalDialoghiFinali" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><?=$informazioniLivelloAttuale["nome"] ?></h4>
+          </div>
+          <div class="modal-body">
+            <!-- /.panel -->
+            <div class="panel panel-default">
+              <!-- /.panel-heading -->
+              <div class="panel-body">
+                <ul class="timeline">
+                  <?php
+                    $alternanza=0;
+                    foreach($jsonLivello["dialogoFinale"] as $chiave => $valore)
+                    {
+                      if ($alternanza % 2 == 0) 
+                        echo '<li>'; 
+                      else
+                        echo '<li class="timeline-inverted" >'; 
+                  ?> 
+                      <div class="timeline-badge">
+                        <?php
+                          echo '<img src="assets/img/avatar/'.$valore["nome"].'.png" style="width: 48px; border-radius: 70% 70% 70% 70%; margin-bottom: 4px;">';
+                        ?>
+                      </div>
+                      <div class="timeline-panel">
+                        <div class="timeline-heading">
+                          <h4 class="timeline-title"><?=$valore["nome"] ?></h4>
+                        </div>
+                        <div class="timeline-body">
+                          <p><?=$valore["testo"] ?></p>
+                        </div>
+                      </div>
+                    </li>
+                  <?php
+                      $alternanza++;
+                    }
+                  ?>
+                </ul>
+              </div>
+              <!-- /.panel-body -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     <?php 
@@ -257,7 +322,7 @@
               </div>
               <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="accordionPanel-body panel-body">
-                  <div class="panel with-nav-tabs panel-success">  
+                  <div class="panel with-nav-tabs panel-success" id="pannelloContenteCodici">  
         <!--           panel-primary, panel-success, panel-info, panel-warning, panel-danger -->
                     <div class="panel-heading">
                       <ul class="nav nav-tabs nav-justified">
@@ -345,7 +410,7 @@
             <div class="panel accordionPanel">
               <div class="accordionPanel-heading panel-heading" role="tab" id="headingTwo">
                 <h4 class="accordionPanel-title panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" id="collapseObiettivo" aria-expanded="false" aria-controls="collapseTwo">
                     Obiettivo
                   </a>
                 </h4>
@@ -359,7 +424,7 @@
                         if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
                   ?>
                           <p>
-                            <?php echo $valore["descrizione"]; ?>
+                            <?php echo '<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</p>'; ?>
                           </p>
                         <?php
                           echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
@@ -367,7 +432,7 @@
                         } else {
                          ?>
                           <p>
-                            <?php echo $valore["descrizione"]; ?>
+                            <?php echo '<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</p>'; ?>
                           </p>
                         <?php
                           echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'" disabled>Aiuto</button>';
@@ -448,6 +513,7 @@
       var editorCodice = [];
       var coreLevel;
       var nOndata;
+      var risoltoTuttiObiettivi = false;
       
       var editor = function (id){
         var x = CodeMirror.fromTextArea(id, {
@@ -507,6 +573,10 @@
         updateCodiceUtente(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", richiestoAiuto, nomeFile, codiceUtente);
       };
      $(document).ready(function () {
+        <?php if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
+            echo '$("#modalDialoghi").modal("show");';
+          } 
+        ?>
         $("#bottoneLivelloSuccessivo").prop("disabled",true);
         $(document).on("click", "button.bottoneAiutoClass" , function() {
             mostraAiuto(this.id.replace("bottoneAiuto", ""));
@@ -538,9 +608,16 @@
      var ricaricaCodice = function (){
         var callback = function ( risultatoOndata ) {
           if( risultatoOndata.esito === true ) {
+            if(nOndata===1 && risoltoTuttiObiettivi){
+              funzioneSalvaCodice();
+              $("#modalDialoghiFinali").modal("show");
+              $("#bottoneLivelloSuccessivo").prop("enabled",false);
+            }
             ++nOndata;
             coreLevel.inizializzaLivello(nOndata);
             coreLevel.mostraSchermataIniziale();
+            
+            
           } else {
             nOndata = 1;
             coreLevel.inizializzaLivello(1);
@@ -556,26 +633,55 @@
         console.log(e);
 
         $.each(e.erroriSintassi, function(indice, errore) {
-          $("#terminale").append(errore.file + ": " + errore.testo + " " + errore.riga + "<br>");
+          $("#terminale").append(errore.file + ": " + errore.testo + " alla riga " + errore.riga + "<br>");
         });
         $.each(e.erroreParole, function(indice, errore) {
-          $("#terminale").append(errore.file + ": " + errore.testo + " " + errore.riga + "<br>");
+          $("#terminale").append(errore.file + ": " + errore.testo + " alla riga " + errore.riga + "<br>");
         });
         $.each(e.erroriCiclo, function(indice, errore) {
-          $("#terminale").append(errore.file + ": " + errore.testo + " " + errore.riga + "<br>");
+          $("#terminale").append(errore.file + ": " + errore.testo + " alla riga " + errore.riga + "<br>");
         });
         
        
         nOndata = 1;
 
-        if(e.erroriCiclo.length === 0) {
-          var esiti = caricaCodice.esecuzioneTest();
-          //console.log( esiti );
+       
+        if(e.erroriCiclo.length === 0 
+          && e.erroriSintassi.length === 0
+          && e.erroriParole.length === 0 ) {
+
+          esiti = caricaCodice.esecuzioneTest();
+          console.log( esiti );
+          risoltoTuttiObiettivi = true;
+          $.each(esiti, function (i, esito){
+            var obiettivo = esito.nomeFile.replace('.','');
+            var risultato = esito.esito;
+            if(risultato === true){
+              $("#obiettivo" + obiettivo).css('color', 'green');
+              $("#spanObiettivo" + obiettivo).css("visibility", "visible");
+              $("#collapseObiettivo").click();
+            } else {
+              risoltoTuttiObiettivi = false;
+              $("#pannelloContenteCodici").removeClass("panel-success");
+              $("#pannelloContenteCodici").addClass("panel-danger");
+              $("#collapseObiettivo").click();
+              var fileVirtuale = jsonLivello.fileVirtuali.find(function (f){
+                return f.nomeFile === esito.nomeFile;
+              });
+              $("#terminale").append(fileVirtuale.messaggioFallimento + "<br>");
+            }
+          });
+
+          if(risoltoTuttiObiettivi){
+            $("#pannelloContenteCodici").removeClass("panel-danger");
+            $("#pannelloContenteCodici").addClass("panel-success");
+          }
+
           if(coreLevel != undefined) {
             clearInterval(coreLevel.intervalloSchermata);      
             console.log("Cleared interval");
           }
-            
+
           coreLevel = new Livello1( callback );
           coreLevel.inizializzaLivello(nOndata);
           coreLevel.mostraSchermataIniziale();

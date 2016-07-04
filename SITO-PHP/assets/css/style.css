@@ -748,6 +748,8 @@ code {
   color: #24ff00;
   height: 150px;
   text-align: left;
+  max-height: 10;
+  overflow-y: scroll;
 }
 
 .pannelloTerminale {
