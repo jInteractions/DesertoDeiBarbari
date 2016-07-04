@@ -361,7 +361,7 @@ code {
 }
 
 .accordionPanel-heading {
-  background-color: #009688;
+  background-color: #30bbbb;
   border-radius: 0;
   border: none;
   color: #fff;
@@ -744,8 +744,8 @@ code {
 }
 
 .terminale {
-  background-color: #3a4638;
-  color: #24ff00;
+  background-color: #5a6e82;
+  color: #001a35;
   height: 150px;
   text-align: left;
   max-height: 10;
@@ -777,4 +777,18 @@ code {
 
 .bottone {
   margin-bottom: 2px;
+}
+
+
+
+.box-dashboard {
+  max-width: 800px;
+  margin-left: 30px;
+}
+
+.rigaDashboard {
+  margin-bottom: 5px;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
