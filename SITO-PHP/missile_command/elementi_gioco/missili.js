@@ -72,7 +72,7 @@ Missile.prototype.esplodi = function () {
   if( this.stato === Missile.IMPLOSIONE ) {
     --this.raggioDiEsplosione;
     if( this.esplosioneATerra ) {
-      if ( this.bersaglio.tipo instanceof Base ) {
+      if ( this.bersaglio.tipo instanceof BaseMilitare ) {
         if ( this.bersaglio.tipo.attiva === true ) {
           this.bersaglio.tipo.attiva = false;
           this.bersaglio.tipo.distruggiti();

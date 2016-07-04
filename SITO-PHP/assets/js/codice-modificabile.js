@@ -47,8 +47,11 @@ var inserisciCodiceEditor = function ( editor, codice ) {
                    {readOnly: true, className: "disabled"} );
 
   editor.clearHistory();
+  
   editor.refresh();
-  $('.CodeMirror-line:has(span.disabled)').css("background-color","red");
+
+
+
 };
 
 /** Estrae il codice dall'editor, reinserisce i marcatori 

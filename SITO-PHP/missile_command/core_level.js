@@ -12,12 +12,7 @@ function CoreLevel ( callbackFineLivello ) {
   this.numeroSchermata = 0;  
 };
 
-/*
-CoreLevel.prototype.inizializzaLivello = function () { 
-  
-};*/
-
-CoreLevel.prototype.inizializzaOndata = function ( numeroOndata ) {
+CoreLevel.prototype.inizializzaLivello = function ( numeroOndata ) {
   var mySelf = this;
   
   this.numeroOndata = numeroOndata;
@@ -49,12 +44,12 @@ CoreLevel.prototype.inizializzaOndata = function ( numeroOndata ) {
 // Funzioni base di CoreLevel
 
 CoreLevel.prototype.inizializzaBasi = function () {
-  this.coreGame.aggiungiBase( new Base( 80,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 180,  430, true, 100, 'cyan', this.coreGame ) );  
-  this.coreGame.aggiungiBase( new Base( 130,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 300,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 350,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new Base( 400,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 80,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 180,  430, true, 100, 'cyan', this.coreGame ) );  
+  this.coreGame.aggiungiBase( new BaseMilitare( 130,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 300,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 350,  430, true, 100, 'cyan', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 400,  430, true, 100, 'cyan', this.coreGame ) );
 };
 
 CoreLevel.prototype.inizializzaMirino = function () {
@@ -62,7 +57,7 @@ CoreLevel.prototype.inizializzaMirino = function () {
 };
 
 CoreLevel.prototype.inizializzaTorrette = function () {
-  var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue'];
+  var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
   var nMissili = coloreMissili.length;
   var nSoldati = 10;
   var Tmin = 50;
@@ -119,15 +114,19 @@ CoreLevel.prototype.mostraSchermataIniziale = function () {
 
 CoreLevel.prototype.mostraSchermataGameOver = function () {
   var ctx = this.ctx;
-  ctx.fillStyle = this.coreGame.coloreTestoPrimario;
-  ctx.textAlign = "center"; 
-  ctx.font = 'bold 20px arial';
-  ctx.fillText( 'HAI PERSO', this.canvas.width/2, this.canvas.height/2 - 20 );
+  var mySelf = this;
   ctx.fillStyle = this.coreGame.coloreTestoSecondario;
-  console.log( this.numeroOndata );
-  ctx.fillText( 'Ondata ' + this.numeroOndata, this.canvas.width/2, this.canvas.height/2 + 20 );
+  ctx.textAlign = "center"; 
+  ctx.font = 'bold 30px arial';
+  ctx.fillText( 'HAI PERSO', this.canvas.width/2, this.canvas.height/2 );
+  //ctx.fillStyle = this.coreGame.coloreTestoSecondario;
+  //ctx.fillText( 'Ondata ' + mySelf.numeroOndata, this.canvas.width/2, this.canvas.height/2 + 20 );
   ctx.textAlign = "start";
-  $( '.gameContainer' ).off();                    
+  $( '.gameContainer' ).off();
+  $( '.gameContainer' ).one( 'click', function() {
+    console.log( "click" );
+    mySelf.mostraSchermataIniziale();
+  } );
 }
 
 CoreLevel.prototype.inizializzaArmiTerrestri = function () {}
@@ -215,9 +214,10 @@ CoreLevel.prototype.scegliTorretta = function ( x, y, tasto ) {
   
   var torrettaAttuale = this.coreGame.batterieAntimissile[ indiceTorretta ];
   
-  if ( torrettaAttuale.stato === BatteriaAntimissile.ATTIVA && torrettaAttuale.numeroMissili > 0 ) {
+  if ( torrettaAttuale.stato === BatteriaAntimissile.ATTIVA 
+      && torrettaAttuale.numeroMissili > 0 
+      && torrettaAttuale.blocco === false )  
     return indiceTorretta;
-  }
   
   return -1;
 };
@@ -247,7 +247,7 @@ CoreLevel.prototype.sparo = function ( x, y, tasto ) {
 CoreLevel.prototype.verificaFineLivello = function ( ) {
   if ( this.coreGame.missiliNemici.length === 0 ) {
     var basiAttive = this.coreGame.basi.filter( function ( base ) {
-      return base.attiva === true 
+      return base.attiva === true && base.vitale === true;
     } );
     if( basiAttive.length === 0 )  {
       return false;
@@ -261,14 +261,3 @@ CoreLevel.prototype.verificaFineLivello = function ( ) {
 CoreLevel.prototype.calcolaCoefficienteOndata = function () {
   return 1.0; // default
 }
-
-// Il codice sottostante dovrà essere spostato
-/*
-var oldConsole = console;
-
-var console = {};
-console.log = function ( stringa ) {
-  oldConsole.log(stringa);
-  // Qui ci sarà la "append" di codice html al terminale
-}
-*/

@@ -428,19 +428,25 @@
                           </p>
                         <?php
                           echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
-                          echo '<p id="testoAiuto'.$chiave.'" />';
+                          echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'" />';
                         } else {
                          ?>
                           <p>
                             <?php echo '<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</p>'; ?>
                           </p>
                         <?php
-                          echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'" disabled>Aiuto</button>';
-                          echo '<p id="testoAiuto'.$chiave.'">'.$valore["aiuto"].'</p>';
+                          if (strcmp($valore["aiuto"], "true")===0){
+                            echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'" disabled>Aiuto</button>';
+                            echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'">'.$valore["aiuto"].'</p>';
+                          } else {
+                            echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
+                            echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'" />';
+                          }
+                          
                         }
                       }
                     }
-                  ?>
+                  ?>'<p  id="testoAiuto'.$chiave.'" />'
                 </div>
               </div>
             </div>
@@ -564,7 +570,7 @@
         var codiceUtente = "";
 
         for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
-          if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop('disabled')){
+          if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).disabled){
             richiestoAiuto[i] = "true";
             nomeFile[i] = $(".tab"+i+"default").text();
             codiceUtente = codiceUtente + (escape(salvaCodiceEditor(editorCodice[i])+"########FineCodiceUtente########"));
@@ -678,14 +684,25 @@
           }
 
           if(coreLevel != undefined) {
+            coreLevel.stopLivello();
             clearInterval(coreLevel.intervalloSchermata);  
           }
 
-          coreLevel = new Livello1( callback );
+          coreLevel = new Livello<?php echo $_GET["idlivello"]?>( callback );
           coreLevel.inizializzaLivello(nOndata);
+          console.log(Base);
+          console.log(coreLevel.coreGame.basi);
           coreLevel.mostraSchermataIniziale();
         }
      }    
+     
+     setInterval(function(){
+        console.log("chiamata");
+        $.each( $('.CodeMirror-line'), function( key, value ) {
+          if($(this).find('.disabled').length > 0)
+            $(this).css("background-color","gray");
+        });
+      },1000);
       
     </script>
     <script src="http://codemirror.net/lib/codemirror.js"></script>

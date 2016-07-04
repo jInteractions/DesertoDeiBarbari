@@ -20,12 +20,12 @@ CaricaCodice.PAROLE_VIETATE = [
     'validate', 'onExit', 'objective',
     'this['
 ];
-CaricaCodice.ATTESA_MASSIMA = 2000;
+CaricaCodice.ATTESA_MASSIMA = 1000;
 
 CaricaCodice.prototype.aggiornaCodiceUtente = function () {
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
       //fileVirtuale.codice = $("")
-      console.log(editorCodice[indice].getValue());
+      //console.log(editorCodice[indice].getValue());
       fileVirtuale.codice = editorCodice[indice].getValue();
   } );
 };
@@ -33,6 +33,14 @@ CaricaCodice.prototype.aggiornaCodiceUtente = function () {
 CaricaCodice.prototype.validazioneCodiceUtente = function () {
   var mySelf = this;
   var errori = { erroriSintassi: [], erroriParole: [], erroriCiclo: [] };
+  
+  $.each( this.fileVirtuali, function ( indice, file ) {
+    var e = mySelf.verificaCicliInfiniti( file );
+    errori.erroriCiclo = errori.erroriCiclo.concat( e );
+  } );
+  
+  //if( errori.erroriCiclo.length !== 0 )
+  //  return errori;
   
   $.each( this.fileVirtuali, function ( indice, file) {
     var e = mySelf.trovaErroriSintassi( file );
@@ -43,12 +51,7 @@ CaricaCodice.prototype.validazioneCodiceUtente = function () {
     var e = mySelf.controlloParoleVietate( file );
     errori.erroriParole = errori.erroriParole.concat( e );
   } );
-
-  $.each( this.fileVirtuali, function ( indice, file ) {
-    var e = mySelf.verificaCicliInfiniti( file );
-    errori.erroriCiclo = errori.erroriCiclo.concat( e );
-  } );
-
+  
   return errori;
 }
 
@@ -137,8 +140,12 @@ CaricaCodice.prototype.verificaCicliInfiniti = function ( file ) {
       "if (Date.now() - startTime > " + CaricaCodice.ATTESA_MASSIMA + ") {" +
       "throw ({ riga: " + ( i + 1 ) + ", testo: \"msgCicloInfinito\" });}" );
   } ).join('\n');
+  
+  //console.log( codice + "\n" + test );
+  
   try {
-    eval( codice + "\n" + test );
+    eval( codice );
+    eval( test );
   } catch ( e ) {
     if ( e.testo === "msgCicloInfinito" ) {
       errori.push( { file: file.nomeFile, riga: e.riga, testo: e.testo } );
@@ -154,15 +161,13 @@ CaricaCodice.prototype.esecuzioneTest = function () {
   var esiti = [];
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
     if( fileVirtuale.consultazione === false ) {
-      console.log( window.eval( fileVirtuale.codice ) );
       window.eval( fileVirtuale.codice );
     }
   } );
          
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
     if( fileVirtuale.consultazione === false ) {
-//      var risultato = window.eval( fileVirtuale.test );
-      risultato = null;
+      var risultato = window.eval( fileVirtuale.test );
       esiti.push( { nomeFile: fileVirtuale.nomeFile, esito: risultato } );
     }
   } );

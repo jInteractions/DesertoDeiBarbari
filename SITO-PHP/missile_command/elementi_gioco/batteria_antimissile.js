@@ -18,6 +18,8 @@ function BatteriaAntimissile ( x, y, nMissili, nSoldati, colori,
   this.temperaturaMinima = Tmin;
   this.deltaTempo = deltaTempo;
   this.deltaRaffreddamento = deltaRaffreddamento;
+  this.blocco = false;
+  this.temperaturaSblocco = 0;
   
   // Attributi Animazione
   this.animazioneColore = 0;
@@ -45,13 +47,21 @@ BatteriaAntimissile.prototype.update = function ( ) {
     return;
   } 
   if(this.temperatura >= this.temperaturaMassima) {
-      this.distruggiti();
-      return;
+    this.distruggiti();
+    return;
+  }
+  if( this.temperatura <= this.temperaturaSblocco 
+     || this.temperatura <= this.temperaturaMinima) {
+    this.blocco = false;
   }
 };
 
 BatteriaAntimissile.prototype.raffreddati = function ( ) {
-  this.temperatura -= this.deltaRaffreddamento;
+  if( this.blocco === true )
+    this.temperatura -= (this.deltaRaffreddamento * 4);
+  else
+    this.temperatura -= this.deltaRaffreddamento;
+  
   if(this.temperatura <= this.temperaturaMinima)
     this.temperatura = this.temperaturaMinima;
 }
@@ -109,10 +119,10 @@ BatteriaAntimissile.prototype.disegna = function ( ctx ) {
     var txt = this.temperatura + " C°";    
     // Scrivi temperatura
     var coloreTesto = 'blue';
-    if(this.temperatura <= 200)
-      coloreTesto = 'blue';
-    else 
+    if(this.blocco === true)
       coloreTesto = 'red';
+    else 
+      coloreTesto = 'blue';
     
     /*
     ctx.fillStyle = 'black';
