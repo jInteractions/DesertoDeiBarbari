@@ -197,3 +197,129 @@ MissileTerrestre.prototype.disegna = function ( ctx, coreGame ) {
     ctx.stroke();
   }
 };
+
+
+function MissileNemicoDoppio ( parametri, bersagli, canvasWidth, 
+                               xDiPartenza, velCaduta, ritardoPartenza, maxSdoppio, coreGame ) {
+  
+  MissileNemico.call( this, parametri, bersagli, canvasWidth, 
+                      xDiPartenza, velCaduta, ritardoPartenza, coreGame );
+
+  this.parametri = parametri;
+  this.maxSdoppio = maxSdoppio;
+  
+  var distanza = Math.sqrt( Math.pow(this.xDiArrivo - this.xDiPartenza, 2) + 
+      Math.pow(this.xDiArrivo - this.xDiPartenza, 2) );
+  var frameAlTarget = distanza / velCaduta;
+  
+  this.ritardoSuddivisione = rand(0, frameAlTarget/2);
+  this.suddivisioneAvvenuta = false;
+}
+
+// Make MissileNemicoDoppio inherit from MissileNemico
+MissileNemicoDoppio.prototype = Object.create( MissileNemico.prototype );
+MissileNemicoDoppio.prototype.constructor = MissileNemicoDoppio;
+
+// Suddivide il missile aggiungendone un altro con un obiettivo differente
+MissileNemicoDoppio.prototype.sdoppiati = function ( ) {
+  var nuoviBersagli = this.coreGame.bersagliAttaccabili();
+
+  // Escludo il bersaglio del missile "padre"
+  nuoviBersagli.filter( function(bersaglio) {
+    return bersaglio !== this.bersaglio;
+  } );
+
+  var nuovoBersaglio;
+  var nMissili = rand(1, this.maxSdoppio);
+  for(i = 0; i < nMissili; ++i) {
+    nuovoBersaglio = nuoviBersagli[ rand(0, nuoviBersagli.length - 1) ];
+
+    // Rimuovo il bersaglio dalla lista di quelli disponibili
+    nuoviBersagli.filter( function(bersaglio) {
+      return bersaglio !== nuovoBersaglio    
+    } );
+    
+    // console.log( nuovoBersaglio )
+    var m = new MissileNemicoFrammento( this.parametri, nuovoBersaglio, this.x, this.y, this.velCaduta,       this.coreGame);
+    this.coreGame.missiliNemici.push( m );
+  }
+  this.suddivisioneAvvenuta = true;
+};
+
+MissileNemicoDoppio.prototype.update = function( ) {
+  if( this.ritardoPartenza !== 0 ) {
+    this.ritardoPartenza--;
+    return;
+  }
+  
+  if( this.ritardoSuddivisione !== 0 )
+    this.ritardoSuddivisione--;			
+  else
+    if( this.suddivisioneAvvenuta == false )
+      this.sdoppiati();
+
+  if( this.stato === Missile.ATTIVO && this.y >= this.yDiArrivo ) {
+    this.x = this.xDiArrivo;
+    this.y = this.yDiArrivo;
+    this.stato = Missile.ESPLOSIONE;
+    this.esplosioneATerra = true;
+  }
+  if( this.stato === Missile.ATTIVO ) {
+    this.x += this.dx;
+    this.y += this.dy;
+  } else {
+    this.esplodi();
+  }
+};
+
+function MissileNemicoFrammento( parametri, bersaglio, xDiPartenza, 
+                                  yDiPartenza, velCaduta, coreGame ) {
+  this.xDiPartenza = xDiPartenza;
+  this.yDiPartenza = yDiPartenza;
+
+  Missile.call( this, {
+    xDiPartenza: xDiPartenza,
+    yDiPartenza: yDiPartenza,
+    xDiArrivo: bersaglio.x,
+    yDiArrivo: bersaglio.y,
+    coloreTestata: parametri.coloreTestata,
+    coloreScia: parametri.coloreScia,
+    massimoRaggioEsplosione: parametri.massimoRaggioEsplosione
+  }, coreGame );
+
+  this.velCaduta = velCaduta;
+  this.bersaglio = bersaglio;
+  
+  var distanzaX = this.xDiArrivo - this.xDiPartenza;
+  var distanzaY = this.yDiArrivo - this.yDiPartenza;
+  var scala = ( function ( d ) {
+    var distanza = Math.sqrt( Math.pow( distanzaX, 2 ) + Math.pow( distanzaY, 2 ) );
+    return distanza / d;
+  })( velCaduta );
+  this.dx = distanzaX / scala;
+  this.dy = distanzaY / scala;
+  
+  
+  this.ritardoPartenza = 0;
+  this.esplosioneATerra = false;
+};
+
+MissileNemicoFrammento.prototype = Object.create( Missile.prototype );
+MissileNemicoFrammento.prototype.constructor = MissileNemicoFrammento;
+
+
+MissileNemicoFrammento.prototype.update = function () {
+  if( this.stato === Missile.ATTIVO && this.y >= this.yDiArrivo ) {
+    this.x = this.xDiArrivo;
+    this.y = this.yDiArrivo;
+    this.stato = Missile.ESPLOSIONE;
+    this.esplosioneATerra = true;
+  }
+  if( this.stato === Missile.ATTIVO ) {
+    this.x += this.dx;
+    this.y += this.dy;
+  } else {
+    
+    this.esplodi();
+  }
+};

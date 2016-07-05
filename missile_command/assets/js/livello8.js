@@ -121,7 +121,6 @@ Livello8.prototype.sparo = function ( x, y, tasto ) {
     return;
   
   var torretta = this.coreGame.batterieAntimissile[indiceTorretta];
-  console.log( torretta );
   
   this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
     xDiPartenza: torretta.x,
@@ -141,7 +140,6 @@ Livello8.prototype.sparo = function ( x, y, tasto ) {
   torretta.temperaturaSblocco = temperaturaMinima;
   if( torretta.temperatura >= 799 ) {
     torretta.blocco = true;
-    console.log( torretta.blocco );
   };
 }
 

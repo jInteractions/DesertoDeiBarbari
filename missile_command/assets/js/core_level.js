@@ -384,7 +384,7 @@ $(document).ready( function () {
   //&& e.erroriParole.length === 0 ) {
   //esiti = caricaCodice.esecuzioneTest();
   //console.log( esiti );
-    var coreLevel = new Livello8( callback );
+    var coreLevel = new Livello7( callback );
     coreLevel.inizializzaLivello( nOndata );
     coreLevel.mostraSchermataIniziale();
   //}
