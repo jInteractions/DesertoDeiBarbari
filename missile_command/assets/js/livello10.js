@@ -3,7 +3,7 @@ var diff = function ( a1, a2 ) {
     return a2.indexOf( x ) < 0;
   } );
   return newA;
-};
+}
 
 function Livello10 ( callbackFineLivello ) {
   CoreLevel.call( this, callbackFineLivello );
@@ -13,7 +13,7 @@ function Livello10 ( callbackFineLivello ) {
 Livello10.prototype = Object.create( CoreLevel.prototype );
 Livello10.prototype.constructor = Livello10;
 
-Livello10.prototype.inizializzaTorrette = function () {
+Livello10.prototype.inizializzaTorrette = function ( ) {
   var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue' ];
   
   var filtro = function ( missile ) {
@@ -50,12 +50,12 @@ Livello10.prototype.inizializzaTorrette = function () {
     new TorrettaAutomatica( 475, opzioniBatteria2, 100, true, filtro, true, 15, 10, 'blue', this.coreGame ) );  
 }
 
-Livello10.prototype.inizializzaArmiTerrestri = function () {
+Livello10.prototype.inizializzaArmiTerrestri = function ( ) {
   this.missileNucleare = new MissileNucleare( 255, 410, 255, this.coreGame.minacce[ 0 ].y + 53, this.coreGame );
   this.coreGame.missiliTerrestri.push( this.missileNucleare );
 }
 
-Livello10.prototype.inizializzaArmiNemiche = function () {
+Livello10.prototype.inizializzaArmiNemiche = function ( ) {
   var ampiezzaAreaPertenza = 50;
   var ritardoMassimo = 1000;
   var xRand;
@@ -177,7 +177,7 @@ function MissileTorretta ( parametri, torretta, coreGame ) {
   this.torretta = torretta;
   this.coreGame = coreGame;
   MissileTerrestre.call( this, parametri, coreGame );
-};
+}
 
 MissileTorretta.prototype = Object.create( MissileTerrestre.prototype );
 MissileTorretta.prototype.constructor = MissileTorretta;
@@ -204,11 +204,11 @@ MissileTorretta.prototype.update = function () {
   } else {
     this.esplodi();
   }
-};
+}
 
 MissileTorretta.prototype.disegna = function ( ctx, coreGame ) {
   Missile.prototype.disegna.call( this, ctx, coreGame );
-};
+}
 
 function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo, coreGame ) {
   MissileTerrestre.call( this, {
@@ -222,7 +222,7 @@ function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo, coreG
     distanzaPerFrame: 0.3
   }, coreGame );
   this.coloreCorpo = 'white' //#FF00FF';
-};
+}
 
 MissileNucleare.prototype = Object.create( MissileTerrestre.prototype );
 MissileNucleare.prototype.constructor = MissileNucleare;
@@ -344,15 +344,15 @@ TorrettaAutomatica.prototype.constructor = TorrettaAutomatica;
 
 TorrettaAutomatica.prototype.avvia = function ( ) {
   this.timerRicarica = setTimeout( this.ricarica.bind( this, this ),  this.tempoRicarica );
-};
+}
 
 TorrettaAutomatica.prototype.stop = function ( ) {
   clearTimeout(this.timerRicarica);
-};
+}
 
 TorrettaAutomatica.prototype.ricarica = function ( mySelf ) {
   mySelf.missilePronto = true;
-};
+}
 
 TorrettaAutomatica.prototype.update = function ( ) {
   // Chiamo update classe base
@@ -371,7 +371,7 @@ TorrettaAutomatica.prototype.update = function ( ) {
       this.bersagliAgganciati.push( bersaglio );
     }
   }
-};
+}
 
 TorrettaAutomatica.prototype.identificaBersaglio = function ( ) {
   var mySelf = this;
@@ -404,7 +404,7 @@ TorrettaAutomatica.prototype.identificaBersaglio = function ( ) {
   } );    
   // Prelevo il primo
   return missiliInGioco.pop();
-};
+}
 
 TorrettaAutomatica.prototype.mira = function ( bersaglio ) {
   var xi1 = bersaglio.x, 
@@ -443,7 +443,7 @@ TorrettaAutomatica.prototype.mira = function ( bersaglio ) {
     }
   }
   return {status: false, x: 0, y: 0};
-};
+}
 
 TorrettaAutomatica.prototype.spara = function ( coordinate ) {
   --this.nMissili;
@@ -465,7 +465,7 @@ TorrettaAutomatica.prototype.spara = function ( coordinate ) {
   this.missilePronto = false;
   
   return missile;
-};
+}
 
 TorrettaAutomatica.prototype.disegna = function ( ctx ) {
 this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
@@ -490,8 +490,9 @@ this.animazioneColore = (this.animazioneColore + 1) % Missile.COLORI.length;
     ctx.fill();
   }
 }
+
 TorrettaAutomatica.prototype.distruggiti = function ( ) {
   // Chiamo distruggiti classe base
   this.stop();
   BatteriaAntimissile.prototype.distruggiti.call( this );
-};
+}
