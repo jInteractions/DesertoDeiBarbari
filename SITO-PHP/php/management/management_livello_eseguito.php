@@ -939,22 +939,21 @@ function deleteFrom_LIVELLO_ESEGUITO_By_morti($connection,$value){
 /*END SEZIONE DELETE*/
 
 /*START SEZIONE INSERT*/
-function insertIntolivello_eseguito($connection, $label){	/* create a prepared statement */
+function insertIntolivello_eseguito($connection, $email, $idlivello, $file_virtuali_aggiornati, $ondate, $punteggio, $missili_abbattuti, $minacce_abbattute, $missili_lanciati, $missili_rimasti, $torrette_salvate, $morti){	/* create a prepared statement */
 	if ($stmt = $connection->prepare( 'INSERT INTO livello_eseguito (email, idlivello, file_virtuali_aggiornati, ondate, punteggio, missili_abbattuti, minacce_abbattute, missili_lanciati, missili_rimasti, torrette_salvate, morti) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')) {
 		/* bind parameters for markers */
 		$stmt->bind_param( "sssssssssss",$email, $idlivello, $file_virtuali_aggiornati, $ondate, $punteggio, $missili_abbattuti, $minacce_abbattute, $missili_lanciati, $missili_rimasti, $torrette_salvate, $morti);
 		/* execute query */   
 		if (!$stmt->execute() && $debug) {
-			echo $stmt->error;
+			echo "Errore ".$stmt->error;
 			echo $stmt->errno;
 			return -1;
 		}
 		//echo mysqli_stmt_insert_id($stmt);
-		$id = $stmt->insert_id;
 		/* close statement */
-		mysqli_stmt_close($stmt);
+		$stmt->close();
 		//operazione conclusa con successo
-		return $id;
+		return "OK";
 	}
 	else{
 	}

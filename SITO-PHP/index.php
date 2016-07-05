@@ -49,6 +49,11 @@
         $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
         $informazioniLivelloAttuale = selectFrom_LIVELLO_By_idlivello($connection,$_GET["idlivello"]);
         $fileVirtualiAggiornati = select_file_virtuali_aggiornati_From_LIVELLO_ESEGUITO_By_idlivello_email ($connection, $_GET["idlivello"], $_SESSION["email"]);
+        $livelloEseguito = selectFrom_LIVELLO_ESEGUITO_By_idlivello_email($connection, $_GET["idlivello"], $_SESSION["email"]);
+        if(count($livelloEseguito)===0){
+          echo "<h1>Livello non ancora sbloccato, non barare!</h1>";
+          exit();
+        }
         $fileVirtualiAggiornati = json_decode($fileVirtualiAggiornati, true);
     }
   ?>
@@ -576,7 +581,8 @@
         updateCodiceUtente(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", richiestoAiuto, nomeFile, codiceUtente);
       };
      $(document).ready(function () {
-        <?php if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
+        <?php 
+          if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
             echo '$("#modalDialoghi").modal("show");';
           } 
         ?>
@@ -585,6 +591,9 @@
             mostraAiuto(this.id.replace("bottoneAiuto", ""));
         });
         $("#bottoneCaricaCodice").click(ricaricaCodice);
+        $("#bottoneLivelloSuccessivo").click(function () {
+            location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
+        });
         $("#bottoneSalvaCodice").click(funzioneSalvaCodice);
         
         $('textarea').each(function(){
@@ -612,9 +621,9 @@
             if(nOndata===1 && risoltoTuttiObiettivi){
               funzioneSalvaCodice();
               $("#modalDialoghiFinali").modal("show");
-              $("#bottoneLivelloSuccessivo").prop("enabled",false);
+              $("#bottoneLivelloSuccessivo").prop("disabled",false);
+              aggiungiLivelloSuccessivo(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>");
             }
-            console.log(risultatoOndata.punteggio + " " + risultatoOndata.missiliAbbattuti + " " +  risultatoOndata.missiliRimasti + " " +  risultatoOndata.minacceAbbattute + " " +  risultatoOndata.torretteSalvate + " " +  risultatoOndata.missiliSparati + " " +  risultatoOndata.morti);
             updateStatisticheUtenti(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", nOndata, risultatoOndata.punteggio, risultatoOndata.missiliAbbattuti, risultatoOndata.missiliRimasti, risultatoOndata.minacceAbbattute, risultatoOndata.torretteSalvate, risultatoOndata.missiliSparati, risultatoOndata.morti);
             ++nOndata;
             coreLevel.inizializzaLivello(nOndata);

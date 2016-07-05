@@ -81,11 +81,11 @@ var updateStatisticheUtenti = function (livello, email, ondate, punteggio, missi
     });
 }
 
-/*var aggiungiLivelloSuccessivo = function (livello, email){
+var aggiungiLivelloSuccessivo = function (livello, email){
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: host + "php/setLivelloSuccessivo.php",
-        data: "idlivello=" + livello + "&" +
+        data: "idlivello=" + (livello+1) + "&" +
         "email=" + email,
         dataType: "text",
         success: function (result) {
@@ -95,4 +95,4 @@ var updateStatisticheUtenti = function (livello, email, ondate, punteggio, missi
             alert(error);
         }
     });
-}*/
+}

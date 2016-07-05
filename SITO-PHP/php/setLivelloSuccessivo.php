@@ -2,8 +2,15 @@
 	require "config.php";
 	require "generic.php";
 	require "management/management_livello_eseguito.php";
-  if(isset($_GET["idlivello"]) && isset($_GET["email"])){
-    $codiceUtente = explode("########FineCodiceUtente########", $_GET["codiceUtente"]);
+  if(isset($_POST["idlivello"]) && isset($_POST["email"])){
+    $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, $debug);
+    
+    $result = insertIntolivello_eseguito($connection, $_POST["email"], $_POST["idlivello"], "", 0, 0, 0, 0, 0, 0, 0, 0);
+     
+    echo "Risultato insert: ".$result;
+    exit();
+    
+    /*$codiceUtente = explode("########FineCodiceUtente########", $_GET["codiceUtente"]);
     $richiestoAiuto = json_decode($_GET["richiestoAiuto"],true);
     $nomeFile = json_decode($_GET["nomeFile"],true);
     
@@ -21,7 +28,7 @@
     
     echo var_dump($richiestoAiuto);
     echo $result;
-    exit();
+    exit();*/
 	}
 	else
 		echo "{'result':'error'}";
