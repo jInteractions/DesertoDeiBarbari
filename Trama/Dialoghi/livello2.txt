@@ -15,7 +15,7 @@ Ortiz
 Niente ma! Ora vai subito alla sala di comando! È un ordine!
 Simeoni
 Signorsì, signore.
-Simenoni
+Simeoni
 ...
 Simeoni
 E tu chi saresti? Stavi origliando?
@@ -26,17 +26,17 @@ Allora stavi origliando! Spiegami chi sei e forse non ti farò rapporto alla cor
 Prosdocimo
 Prosdocimo, al tuo servizio! Eh eh eh...
 Simeoni
-Ah ma io ti conosco! Sei il vecchio che si occupa della pulizia qua al quartier generale.
+Ah ma io ti conosco! Sei il vecchio che si occupa delle pulizie qua al quartier generale.
 Prosdocimo
-Esattamente! E ho le orecchie ancora buone, nonostante l'età. E forse so come aiutarti.
+Esattamente! E ho le orecchie ancora buone, nonostante l'età. E forse so pure come aiutarti.
 Simeoni
 Tu? Un povero vecchio? Ma non farmi ridere.
 Prosdocimo
-Eh eh eh non hai tutti i torti. Ma ti ripeto, conosco molte cose. Per esempio: sai che sul pianeta Bastiani soffia un vento diverso al vento che soffia sulla Terra? E possiede una forza gravitazionale otto volte più potente di quella presente sul pianeta Colombre? Le armi lo sanno...
+Eh eh eh non hai tutti i torti. Ma ti ripeto, conosco molte cose. Per esempio: sai che sul pianeta Bastiani soffia un vento diverso dal vento che soffia sulla Terra? E possiede una forza gravitazionale otto volte più potente di quella presente sul pianeta Colombre? Le armi lo sanno...
 Simeoni
 Spiegati meglio, ti ascolto.
 Prosdocimo
-Ecco, bravo. Le armi hanno dei file di configurazione che impostano la forza di sparo e la calibrazione del mirino in base al pianeta su cui si trovano. Devi modificare quei file, porbabilmente le armi funzionano, ma sparano sbagliato perché pensano di essere su qualche altro pianeta, come Buzzati o Buttafuoco...
+Ecco, bravo. Le armi hanno dei file di configurazione che impostano la forza di sparo e la calibrazione del mirino in base al pianeta su cui si trovano. Devi modificare quei file: probabilmente le armi funzionano, ma sparano in modo errato perché pensano di essere su qualche altro pianeta, come Buzzati o Buttafuoco...
 Simeoni
 Grazie, vec... Prosdocimo. Spero che queste informazioni mi vengano utili.
 Prosdocimo
@@ -107,8 +107,8 @@ DIALOGO FINALE
 Simeoni
 Capitano Simeoni a rapporto signore.
 Ortiz
-Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sarò per sempre su questo pianeta, ed è giusto che tu sappia anche cavartela da solo. Ho solo una curiosità. Come hai avuto l'intuizione sui file di configurazione? Devo ammettere che sono stato colpito...
+Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sarò per sempre su questo pianeta, ed è giusto che tu sappia anche cavartela da solo. Ho solo una curiosità. Come sei riuscito a risolvere questo problema? Devo ammettere che sono stato colpito...
 Simeoni
-Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto più forte. Ma non voglio annoiarti, signore.
+Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto più forte. Ma non voglio annoiare nessuno, signore.
 Ortiz
-Comunque ottimo lavoro capitano. Sei congedato, puoi andare a dormire. Domani un'altra lunga giornata ci attende, nella notte infinita di Bastiani... 
+Comunque ottimo lavoro capitano. Sei congedato, puoi andare a dormire. Domani un'altra lunga giornata ci attende, nell'eterna notte di Bastiani... 
