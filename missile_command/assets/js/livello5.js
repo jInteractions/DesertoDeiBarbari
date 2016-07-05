@@ -75,12 +75,6 @@ Livello5.prototype.sparo = function ( x, y, tasto ) {
   
   torrettaVirtuale.generatore._capacita = 100;
   torrettaVirtuale.spara( x, y );
-  //console.log( "================================================== "); 
-  //console.log( this.torretta.caricatore._missileSparato );
-  //console.log( this.torretta.generatore._capacita );
-  //console.log( this.torretta.mirino._velocita );
-  //console.log( this.torretta.compressore._pressione );
-  
   this.coreGame.mirino.distanzaPerFrame = torrettaVirtuale.mirino._velocita;
   
   this.opzioniMissili = {
@@ -105,10 +99,6 @@ Livello5.prototype.sparo = function ( x, y, tasto ) {
   if( torretta.temperatura >= 799 ) {
     torretta.blocco = true;
   }
-}
-
-Livello5.prototype.calcolaParametriMissili = function () {
-  
 }
 
 function _Caricatore ( ) { this._missili = []; this._i = 0; this._missileSparato; }
@@ -366,12 +356,7 @@ var energiaCompressore = 30;
 var energiaMirino = 10;
 var pressioneCarburante = 0;
 var missile = this.caricatore.caricaProiettile( this.generatore );
-if( missile.combustibile === 'O2' )
-  pressioneCarburante = 1;
-if( missile.combustibile === 'H2' )
   pressioneCarburante = 15;
-if( missile.combustibile === 'H2O2' )
-  pressioneCarburante = 7;
 this.compressore.aumentaPressione( missile.combustibile, pressioneCarburante, 
   energiaCompressore, this.generatore );
 this.mira( x, y, energiaMirino );

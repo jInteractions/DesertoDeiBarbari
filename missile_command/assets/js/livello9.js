@@ -5,7 +5,7 @@ function Livello9 ( callbackFineLivello ) {
 Livello9.prototype = Object.create( CoreLevel.prototype );
 Livello9.prototype.constructor = Livello9;
 
-CoreLevel.prototype.inizializzaBasi = function () {
+Livello9.prototype.inizializzaBasi = function ( ) {
   this.coreGame.aggiungiBase( new BaseMilitare( 80,  430, false, 100, 'red', this.coreGame ) );
   this.coreGame.aggiungiBase( new BaseMilitare( 130,  430, true, 100, 'cyan', this.coreGame ) );  
   this.coreGame.aggiungiBase( new BaseMilitare( 180,  430, false, 100, 'red', this.coreGame ) );
@@ -24,8 +24,8 @@ Livello9.prototype.inizializzaArmiNemiche = function ( ) {
   var bersagliPrioritari = [];
   $.each( this.esaminaCanaliRadio(), function ( i, b ) {
     bersagliPrioritari.push( {x: b.x + 15, y: b.y - 10, tipo: b} )
-  } );  
-    
+  } );
+
   var bersagliNonBasi = this.coreGame.bersagliAttaccabili().filter( function( b ) {
     if( b.tipo instanceof BaseMilitare )
       return false;
@@ -55,6 +55,94 @@ Livello9.prototype.inizializzaArmiNemiche = function ( ) {
       massimoRaggioEsplosione: 30
     }, bersagli, areaPertenza, xRand, velRand,  ritardoRand, this.coreGame) );
   }
+}
+
+Livello9.prototype.setupListeners = function ( ) { 
+  var mySelf = this;
+  $( '.gameContainer' ).off();
+  $( '.gameContainer' ).focus();
+  
+  $( '.gameContainer' ).on( 'click', function ( ) {
+    mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, null );
+  } );
+  
+  $( '.gameContainer' ).on( 'mouseover', function( event ) {
+    mySelf.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
+  });
+  $( '.gameContainer' ).on( 'mouseout', function( ) {
+    mySelf.coreGame.mirino.stato = Mirino.SPENTO;
+  });
+  $( '.gameContainer' ).on( 'mousemove', function( event ) {
+    var offset = $(".gameContainer").offset();
+    mySelf.coreGame.mirino.inseguiX = event.pageX - offset.left;
+    mySelf.coreGame.mirino.inseguiY = event.pageY - offset.top;
+    mySelf.coreGame.mirino.cambiaMira();
+  });
+}
+
+Livello9.prototype.scegliTorretta = function ( x, y, tasto ) {
+  var nonFunzionante = function ( torretta ) {  
+    if( torretta.stato === BatteriaAntimissile.ATTIVA &&
+        torretta.numeroMissili > 0 &&
+        torretta.blocco === false )
+      return false;
+    else
+      return true;
+  }
+  
+  var torrette = this.coreGame.batterieAntimissile;
+  var torrettaSelezionata;
+  
+  if( 0 <= x && x < 170 ) {
+    torrettaSelezionata = 0;
+  }
+  if( 170 <= x && x < 340 ) {
+    torrettaSelezionata = 1;
+  }
+  if( 340 <= x && x <= 510 ) {
+    torrettaSelezionata = 2;
+  }
+  
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    torrettaSelezionata = 1;
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    torrettaSelezionata = 0;
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    torrettaSelezionata = 2;
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    return -1;
+    
+  return torrettaSelezionata;
+};
+
+Livello9.prototype.sparo = function ( x, y, tasto ) {
+  var indiceTorretta = this.scegliTorretta( x, y, tasto );
+  if( indiceTorretta === -1 )
+    return;
+  
+  var torretta = this.coreGame.batterieAntimissile[indiceTorretta];
+  console.log( torretta );
+  
+  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
+    xDiPartenza: torretta.x,
+    yDiPartenza: torretta.y,
+    xDiArrivo: x,
+    yDiArrivo: y,
+    coloreTestata: 'yellow',
+    coloreScia: 'blue',
+    massimoRaggioEsplosione: 30,
+    distanzaPerFrame: 7
+  }, this.coreGame ) );
+  
+  this.coreGame.aggiornaPunteggioMissiliSparati();
+  torretta.numeroMissili--;
+  torretta.temperatura += 100;
+  var temperaturaMinima = 500
+  torretta.temperaturaSblocco = temperaturaMinima;
+  if( torretta.temperatura >= 799 ) {
+    torretta.blocco = true;
+    console.log( torretta.blocco );
+  };
 }
 
 Livello9.prototype.calcolaCoefficienteOndata = function ( ) {
@@ -183,6 +271,7 @@ var decodificaSegnale = function ( canaleTrasmissione ) {
 }
 
 // test
+/*
 (
 //var t1 = 
   function () {
@@ -231,3 +320,4 @@ var decodificaSegnale = function ( canaleTrasmissione ) {
   return esito;  
 }
 ) ();
+*/

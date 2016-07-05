@@ -55,8 +55,6 @@ Livello6.prototype.setupListeners = function( ) {
     mySelf.coreGame.mirino.inseguiY = event.pageY - offset.top;
     mySelf.coreGame.mirino.cambiaMira();
   });
-  
-  
 }
 
 Livello6.prototype.scegliTorretta = function ( x, y, tasto ) {
@@ -94,11 +92,11 @@ Livello6.prototype.sparo = function ( x, y, torretta ) {
   }, this.coreGame ) );
   
   this.coreGame.aggiornaPunteggioMissiliSparati();
-  torretta.munizioni--;
+  torretta.numeroMissili--;
   torretta.temperatura += 50;
   var temperaturaMinima = 500
   torretta.temperaturaSblocco = temperaturaMinima;
-  if( torretta.temperatura >= 899 ) {
+  if( torretta.temperatura >= 799 ) {
     torretta.blocco = true;
   };
 }
@@ -172,11 +170,11 @@ var torrettaVicina = function ( torrette, x, y ) {
 
 var nonFunzionante = function ( torretta ) {
   if( torretta.stato === BatteriaAntimissile.ATTIVA &&
-      torretta.munizioni > 0 &&
+      torretta.numeroMissili > 0 &&
       torretta.blocco === false )
-    return true;
-  else
     return false;
+  else
+    return true;
 }
 
 
