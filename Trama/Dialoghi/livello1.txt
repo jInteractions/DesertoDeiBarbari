@@ -4,7 +4,7 @@ LIVELLO 1: Bastiani, la fortezza
 
 DIALOGO INIZIALE
 Ortiz
-Buongiorno, capitano Simeoni! Io sono il generale Ortiz, a capo dell'Ottava Armata delle United Terrestrial Forces. Come puoi ben vedere, abbiamo appena subito un attacco del Nemico. Purtroppo le difese del pianeta Bastiani sono inutilizzabili!
+Buongiorno, capitano Simeoni! Io sono il generale Ortiz, a capo dell'Ottava Armata delle United Terrestrial Forces, nome in codice UTF-8. Come puoi ben vedere, abbiamo appena subito un attacco del Nemico. Purtroppo le difese del pianeta Bastiani sono inutilizzabili!
 Simeoni
 Inutilizzabili, signore?
 Ortiz
@@ -12,7 +12,7 @@ Esattamente, capitano. Come se qualcuno avesse inserito una sicura di sparo. Ed 
 Simeoni
 Esatto, signore.
 Ortiz
-Questa parte di informatica consiste in un insieme di istruzioni su ciò che le armi devo fare. Tali istruzioni devono essere scritte in un linguaggio comprensibile alle armi: un linguaggio di questo genere viene chiamato linguaggio di programmazione. L'insieme di istruzioni, scritte in un linguaggio di programmazione, viene chiamato codice sorgente. Quando l'arma prende il codice sorgente, esso diventa un programma. Mi sono spiegato bene?
+Questa parte di informatica consiste in un insieme di istruzioni su ciò che le armi devono fare. Tali istruzioni devono essere scritte in un linguaggio comprensibile alle armi: un linguaggio di questo genere viene chiamato linguaggio di programmazione. L'insieme di istruzioni, scritte in un linguaggio di programmazione, viene chiamato codice sorgente. Quando l'arma prende il codice sorgente, esso diventa un programma. Mi sono spiegato bene?
 Simeoni
 Affermativo, signore.
 Ortiz
@@ -20,7 +20,7 @@ Il tuo primo compito sarà quello di modificare il codice sorgente per le armi d
 Simeoni
 Brutta notizia, signore?
 Ortiz
-Il linguaggio di programmazione utilizzato per la scrittura dei programmi militare si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti! Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, università... nulla! Come se non fosse mai esistito.
+Il linguaggio di programmazione utilizzato per la scrittura dei programmi militari si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti! Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, università... nulla! Come se non fosse mai esistito.
 Simeoni
 Bene, signore. La difficoltà è mia amica. Spero solo di essere in grado di capire questo linguaggio il prima possibile.
 Ortiz
@@ -28,7 +28,7 @@ Non preoccuparti, ho lasciato qualche commento di aiuto al codice. Come ben sai 
 Simeoni
 Grazie signore.
 Ortiz
-Di nulla. Per qualunque cosa, chiedi. Come prima cosa noterai che il sistema richiede un accesso automatico, effettuato tramite il controllo della tua retina. Se questo non funziona, non preoccuparti: raramente lo fa. Dovrai dunque eseguire un accesso manuale, modificando alcuni file che si occupano di tale controllo. Troverai comunque una descrizione più dettagliata nel documento che ti ho lasciato.
+Di nulla. Per qualunque cosa, chiedi. Come prima cosa noterai che il sistema richiede un accesso automatico, effettuato tramite il controllo della tua retina. Se questo non funziona, non preoccuparti: raramente va tutto bene. Dovrai dunque eseguire un accesso manuale, modificando alcuni file che si occupano di tale controllo. Troverai comunque una descrizione più dettagliata nel documento che ti ho lasciato.
 Simeoni
 Signorsì, signore.
 Ortiz
@@ -69,11 +69,11 @@ Una stringa è invece un insieme di caratteri, come "Bastiani", "Ortiz" o "batta
 Un'operazione utile da effettuare sulle stringhe è la cosiddetta concatenazione, cioè l'unione di due o più stringhe. Per esempio:
 var stringaDiProva = "anti" + "missile";
 indica che nella variabile stringaDiProva è contenuta la stringa "antimissile".
-Nota bene! Il nome delle variabile può contenere lettere e numeri, più il carattere speciale "_". Il nome di una variabile non può mai iniziare con un numero, ma può averne in mezzo ed anche alla fine. Per esempio:
+Nota bene! Il nome delle variabili può contenere lettere e numeri, più il carattere speciale "_", ma nient'altro. Il nome di una variabile non può mai iniziare con un numero, ma può averne in mezzo ed anche alla fine. Per esempio:
 var 7Nani;
 è errato, mentre
 var numero1;
-var scaffale6Destro;
+var caricatore6Cannone;
 sono corrette.
 Nota bene! var è una parola chiave, per cui non potrai utilizzarla come nome per la variabile. Per esempio, l'istruzione
 var var = 2;
