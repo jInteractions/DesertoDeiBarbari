@@ -24,7 +24,7 @@ Eh eh eh, hai ragione. Però secondo me... secondo me le torrette hanno qualche 
 Simeoni
 A volte mi chiedo come tu faccia a sapere tutte queste cose.
 Prosdocimo
-Non preoccuparti, pensa solo che ti sto aiutando. Per carità umana, o amicizia: sta a te deciderlo. Comunque, lo sai che esistono diversi tipi di cariche per le munizioni vero?
+Non preoccuparti, pensa solo che ti sto aiutando. Per carità umana o amicizia: sta a te deciderlo. Comunque, lo sai che esistono diversi tipi di cariche per le munizioni vero?
 Simeoni
 Me l'hanno spiegato durante l'addestramento: munizioni al plasma, al plutonio e soniche. Qual è il punto?
 Prosdocimo
@@ -43,7 +43,7 @@ Prosdocimo
 Attento a dire queste cose, potrei prenderti alla lettera. Eh eh eh...
 
 OBIETTIVO - Tab 1
-L'obiettivo è quello di inserire nel caricatore delle torrette solo le munizioni al plasma, come detto da Prosdocimo. I due array, caricatoreTorretta e proiettiliScartati devono essere utilizzati correttamente, inserendo nel primo solo le munizioni al plasma e nel secondo solo le munizioni scartate, cioè quelle al plutonio e quelle soniche.
+L'obiettivo è quello di inserire nel caricatore delle torrette solo le munizioni al plasma. I due array, caricatoreTorretta e proiettiliScartati devono essere utilizzati correttamente, inserendo nel primo solo le munizioni al plasma e nel secondo solo le munizioni scartate, cioè quelle al plutonio e quelle soniche.
 AIUTI
 Per risolvere il caricamento errato delle munizioni, è necessario modificare due istruzioni all'interno del for.
 La prima è la seguente:
