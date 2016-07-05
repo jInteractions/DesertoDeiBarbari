@@ -52,6 +52,42 @@ function selectFrom_LIVELLO_ESEGUITO_idlivello_name_By_email($connection,$idlive
 	return $fields;
 }
 
+function selectFrom_LIVELLO_ESEGUITO_By_idlivello_email($connection,$idlivello,$email){
+	 $query="SELECT email, idlivello, file_virtuali_aggiornati, ondate, punteggio, missili_abbattuti, minacce_abbattute, missili_lanciati, missili_rimasti, torrette_salvate, morti FROM livello_eseguito WHERE idlivello=? AND email=?";
+ 	$fields = [];
+	if ($stmt = $connection->prepare($query)) {
+		$stmt->bind_param( "ss", $idlivello, $email);
+		$stmt->execute();
+		$stmt->bind_result($email, $idlivello, $file_virtuali_aggiornati, $ondate, $punteggio, $missili_abbattuti, $minacce_abbattute, $missili_lanciati, $missili_rimasti, $torrette_salvate, $morti);
+		while ($stmt->fetch()) {
+			$fields["email"] = $email;
+			$fields["idlivello"] = $idlivello;
+			$fields["file_virtuali_aggiornati"] = $file_virtuali_aggiornati;
+			$fields["ondate"] = $ondate;
+			$fields["punteggio"] = $punteggio;
+			$fields["missili_abbattuti"] = $missili_abbattuti;
+			$fields["minacce_abbattute"] = $minacce_abbattute;
+			$fields["missili_lanciati"] = $missili_lanciati;
+			$fields["missili_rimasti"] = $missili_rimasti;
+			$fields["torrette_salvate"] = $torrette_salvate;
+			$fields["morti"] = $morti;
+		}
+		$stmt->close();
+	}
+	return $fields;
+}
+
+function update_LIVELLO_ESEGUITO_SET_morti_WITH_idlivello_email_AS_KEYS($connection,$morti,$idlivello,$email){
+	$query="UPDATE livello_eseguito SET morti = ? WHERE idlivello=? AND email=?";
+	$result = 0;
+	if ($stmt = $connection->prepare($query)) {
+		$stmt->bind_param( "sss",$morti,$idlivello,$email);
+		$result = $stmt->execute();
+		$stmt->close();
+	}
+	return $result;
+}
+
 
 function select_file_virtuali_aggiornati_From_LIVELLO_ESEGUITO_By_idlivello_email($connection,$idlivello,$email){
   $query="SELECT file_virtuali_aggiornati FROM livello_eseguito WHERE idlivello=? AND email=?";

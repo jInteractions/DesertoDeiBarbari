@@ -150,7 +150,7 @@ CoreLevel.prototype.proceduraFineOndata = function () {
   this.basi = this.coreGame.basi;
   
   cg.calcoloMissiliRimasti();
-  cg.calcoloBatterieSalvate( 2 );
+  cg.calcoloBatterieSalvate( 0 );
   
   var risultatoOndata = {
     esito: this.verificaFineLivello(),

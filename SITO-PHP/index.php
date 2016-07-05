@@ -161,20 +161,7 @@
         </div>
       </div>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     <?php 
       foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
@@ -617,8 +604,9 @@
        ricaricaCodice();
        
      });
-      
+     var punteggioTotale = 0;
      var ricaricaCodice = function (){
+        punteggioTotale = 0;
         var callback = function ( risultatoOndata ) {
           if( risultatoOndata.esito === true ) {
             if(nOndata===1 && risoltoTuttiObiettivi){
@@ -626,11 +614,11 @@
               $("#modalDialoghiFinali").modal("show");
               $("#bottoneLivelloSuccessivo").prop("enabled",false);
             }
+            console.log(risultatoOndata.punteggio + " " + risultatoOndata.missiliAbbattuti + " " +  risultatoOndata.missiliRimasti + " " +  risultatoOndata.minacceAbbattute + " " +  risultatoOndata.torretteSalvate + " " +  risultatoOndata.missiliSparati + " " +  risultatoOndata.morti);
+            updateStatisticheUtenti(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", nOndata, risultatoOndata.punteggio, risultatoOndata.missiliAbbattuti, risultatoOndata.missiliRimasti, risultatoOndata.minacceAbbattute, risultatoOndata.torretteSalvate, risultatoOndata.missiliSparati, risultatoOndata.morti);
             ++nOndata;
             coreLevel.inizializzaLivello(nOndata);
-            coreLevel.mostraSchermataIniziale();
-            
-            
+            coreLevel.mostraSchermataIniziale(); 
           } else {
             nOndata = 1;
             coreLevel.inizializzaLivello(1);

@@ -57,6 +57,30 @@ var updateCodiceUtente = function (livello, email, richiestoAiuto, nomeFile, cod
     });
 }
 
+var updateStatisticheUtenti = function (livello, email, ondate, punteggio, missiliAbbattuti, missiliRimasti, minacceAbbattute, torretteSalvate, missiliSparati, morti){
+    $.ajax({
+        type: "POST",
+        url: host + "php/setStatisticheUtente.php",
+        data: "idlivello=" + livello + "&" +
+        "email=" + email + "&" +
+        "ondate=" + ondate + "&" +
+        "punteggio=" + punteggio + "&" +
+        "missili_abbattuti=" + missiliAbbattuti + "&" +
+        "missili_rimasti=" + missiliRimasti + "&" +
+        "minacce_abbattute=" + minacceAbbattute + "&" +
+        "torrette_salvate=" + torretteSalvate + "&" +
+        "missili_lanciati=" + missiliSparati + "&" +
+        "morti=" + morti,
+        dataType: "text",
+        success: function (result) {
+            console.log(result);
+        },
+        error: function (error) {
+            alert(error);
+        }
+    });
+}
+
 /*var aggiungiLivelloSuccessivo = function (livello, email){
     $.ajax({
         type: "GET",
