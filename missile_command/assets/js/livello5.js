@@ -166,9 +166,7 @@ _Compressore.prototype.aumentaPressione = function ( combustibile, pressione, en
   if( pressione > 30 )
     pressione = 30;
   
-  if( combustibile === 'O2' ) coefficientePressione = 1 - (Math.abs(1 - pressione) / (30 - 1));
-  if( combustibile === 'H2' ) coefficientePressione = 1 - (Math.abs(15 - pressione) / (30 - 15));
-  if( combustibile === 'H2O2' ) coefficientePressione = 1 - (Math.abs(7 - pressione) / (30 - 7));
+  coefficientePressione = 1 - (Math.abs(15 - pressione) / (30 - 15));
   
   if( energiaErogata > 30 )
     energiaErogata = 30;
@@ -196,20 +194,17 @@ TorrettaCentrale.prototype.mira = function ( x, y, energiaFornita ) {
 }
 
 TorrettaCentrale.prototype.spara = function ( x, y ) {
+//###START_MODIFICABILE###
   var energiaCompressore = 5;
   var energiaMirino = 1;
+  var pressioneCarburante = 15;
   
   var missile = this.caricatore.caricaProiettile( this.generatore );
-  if( missile.combustibile === 'O2' )
-    pressioneCarburante = 1;
-  if( missile.combustibile === 'H2' )
-    pressioneCarburante = 15;
-  if( missile.combustibile === 'H2O2' )
-    pressioneCarburante = 7;
   this.compressore.aumentaPressione( missile.combustibile, pressioneCarburante, 
     energiaCompressore, this.generatore );
   this.mira( x, y, energiaMirino );
   this.caricatore.innescaFuoco( missile, this.compressore, this.generatore );
+//###END_MODIFICABILE###
 }
 
 // test
@@ -262,14 +257,17 @@ TorrettaSinistra.prototype.mira = function ( x, y, energiaFornita ) {
 }
 
 TorrettaSinistra.prototype.spara = function ( x, y ) {
+//###START_MODIFICABILE###
   var energiaCompressore = 30;
   var energiaMirino = 10;
   var pressioneCarburante = 5;
+  
   var missile = this.caricatore.caricaProiettile( this.generatore );  
   this.compressore.aumentaPressione( missile.combustibile, pressioneCarburante, 
     energiaCompressore, this.generatore );
   this.mira( x, y, energiaMirino );
   this.caricatore.innescaFuoco( missile, this.compressore, this.generatore );
+//###END_MODIFICABILE###
 }
 
 // test
@@ -321,14 +319,17 @@ TorrettaDestra.prototype.mira = function ( x, y, energiaFornita ) {
 }
 
 TorrettaDestra.prototype.spara = function ( x, y ) {
-  var energiaCompressore = 30;
+//###START_MODIFICABILE###
+  var energiaCompressore = 80;
   var energiaMirino = 50;
-  var pressioneCarburante = 20; 
+  var pressioneCarburante = 20;
+  
   var missile = this.caricatore.caricaProiettile( this.generatore );
   this.compressore.aumentaPressione( missile.combustibile, pressioneCarburante, 
     energiaCompressore, this.generatore );
   this.mira( x, y, energiaMirino );
   this.caricatore.innescaFuoco( missile, this.compressore, this.generatore );
+//###END_MODIFICABILE###
 }
 
 // test
