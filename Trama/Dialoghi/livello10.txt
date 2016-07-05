@@ -1,0 +1,87 @@
+
+
+LIVELLO 10: La Divoratrice
+
+DIALOGO INIZIALE
+Mellara
+Buongiorno a tutti. La Divoratrice è stata avvistata non lontano dell'orbita di Angustina. Dobbiamo prepararci, perché sarà qui a breve.
+Ortiz
+Zurlin, Simeoni e Prosdocimo, siete pronti?
+Zurlin
+Pronta e combattiva, caro.
+Simeoni
+Pronto, signore.
+Prosdocimo
+Attenti! Eh eh eh.
+Mellara
+Mi piace vedervi di buon umore. Spero che comprendiate comunque la gravità del momento. Qualcuno ha delle idee su come risolvere la questione Divoratrice?
+Ortiz
+La Divoratrice è un'astronave di classe 0, grande il doppio della nave presidenziale e decisamente meglio armata. Possiede due torrette automatiche sui lati, che sparano a bersagli fermi ed in movimento.
+Mellara
+L'attacco dei faragi viene accompagnato da dieci navi di classe 3 in orbita, che supportano la discesa della Divoratrice.
+Ortiz
+La Divoratrice ha un unico punto debole: la pancia dell'astronave presenta infatti uno sfiato per i gas necessari al caricamento del polverizzatore. Sarebbe bene colpirla con l'arma più grossa che abbiamo...
+Simeoni
+Potremmo costruire un missile nucleare, indirizzato con sufficiente precisione, per entrare in questo sfiato.
+Zurlin
+Buona idea caro, anche se le torrette automatiche lo distruggerebbo appena uscito dalla rampa di lancio.
+Prosdocimo
+Eh eh eh, acuta osservazione. Il problema sono le torrette automatiche...
+Mellara
+Protette da un campo di forza, dunque impossibili da abbattere con i missili che usiamo solitamente.
+Simeoni
+Dobbiamo scortare il missile nucleare usando una torretta... ma in questo modo non riusciremmo a concentrarci sulle navi di classe 3 che ci bombardano dall'orbita.
+Prosdocimo
+Beh, per quello ho un'ideuccia... eh eh eh. Ho sviluppato qualche pezzo di codice, per testare se fosse fossibile creare una tipologia di torretta in grado di puntare e sparare automaticamente ad un bersaglio.
+Ortiz
+Saresti in grado di concluderlo?
+Prosdocimo
+Beh aiutato da loro sicuramente. Eh eh eh.
+Zurlin
+Quindi scorteremmo il missile nucleare con la torretta centrale, comandata manualmente. Ai lati avremo due torrette automatiche, che ci permettono di non pensare ai missili lanciati dalle navi di classe 3. Il missile nucleare centra lo sfiato e bum! I faragi se ne tornano da dove sono venuti.
+Simeoni
+Direi che abbiamo un piano.
+Mellara
+Buona fortuna, soldati. Il destino della galassia è nelle vostre mani, ma non credo sia necessario ricordarvelo.
+
+OBIETTIVO
+
+AIUTI
+
+MANUALE
+
+DIALOGO FINALE
+Simeoni
+Ce l'abbiamo fatta! Ah ah ah!
+Ortiz
+Ben gli sta a quei faragi.
+Mellara
+La galassia è salva. Non sappiamo se torneranno o meno, ma quello che importa è aver dimostrato che due culture che si uniscono sono meglio di due culture che si combattono.
+Ortiz
+Adesso arriva il lavoro grosso. Entra in campo la diplomazia, mentre noi soldati... beh torneremo a marcire su pianeti come Bastiani.
+Simeoni
+Del resto è il nostro lavoro, generale. Prova ad immaginare: se non fossi mai stato su Bastiani, non si sarebbe forse mai arrivati a questa alleanza.
+Ortiz
+È giusto vederla così.
+Prosdocimo
+Abbiamo finito con i discorsi sul destino, la vita, l'universo e tutto quanto? Andiamo a festeggiare! Eh eh eh.
+Zurlin
+Simeoni, posso parlarti un attimo? In privato.
+Simeoni
+Certo.
+Zurlin
+Bene, ora che siamo soli, caro... cioè, colonnello. Adesso siamo alleati, quindi...
+Simeoni
+Cosa vuoi chiedermi, Zurlin?
+Zurlin
+Mi stai simpatico, questo te l'ho già detto... mi piacerebbe che venissi su Tronk, con me. So che la tua curiosità prima o poi ti ci porterà... ma vorrei che fosse adesso.
+Simeoni
+Avevo effettivamente intenzione di venire, Zurlin. Magari posso congedarmi dall'esercito... e insegnare la programmazione! Ai bambini ibridi e terrestri... pensa: la prima scuola di programmazione mista!
+Zurlin
+Sarebbe fantastico...
+Simeoni
+Allora è deciso! Verrò con te su Tronk.
+Zurlin
+Come sono contenta!
+Simeoni
+Ora torniamo ai festeggiamenti. Poi, un po' di meritato riposo e... domani sentirò il generale per il mio congedo. Ma ora festeggiamo, su! Che domani avremo un'altra lunga giornata, nell'eterna notte di Bastiani...
