@@ -1,0 +1,124 @@
+
+
+LIVELLO 4: Nelle fauci del Nemico
+
+DIALOGO INIZIALE
+Ortiz
+Entra pure, capitano.
+Simeoni
+Ordini, generale?
+Ortiz
+Sì, ma dopo. Prima vorrei parlare di un certo file di configurazione per la calibrazione planetaria delle armi. Hai usato quel file vero, per sistemare le torrette l'altro giorno?
+Simeoni
+Non lo nego, signore.
+Ortiz
+Non avevi il permesso di ficcare il naso in quel file! Sei solo un capitano! Qui stiamo parlando di difese che vengono utilizzate in tutta la galassia! Ti rendi conto di quello che sarebbe potuto accadere, se solo avessi sbagliato a manomettere quel file? E soprattutto, chi ti ha detto dell'esistenza di quel file?
+Simeoni
+L'ho trovato per caso signore. Stavo cercando di risolvere i problemi al sistema di puntamento e sparo. La fretta era tanta e non ho fatto complimenti.
+Ortiz
+Non è che qualche membro ausiliario della base ti ha aiutato? Qui dentro c'è molta gente che deve imparare a tenere la bocca chiusa... e me ne occuperò personalmente! Non posso tollerare che un capitano, con la responsabilità delle difese di un pianeta sotto attacco scavalchi le regole in questo modo!
+Simeoni
+Signore, alla fine ho salvato delle vite. Le vite dei nostri soldati, dei nostri compagni. Non mi pento di quello che ho fatto. E le posso giurare di aver fatto tutto da solo.
+Ortiz
+Hai una bella faccia tosta, a non pentirti e a giurare il falso. Dovrei sbatterti davanti alla corte marziale, ma credo nelle seconde possibilità: farò finta di crederti. D'altronde sei l'unico che può svolgere la porssima missione... fate entrare il progioniero!
+Zurlin
+Ehi ehi ehi, giù quelle mani! Ho dato la mia parola sulla spontaneità della mia collaborazione. Non c'è bisogno di spingere.
+Ortiz
+Capitano, ti presento Zurlin, il pilota del Nemico abbattuto ieri.
+Zurlin
+Ciao, caro.
+Ortiz
+Zurlin ha promesso di collaborare con noi. Può aprirci una porta per entrare nel codice delle navi del Nemico. Si sta parlando di hacking.
+Simeoni
+Interessante. Spiegami un po', Zurlin: cosa dovrei fare?
+Zurlin
+Allora caro, come prima cosa ci sarà da creare un'arma sabotata, che poi andrà caricata nel codice della nave, in modo che usi quella invece che quelle che utilizza normalmente. Non potrai esagerare con le modifiche... altrimenti potrebbero accorgersene subito.
+Simeoni
+Ottimo.
+Zurlin
+Calmo, caro. A quel punto sarà necessario effettuare un attacco a forza bruta alla password della nave, in modo che le modifiche che hai fatto alle armi possano essere salvate nel loro sistema. Ho già fatto preparare alcuni file da cui puoi partire, ma non sarà facile, caro...
+Simeoni
+E smettila con questo caro.
+Zurlin
+Certo, caro.
+Ortiz
+Basta con i convenevoli. Simeoni, questa è la tua ultima possibilità. Vedi di tenerlo bene a mente.
+
+OBIETTIVO - Tab 1
+L'obiettivo è modificare le caratteristiche della classe dell'arma sabotata, che poi dovrà essere caricata al posto delle armi funzionanti nel codice del Nemico. Si deve dunque alzare il tempo di ricarica massimo, cioè il tempo che ogni torretta impiega a ricaricare il cannone; poi ridurre il numero del propellente, poiché più è basso, più indica propellente scadente; poi diminuire il numero di missili contenuti nel caricatore; infine cambiare il tipo di missile da massima_efficacia a massima_esplosione.
+AIUTI
+Le caratteristiche della classe andranno cambiate nel seguente modo:
+this.tempoRicaricaMassimo = 200;
+this.propellente = 3;
+this.numeroMissili = 10;
+this.tipoMunizione = "massima_esplosione";
+
+OBIETTIVO - Tab 2
+L'obiettivo è caricare la classe dell'arma sabotata al posto della classe delle armi normali utilizzata dal Nemico.
+AIUTI
+L'operazione di new andrà cambiata, creando un oggetto non di classe BatteriaAntiterrestre(), ma di classe ArmaNemicaSabotata().
+var batteria = new ArmaNemicaSabotata();
+
+OBIETTIVO - Tab 3
+L'obiettivo è creare tutte le combinazioni possibili di password per forzare il salvataggio delle nostre modifiche. L'importante è che, essendoci tre caratteri, il ciclo e la funzione ricorsiva vengano chiamate tre volte.
+AIUTI
+Per eseguire la ricorsione il numero corretto di volte, è necessario modificare la funzione generaPassword(), in particolare il controllo effettuato dall'if:
+if ( k === 3 )
+Questo per creare tutte le combinazioni possibili.
+
+MANUALE
+Una funzione è un particolare tipo di valore per una variabile, ed è una sequenza di istruzioni che definisce una particolare operazione. Una funzione può avere dei parametri in ingresso oppure dei risultati in uscita.
+Per esempio, una funzione che possiede parametri in entrata e risultati in uscita è la seguente:
+var calcolaSomma = function ( a, b ) {
+	return a + b;
+}
+I parametri in ingresso sono a e b, che rappresentano le variabili da sommare, mentre return è una parola chiave, che indica che ciò che la segue è il risultato in uscita. Per utilizzare una funzione è necessario chiamarla, tramite una chiamata di funzione. Ecco un esempio per la funzione calcolaSomma():
+var risultato = calcolaSomma ( 4, 5 );
+In risultato verrà inserito il risultato della funzione, dunque 9.
+Un particolare tipo di funzione è la funzione ricorsiva, cioè una funzione che richiama se stessa più volte, in modo da produrre un determinato tipo di risultato. Un esempio di funzione ricorsiva può essere quella che calcola il fattoriale di un numero:
+var fattoriale = function ( numero ) {
+    if ( numero < 0 ) {
+        return -1;
+    }
+    else if ( num == 0 ) {
+        return 1;
+    }
+    else {
+        return ( numero * fattoriale( numero - 1 ) );
+    }
+}
+Il risultato ritornato dalla funzione fattoriale( numero ) sarà il valore del fattoriale di numero.
+L'ultimo tassello della grammatica del linguaggio di programmazione è il concetto di classe. Una classe definisce un nuovo tipi di valore, che viene caratterizzato da una serie di caratteristiche, chiamati campi. Ecco un esempio, per la classe Soldato:
+function Soldato ( matricola, arma, battaglione ) {
+	this.matricola = matricola;
+	this.arma = arma;
+	this.battaglione = battaglione;
+}
+La parola chiave this indica che la parola che segue descrive una caratteristica propria della classe.
+La classe viene poi usata per creare degli oggetti, cioè, nel caso della classe Soldato, tanti soldati, ognuno con le sue caratteristiche.
+Una classe viene creata tramite la parola chiave function, perché viene chiamata per la creazione di oggetti proprio come se fosse una funzione.
+Per creare nuovi soldati, dunque, è necessario eseguire le seguenti istruzioni:
+var soldatoFanteria = new Soldato ( 1, "fucile al plasma", "UTF-8, 42 battaglione" );
+var soldatoArtiglieria = new Soldato ( 2, "granate a rimbalzo", "UTF-16, 30 battaglione" );
+var soldatoScelto = new Soldato ( 3, "phaser sonici", "UTF-32, 1 battaglione" );
+
+
+DIALOGO FINALE
+Ortiz
+Un ottimo lavoro, direi.
+Simeoni
+Grazie, generale.
+Zurlin
+Grazie, caro.
+Ortiz
+Portate via Zurlin. Cella 42. Con te non ho ancora finito.
+Zurlin
+Ma certo, caro.
+Ortiz
+Bene, ora che quel... quella prigioniera se n'è andata, passiamo a noi. Mi è piaciuto come hai condotto l'operazione. Hai sfruttato bene la seconda possibilità che ti ho dato e non voglio che si dica che non premio i miei uomini. Complimenti, maggiore Simeoni.
+Simeoni
+Maggiore? Grazie, signore.
+Ortiz
+Non gongolare troppo. La notte eterna di Bastiani ha ancora tanto da chiederti... e dovrai farti trovare pronto. Inutile ricordarti che non tollererò altre interferenze come quella del file di configurazione. Sono stato chiaro, maggiore?
+Simeoni
+Trasparente.

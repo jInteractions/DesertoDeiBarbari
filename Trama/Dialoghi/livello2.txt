@@ -1,0 +1,114 @@
+
+
+LIVELLO 2: Il pianeta misterioso
+
+DIALOGO INIZIALE
+Ortiz
+Capitano, le modifiche che hai apportato al sistema si sono rivelate inutili! Possiamo sparare e puntare, ma i missili non raggiungono correttamente il bersaglio! Hai qualche giustificazione?
+Simeoni
+Signore, ho fatto solo quello che mi è stato chiesto, cioè sbloccare il sistema antimissili. Se ci sono da apprtare altre modifiche al codice sorgente lo farò, ma mi servirebbe un punto preciso dal quale partire...
+Ortiz
+Stai pretendendo troppo, capitano. Siamo al fronte, non a scuola. Devi cavartela da solo! E devi stare attento, oppure la corte marziale potrebbe sentire il tuo nome.
+Simeoni
+Ma, signore...
+Ortiz
+Niente ma! Ora vai subito alla sala di comando! È un ordine!
+Simeoni
+Signorsì, signore.
+Simenoni
+...
+Simeoni
+E tu chi saresti? Stavi origliando?
+Prosdocimo
+Sembrava parecchio arrabbiato il generale, eh eh eh...
+Simeoni
+Allora stavi origliando! Spiegami chi sei e forse non ti farò rapporto alla corte marziale.
+Prosdocimo
+Prosdocimo, al tuo servizio! Eh eh eh...
+Simeoni
+Ah ma io ti conosco! Sei il vecchio che si occupa della pulizia qua al quartier generale.
+Prosdocimo
+Esattamente! E ho le orecchie ancora buone, nonostante l'età. E forse so come aiutarti.
+Simeoni
+Tu? Un povero vecchio? Ma non farmi ridere.
+Prosdocimo
+Eh eh eh non hai tutti i torti. Ma ti ripeto, conosco molte cose. Per esempio: sai che sul pianeta Bastiani soffia un vento diverso al vento che soffia sulla Terra? E possiede una forza gravitazionale otto volte più potente di quella presente sul pianeta Colombre? Le armi lo sanno...
+Simeoni
+Spiegati meglio, ti ascolto.
+Prosdocimo
+Ecco, bravo. Le armi hanno dei file di configurazione che impostano la forza di sparo e la calibrazione del mirino in base al pianeta su cui si trovano. Devi modificare quei file, porbabilmente le armi funzionano, ma sparano sbagliato perché pensano di essere su qualche altro pianeta, come Buzzati o Buttafuoco...
+Simeoni
+Grazie, vec... Prosdocimo. Spero che queste informazioni mi vengano utili.
+Prosdocimo
+Lo saranno, giovane capitano. Parola di Prosdocimo! Eh eh eh...
+
+OBIETTIVO - Tab 1
+L'obiettivo è quello di sbloccare la calibrazione del mirino. Sarà dunque necessario rendere vera la variabile sbloccoCalibrazione. Fatto questo è necessario entrare nella parte di codice raggiungibile dall'else dell'struzione if-else, modificando il confronto tra le parentesi tonde che seguono la parola chiave if: tutto questo per inserire nella variabile _codicePianeta il codice del pianeta Bastiani e non quello di default.
+AIUTI
+Come prima cosa è necessario rendere vera la variabile sbloccoCalibrazione, nel seguente modo:
+var sbloccoCalibrazione = true;
+Il secondo passo prevede di cambiare la condizione dell'if, rendedola come segue:
+if ( accessoConfigurazionePianeti === false ) {
+
+OBIETTIVO - Tab 2
+L'obiettivo è quello di modificare correttamente il grosso blocco di istruzioni if-else if, in modo che venga eseguito il codice corretto per il pianeta Bastiani.
+AIUTI
+Per avere la corretta configurazione di puntamento e sparo è necessario cambiare il blocco di istruzioni if-else if: il modo migliore è quello di sostituire il codice di Bastiani con 6, dunque inserire prima del primo if la seguente istruzione:
+_codicePianeta = 6;
+
+MANUALE
+Un altro punto fondamentale nei codici sorgenti del sistema antimissilistico Hob-2000 è rappresentato dalle istruzioni di controllo.
+Un'istruzione di controllo si basa su una nuova tipologia di valore che può essere inserito in una variabile, chiamato booleano.
+Una variabile booleana può assumere due valori differenti:
+- true, se essa rappresenta un concetto vero;
+- false, se essa rappresenta un concetto falso.
+Per rappresentare il vero e il falso è possibile utilizzare sia le parole chiave appropriate (rispettivamente true e false), oppure diversi tipi di operatori:
+- a === b, vero se a è uguale a b;
+- a !== b, vero se a è diverso da b;
+- a > b, vero se a è maggiore di b;
+- a < b, vero se a è minore di b;
+- a >= b, vero se a è maggiore o uguale di b;
+- a <= b, vero se a è minore o uguale a b;
+- !a, vero se a ha come valore false.
+Esempi di variabile contenente un valore vero possono essere:
+var b1 = 5 > 4;
+var b2 = true;
+var b3 = !false;
+Esempi di variabile che contengono un valore false possono essere:
+var b4 = 3 >= 6;
+var b5 = false;
+var b6 = !true;
+Le istruzioni di controllo hanno bisogno delle variabili booleane. Esistono tre istruzioni di controllo.
+La prima è identificata dalla parola chiave if. Eccone un esempio:
+var x = 0;
+if ( a === true ) {
+	var x = 1;
+}
+La variabile x parte con il valore 0 al proprio interno. A questo punto se a è una variabile booleana che contiene un valore vero, allora x prenderà il valore 1 al proprio interno; altrimenti, cioè se a è falsa, x non verrà aggiornata perché la parte di codice all'interno delle parentesi graffe non verrà eseguita.
+Come si può notare, le istruzioni di controllo sono semafori che, in base al valore che si ha all'interno delle parentesi tonde, decidono l'andamento del codice.
+Una seconda tipologia di istruzione di controllo si basa sulle parole chiave if ed else. Eccone un esempio:
+var x;
+if ( a === false ) {
+	x = 1;
+} else {
+	x = 0;
+}
+Questa istruzione descrive lo stesso meccanismo visto nell'esempio precedente: se la variabile a è falsa, x conterrà il valore 1; altrimenti (else, in inglese), conterrà il valore 0.
+L'ultima istruzione di controllo da comprendere è quella descritta dalle parole chiave if-else if. Eccone un esempio:
+var x = 0;
+if ( a === false ) {
+	x = 1;
+} else if ( b >= 4 ) {
+	x = 2;
+}
+Questa istruzione descrive un meccanismo leggermente differente da quello visto in precedenza. Se la variabile a è falsa, allora x conterrà il valore 1; altrimenti, cioè se a è vera, si controlla se b è maggiore o uguale di 4. Se ciò è vero, allora x conterrà il valore 2, altrimenti, cioè se b è minore di 4, non si fa nulla.
+
+DIALOGO FINALE
+Simeoni
+Capitano Simeoni a rapporto signore.
+Ortiz
+Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sarò per sempre su questo pianeta, ed è giusto che tu sappia anche cavartela da solo. Ho solo una curiosità. Come hai avuto l'intuizione sui file di configurazione? Devo ammettere che sono stato colpito...
+Simeoni
+Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto più forte. Ma non voglio annoiarti, signore.
+Ortiz
+Comunque ottimo lavoro capitano. Sei congedato, puoi andare a dormire. Domani un'altra lunga giornata ci attende, nella notte infinita di Bastiani... 

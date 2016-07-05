@@ -1,0 +1,137 @@
+
+
+LIVELLO 3: Sabotaggio
+
+DIALOGO INIZIALE
+Prosdocimo
+Eh eh eh
+Simeoni
+Cos'hai da ridere, Prosdocimo?
+Prosdocimo
+Non ti ha convocato, eh? Il generale...
+Simeoni
+No, effettivamente è strano. Avrà da fare, alla fine detiene il comando di tutta la linea di fuoco di Bastiani.
+Prosdocimo
+Certo, certo, anche se questo punto è quello che soffre maggiormente gli attacchi del Nemico. Poi, c'è quel pianeta misterioso...
+Simeoni
+Quello nel file di configurazione planetaria? Quelle scritte solo di 0 e 1? Hai ragione, c'è qualcosa di misterioso. Ma un soldato non ha tempo per i misteri, quando c'è una guerra da combattere.
+Prosdocimo
+Certo, certo. Vedo che le torrette hanno qualche problema...
+Simeoni
+Non avvicinarti, è pur sempre un'area militare.
+Prosdocimo
+Eh eh eh, hai ragione. Però secondo me... secondo me le torrette hanno qualche problema. Per l'esattezza due: uno sulle munizioni caricate ed uno sul sistema di raffreddamento.
+Simeoni
+A volte mi chiedo come tu faccia a sapere tutte queste cose.
+Prosdocimo
+Non preoccuparti, pensa solo che ti sto aiutando. Per carità umana, o amicizia: sta a te deciderlo. Comunque, lo sai che esistono diversi tipi di cariche per le munizioni vero?
+Simeoni
+Me l'hanno spiegato durante l'addestramento: munizioni al plasma, al plutonio e soniche. Qual è il punto?
+Prosdocimo
+Il punto è che quelle al plutonio e quelle soniche potrebbero essere, come dire, fallate. Eh eh eh...
+Simeoni
+Dunque devo utilizzare solo quelle al plasma?
+Prosdocimo
+Esattamente. Scarta le altre, vedrai che il sistema te lo permette.
+Simeoni
+Per quanto riguarda il sistema di raffreddamento? Io non vedo nessun problema.
+Prosdocimo
+Beh, se per te le torrette esplodono a causa di un problema inesistente, hai un problema tu. Eh eh eh. Il sistema di raffreddamento è stato manomesso: le torrette invece che fermarsi quando si surriscaldano, esplodono. Bum. Eh eh eh.
+Simeoni
+Devo controllare il codice relativo a quel sistema... grazie Prosdocimo. Ti sono debitore.
+Prosdocimo
+Attento a dire queste cose, potrei prenderti alla lettera. Eh eh eh...
+
+OBIETTIVO - Tab 1
+L'obiettivo è quello di inserire nel caricatore delle torrette solo le munizioni al plasma, come detto da Prosdocimo. I due array, caricatoreTorretta e proiettiliScartati devono essere utilizzati correttamente, inserendo nel primo solo le munizioni al plasma e nel secondo solo le munizioni scartate, cioè quelle al plutonio e quelle soniche.
+AIUTI
+Per risolvere il caricamento errato delle munizioni, è necessario modificare due istruzioni all'interno del for.
+La prima è la seguente:
+if( proiettile.nucleoEsplosivo === 'plutonio' ) {
+	caricatoreTorretta.push( proiettile );
+}
+che deve diventare:
+if( proiettile.nucleoEsplosivo === 'plutonio' ) {
+  proiettiliScartati.push( proiettile  );
+}
+La seconda è la seguente:
+if( proiettile.nucleoEsplosivo === 'sonico' ) {
+	caricatoreTorretta.push( proiettile );
+}
+che deve diventare:
+if( proiettile.nucleoEsplosivo === 'sonico' ) {
+  proiettiliScartati.push( proiettile  );
+}
+
+OBIETTIVO - Tab 2
+L'obiettivo è quello di impostare la corretta gestione del sistema di raffreddamento. Il primo punto da modificare è la soglia della temperatura minima, cioè fino a che punto si mantiene il blocco della torretta, durante il quale le pompe di raffreddamento abbassano la temperatura.
+Questa soglia può essere abbassata a piacere, considerando che, nel momento in cui la torretta supera la temperatura di 799°C, essa si bloccherà e rimarrà bloccata finché non si raggiungerà tale soglia.
+Una soglia bassa permette dunque di sparare a lungo ma poi rimanere bloccati per molto tempo; una soglia alta permette di sparare poco ma con un tempo di raffreddamento (e dunque di blocco) decisamente minore.
+Il secondo punto da modificare è la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura è maggiore o uguale alla soglia decisa in precedenza.
+AIUTI
+Come prima cosa è necessario decidere la soglia minima della temperatura, per esempio:
+var sogliaTemperaturaMinima = 300;
+Ovviamente è possibile lasciarla invariata.
+Successivamente la condizione del ciclo deve essere modificata nel seguente modo:
+while( T >= sogliaTemperaturaMinima ) {
+
+MANUALE
+Un punto molto importante del codice sorgente del sistema antimissilistico Hob-2000 riguarda il concetto di ciclo.
+Un ciclo è formato da due cose: una condizione ed un corpo. Il corpo viene eseguito finché vale la condizione.
+Esistono due tipi principali di ciclo: il primo è identificato dalla parola chiave for, il secondo dalla parola chiave while.
+Il ciclo for è strutturato nella seguente maniera:
+var x = 0;
+for ( var i = 0; i < lunghezza; i++ ) {
+	x++;
+}
+Nota bene!
+La scorciatoia i++ ha lo stesso significato dell'istruzione i = i + 1. Stesso vale per x.
+Questa scrittura ha un significato semplice: partendo da 0, si controlla il valore di i. L'istruzione interna al for, cioè x++, viene eseguita finché i, che viene incrementato ad ogni giro del ciclo, non è lunga come lunghezza. Scomponiamo le operazioni:
+- viene creata una variabile i, che contiene in valore 0;
+- se i è minore di lunghezza, si va avanti, altrimenti si esce dal ciclo;
+- i viene incrementato, cioè contiene ora il valore 0+1, cioè 1;
+- si esegue il codice interno al ciclo, dunque x diventa uguale a 1;
+- si controlla se i (ora uguale a 1) è minore di lunghezza: se lo è, si torna dentro al ciclo, altrimenti si esce.
+Il ciclo viene dunque ripetuto lunghezza volte.
+Il secondo tipo di ciclo è quello identificato dalla parola chiave while. Eccone un esempio:
+var x = 0;
+while ( x < 5 ) {
+	x++;
+}
+Il significato di questo ciclo è semplice: finché x è minore di 5, viene eseguita la parte di codice interna al while.
+I cicli sono molto utili, soprattuto se si pensa al concetto di array. Un array è una variabile che contiene più valori. Un esempio di array può essere il seguente:
+var numeri = [1, 2, 3, 4];
+questo array contiene i numeri da 1 a 4.
+Per inserire successivamente un elemento in un array, è necessario utilizzare l'istruzione di push. Per esempio, se vogliamo aggiungere l'elemento 5 nell'array numeri, è necessario effettuare la seguente istruzione:
+numeri.push( 5 );
+L'array che risulta da questa istruzione sarà il seguente:
+[1, 2, 3, 4, 5] 
+Nota bene!
+Ogni elemento di un array ha un numero, che indica la sua posizione all'interno dell'array stesso. Tale numero parte da 0, e viene così utilizzato:
+var a = numeri[ 0 ];
+var b = numeri[ 4 ];
+In questo codice, a contiene il valore 1, che occupa la posizione 0 all'interno dell'array; la variabile b contiene invece il valore 5, che occupa la posizione 4.
+
+DIALOGO FINALE
+Simeoni
+Capitano Simeoni a rapporto, signore.
+Ortiz
+Ottimo lavoro Simeoni, con quelle torrette.
+Simeoni
+Grazie, signore.
+Ortiz
+Non dormire sugli allori, però. Il Nemico continua a batterci, anche se forse... le cose stanno per cambiare.
+Simeoni
+Hai scoperto qualcosa, signore?
+Ortiz
+Abbiamo abbattuto un caccia nemico, a pochi chilometri da qui. Il pilota è conciato male, ma lo stiamo sistemando. Spero di poterlo interrogare, questa notte. Potremmo ricavare grandi benefici da questo incontro. È il primo prigioniero che riusciamo a prendere... e dunque il primo punto di contatto tra le nostre culture. Gli esseri umani non hanno mai parlato con nessuno che venisse dall'altro capo del deserto dei Barbari... sarà sicuramente interessante.
+Simeoni
+Immagino di non poter partecipare a questo colloquio, signore.
+Ortiz
+Immagini bene. Ma se tutto va come deve andare... parlerai presto con lei.
+Simeoni
+Lei?
+Ortiz
+Ti ho già detto troppo, solo perché in fondo mi sei simpatico. Ora vai a dormire, capitano. Un'altra...
+Simeoni
+... lunga giornata ci attende nell'eterna notte di Bastiani.

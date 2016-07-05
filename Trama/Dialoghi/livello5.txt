@@ -1,0 +1,112 @@
+
+
+LIVELLO 5: Gli Ibridi
+
+DIALOGO INIZIALE
+Simeoni
+Salve, Zurlin.
+Zurlin
+Ciao caro. Non sei a parlare con il tuo bel generale?
+Simeoni
+Non è affar tuo.
+Zurlin
+Non mi sembra un buon modo per cominciare. Del resto, se sei qui, vuol dire che hai bisgno di me...
+Simeoni
+D'accordo, scusami. La vita del soldato spesso fa dimenticare le buone maniere. E la curiosità mi mette fretta.
+Zurlin
+Curiosità? Immaginavo... vuoi sapere da dove vengo vero? Vuoi sapere cosa si cela oltre buio del deserto, cosa vive oltre la vostra piccola galassia?
+Simeoni
+Diciamo che l'unico pregio di questa maledetta guerra è l'avermi fatto capire che l'universo è immenso... e noi non siamo che briciole davanti alla sua vastità.
+Zurlin
+Una buona risposta, caro. Del resto, la curiosità accomuna noi a voi... del resto, qualcosa avremo pure ereditato. Ho deciso che risponderò a tre delle tue domande. Tre sole. Null'altro.
+Simeoni
+E tu cosa ci guadagni?
+Zurlin
+Diciamo che mi devi un favore.
+Simeoni
+D'accordo. Prima domanda: da dove vieni?
+Zurlin
+Dal pianeta Tronk, dall'altro capo del deserto. Lì la mia razza ha sempre vissuto, guardando le stelle come dèi e non come destinazioni. Una civiltà barbara, per dirla come voi terrestri. Poi, un secolo fa, abbiamo cominciato a sviluppare tecnologie sempre più avanzate, fino ad accorgerci che le stelle e l'universo erano immensi, ma esplorabili. Prossima domanda, caro.
+Simeoni
+Un secolo solo per sviluppare armi e navi capaci di viaggiare a velocità ultraluce... come avete fatto?
+Zurlin
+Buona domanda, terrestre. Siete stati voi. Un secolo fa, raccontano le nostre storie, arrivarono navi terrestri dal cielo. Scappavano dalla miseria dei pianeti dell'orlo della vostra galassia... come Bastiani. Pianeti poveri e dimenticati dal governo terrestre. Masse di siperati hanno costruito navi ultraluce dai rottami ed hanno iniziato una seconda colonizzazione. Una colonizzazione pacifica, che ha portato all'unione dei nostri popoli. Un'unione che mi piace definire letterale: voi ci chiamate il Nemico, ma il termine corretto sarebbe... Ibridi. Siamo l'alba di una nuova razza, mezzi terrestri e mezzi tronk, che si sta affacciando nel vasto panorama dell'universo. E siamo curiosi e... spaventati.
+Simeoni
+E perché combattete?
+Zurlin
+Noi non volevamo attaccarvi. Stiamo scappando. Abbiamo provato a venire in pace ma... voi ci avete attaccato. In pieno stile terrestre.
+Simeoni
+Scappate da cosa?
+Zurlin
+Ah ah ah. Tre domande, umano. Non una di più. Ma voglio farti un regalo, caro. Sappi che non sei l'unico terrestre a conoscere questa storia.
+Simeoni
+Cosa?
+Zurlin
+Ah ah ah. Non crucciarti, caro. Ed ora vattene alla tua sala di comando. Sono sicuro che gli Ibridi vi stiano attaccando di nuovo.
+Simeoni
+...
+Ortiz
+Eccoti, maggiore. Ho un compito da affidarti.
+Simeoni
+Signorsì, signore.
+Ortiz
+La situazione delle torrette è ormai ingestibile. Come ben sai ogni batteria di tre torrette presenta anomalie che non sono più sostenibili. Il tuo compito sarà quello di prendere le parti migliori da ogni torretta e renderle tutte utilizzabili.
+Simeoni
+Sissignore. Devo sapere altro?
+Ortiz
+Le torrette hanno tre componenti fondamentali. La prima è l'energia del compressore del gas, che si occupa dello sparo del missile; la seconda è l'energia destinata allo spostamento del cannone; la terza è la pressione del carburante. Questi tre valori devono essere esatti, cioè né troppo alti, né troppo basi. Dando troppa energia, per esempio, si aumenterebbe la velocità di riscaldamento della torretta; abbassandola troppo si avrebbe un'esagerata lentezza da parte del meccanismo. Hai capito?
+Simeoni
+Sissignore.
+Ortiz
+Bene. Buona fortuna, maggiore.
+
+OBIETTIVO
+
+AIUTI
+
+MANUALE
+Preso un oggetto, è possibile accedere alle sue caratteristiche. Si prenda come esempio la classe Soldato vista in precedenza.
+function Soldato ( matricola, arma, battaglione ) {
+	this.matricola = matricola;
+	this.arma = arma;
+	this.battaglione = battaglione;
+}
+Inizializziamo tre soldati di esempio:
+var soldatoFanteria = new Soldato ( 1, "fucile al plasma", "UTF-8, 42 battaglione" );
+var soldatoArtiglieria = new Soldato ( 2, "granate a rimbalzo", "UTF-16, 30 battaglione" );
+var soldatoScelto = new Soldato ( 3, "cannoni sonici", "UTF-32, 1 battaglione" );
+Per accedere alla caratteristica arma di un soldato, è necessario utilizzare un'istruzione come la seguente:
+var armaSoldatoFanteria = soldatoFanteria.arma;
+La variabile armaSoldatoFanteria contiene ora la stringa "fucile al plasma". Ovviamente il meccanismo per estrarre le altre caratteristiche è uguale:
+var matricolaSoldatoArtiglieria = soldatoArtiglieria.matricola;
+conterrà 2, mentre
+var battaglioneSoldatoScelto = soldatoScelto.battaglione;
+conterrà "UTF-32, 1 battaglione".
+
+DIALOGO FINALE
+Ortiz
+Ottimo lavoro, maggiore.
+Simeoni
+Grazie, generale. si sa niente della detenuta?
+Ortiz
+Stai attento con la curiosità. Anche se in questo caso è giustificabile.
+Simeoni
+Chiedo scusa, signore.
+Ortiz
+Comunque no, si è chiusa in uno strano silenzio. Mi inquieta, quella... quella donna. Ha una calma glaciale, anche per essere un soldato. È tutto, Simeoni.
+Simeoni
+...
+Prosdocimo
+Se n'è andato? Il generale?
+Simeoni
+Sì, Prosdocimo.
+Prosdocimo
+Eh eh eh... non mi piace quell'uomo. Ieri l'ho sentito parlare per ore e, quando è uscito dalla stanza, sono entrato.
+Simeoni
+Prosdocimo devi stare attento. L'ultima volta mi ha quasi sbattuto davanti alla corte marziale, a causa della nostra curiosità.
+Prosdocimo
+Tranquillo. Posso entrare nel suo ufficio. Del resto, faccio le pulizie. Eh eh eh.
+Simeoni
+Non sei molto credibile come uomo delle pulizie. Un giorno dovrai raccontarmi la tua storia.
+Prosdocimo
+Ti prometto che lo farò. Un giorno... eh eh eh.
