@@ -1,0 +1,130 @@
+
+
+LIVELLO 8: Una nuova minaccia
+
+DIALOGO INIZIALE
+Ortiz
+Alzati, maggiore.
+Simeoni
+Buongiorno, generale.
+Ortiz
+Abbiamo un nuovo compito per te, forse l'ultimo, forse no.
+Simeoni
+Non ho molta scelta, vero?
+Ortiz
+Decisamente no.
+Simeoni
+Qual è il problema?
+Ortiz
+Abbiamo riorganizzato le basi al fronte. La metà di esse sono state svuotate, in modo da poterle usare come esca per confondere il Nemico. Il problema è che il Nemico sta intercettando le nostre comunicazioni e riesce a comprendere quali siano le basi per noi vitali e quali quelle finte.
+Simeoni
+Comincio a capire di cosa si tratta...
+Ortiz
+Ogni nas e ha un canale radio, che utilizza per comunicare con il quartier generale. Il canale n°0 viene usato dalla prima base a sinistra nello schermo, il n°1 dalla seconda e così via fino all'ultima base a destra, che utilizza il canale n°5.
+Simeoni
+Capito.
+Ortiz
+Il tuo compito sarà quello di cambiare il segnale che arriva al quartier generale, in modo tale da rendere le basi vitali come ausiliarie e viceversa, portando fuori strada il Nemico. In questo modo infatti colpirà prima le basi ausiliari, mascherate da basi vitali.
+Simeoni
+Chiaro. Ma come facciamo a capire chi ci sta mandando il messaggio?
+Ortiz
+Ottima domanda. I segnali, quando arrivano al quartier generale, devono essere interpretati correttamente. Come ben sai in informatica questa procedura si chiama codifica e decodifica.
+Simeoni
+Esattamente. Si prende un messaggio e lo si maschera tramite una codifica. Arrivato il messaggio codificato, si applica una decodifica per leggere il messaggio originale.
+Ortiz
+Corretto.
+
+OBIETTIVO
+L'obiettivo è quello di riempire due funzioni: la prima necessaria per la codifica del segnale radio e la seconda per la decodifica.
+Nota bene! Le basi colorate di rosso sono quelle ausiliarie, mentre quelle ciano sono le basi vitali.
+La funzione di codifica andrà dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.
+La funzione di decodifica deve invece ripristinare il collegamento esattamente com'era prima della codifica: riscambiando cioè i codici dei canali radio.
+AIUTI
+La funzione codificaSegnale() può essere implementata nel modo seguente:
+var temporaneo;
+temporaneo = canaleTrasmissione[0];
+canaleTrasmissione[0] = canaleTrasmissione[1];
+canaleTrasmissione[1] = temporaneo;
+temporaneo = canaleTrasmissione[2];
+canaleTrasmissione[2] = canaleTrasmissione[3];
+canaleTrasmissione[3] = temporaneo;
+temporaneo = canaleTrasmissione[4];
+canaleTrasmissione[4] = canaleTrasmissione[5];
+canaleTrasmissione[5] = temporaneo;
+Mentre la funzione decodificaSegnale(), che deve effettuare l'operazione contraria, può essere scritta nel modo seguente:
+var temporaneo;
+temporaneo = canaleTrasmissione[1];
+canaleTrasmissione[1] = canaleTrasmissione[0];
+canaleTrasmissione[0] = temporaneo;
+temporaneo = canaleTrasmissione[3];
+canaleTrasmissione[3] = canaleTrasmissione[2];
+canaleTrasmissione[2] = temporaneo;
+temporaneo = canaleTrasmissione[5];
+canaleTrasmissione[5] = canaleTrasmissione[4];
+canaleTrasmissione[4] = temporaneo;
+Nota bene! La variabile temporanea permette di scambiare agilmente i valori dei canali: senza sarebbe molto più complicata.
+
+MANUALE
+La codifica e la decodifica di un messaggio avvengono in maniera molto semplice. Prendiamo per esempio la parola:
+aiuto
+Supponiamo che la nostra codifica preveda di prendere ogni lettera della parola e sostituirla con la lettera immediatamente successiva nell'alfabeto. La parola aiuto diventa dunque:
+bjvup
+Il nemico se non sa qual è la codifica da noi utilizzata, quindi difficilmente comprenderà cosa vuol dire la parola bjvup. Quando noi però riceviamo il messaggio, conoscendo la codifica sostituiamo ogni lettera con quella che la precede nell'alfabeto, ottenendo di nuovo la parola:
+aiuto
+La decodifica è dunque l'operazione inversa della codifica: senza conoscere la codifica sarà però molto difficile leggere un messaggio codificato.
+
+DIALOGO FINALE
+Ortiz
+Ottimo lavoro, uomini. Ora ho una comunicazione molto importante da fare.
+Prosdocimo
+Cosa ha in mente in di fare?
+Simeoni
+Non lo so, ma non mi aspetto nulla di buono.
+Ortiz
+Silenzio, laggiù in fondo. Ho appena ricevuto un ordine dallo stato maggiore, con priorità 0. Il governo terrestre, grazie a persone come me, è riuscito ad ottenere un'alleanza con gli Ibridi. Molti di voi si staranno chiedendo cosa sono gli Ibridi: ebbene, Zurlin, qui, ne è un esempio. Dall'altra parte del deserto, molti anni fa, arrivarono navi di disperati che fuggivano dalla povertà dei pianeti dell'orlo della galassia. Si sono fusi con la razza tronk, creando una nuova speranza per l'Universo.
+Simeoni
+Traditore!
+Ortiz
+Zitto, maggiore. Avevi capito alcune cose, te lo concedo. Ma non tutto. Dall'orlo della galassia confinante, a migliaia di anni luce oltre il deserto dei Barbari, una nuova minaccia si è affacciata. Gli Ibridi stavano fuggendo, e non non li abbiamo accolti. Credo che sia ben chiaro nella mente di tutti voi che l'accoglienza, soprattutto di chi fugge dalla guerra, sia uno dei punti fondamentali dell'umanità.
+Prosdocimo
+No ha tutti i torti, eh eh eh.
+Ortiz
+Grazie, Prosdocimo. L'unione fa la forza, dico bene?
+Zurlin
+Certo, caro.
+Ortiz
+Ed è per questo che ora, umani e Ibridi, sono chiamati a fronteggiare tale minaccia. I Faragi, i divoratori di mondi, stanno arrivando. Tutte le unità dell'UTF sono state dislocate sul pianeta Angustina. Se te lo stai chiedendo, maggiore, è il pianeta misterioso che compare nei file di configurazione.
+Simeoni
+Questo spiega tutto...
+Ortiz
+Con effetto immediato ordino la mobilitazione del quartier generale dell'UTF-8 da Bastiani ad Angustina. Solo un'ultima cosa... maggiore, da che parte stai?
+Simeoni
+Ammetto di essermi sbagliato. Tutto quello che ho visto e sentito... puzzava di tradimento. Ora che dici queste cose, ho molti dubbi a riguardo.
+Zurlin
+Posso intervenire, caro? Simeoni, ti avevo detto che mi dovevi un favore. Bene, te lo chiedo ora. Credici. La minaccia che sta arrivando è maggiore di quello che ti aspetti.
+Simeoni
+Mmmmh... d'accordo, vi credo. Spero di non pentirmene.
+Ortiz
+Allora è deciso. Slegate il colonnello Simeoni.
+Simeoni
+Colonnello?
+Ortiz
+Ovviamente. Hai dimostrato grande coraggio a sfidarmi. E l'hai fatto per il bene della Terra. La promozione è meritata. Ora, preparatevi per la partenza.
+Prosdocimo
+Ehm ehm!
+Ortiz
+Prosdocimo... hai qualcosa da aggiungere?
+Prosdocimo
+Tu sai chi sono, vero Ortiz?
+Ortiz
+Posso facilmente immaginarlo...
+Prosdocimo
+Ho due richieste. La prima è di venire su Angustina con voi, come ufficiale tecnico.
+Ortiz
+Provvederò al più presto. La seconda?
+Prosdocimo
+Cosa è successo alla spedizione segreta, trent'anni fa?
+Ortiz
+Memoria lunga, eh? Siamo arrivati su Tronk e abbiamo conosciuto gli Ibridi. I miei compagni sono rimasti là, mentre io sono tornato per eseguire questo lungo lavoro, che si è concluso con questa alleanza.
+Prosdocimo
+Ortiz, la vecchia volpe... eh eh eh.
