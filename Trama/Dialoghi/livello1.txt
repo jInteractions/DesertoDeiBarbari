@@ -20,7 +20,7 @@ Il tuo primo compito sarà quello di modificare il codice sorgente per le armi d
 Simeoni
 Brutta notizia, signore?
 Ortiz
-Il linguaggio di programmazione utilizzato per la scrittura dei programmi militare si chiama JS. Putroppo tutti i documenti relativi a questo linguaggio sono... spariti! Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, università... nulla! Come se non fosse mai esistito.
+Il linguaggio di programmazione utilizzato per la scrittura dei programmi militare si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti! Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, università... nulla! Come se non fosse mai esistito.
 Simeoni
 Bene, signore. La difficoltà è mia amica. Spero solo di essere in grado di capire questo linguaggio il prima possibile.
 Ortiz
@@ -89,4 +89,4 @@ Bel lavoro Simeoni, con quel sistema. Era ora che arrivasse qualcuno in grado di
 Simeoni
 Grazie signore! Ho altri ordini, signore?
 Ortiz
-No, non per oggi. Vai a riposarti, sapendo che finalmente possiamo provare a respingere quei maledetti. Gli incursori hanno segnalato movimenti al confine del deserto... domani sarà una giornata lunga.
+No, non per oggi. Vai a riposarti, sapendo che finalmente possiamo provare a respingere quei maledetti. Gli incursori hanno segnalato movimenti al confine del deserto... domani sarà una giornata lunga, nell'eterna notte di Bastiani.
