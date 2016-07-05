@@ -109,9 +109,10 @@ var azionaComandoSparo = function ( chiamante, torrettaSelezionata, sistema, x, 
   
 // TAB 1
 
-var azionamentoComandiPlancia = function ( planciaComanda, torrette, mirino, sistema ) {
+var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sistema ) {
   // Comandi plancia azionati da tastiera
-  $( planciaComanda ).bind( 'keyup', function ( tastoPremuto ) {
+  $( planciaComandi ).bind( 'keyup', function ( tastoPremuto ) {
+    // Selezione della torretta corrispondente
     var torrettaSelezionata;
     if( tastoPremuto.which === 49 ) // tasto 1
       torrettaSelezionata = torrette[0];
@@ -120,16 +121,18 @@ var azionamentoComandiPlancia = function ( planciaComanda, torrette, mirino, sis
     if( tastoPremuto.which === 51 ) // tasto 3
       torrettaSelezionata = torrette[2];
     
+    // Selezione coordinate a cui sparare
     var x = mirino.x;
     var y = mirino.y;
     
+    // Lancio del missile
     azionaComandoSparo( 'keyup', torrettaSelezionata, sistema, x, y );
   } );
   
   //###START_MODIFICABILE###
   // Comandi plancia azionati da click del mouse
-  $( planciaComanda ).on( 'click', function ( ) {
-
+  $( planciaComandi ).on( 'click', function ( ) {
+    
   } );
   //###END_MODIFICABILE###
 }

@@ -63,6 +63,21 @@ Livello9.prototype.calcolaCoefficienteOndata = function ( ) {
 
 // interfaccia codice utente - livello
 
+var canaleTrasmissione = [
+  { radioIdentificatore: "BX1", 
+    testo: "[21:05] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
+  { radioIdentificatore: "AX2", 
+    testo: "[21:02] Parla base AX2, ci serve immediato aiuto, siamo sotto attacco!"},
+  { radioIdentificatore: "BX3", 
+    testo: "[21:08] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
+  { radioIdentificatore: "AX4", 
+    testo: "[21:12] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
+  { radioIdentificatore: "BX5", 
+   testo: "[21:20] Ricevuto! Accorriamo immediatamente!"},
+  { radioIdentificatore: "AX6", 
+   testo: "[21:06] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
+];
+
 Livello9.prototype.esaminaCanaliRadio = function ( ) {
   var lettere = ["a","b","c","d","e","f","g","h","i","l","m","n","o","p","q","r","s","t","u","v","z"];
   var canale = [];
@@ -81,13 +96,15 @@ Livello9.prototype.esaminaCanaliRadio = function ( ) {
     
     tx.inviaMessaggio( id, messaggio, i );
   } );
+  codificaSegnale( canale );
   
   var bersagliPrioritari = [];
-  
   $.each( canale, function( i, c ) {
     if( c.radioIdentificatore.indexOf("AX") >= 0)
       bersagliPrioritari.push( basi[i] );
   } );
+  
+  trasmissione( canaleTrasmissione );
     
   return bersagliPrioritari;
 }
@@ -107,10 +124,110 @@ Trasmettitore.prototype.inviaMessaggio = function ( identificatoreRadio, messagg
   this.canaleTrasmissione[ numeroCanale ] = messaggioRadio;
 }
 
-var codificaSegnale = function ( canaleTrasmissione ) {
-  
+Trasmettitore.prototype.riceviMessaggio = function ( identificatoreRadio, numeroCanale ) {
+  return this.canaleTrasmissione[numeroCanale].testo;
 }
 
-var decodificaSegnale = function () {
+var trasmissione = function ( canaleTrasmissione ) {
+  var identificatoreRadio = "AX2";
+  var messaggio = "[21:02] Parla base AX2, ci serve immediato aiuto, siamo sotto attacco!"
+  var numeroCanale = 1;
   
+  trasmettitore = new Trasmettitore( canaleTrasmissione );
+  
+  console.log( messaggio );
+  trasmettitore.inviaMessaggio( identificatoreRadio, messaggio, numeroCanale );
+  
+  // Devi scrivere questa funzione
+  codificaSegnale( canaleTrasmissione );
+  
+  // Devi scrivere questa funzione
+  decodificaSegnale( canaleTrasmissione );
+  
+  var messaggioRicevuto = trasmettitore.riceviMessaggio( "BX5", 4 );
+  console.log( messaggioRicevuto );
 }
+
+var codificaSegnale = function ( canaleTrasmissione ) {
+//###START_MODIFICABILE###
+  var temporaneo;
+  temporaneo = canaleTrasmissione[0];
+  canaleTrasmissione[0] = canaleTrasmissione[1];
+  canaleTrasmissione[1] = temporaneo;
+  
+  temporaneo = canaleTrasmissione[2];
+  canaleTrasmissione[2] = canaleTrasmissione[3];
+  canaleTrasmissione[3] = temporaneo;
+  
+  temporaneo = canaleTrasmissione[4];
+  canaleTrasmissione[4] = canaleTrasmissione[5];
+  canaleTrasmissione[5] = temporaneo;
+//###END_MODIFICABILE###
+}
+
+var decodificaSegnale = function ( canaleTrasmissione ) {
+//###START_MODIFICABILE###
+  var temporaneo;
+  temporaneo = canaleTrasmissione[1];
+  canaleTrasmissione[1] = canaleTrasmissione[0];
+  canaleTrasmissione[0] = temporaneo;
+  
+  temporaneo = canaleTrasmissione[3];
+  canaleTrasmissione[3] = canaleTrasmissione[2];
+  canaleTrasmissione[2] = temporaneo;
+  
+  temporaneo = canaleTrasmissione[5];
+  canaleTrasmissione[5] = canaleTrasmissione[4];
+  canaleTrasmissione[4] = temporaneo;
+//###END_MODIFICABILE###
+}
+
+// test
+(
+//var t1 = 
+  function () {
+  var lettere = ["a","b","c","d","e","f","g","h","i","l","m","n","o","p","q","r","s","t","u","v","z"];
+  var canale = [];
+  var tx = new Trasmettitore( canale );
+  var basi = [ new BaseMilitare( 80,  430, false, 100, 'red', this.coreGame ),
+    new BaseMilitare( 130,  430, true, 100, 'cyan', this.coreGame ),
+    new BaseMilitare( 180,  430, false, 100, 'red', this.coreGame ),
+    new BaseMilitare( 300,  430, true, 100, 'cyan', this.coreGame ),
+    new BaseMilitare( 350,  430, false, 100, 'red', this.coreGame ),
+    new BaseMilitare( 400,  430, true, 100, 'cyan', this.coreGame ) ];
+  $.each( basi, function ( i, b ) {
+    var id = "";
+    if( b.vitale === true ) {
+      id += "AX" + i; 
+    } else {
+      id += "BX" + i;
+    }
+    var messaggio = ""; 
+    for( var j = 0; j < rand(10, 20); ++j )
+      messaggio += lettere[rand(0, lettere.length-1)];
+    
+    tx.inviaMessaggio( id, messaggio, i );
+  } );
+  var backupCanale = canale.slice(0);
+  codificaSegnale( canale );  
+  
+  var bersagliPrioritari = [];
+  $.each( canale, function( i, c ) {
+    if( c.radioIdentificatore.indexOf("AX") >= 0)
+      bersagliPrioritari.push( basi[i] );
+  } );
+  
+  var esito = true;
+  $.each( bersagliPrioritari, function( i, b ) {
+    esito = esito && ( b.vitale === false );
+  } )
+  
+  decodificaSegnale( canale );
+  $.each( canale, function( i, c ) {
+    esito = esito && ( c.radioIdentificatore === backupCanale[i].radioIdentificatore &&
+      c.testo === backupCanale[i].testo )
+  } )
+  
+  return esito;  
+}
+) ();
