@@ -44,7 +44,11 @@
     require "php/management/management_livello_eseguito.php";
     require "php/management/management_utente.php";
     session_start();
-    $_SESSION["email"] = "trombi@gmail.com";
+    if(!isset($_COOKIE["user"])) {
+      $_SESSION["email"] = "trombi@gmail.com";
+    } else {
+      $_SESSION["email"] = $_COOKIE["user"];
+    }
     if(isset($_GET["idlivello"])){
         $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
         $informazioniLivelloAttuale = selectFrom_LIVELLO_By_idlivello($connection,$_GET["idlivello"]);

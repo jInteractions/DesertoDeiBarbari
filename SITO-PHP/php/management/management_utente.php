@@ -222,7 +222,7 @@ function deleteFrom_UTENTE_By_alias($connection,$value){
 /*END SEZIONE DELETE*/
 
 /*START SEZIONE INSERT*/
-function insertIntoutente($connection, $label){	/* create a prepared statement */
+function insertIntoutente($connection, $email, $password, $tutorial, $alias){	/* create a prepared statement */
 	if ($stmt = $connection->prepare( 'INSERT INTO utente (email, password, tutorial, alias) VALUES (?, ?, ?, ?)')) {
 		/* bind parameters for markers */
 		$stmt->bind_param( "ssss",$email, $password, $tutorial, $alias);

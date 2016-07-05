@@ -5,4 +5,3 @@
 	$DB_NAME = "DesertoDeiBarbariDB";
 	$debug = true;
 ?>
-

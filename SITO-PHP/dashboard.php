@@ -43,8 +43,12 @@
     require "php/management/management_livello.php";
     require "php/management/management_utente.php";
     session_start();
-    $_SESSION["email"] = "sdavrieux@gmail.com";
-    $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+    if(!isset($_COOKIE["user"])) {
+      $_SESSION["email"] = "trombi@gmail.com";
+    } else {
+      $_SESSION["email"] = $_COOKIE["user"];
+    }
+    $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, false);
     $informazioniLivelliEseguiti = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $_SESSION["email"]);
     $informazioniLivelliEsistenti = selectAllFrom_LIVELLO($connection); 
   ?>
