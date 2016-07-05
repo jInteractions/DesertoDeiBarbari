@@ -8,7 +8,7 @@ Entra pure, capitano.
 Simeoni
 Ordini, generale?
 Ortiz
-Sì, ma dopo. Prima vorrei parlare di un certo file di configurazione per la calibrazione planetaria delle armi. Hai usato quel file vero, per sistemare le torrette l'altro giorno?
+Sì, ma dopo. Prima vorrei parlare di un certo file di configurazione per la calibrazione planetaria delle armi. Hai usato quel file, vero? Per sistemare le torrette l'altro giorno?
 Simeoni
 Non lo nego, signore.
 Ortiz
@@ -20,7 +20,7 @@ Non è che qualche membro ausiliario della base ti ha aiutato? Qui dentro c'è m
 Simeoni
 Signore, alla fine ho salvato delle vite. Le vite dei nostri soldati, dei nostri compagni. Non mi pento di quello che ho fatto. E le posso giurare di aver fatto tutto da solo.
 Ortiz
-Hai una bella faccia tosta, a non pentirti e a giurare il falso. Dovrei sbatterti davanti alla corte marziale, ma credo nelle seconde possibilità: farò finta di crederti. D'altronde sei l'unico che può svolgere la porssima missione... fate entrare il progioniero!
+Hai una bella faccia tosta, a non pentirti e a giurare il falso. Dovrei sbatterti davanti alla corte marziale, ma credo nelle seconde possibilità: farò finta di crederti. D'altronde sei l'unico che può svolgere la prossima missione... fate entrare il progioniero!
 Zurlin
 Ehi ehi ehi, giù quelle mani! Ho dato la mia parola sulla spontaneità della mia collaborazione. Non c'è bisogno di spingere.
 Ortiz
@@ -88,7 +88,7 @@ var fattoriale = function ( numero ) {
     }
 }
 Il risultato ritornato dalla funzione fattoriale( numero ) sarà il valore del fattoriale di numero.
-L'ultimo tassello della grammatica del linguaggio di programmazione è il concetto di classe. Una classe definisce un nuovo tipi di valore, che viene caratterizzato da una serie di caratteristiche, chiamati campi. Ecco un esempio, per la classe Soldato:
+L'ultimo tassello della grammatica del linguaggio di programmazione è il concetto di classe. Una classe definisce un nuovo tipo di valore, che viene caratterizzato da una serie di caratteristiche, chiamati campi. Ecco un esempio, per la classe Soldato:
 function Soldato ( matricola, arma, battaglione ) {
 	this.matricola = matricola;
 	this.arma = arma;
