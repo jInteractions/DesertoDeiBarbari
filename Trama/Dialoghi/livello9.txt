@@ -1,0 +1,69 @@
+
+
+LIVELLO 9: Mellara
+
+DIALOGO INIZIALE
+Simeoni
+Eccomi, generale.
+Ortiz
+Bene, colonnello. Ci siamo tutti, credo.
+Zurlin
+Silenzio! Miei cari, ho l'onore di presentarvi il generale di stato maggiore dell'esercito ibrido: lady Mellara!
+Mellara
+Buongiorno a tutti. È un onore presenziare alla prima operazione congiunta. Terrestri e Ibridi, uniti in un solo esercito, pronto a contrastare la più terribile delle minacce. I faragi non sono nemici comuni: divoratori di mondi, si nutrono dell'oscurità cosmica. Non si limitano a soggiogare i pianeti: li distruggono, trasformandoli in polvere.
+Simeoni
+L'onore è nostro, lady Mellara. Speriamo che questa cooperazione diventi fruttuosa, anche dopo la vittoria.
+Mellara
+Ti vedo particolarmente convinto, terrestre.
+Simeoni
+Beh, non abbiamo ancora perso, giusto?
+Mellara
+Sono felice del tuo morale. Sei il colonnello Simeoni giusto? Il generale Ortiz mi ha parlato molto di te...
+Simeoni
+Immagino con l'appellativo di ficcanaso, per lo meno all'inizio.
+Ortiz
+Ah ah ah! Esattamente. Ma credo che ogni conflitto tra noi si sia spento, ora.
+Mellara
+Ne sono convinta. Passiamo al punto centrale. I faragi stanno per attaccare Angustina, con armi che nemmeno immaginiamo. Ho bisogno dei migliori tecnici a disposizione.
+Zurlin
+Tenente Zurlin presente, mia signora!
+Simeoni
+Colonnello Simeoni presente!
+Prosdocimo
+Tecnico Maggiore Prosdocimo presente!
+Simeoni
+Ecco l'altro ficcanaso. Ti hanno dato i gradi, allora?
+Prosdocimo
+Ovviamente, eh eh eh. Non potevano esimersi.
+Mellara
+Basta con i convenevoli. È ora di rispedire i faragi nelle tenebre che li hanno generati. Il loro primo attacco solitamente mira a radere al suolo ogni costruzione che compare sulla faccia del pianeta. Per questo sono certa che Angustina subirà un bombardamento a tappeto.
+Ortiz
+Utilizzano missili molto veloci e molto potenti. Per contrastarli sarà necessario creare un nuovo sistema di sparo che li neutralizzi prima che tocchino il suolo di Angustina.
+Prosdocimo
+L'ideale sarebbe ideare un comando che rilasci tutti i missili di una torretta, in modo da creare una linea di fuoco unica. L'esplosione dei nostri missili fermerebbe l'avanzata dei loro. Eh eh eh...
+Simeoni
+Praticamente una striscia di esplosioni dalla quale nessuno dei missili dei faragi posso uscire... è una buona idea, Prosdocimo!
+Prosdocimo
+Eh eh eh, grazie.
+Mellara
+Allora è deciso. Presto, cominciate a lavorare su questa nuova arma... me lo sento, stanno arrivando.
+
+OBIETTIVO
+
+AIUTI
+
+MANUALE
+
+DIALOGO FINALE
+Mellara
+Ottimo lavoro, soldati. Ma torneranno. Ci manca l'ultimo passo per la vittoria, ma è il passo più difficile. I faragi stanno preparando la loro nave madre, capace con una sola cannonata di ditruggere Angustina.
+Zurlin
+La Divoratrice...
+Mellara
+Esattamente, tenente. Ma non dobbiamo scoraggiarci. Questa alleanza ha appena dimostrato di come due popoli, prima contrapposti ed ora uniti, possano andare al di là dei limiti che pensavano di avere. Vedrete che la vittoria arriverà.
+Ortiz
+Propongo di andare a dormire. Domani sarà una lunga giornata nell'eterna notte di Bastiani.
+Simeoni
+Ma siamo su Angustina, signore.
+Ortiz
+Ah ah ah. Perdonami, Simeoni. Ho passato talmente tanto tempo su quel pianeta...
