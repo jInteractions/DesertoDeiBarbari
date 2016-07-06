@@ -308,7 +308,9 @@ CoreLevel.prototype.calcolaCoefficienteOndata = function () {
   return 1.0; // default
 }
 
-$(document).ready( function () {  
+$(document).ready( function () { 
+  hljs.initHighlightingOnLoad();
+  
   var punteggioTotale = 0;
   
   var callback = function ( risultatoOndata ) {

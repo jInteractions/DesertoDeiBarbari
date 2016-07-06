@@ -35,3 +35,21 @@ h1 {
   left: 20px;
   cursor: crosshair;
 }
+.paragrafo-obiettivi {
+  text-align: left;
+  font-size: medium;  
+}
+.elenco-obiettivo {
+  text-align: left;
+  font-size: medium;
+}
+.paragrafo-aiuto {
+  text-align: left;
+  font-size: medium;
+}
+.parola-chiave-corsivo {
+  font-style: italic;
+}
+.parola-chiave-grassetto {
+  font-weight: bold;
+}
