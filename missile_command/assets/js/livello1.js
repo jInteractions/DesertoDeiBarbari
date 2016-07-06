@@ -196,24 +196,27 @@ l'autenticazione automatica è fallita. Se proprio desiderate procedere, avete l
 possibilità di utilizzare l'autenticazione manuale.
 
 Grazie per aver scelto HOB-2000.
+Copyright (C) 4096 Orsa Minore Software Inc. - Tutti i diritti riservati
+È possibile utilizzare, distribuire o modificare questo file secondo i termini della licenza galattica GGPA-DA1979, che sfortunatamente non verrà scritta se non nel prossimo secolo.
 */
 
 // TAB 2
 
-/*
+/**********
+Il codice seguente permette l'autenticazione manuale di un operatore, tramite la creazione di una parola di accesso ottenuta dalla concatenazione di più stringhe.
+ATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione automatica.
 
-Questo codice permette l'autenticazione manuale di un operatore.
-
-ATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione
-            automatica.
-*/
+Inserire il proprio nome utente nella variabile "nome", la propria matricola nella variabile "matricola" e la propria password nella variabile "password".
+**********/
 var autenticazioneManuale = function () {
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
+  // Ricorda: il simbolo = permette di assegnare il valore alla variabile.
   var nome = "captano";
   var matricola = 0;
   var password = "utf";
+  // Ricorda: il simbolo + tra due stringhe indica la loro concatenazione.
   var stringaAccesso = "UTF-8" + nome + "&&--"+ password + "%" + matricola;
-  // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
   
   return [nome, matricola, password, stringaAccesso];
 }
@@ -235,12 +238,15 @@ var autenticazioneManuale = function () {
 }) ();*/
 
 // TAB 3
-
+/**********
+Il codice che segue è necessario per verificare la presenza di un operatore umano.
+Il quesito posto è semplice: la variabile "areaRettangolo" deve contenere la corretta formula per il calcolo dell'area di un rettangolo.
+**********/
 var verificaPresenzaCervelloOperatore = function ( base, altezza ) {
-  // ###START_MODIFICABILE###
-  var area = base + altezza;
-  // ###END_MODIFICABILE###
-  return area;
+//###START_MODIFICABILE###
+  var areaRettangolo = base + altezza;
+//###END_MODIFICABILE###
+  return areaRettangolo;
 }
 
 // test
