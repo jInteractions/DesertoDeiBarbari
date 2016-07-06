@@ -166,26 +166,45 @@ var controlloConfigurazioneParametriPianeti = function () {
 
 // TAB 1
 
+/*
+Benvenuto nel file di sblocco dei permessi di calibrazione.
+Il seguente file permette di sbloccare ed accedere alle funzionalità
+di configurazione planetaria, fondamentiali per la corretta impostazione
+delle armi.
+*/
+
+// Variabile contenente il codice del pianeta su cui si trovano le armi.
 var _codicePianeta;
 
-
+// Codice per lo sblocco dei permessi di calibrazione,
+// contenente anche lo sblocco di configurazione planetaria.
+// Attenzione! Senza lo sblocco della calibrazione attiva,
+// non sarà possibile attivare la configurazione planetaria.
 var sbloccoPermessiCalibrazione = function () {
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
+  // Variabile di sblocco del sistema di calibrazione.
   var sbloccoCalibrazione = false;
-  // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
   var accessoConfigurazionePianeti = false;
-  var codiceDefault = 3;
+  // Variabili contenenti i codici planetari.
+  var codiceDefault = 1;
   var codiceBastiani = 2;
+  var codiceColombre = 3;
+  var codiceButtafuoco = 4;
+  var codiceBarnabo = 5;
+  var codiceBuzzati = 6;
   
   if ( sbloccoCalibrazione === true ) {
     accessoConfigurazionePianeti = true;
   }
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
+  // Attenzione! Modificare solo se il pianeta desiderato non è quello di default.
   if ( accessoConfigurazionePianeti === true ) {
-    // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
     _codicePianeta = codiceDefault;
   } else {
-    _codicePianeta = codiceBastiani;
+    // Assegnare alla variabile il codice del pianeta desiderato.
+    _codicePianeta = codiceButtafuoco;
   }
   
   return [sbloccoCalibrazione, accessoConfigurazionePianeti, _codicePianeta]
@@ -209,6 +228,16 @@ var sbloccoPermessiCalibrazione = function () {
 
 // TAB 2
 
+/*
+Benvenuto nel file di configurazione planetaria del sistema Hob-2000.
+Troverai in elenco le caratteristiche di ogni pianeta,
+necessarie per il corretto funzionamento del sistema stesso.
+Ogni pianeta ha cinque caratteristiche: il nome, la forza gravitazionale,
+il vento, l'atmosfera e il settore galattico.
+Tali caratteristiche influiscono pesantemente sulle capacità di sparo,
+rendendo potenzialmente inutilizzabili le armi se configurate per il pianeta errato.
+*/
+
 var configurazioneParametriPianeti = function () {
   var nomePianeta;
   var forzaGravitazionale;
@@ -216,7 +245,7 @@ var configurazioneParametriPianeti = function () {
   var atmosfera;
   var settoreGalattico;
   
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
   if ( _codicePianeta === 1 ) {
     nomePianeta = "Terra";
     forzaGravitazionale = 1;
@@ -253,7 +282,9 @@ var configurazioneParametriPianeti = function () {
     vento = 23;
     atmosfera = "respirabile";
     settoreGalattico = 7;
-    // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
+    // /\/\/\ £Nos****Kn£$%BsorJOJSONHbooooooLK666dbw**
+    // **&fgHJS666&78765&4%4$$L£sC&GSTntadjr /\/\/\
   } else if ( _codicePianeta === "00110111" ) {
     nomePianeta = "01000001 01101110 01100111 01110101 01110011 01110100 01101001 01101110 01100001";
     forzaGravitazionale = "00110010 00101110 00110011";
