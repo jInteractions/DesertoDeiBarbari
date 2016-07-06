@@ -701,14 +701,14 @@
           coreLevel.mostraSchermataIniziale();
         }
      }    
-     
+     /*
      setInterval(function(){
         console.log("chiamata");
         $.each( $('.CodeMirror-line'), function( key, value ) {
           if($(this).find('.disabled').length > 0)
             $(this).css("background-color","gray");
         });
-      },1000);
+      },300);*/
       
     </script>
     <script src="http://codemirror.net/lib/codemirror.js"></script>
