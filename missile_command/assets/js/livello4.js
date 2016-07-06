@@ -54,17 +54,26 @@ Livello4.prototype.inizializzaArmiNemiche = function () {
 
 Livello4.prototype.sparo = function ( x, y, tasto ) {
   var indiceTorretta = this.scegliTorretta( x, y, tasto);
-  var raggio = 30;
-  var vel = 7;
-  var incrementoTemperatura = 150;
-  
   if( indiceTorretta === -1 ) {
     return;
   }
   
+  var torretta = this.coreGame.batterieAntimissile[ indiceTorretta ];
+  
+  var raggio = 30;
+  var vel = 7;
+  var incrementoTemperatura = 0;
+  var velMirino = 16;
+  
+  if( indiceTorretta === 0 ) { incrementoTemperatura = 200; vel = 10; velMirino = 30; }
+  if( indiceTorretta === 1 ) { incrementoTemperatura = 200; vel = 2.5; velMirino = 3; }
+  if( indiceTorretta === 2 ) { incrementoTemperatura = 200; vel = 5; velMirino = 30; }
+  
+  this.coreGame.mirino.distanzaPerFrame = velMirino;
+  
   this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
-    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
-    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
+    xDiPartenza: torretta.x,
+    yDiPartenza: torretta.y,
     xDiArrivo: x,
     yDiArrivo: y,
     coloreTestata: 'yellow',
@@ -73,8 +82,13 @@ Livello4.prototype.sparo = function ( x, y, tasto ) {
     distanzaPerFrame: vel
   }, this.coreGame ) );
   this.coreGame.aggiornaPunteggioMissiliSparati();
-  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
-  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += incrementoTemperatura;
+  torretta.numeroMissili--;
+  torretta.temperatura += incrementoTemperatura;
+  
+  torretta.temperaturaSblocco = 500;
+  if( torretta.temperatura >= 799 ) {
+    torretta.blocco = true;
+  }
 }
 
 Livello4.prototype.calcolaCoefficienteOndata = function () {

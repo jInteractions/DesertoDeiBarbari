@@ -75,6 +75,7 @@ Livello5.prototype.sparo = function ( x, y, tasto ) {
   
   torrettaVirtuale.generatore._capacita = 100;
   torrettaVirtuale.spara( x, y );
+  
   this.coreGame.mirino.distanzaPerFrame = torrettaVirtuale.mirino._velocita;
   
   this.opzioniMissili = {

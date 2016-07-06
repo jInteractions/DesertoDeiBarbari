@@ -29,6 +29,45 @@ Livello1.prototype.inizializzaLivello = function ( ) {
   this.setupListeners();
 }
 
+Livello1.prototype.inizializzaTorrette = function () {
+  var nMissili = 10;
+  var nSoldati = 10;
+  var Tmin = 50;
+  var Tmax = 1000;
+  var deltaTempo = 70;
+  var deltaRaffreddamento = 3;
+  
+  var coloreMissili0 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  coloreMissili0[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  coloreMissili0[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 35, 410, nMissili, nSoldati, coloreMissili0, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+  
+  coloreMissili1 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  coloreMissili1[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  coloreMissili1[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 255, 410, nMissili, nSoldati, coloreMissili1, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+  
+  var coloreMissili2 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  coloreMissili2[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  coloreMissili2[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 475, 410, nMissili, nSoldati, coloreMissili2, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+};
+
 Livello1.prototype.inizializzaArmiNemiche = function () {
   var areaPertenza = this.coreGame.canvas.width;
   var ritardoMassimo = 100;
@@ -55,8 +94,20 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
   var raggio = 30;
   var xModificata = x + rand( -raggio, raggio );
   var yModificata = y + rand( -raggio, raggio );
-  var vel = 7;
+  
+  var vel = 0;
   var incrementoTemperatura = 150;
+  var coloreScia = 'blue';
+  var raggioEsplosione = 2;
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'blue' ) { 
+    vel = 7; coloreScia = 'blue'; raggioEsplosione = 20; 
+  }
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'red' ) { 
+    vel = 8; coloreScia = 'red'; raggioEsplosione = 2; 
+  }
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === '#33CCFF' ) { 
+    vel = 0.5; coloreScia = '#33CCFF'; raggioEsplosione = 30; 
+  }
   
   if( indiceTorretta === -1 )
     return;

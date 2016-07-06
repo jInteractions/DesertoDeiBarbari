@@ -30,7 +30,7 @@ Livello3.prototype.calcolaCoefficienteOndata = function ( ) {
   return this.numeroOndata * 1.2;
 }
 
-CoreLevel.prototype.inizializzaTorrette = function ( ) {
+Livello3.prototype.inizializzaTorrette = function ( ) {
   var coloreMissili = [];
   var nSoldati = 10;
   var Tmin = 50;
@@ -302,9 +302,3 @@ var sistemaRaffreddamento = function ( ) {
 }
 ) ();
 */
-
-
-
-
-
-
