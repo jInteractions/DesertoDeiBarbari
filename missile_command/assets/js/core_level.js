@@ -80,30 +80,76 @@ CoreLevel.prototype.preparazioneAvvio = function () {
   this.startLivello();
 }
 
-CoreLevel.prototype.mostraSchermataIniziale = function () {
+CoreLevel.prototype.mostraSchermataIniziale = function ( punteggio ) {
   var mySelf = this;
   mySelf.coreGame.disegnaStatoGioco();
   mySelf.coreGame.disegnaBatterieAntimissile();
+  var ctx = mySelf.ctx;
+  
   this.intervalloSchermata = setInterval( function () {
     mySelf.coreGame.disegnaStatoGioco();
     mySelf.coreGame.disegnaBatterieAntimissile();
     if( mySelf.numeroSchermata === 0 ) {
-      var ctx = mySelf.ctx;
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.textAlign = "center"; 
+      ctx.font = 'bold 20px arial';
+      ctx.fillText( "Punteggio: " + punteggio, 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 - 120 );
+      ctx.textAlign = "start";
       
       ctx.fillStyle = mySelf.coreGame.coloreTestoPrimario;
       ctx.textAlign = "center"; 
       ctx.font = 'bold 20px arial';
       ctx.fillText( 'CLICK PER INIZIARE A GIOCARE', 
-                   mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 );
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 - 50 );
+      ctx.textAlign = "start";
       
+      
+      // parte fissa
+      ctx.textAlign = "center";
+      ctx.font = 'bold 20px arial';
       ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
-      ctx.fillText( 'Ondata ' + mySelf.numeroOndata, mySelf.canvas.width/2, mySelf.canvas.height/2 + 20 );
+      ctx.fillText( 'Ondata ' + mySelf.numeroOndata, 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 + 20 - 50);
+      ctx.textAlign = "start";
+      var img = document.getElementById("source-tasti-123");
+      ctx.drawImage(img, 
+                    mySelf.canvas.width/2 - 190, mySelf.canvas.height/2 + 50, 134, 73);
+      ctx.textAlign = "left";
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.fillText("Premere '1', '2', '3'", 
+                   mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40);
+      ctx.fillText("per sparare", 
+                   mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40 + 20);
       ctx.textAlign = "start";
     } else {
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.textAlign = "center"; 
+      ctx.font = 'bold 20px arial';
+      ctx.fillText( "Punteggio: " + punteggio , 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 - 120 );
+      ctx.textAlign = "start";
+      
+      ctx.textAlign = "center";
+      ctx.font = 'bold 20px arial';
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.fillText( 'Ondata ' + mySelf.numeroOndata, 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 + 20 - 50);
+      ctx.textAlign = "start";
+      var img = document.getElementById("source-tasti-123");
+      ctx.drawImage(img, 
+                    mySelf.canvas.width/2 - 190, mySelf.canvas.height/2 + 50, 134, 73);
+      ctx.textAlign = "left";
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.fillText("Premere '1', '2', '3'", 
+                   mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40);
+      ctx.fillText("per sparare", 
+                   mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40 + 20);
+      ctx.textAlign = "start";
             
     }
     mySelf.numeroSchermata = (mySelf.numeroSchermata + 1) % 2;
-  }, 500 );
+  }, 1000 );
   
   $( '.gameContainer' ).off();
   $( '.gameContainer' ).one( 'click', function() {
@@ -112,7 +158,7 @@ CoreLevel.prototype.mostraSchermataIniziale = function () {
   } );                     
 }
 
-CoreLevel.prototype.mostraSchermataGameOver = function () {
+CoreLevel.prototype.mostraSchermataGameOver = function ( punteggio ) {
   var ctx = this.ctx;
   var mySelf = this;
   ctx.fillStyle = this.coreGame.coloreTestoSecondario;
@@ -263,14 +309,18 @@ CoreLevel.prototype.calcolaCoefficienteOndata = function () {
 }
 
 $(document).ready( function () {  
+  var punteggioTotale = 0;
+  
   var callback = function ( risultatoOndata ) {
     if( risultatoOndata.esito === true ) {
       ++nOndata;
+      punteggioTotale += risultatoOndata.punteggio;
       coreLevel.inizializzaLivello(nOndata);
-      coreLevel.mostraSchermataIniziale();
+      coreLevel.mostraSchermataIniziale( punteggioTotale );
     } else {
+      punteggioTotale += risultatoOndata.punteggio;
       coreLevel.inizializzaLivello(1);
-      coreLevel.mostraSchermataGameOver();
+      coreLevel.mostraSchermataGameOver( punteggioTotale );
     }
   }
   
@@ -384,8 +434,8 @@ $(document).ready( function () {
   //&& e.erroriParole.length === 0 ) {
   //esiti = caricaCodice.esecuzioneTest();
   //console.log( esiti );
-    var coreLevel = new Livello7( callback );
+    var coreLevel = new Livello3( callback );
     coreLevel.inizializzaLivello( nOndata );
-    coreLevel.mostraSchermataIniziale();
+    coreLevel.mostraSchermataIniziale( punteggioTotale );
   //}
 } );

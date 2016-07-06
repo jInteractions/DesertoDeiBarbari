@@ -12,7 +12,7 @@ Livello8.prototype.inizializzaBasi = function ( ) {
   this.coreGame.aggiungiBase( new BaseMilitare( 300,  430, true, 100, 'cyan', this.coreGame ) );
   this.coreGame.aggiungiBase( new BaseMilitare( 350,  430, false, 100, 'red', this.coreGame ) );
   this.coreGame.aggiungiBase( new BaseMilitare( 400,  430, true, 100, 'cyan', this.coreGame ) );
-};
+}
 
 Livello8.prototype.inizializzaArmiNemiche = function ( ) {
   var areaPertenza = this.coreGame.canvas.width;
@@ -113,7 +113,7 @@ Livello8.prototype.scegliTorretta = function ( x, y, tasto ) {
     return -1;
     
   return torrettaSelezionata;
-};
+}
 
 Livello8.prototype.sparo = function ( x, y, tasto ) {
   var indiceTorretta = this.scegliTorretta( x, y, tasto );
@@ -162,7 +162,7 @@ var canaleTrasmissione = [
    testo: "[21:20] Ricevuto! Accorriamo immediatamente!"},
   { radioIdentificatore: "AX6", 
    testo: "[21:06] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
-];
+]
 
 Livello8.prototype.esaminaCanaliRadio = function ( ) {
   var lettere = ["a","b","c","d","e","f","g","h","i","l","m","n","o","p","q","r","s","t","u","v","z"];

@@ -101,6 +101,70 @@ Livello6.prototype.sparo = function ( x, y, torretta ) {
   };
 }
 
+Livello6.prototype.mostraSchermataIniziale = function ( punteggio ) {
+  var mySelf = this;
+  mySelf.coreGame.disegnaStatoGioco();
+  mySelf.coreGame.disegnaBatterieAntimissile();
+  var ctx = mySelf.ctx;
+  
+  this.intervalloSchermata = setInterval( function () {
+    mySelf.coreGame.disegnaStatoGioco();
+    mySelf.coreGame.disegnaBatterieAntimissile();
+    if( mySelf.numeroSchermata === 0 ) {
+      ctx.fillStyle = mySelf.coreGame.coloreTestoPrimario;
+      ctx.textAlign = "center"; 
+      ctx.font = 'bold 20px arial';
+      ctx.fillText( 'CLICK PER INIZIARE A GIOCARE', 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 - 50 );
+      ctx.textAlign = "start";
+      
+      
+      // parte fissa
+      ctx.textAlign = "center";
+      ctx.font = 'bold 20px arial';
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.fillText( 'Ondata ' + mySelf.numeroOndata, 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 + 20 - 50);
+      ctx.textAlign = "start";
+      var img = document.getElementById("source-mouse-click");
+      ctx.drawImage(img, 
+                    mySelf.canvas.width/2 - 100, mySelf.canvas.height/2 + 40, 30, 80);
+      ctx.textAlign = "left";
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.fillText("Fare click sinistra", 
+                   mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40);
+      ctx.fillText("per sparare", 
+                   mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40 + 20);
+      ctx.textAlign = "start";
+    } else {
+      ctx.textAlign = "center";
+      ctx.font = 'bold 20px arial';
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.fillText( 'Ondata ' + mySelf.numeroOndata, 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 + 20 - 50);
+      ctx.textAlign = "start";
+      var img = document.getElementById("source-mouse-click");
+      ctx.drawImage(img, 
+                    mySelf.canvas.width/2 - 100, mySelf.canvas.height/2 + 40, 30, 80);
+      ctx.textAlign = "left";
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.fillText("Fare click sinistra", 
+                   mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40);
+      ctx.fillText("per sparare", 
+                   mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40 + 20);
+      ctx.textAlign = "start";
+            
+    }
+    mySelf.numeroSchermata = (mySelf.numeroSchermata + 1) % 2;
+  }, 500 );
+  
+  $( '.gameContainer' ).off();
+  $( '.gameContainer' ).one( 'click', function() {
+    clearInterval( mySelf.intervalloSchermata );
+    mySelf.preparazioneAvvio();
+  } );                     
+}
+
 var azionaComandoSparo = function ( chiamante, torrettaSelezionata, sistema, x, y ) {
   sistema.sparo( x, y, torrettaSelezionata );
 }
