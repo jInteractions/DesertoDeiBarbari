@@ -197,6 +197,9 @@ Livello8.prototype.esaminaCanaliRadio = function ( ) {
 
 // TAB 1
 
+/**********
+**********/
+
 function Trasmettitore ( canaleTrasmissione ) {
   this.canaleTrasmissione = canaleTrasmissione;
 }

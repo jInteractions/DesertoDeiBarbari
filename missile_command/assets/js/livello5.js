@@ -166,6 +166,9 @@ _Compressore.prototype.aumentaPressione = function ( combustibile, pressione, en
 
 // TAB 1
 
+/**********
+**********/
+
 function TorrettaCentrale ( magazzino, caricatore, compressore, generatore, mirino ) {
   this.magazzino = magazzino;
   this.mirino = mirino;
@@ -229,6 +232,9 @@ TorrettaCentrale.prototype.spara = function ( x, y ) {
 
 // TAB 2
 
+/**********
+**********/
+
 function TorrettaSinistra ( magazzino, caricatore, compressore, generatore, mirino ) {
   this.magazzino = magazzino;
   this.mirino = mirino;
@@ -290,6 +296,9 @@ TorrettaSinistra.prototype.spara = function ( x, y ) {
 } ) (); */
 
 // TAB 3
+
+/**********
+**********/
 
 function TorrettaDestra ( magazzino, caricatore, compressore, generatore, mirino ) {
   this.magazzino = magazzino;

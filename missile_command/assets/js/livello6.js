@@ -171,6 +171,9 @@ var azionaComandoSparo = function ( chiamante, torrettaSelezionata, sistema, x, 
   
 // TAB 1
 
+/**********
+**********/
+
 var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sistema ) {
   // Comandi plancia azionati da tastiera
   $( planciaComandi ).bind( 'keyup', function ( tastoPremuto ) {
@@ -191,12 +194,12 @@ var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sis
     azionaComandoSparo( 'keyup', torrettaSelezionata, sistema, x, y );
   } );
   
-  //###START_MODIFICABILE###
+//###START_MODIFICABILE###
   // Comandi plancia azionati da click del mouse
   $( planciaComandi ).on( 'click', function ( ) {
     
   } );
-  //###END_MODIFICABILE###
+//###END_MODIFICABILE###
 }
 
 // test
@@ -208,6 +211,9 @@ var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sis
 ) ();*/
 
 // TAB 2
+
+/**********
+**********/
 
 var torrettaVicina = function ( torrette, x, y ) {
   var torrettaSelezionata;
