@@ -20,7 +20,12 @@ Missile.ATTIVO = 1;
 Missile.ESPLOSIONE = 2;
 Missile.IMPLOSIONE = 3;
 Missile.ESPLOSO = 4;
-Missile.COLORI = ['red', 'yellow', 'white', 'blue', 'purple'];
+Missile.COLORI = ['red', 'red', 
+                  'yellow', 'yellow', 
+                  'white', 'white', 
+                  'blue', 'blue',
+                  'purple', 'purple', 
+                 ];
 
 Missile.prototype.esplosioneAltriMissili = function ( ctx, coreGame ) {
   var missiliInGioco = coreGame.missiliNemici.concat( coreGame.missiliTerrestri );

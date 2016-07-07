@@ -104,7 +104,6 @@ CoreLevel.prototype.mostraSchermataIniziale = function ( punteggio ) {
                    mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 - 50 );
       ctx.textAlign = "start";
       
-      
       // parte fissa
       ctx.textAlign = "center";
       ctx.font = 'bold 20px arial';
@@ -436,7 +435,7 @@ $(document).ready( function () {
   //&& e.erroriParole.length === 0 ) {
   //esiti = caricaCodice.esecuzioneTest();
   //console.log( esiti );
-    var coreLevel = new Livello7( callback );
+    var coreLevel = new Livello9( callback );
     coreLevel.inizializzaLivello( nOndata );
     coreLevel.mostraSchermataIniziale( punteggioTotale );
   //}

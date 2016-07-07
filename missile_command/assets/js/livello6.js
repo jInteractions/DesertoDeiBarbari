@@ -111,13 +111,19 @@ Livello6.prototype.mostraSchermataIniziale = function ( punteggio ) {
     mySelf.coreGame.disegnaStatoGioco();
     mySelf.coreGame.disegnaBatterieAntimissile();
     if( mySelf.numeroSchermata === 0 ) {
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.textAlign = "center"; 
+      ctx.font = 'bold 20px arial';
+      ctx.fillText( "Punteggio: " + punteggio, 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 - 120 );
+      ctx.textAlign = "start";
+      
       ctx.fillStyle = mySelf.coreGame.coloreTestoPrimario;
       ctx.textAlign = "center"; 
       ctx.font = 'bold 20px arial';
       ctx.fillText( 'CLICK PER INIZIARE A GIOCARE', 
                    mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 - 50 );
       ctx.textAlign = "start";
-      
       
       // parte fissa
       ctx.textAlign = "center";
@@ -131,12 +137,19 @@ Livello6.prototype.mostraSchermataIniziale = function ( punteggio ) {
                     mySelf.canvas.width/2 - 100, mySelf.canvas.height/2 + 40, 30, 80);
       ctx.textAlign = "left";
       ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
-      ctx.fillText("Fare click sinistra", 
+      ctx.fillText("Fare click sinistro", 
                    mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40);
       ctx.fillText("per sparare", 
                    mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40 + 20);
       ctx.textAlign = "start";
     } else {
+      ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
+      ctx.textAlign = "center"; 
+      ctx.font = 'bold 20px arial';
+      ctx.fillText( "Punteggio: " + punteggio, 
+                   mySelf.canvas.width/2, mySelf.canvas.height/2 - 20 - 120 );
+      ctx.textAlign = "start";
+      
       ctx.textAlign = "center";
       ctx.font = 'bold 20px arial';
       ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
@@ -148,12 +161,11 @@ Livello6.prototype.mostraSchermataIniziale = function ( punteggio ) {
                     mySelf.canvas.width/2 - 100, mySelf.canvas.height/2 + 40, 30, 80);
       ctx.textAlign = "left";
       ctx.fillStyle = mySelf.coreGame.coloreTestoSecondario;
-      ctx.fillText("Fare click sinistra", 
+      ctx.fillText("Fare click sinistro", 
                    mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40);
       ctx.fillText("per sparare", 
                    mySelf.canvas.width/2 - 40, mySelf.canvas.height/2 + 40 + 40 + 20);
-      ctx.textAlign = "start";
-            
+      ctx.textAlign = "start";    
     }
     mySelf.numeroSchermata = (mySelf.numeroSchermata + 1) % 2;
   }, 500 );
