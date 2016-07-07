@@ -180,7 +180,7 @@ su come potrebbe essere un'arma sabotata da caricare
 al posto di quelle standard all'interno del codice del
 Nemico. Aggiusta i parametri della classe per rendere
 l'arma più consona alle tue esigenze.
-Tua,
+Saluti,
 Zurlin
 **********/
   
@@ -258,7 +258,7 @@ Nella funzione hackingPassword() queste combinazioni vengono mandate
 al server centrale del Nemico, continuando finché non viene approvata una
 delle combinazioni.
 Spero di non aver fatto errori.
-Tua,
+Saluti,
 Zurlin
 **********/
 

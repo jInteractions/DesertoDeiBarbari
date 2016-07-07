@@ -235,39 +235,57 @@ function FrammentoMissile ( x, y ) {
 
 // TAB 1
 
+/**********
+Ciao, caro.
+Questo è un esempio di come è implementato il missile a testata multipla.
+Usalo pure per migliorare i missili standard terrestri.
+Saluti,
+Zurlin
+**********/
+
+// Classe esempio di missili sdoppiabili 
 function MissileTestataMultipla ( ) {
   this.obiettivoAgganciato;
 } 
 
+// Funzione per identificare l'obiettivo del missile.
+// Assomiglia alla funzione miraBersaglio() del missile standard!
 MissileTestataMultipla.prototype.identificaObiettivo = function ( obiettivi ) {
   // Esempio obiettivo = { x: 315, y: 145, tipo: "terrestre" }
-  
   for( var i = 0; i < obiettivi.length; ++i ) {
     var obiettivo = obiettivi[i];
     if( obiettivo.tipo === "terrestre" ) {
       var x = obiettivo.x;
       var y = obiettivo.y;
-      
+      // Variabile contenente la quota a cui il missile si sdoppia.
       var altezza = this.calcolaAltezzaSdoppiamento( x, y );
       this.agganciaBersaglio( obiettivo );
-      
       return altezza;
     }
   }
 }
 
+// Funzione per il calcolo della quota di sdoppiamento del missile.
 MissileTestataMultipla.prototype.calcolaAltezzaSdoppiamento = function ( x, y ) {
   return (Math.abs(430 - y) / 2) + y;
 }
 
+// Funzione per agganciare l'obiettivo del missile.
 MissileTestataMultipla.prototype.agganciaObiettivo = function ( obiettivo ) {
   this.obiettivoAgganciato = obiettivo;
 }
 
+// Funzione di detonazione del missile doppio.
+// Come puoi notare il missile si divide in due frammenti.
+// Assomiglia alla funzione esplodi() del missile standard!
 MissileTestataMultipla.prototype.detonazione = function ( ) {
+  // this.obiettivo.x + 10 e this.obiettivo.x - 10
+  // permette di indirizzare il missile in due punti diversi,
+  // uno a 10 unità a destra del bersaglio del missile originale
+  // ed uno a 10 unità a sinistra del bersaglio del missile originale.
   var frammentoMissile1 = new FrammentoMissile( this.obiettivo.x + 10, this.obiettivo.y );
   var frammentoMissile2 = new FrammentoMissile( this.obiettivo.x - 10, this.obiettivo.y );
-  
+  // Variabile che contiene i frammenti del missile.
   var frammentiMissile = [];
   frammentiMissile.push( frammentoMissile1 );
   frammentiMissile.push( frammentoMissile2 );
@@ -277,15 +295,24 @@ MissileTestataMultipla.prototype.detonazione = function ( ) {
 
 // TAB 2
 
+/**********
+Benvenuto nel file di configurazione missili standard del sistema Hob-2000.
+In questo codice è possibile modificare diverse proprietà dei missili,
+in particolare i bersagli mirati, gli obiettivi agganciati e l'esplosione.
+**********/
+
+// Classe che identifica il missile standard terrestre.
 function MissileStandard ( ) { 
   this.bersaglioAgganciato;
 }
 
+// Funzione di identificazione del bersaglio
 MissileStandard.prototype.miraBersaglio = function ( listaBersagli ) {
   // bersaglio = { appartieneNemico: true, x: 530, y: 95 }
   
   var numeroBersagli = listaBersagli.length;
   var i = 0;
+  // Ciclo per la selezione dei bersagli di sparo.
   while( i <  numeroBersagli ) {
 //###START_MODIFICABILE###
     var bersaglio = listaBersagli[i];
@@ -303,10 +330,12 @@ MissileStandard.prototype.miraBersaglio = function ( listaBersagli ) {
   }
 }
 
+// Funzione di aggancio del bersaglio.
 MissileStandard.prototype.agganciaObiettivo = function ( bersaglio ) {
   this.bersaglioAgganciato = bersaglio;
 }
 
+// Funzione di esplosione del missile standard.
 MissileStandard.prototype.esplodi = function ( ) {
 //###START_MODIFICABILE###
   var x = this.bersaglioAgganciato.x;
