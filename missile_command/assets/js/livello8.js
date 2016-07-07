@@ -237,6 +237,8 @@ var trasmissione = function ( canaleTrasmissione ) {
   console.log( messaggioRicevuto );
 }
 
+// TAB 2
+
 var codificaSegnale = function ( canaleTrasmissione ) {
 //###START_MODIFICABILE###
   var temporaneo;
@@ -272,9 +274,9 @@ var decodificaSegnale = function ( canaleTrasmissione ) {
 }
 
 // test
-/*
-(
-//var t1 = 
+
+//(
+var t1 = 
   function () {
   var lettere = ["a","b","c","d","e","f","g","h","i","l","m","n","o","p","q","r","s","t","u","v","z"];
   var canale = [];
@@ -320,5 +322,4 @@ var decodificaSegnale = function ( canaleTrasmissione ) {
   
   return esito;  
 }
-) ();
-*/
+//) ();
