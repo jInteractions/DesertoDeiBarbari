@@ -173,14 +173,30 @@ var autenticazioneOperatoreIbrido = function ( tentativo ) {
 }
 
 // TAB 1
+
+/**********
+Ciao, caro. Il codice che vedi di seguito è una mia idea
+su come potrebbe essere un'arma sabotata da caricare
+al posto di quelle standard all'interno del codice del
+Nemico. Aggiusta i parametri della classe per rendere
+l'arma più consona alle tue esigenze.
+Tua,
+Zurlin
+**********/
   
 function ArmaNemicaSabotata () {
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
+  // Campo per il tempo di ricarica massimo delle torrette antiterrestri.
   this.tempoRicaricaMassimo = 100;
+  // Campo per la tipologia di propellente.
+  // Più è alto il numero, migliore è il propellente.
   this.propellente = 5;
+  // Campo per il numero di missili della torretta antiterrestre.
   this.numeroMissili = 20;
+  // Tipologia di munizione.
+  // Può essere "massima_efficacia" oppure "massima_esplosione".
   this.tipoMunizione = "massima_efficacia";
-  // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
 }
 
 // test
@@ -204,9 +220,19 @@ function ArmaNemicaSabotata () {
 
 // TAB 2
 
+/**********
+File di creazione delle batterie antiterrestri.
+Ricordiamo che è necessario autenticarsi in seguito a
+qualunque modifica.
+**********/
+
 var inizializzaBatteriaAntiterrestri = function () {
+//###START_MODIFICABILE###
+  // Variabile contenente la batteria antiterrestre
+  // di tipo standard.
   var batteria = new BatteriaAntiterrestre();
   return batteria;
+//###END_MODIFICABILE###
 }
 
 // test
@@ -222,10 +248,26 @@ var inizializzaBatteriaAntiterrestri = function () {
 
 // TAB 3
 
+/**********
+Ciao, caro.
+Nella funzione generaPassword() hai esempio di funzione ricorsiva
+per il calcolo della password necessaria per salvare le modifiche.
+Questo codice prova ad indivinare la password generando tutte le combinazioni
+possibili dei caratteri '0', '1' e '2'.
+Nella funzione hackingPassword() queste combinazioni vengono mandate
+al server centrale del Nemico, continuando finché non viene approvata una
+delle combinazioni.
+Spero di non aver fatto errori.
+Tua,
+Zurlin
+**********/
+
+// Simboli utilizzati per la password.
 var _simboli = ['0', '1', '2'];
 
+// Funzione per la generazione di tutte le password possibili.
 var generaPassword = function ( combinazioniPossibili, combinazione, k ) {
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
   if (k === 2)
     combinazioniPossibili.push( combinazione.slice( 0 ) );
   else {
@@ -235,18 +277,26 @@ var generaPassword = function ( combinazioniPossibili, combinazione, k ) {
       generaPassword( combinazioniPossibili, combinazione, k + 1 );
     }
   }
-  // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
 }
 
+// Funzione per il test delle combinazioni.
 var hackingPassword = function () {
   var combinazioniPossibili = [];
+  // Variabile con la combinazione di partenza.
   var combinazione = ['0', '0', '0'];
+  // Chiamata alla funzione di generazione delle password,
+  // che inserisce tutte quelle possibili nella variabile
+  // combinazioniPossibili.
   generaPassword( combinazioniPossibili, combinazione, 0 );
   
   var hacking = false;
-  
+  // Questo ciclo scorre tutte le combinazioni
+  // e le manda una ad una al server del Nemico.
   for ( var i = 0; i < combinazioniPossibili.length; ++i ) {
-    hacking = autenticazioneOperatoreIbrido( combinazioniPossibili[ i ] );
+    // Qui viene chiamata la funzione per il test della password.
+    hacking = autenticazioneOperatoreNonTerrestre( combinazioniPossibili[ i ] );
+    // Se la password è corretta, usciamo dal ciclo.
     if ( hacking === true ) {
       break;
     }
