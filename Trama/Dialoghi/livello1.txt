@@ -4,88 +4,98 @@ LIVELLO 1: Bastiani, la fortezza
 
 DIALOGO INIZIALE
 Ortiz
-Buongiorno, capitano Simeoni. Io sono il generale Ortiz, a capo dell'Ottava Armata delle United Terrestrial Forces, nome in codice UTF-8. Sarà a me che dovrai fare rapporto nei mesi a venire. Chiaro?
+Buongiorno, capitano Simeoni. Io sono il generale Ortiz, a capo dell'Ottava Armata delle United Terrestrial Forces, nome in codice UTF-8. Sar&agrave a me che dovrai fare rapporto nei mesi a venire. Chiaro?
 Simeoni
-Signorsì, signore.
+Signors&igrave, signore.
 Ortiz
 Ottimo. Come puoi ben vedere, abbiamo appena subito un attacco del Nemico. Vorremmo reagire ma... purtroppo le difese del pianeta Bastiani sono inutilizzabili.
 Simeoni
 Inutilizzabili, signore?
 Ortiz
-Esattamente, capitano. Come se qualcuno avesse inserito una sicura di sparo. Ed è qui che entri in gioco tu. Il tempo è poco, ma confido in te. Sai cos'è un codice sorgente? Come sicuramente ti avranno spiegato all'Accademia, ogni arma terrestre contiene una grossa parte di informatica.
+Esattamente, capitano. Come se qualcuno avesse inserito una sicura di sparo. Ed &egrave qui che entri in gioco tu. Il tempo &egrave poco, ma confido in te. Sai cos'&egrave un codice sorgente? Come sicuramente ti avranno spiegato all'Accademia, ogni arma terrestre contiene una grossa parte di informatica.
 Simeoni
 Esatto, signore.
 Ortiz
-Questa parte di informatica consiste in un insieme di istruzioni su ciò che le armi devono fare. Tali istruzioni devono essere scritte in un linguaggio comprensibile alle armi: un linguaggio di questo genere viene chiamato linguaggio di programmazione. L'insieme di istruzioni, scritte in un linguaggio di programmazione, viene chiamato codice sorgente. Quando l'arma prende il codice sorgente, esso diventa un programma. Mi sono spiegato bene?
+Questa parte di informatica consiste in un insieme di istruzioni su ci&ograve che le armi devono fare. Tali istruzioni devono essere scritte in un linguaggio comprensibile alle armi: un linguaggio di questo genere viene chiamato linguaggio di programmazione. L'insieme di istruzioni, scritte in un linguaggio di programmazione, viene chiamato codice sorgente. Quando l'arma prende il codice sorgente, esso diventa un programma. Mi sono spiegato bene?
 Simeoni
 Affermativo, signore.
 Ortiz
-Il tuo primo compito sarà quello di modificare il codice sorgente per le armi di Bastiani. I nostri tecnici ti hanno fornito una postazione di comando su cui lavorare. Ho però una brutta notizia.
+Il tuo primo compito sar&agrave quello di modificare il codice sorgente per le armi di Bastiani. I nostri tecnici ti hanno fornito una postazione di comando su cui lavorare. Ho per&ograve una brutta notizia.
 Simeoni
 Brutta notizia, signore?
 Ortiz
-Il linguaggio di programmazione utilizzato per la scrittura dei programmi militari si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti. Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, università... nulla! Come se non fosse mai esistito.
+Il linguaggio di programmazione utilizzato per la scrittura dei programmi militari si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti. Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, universit&agrave... nulla! Come se non fosse mai esistito.
 Simeoni
-Bene, signore. La difficoltà è mia amica. Spero solo di essere in grado di capire questo linguaggio il prima possibile.
+Bene, signore. La difficolt&agrave &egrave mia amica. Spero solo di essere in grado di capire questo linguaggio il prima possibile.
 Ortiz
-Non preoccuparti, ho lasciato qualche commento di aiuto al codice. Come ben sai un commento è una parte del codice sorgente che non descrive un'istruzione, ma semplicemente aiuta chi legge il codice nel comprendere ciò che c'è scritto.
+Non preoccuparti, ho lasciato qualche commento di aiuto al codice. Come ben sai un commento &egrave una parte del codice sorgente che non descrive un'istruzione, ma semplicemente aiuta chi legge il codice nel comprendere ci&ograve che c'&egrave scritto.
 Simeoni
 Grazie signore.
 Ortiz
-Di nulla. Per qualunque cosa, chiedi. Come prima cosa noterai che il sistema richiede un accesso automatico, effettuato tramite il controllo della tua retina. Se questo non funziona, non preoccuparti: raramente va tutto bene. Dovrai dunque eseguire un accesso manuale, modificando alcuni file che si occupano di tale controllo. Troverai comunque una descrizione più dettagliata nel documento che ti ho lasciato.
+Di nulla. Per qualunque cosa, chiedi. Come prima cosa noterai che il sistema richiede un accesso automatico, effettuato tramite il controllo della tua retina. Se questo non funziona, non preoccuparti: raramente va tutto bene. Dovrai dunque eseguire un accesso manuale, modificando alcuni file che si occupano di tale controllo. Troverai comunque una descrizione pi&ugrave dettagliata nel documento che ti ho lasciato.
 Simeoni
-Signorsì, signore.
+Signors&igrave, signore.
 Ortiz
 Mi aspetto grandi cose da te, capitano. Non deludermi.
 
 OBIETTIVO - Tab 1
-L'obiettivo è costruire la frase d'accesso corretta per sbloccare il sistema di puntamento e sparo. Devi dunque inserire:
-- nella variabile <i>nome</i>, la stringa "Cpt Simeoni";
-- nella variabile 'matricola', il numero 150716;
-- nella variabile 'password', la stringa "utf-8_tuono".
-Dovrai poi inserire nella variabile 'stringaAccesso' la corretta composizione della parola d'accesso, che dovrà essere della forma
-"nome%matricola<password>".
-AIUTI
+L'obiettivo &egrave costruire la frase d'accesso corretta per sbloccare il sistema di puntamento e sparo. Devi dunque inserire:
+<li>nella variabile <tt>nome</tt>, la stringa "Cpt Simeoni";</li>
+<li>nella variabile <tt>matricola</tt>, il numero 150716;</li>
+<li>nella variabile <tt>password</tt>, la stringa "utf-8_tuono".</li> <br>
+Dovrai poi inserire nella variabile <tt>stringaAccesso</tt> la corretta composizione della parola d'accesso, che dovr&agrave essere della forma: <br>
+<tt>nome%matricola&#60password&#62</tt>. <br>
+AIUTI <br>
 Come prima cosa si devono effettuare i seguenti assegnamenti:
-<pre><code>
-var nome = "Cpt Simeoni";
+<pre><code>var nome = "Cpt Simeoni";
 var matricola = 150716;
 var password = "utf-8_tuono";
 </code></pre>
-Poi cambiare la concatenazione di stringhe per riempire la variabile 'stringaAccesso':
-var stringaAccesso = nome + "%" + matricola + "<" + password + ">";
+Poi cambiare la concatenazione di stringhe per riempire la variabile <tt>stringaAccesso</tt>:
+<pre><code>var stringaAccesso = nome + "%" + matricola + "<" + password + ">";
+</code></pre>
 
 OBIETTIVO - Tab 2
-In questo file si verifica la presenza di un operatore umano, cioè dotato di cervello. Per ottenere l'accesso è necessario che la variabile 'area' contenga la formula corretta per il calcolo dell'area di un rettangolo.
+In questo file si verifica la presenza di un operatore umano, cio&egrave dotato di cervello. <br>
+Per ottenere l'accesso &egrave necessario che la variabile <tt>area</tt> contenga la formula corretta per il calcolo dell'area di un rettangolo.
 AIUTI
-Per passare l'autenticazione manuale è necessario modificare l'operazione per il calcolo dell'area, rendendo la variabile area nel seguente modo:
-var area = base * altezza;
+Per passare l'autenticazione manuale &egrave necessario modificare l'operazione per il calcolo dell'area, rendendo la variabile <tt>area</tt> nel seguente modo:
+<pre><code>var area = base * altezza;
+</code></pre>
 
 MANUALE
-Un linguaggio di programmazione possiede una grammatica: in esso esistono alcune parole dal significato speciale, chiamate parole chiave.
-La prima parole chiave da imparare è "var".
+Un linguaggio di programmazione possiede una grammatica: in esso esistono alcune parole dal significato speciale, chiamate <b>parole chiave</b>. <br>
+La prima parole chiave da imparare &egrave <b>var</b>. <br>
 Prendi per esempio la riga:
-var x;
-Essa indica che ogni volta che nel codice sorgente compare la parola x, essa rappresenta la variabile così chiamata.
-Una variabile altro non è che un contenitore, una "scatola" in cui inserire dei valori. Prendi per esempio l'istruzione:
-var x = 4;
-La variabile di nome x ora contiene un valore numerico, in questo caso 4. Esistono differenti tipologie di valore che si possono inserire in una variabile: i tipi di valore più utilizzati sono valori numerici e stringhe.
-Esempi di valori numerici sono: 4, 6, 12.5, 24.3, ma anche operazioni aritmetiche come 16+5, 4*3, 5-12 o 24/6...
-Una stringa è invece un insieme di caratteri, come "Bastiani", "Ortiz" o "battaglia". Può anche contenere numeri: per esempio, "UTF-8" è una stringa.
-Un'operazione utile da effettuare sulle stringhe è la cosiddetta concatenazione, cioè l'unione di due o più stringhe. Per esempio:
-var stringaDiProva = "anti" + "missile";
-indica che nella variabile stringaDiProva è contenuta la stringa "antimissile".
-Nota bene! Il nome delle variabili può contenere lettere e numeri, più il carattere speciale "_", ma nient'altro. Il nome di una variabile non può mai iniziare con un numero, ma può averne in mezzo ed anche alla fine. Per esempio:
-var 7Nani;
-è errato, mentre
-var numero1;
+<pre><code>var x;
+</code></pre>
+Essa indica che ogni volta che nel codice sorgente compare la parola <i>x</i>, essa rappresenta la <b>variabile</b> cos&igrave chiamata. <br>
+Una variabile altro non &egrave che un contenitore, una "scatola" in cui inserire dei valori. <br>
+Prendi per esempio l'istruzione:
+<pre><code>var x = 4;
+</code></pre>
+La variabile di nome <i>x</i> ora contiene un valore numerico, in questo caso 4. <br>
+Esistono differenti tipologie di valori che si possono inserire in una variabile: i <b>tipi</b> di valore pi&ugrave utilizzati sono valori numerici e stringhe. <br>
+Esempi di valori numerici sono: 4, 6, 12.5, 24.3, ma anche operazioni aritmetiche come 16+5, 4*3, 5-12 o 24/6. <br>
+Una <b>stringa</b> &egrave invece un insieme di caratteri, come "Bastiani", "Ortiz" o "battaglia". Pu&ograve anche contenere numeri: per esempio, "UTF-8" &egrave una stringa. <br>
+Un'operazione utile da effettuare sulle stringhe &egrave la cosiddetta <b>concatenazione</b>, cio&egrave l'unione di due o pi&ugrave stringhe. Per esempio:
+<pre><code>var stringaDiProva = "anti" + "missile";
+</code></pre>
+indica che nella variabile <tt>stringaDiProva</tt> &egrave contenuta la stringa "antimissile".
+Nota bene! Il nome della variabile pu&ograve contenere lettere e numeri, pi&ugrave il carattere speciale "_", ma nient'altro. Il nome di una variabile non pu&ograve mai iniziare con un numero, ma pu&ograve averne in mezzo ed anche alla fine. Per esempio:
+<pre><code>var 7Nani;
+</code></pre>
+&egrave errato, mentre
+<pre><code>var numero1;
 var caricatore6Cannone;
+</code></pre>
 sono corrette.
-Nota bene! var è una parola chiave, per cui non potrai utilizzarla come nome per la variabile. Per esempio, l'istruzione
-var var = 2;
-restituirà un errore.
+Nota bene! <i>var</i> &egrave una parola chiave, per cui non potrai utilizzarla come nome per le variabili. Per esempio, l'istruzione:
+<pre><code>var var = 2;
+</code></pre>
+restituir&agrave un errore.
 Questo vale per tutte le parole chiave che incontrerai in futuro.
-Nota bene! I nomi da assegnare alle variabili devono essere significativi. Per esempio, la variabile nomeSoldato indica che stiamo creando una variabile che conterrà una stringa indicante il nome del soldato; chiamandola stringa o in un altro modo, sarebbe stato più difficile capire il suo scopo.
+Nota bene! I nomi da assegnare alle variabili devono essere significativi. Per esempio, la variabile nomeSoldato indica che stiamo creando una variabile che conterr&agrave una stringa indicante il nome del soldato; chiamandola stringa o in un altro modo, sarebbe stato pi&ugrave difficile capire il suo scopo.
 
 DIALOGO FINALE
 Simeoni
@@ -95,4 +105,4 @@ Bel lavoro Simeoni, con quel sistema. Era ora che arrivasse qualcuno in grado di
 Simeoni
 Grazie signore! Ho altri ordini, signore?
 Ortiz
-No, non per oggi. Vai a riposarti, sapendo che finalmente possiamo provare a respingere quei maledetti. Gli incursori hanno segnalato movimenti al confine del deserto... domani sarà una giornata lunga, nell'eterna notte di Bastiani.
+No, non per oggi. Vai a riposarti, sapendo che finalmente possiamo provare a respingere quei maledetti. Gli incursori hanno segnalato movimenti al confine del deserto... domani sar&agrave una giornata lunga, nell'eterna notte di Bastiani.
