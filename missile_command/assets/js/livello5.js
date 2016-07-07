@@ -167,8 +167,16 @@ _Compressore.prototype.aumentaPressione = function ( combustibile, pressione, en
 // TAB 1
 
 /**********
+Benvenuto nel file di configurazione della torretta centrale del sistema Hob-2000.
+Ogni torretta contiene tre variabili fondamentali:
+l'energia per il compressore del gas di propulsione,
+l'energia per lo spostamento del cannone e
+la pressione del carburante del missile.
+Cambiare queste configurazioni solo se si notano malfunzionamenti
+nel meccanismo di sparo delle torrette.
 **********/
 
+// Classe della torretta centrale.
 function TorrettaCentrale ( magazzino, caricatore, compressore, generatore, mirino ) {
   this.magazzino = magazzino;
   this.mirino = mirino;
@@ -177,28 +185,33 @@ function TorrettaCentrale ( magazzino, caricatore, compressore, generatore, miri
   this.compressore = compressore;
 }
 
+// Funzione per il caricamento del missile.
 TorrettaCentrale.prototype.caricaMissile = function () {
   for ( i = 0; i < this.magazzino.length; ++i ) {
     this.caricatore.immagazzinaMissile( this.magazzino[i], this.generatore );
   }
 }
 
+// Funzione per lo spostamento del cannone.
 TorrettaCentrale.prototype.mira = function ( x, y, energiaFornita ) {
   this.mirino.spostaMirino( x, y, energiaFornita, this.generatore );
 }
 
+// Funzione per lo sparo.
 TorrettaCentrale.prototype.spara = function ( x, y ) {
 //###START_MODIFICABILE###
+  // Variabile contenente l'energia del compressore del gas di propulsione.
   var energiaCompressore = 5;
+  // Variabile contenente l'energia per lo spostamento del cannone.
   var energiaMirino = 1;
+  // Variabile contenente la pressione del carburante del missile.
   var pressioneCarburante = 15;
-  
+//###END_MODIFICABILE###
   var missile = this.caricatore.caricaProiettile( this.generatore );
   this.compressore.aumentaPressione( missile.combustibile, pressioneCarburante, 
     energiaCompressore, this.generatore );
   this.mira( x, y, energiaMirino );
   this.caricatore.innescaFuoco( missile, this.compressore, this.generatore );
-//###END_MODIFICABILE###
 }
 
 // test
@@ -233,8 +246,16 @@ TorrettaCentrale.prototype.spara = function ( x, y ) {
 // TAB 2
 
 /**********
+Benvenuto nel file di configurazione della torretta sinistra del sistema Hob-2000.
+Ogni torretta contiene tre variabili fondamentali:
+l'energia per il compressore del gas di propulsione,
+l'energia per lo spostamento del cannone e
+la pressione del carburante del missile.
+Cambiare queste configurazioni solo se si notano malfunzionamenti
+nel meccanismo di sparo delle torrette.
 **********/
 
+// Classe della torretta sinistra
 function TorrettaSinistra ( magazzino, caricatore, compressore, generatore, mirino ) {
   this.magazzino = magazzino;
   this.mirino = mirino;
@@ -243,28 +264,33 @@ function TorrettaSinistra ( magazzino, caricatore, compressore, generatore, miri
   this.compressore = compressore;
 }
 
+// Funzione per il caricamento del missile.
 TorrettaSinistra.prototype.caricaMissile = function () {
   for ( i = 0; i < this.magazzino.length; ++i ) {
     this.caricatore.immagazzinaMissile( this.magazzino[i], this.generatore );
   }
 }
 
+// Funzione per lo spostamento del cannone.
 TorrettaSinistra.prototype.mira = function ( x, y, energiaFornita ) {
   this.mirino.spostaMirino( x, y, energiaFornita, this.generatore );
 }
 
+// Funzione per lo sparo.
 TorrettaSinistra.prototype.spara = function ( x, y ) {
 //###START_MODIFICABILE###
+  // Variabile contenente l'energia del compressore del gas di propulsione.
   var energiaCompressore = 30;
+  // Variabile contenente l'energia per lo spostamento del cannone.
   var energiaMirino = 10;
+  // Variabile contenente la pressione del carburante del missile.
   var pressioneCarburante = 5;
-  
+//###END_MODIFICABILE###
   var missile = this.caricatore.caricaProiettile( this.generatore );  
   this.compressore.aumentaPressione( missile.combustibile, pressioneCarburante, 
     energiaCompressore, this.generatore );
   this.mira( x, y, energiaMirino );
   this.caricatore.innescaFuoco( missile, this.compressore, this.generatore );
-//###END_MODIFICABILE###
 }
 
 // test
@@ -298,8 +324,16 @@ TorrettaSinistra.prototype.spara = function ( x, y ) {
 // TAB 3
 
 /**********
+Benvenuto nel file di configurazione della torretta destra del sistema Hob-2000.
+Ogni torretta contiene tre variabili fondamentali:
+l'energia per il compressore del gas di propulsione,
+l'energia per lo spostamento del cannone e
+la pressione del carburante del missile.
+Cambiare queste configurazioni solo se si notano malfunzionamenti
+nel meccanismo di sparo delle torrette.
 **********/
 
+// Classe della torretta destra
 function TorrettaDestra ( magazzino, caricatore, compressore, generatore, mirino ) {
   this.magazzino = magazzino;
   this.mirino = mirino;
@@ -308,28 +342,33 @@ function TorrettaDestra ( magazzino, caricatore, compressore, generatore, mirino
   this.compressore = compressore;
 }
 
+// Funzione per il caricamento del missile.
 TorrettaDestra.prototype.caricaMissile = function () {
   for ( i = 0; i < this.magazzino.length; ++i ) {
     this.caricatore.immagazzinaMissile( this.magazzino[i], this.generatore );
   }
 }
 
+// Funzione per lo spostamento del cannone.
 TorrettaDestra.prototype.mira = function ( x, y, energiaFornita ) {
   this.mirino.spostaMirino( x, y, energiaFornita, this.generatore );
 }
 
+// Funzione per lo sparo.
 TorrettaDestra.prototype.spara = function ( x, y ) {
 //###START_MODIFICABILE###
+  // Variabile contenente l'energia del compressore del gas di propulsione.
   var energiaCompressore = 80;
+  // Variabile contenente l'energia per lo spostamento del cannone.
   var energiaMirino = 50;
+  // Variabile contenente la pressione del carburante del missile.
   var pressioneCarburante = 20;
-  
+//###END_MODIFICABILE###
   var missile = this.caricatore.caricaProiettile( this.generatore );
   this.compressore.aumentaPressione( missile.combustibile, pressioneCarburante, 
     energiaCompressore, this.generatore );
   this.mira( x, y, energiaMirino );
   this.caricatore.innescaFuoco( missile, this.compressore, this.generatore );
-//###END_MODIFICABILE###
 }
 
 // test
