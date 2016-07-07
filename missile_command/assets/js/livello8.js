@@ -198,25 +198,36 @@ Livello8.prototype.esaminaCanaliRadio = function ( ) {
 // TAB 1
 
 /**********
+Benvenuto nel file di configurazione delle trasmissioni del sistema Hob-2000.
+Questo codice permette di impostare correttamente la trasmissione radio
+tra le diverse basi del fronte.
+È inoltre possibile modificare tale file per aggiungere funzioni di
+codifica e decodifica delle trasmissioni, semplicemente scrivendo
+il codice per le funzioni codificaSegnale() e decodificaSegnale().
 **********/
 
+// Classe del trasmettitore.
 function Trasmettitore ( canaleTrasmissione ) {
   this.canaleTrasmissione = canaleTrasmissione;
 }
 
+// Funzione di invio del messaggio.
+// Dato un identificatore del mittente, un messaggio ed un canale radio,
+// il testo viene inviato sul canale corretto.
 Trasmettitore.prototype.inviaMessaggio = function ( identificatoreRadio, messaggio, numeroCanale ) {
   var messaggioRadio = {
     radioIdentificatore: identificatoreRadio,
     testo: messaggio
-  }
-  
+  }  
   this.canaleTrasmissione[ numeroCanale ] = messaggioRadio;
 }
 
+// Funzione di ricezione del messaggio.
 Trasmettitore.prototype.riceviMessaggio = function ( identificatoreRadio, numeroCanale ) {
   return this.canaleTrasmissione[numeroCanale].testo;
 }
 
+// Funzione di trasmissione.
 var trasmissione = function ( canaleTrasmissione ) {
   var identificatoreRadio = "AX2";
   var messaggio = "[21:02] Parla base AX2, ci serve immediato aiuto, siamo sotto attacco!"
@@ -227,10 +238,9 @@ var trasmissione = function ( canaleTrasmissione ) {
   console.log( messaggio );
   trasmettitore.inviaMessaggio( identificatoreRadio, messaggio, numeroCanale );
   
-  // Devi scrivere questa funzione
+  // Le funzioni seguenti devi scriverle tu!
+  // /\/\/\ Gen. Ortiz /\/\/\
   codificaSegnale( canaleTrasmissione );
-  
-  // Devi scrivere questa funzione
   decodificaSegnale( canaleTrasmissione );
   
   var messaggioRicevuto = trasmettitore.riceviMessaggio( "BX5", 4 );
@@ -239,12 +249,21 @@ var trasmissione = function ( canaleTrasmissione ) {
 
 // TAB 2
 
+/**********
+Questo è il file per scrivere il codice delle funzioni di
+codifica e decodifica.
+Fanne buon uso.
+/\/\/\ Gen. Ortiz /\/\/\
+**********/
+
+// Funzione per la codifica del segnale radio.
 var codificaSegnale = function ( canaleTrasmissione ) {
 //###START_MODIFICABILE###
   // Codice da scrivere
 //###END_MODIFICABILE###
 }
 
+// Funzione per la decodifica del segnale radio.
 var decodificaSegnale = function ( canaleTrasmissione ) {
 //###START_MODIFICABILE###
   // Codice da scrivere
