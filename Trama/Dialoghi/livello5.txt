@@ -8,37 +8,37 @@ Salve, Zurlin.
 Zurlin
 Ciao caro. Non sei a parlare con il tuo bel generale?
 Simeoni
-Non è affar tuo.
+Non &#xE8; affar tuo.
 Zurlin
 Non mi sembra un buon modo per cominciare. Del resto, se sei qui, vuol dire che hai bisogno di me...
 Simeoni
-D'accordo, scusami. La vita del soldato spesso fa dimenticare le buone maniere. E la curiosità mi mette fretta.
+D&#x27;accordo, scusami. La vita del soldato spesso fa dimenticare le buone maniere. E la curiosit&#xE0; mi mette fretta.
 Zurlin
-Curiosità? Immaginavo... vuoi sapere da dove vengo vero? Vuoi sapere cosa si cela oltre buio del deserto, cosa vive oltre la vostra piccola galassia?
+Curiosit&#xE0;? Immaginavo... vuoi sapere da dove vengo vero? Vuoi sapere cosa si cela oltre buio del deserto, cosa vive oltre la vostra piccola galassia?
 Simeoni
-Diciamo che l'unico pregio di questa maledetta guerra è l'avermi fatto capire che l'universo è immenso... e noi non siamo che briciole davanti alla sua vastità.
+Diciamo che l&#x27;unico pregio di questa maledetta guerra &#xE8; l&#x27;avermi fatto capire che l&#x27;universo &#xE8; immenso... e noi non siamo che briciole davanti alla sua vastit&#xE0;.
 Zurlin
-Una buona risposta, caro. Del resto, la curiosità accomuna noi a voi. Facciamo così: mi stai simpatico, caro. Ho deciso che risponderò a tre delle tue domande. Tre sole. Null'altro.
+Una buona risposta, caro. Del resto, la curiosit&#xE0; accomuna noi a voi. Facciamo cos&#xEC;: mi stai simpatico, caro. Ho deciso che risponder&#xF2; a tre delle tue domande. Tre sole. Null&#x27;altro.
 Simeoni
 E tu cosa ci guadagni?
 Zurlin
 Diciamo che mi devi un favore.
 Simeoni
-D'accordo. Prima domanda: da dove vieni?
+D&#x27;accordo. Prima domanda: da dove vieni?
 Zurlin
-Dal pianeta Tronk, dall'altro capo del deserto. Lì la mia razza ha sempre vissuto, guardando le stelle come dèi e non come destinazioni. Una civiltà barbara, per dirla come voi terrestri. Poi, un secolo fa, abbiamo cominciato a sviluppare tecnologie sempre più avanzate, fino ad accorgerci che le stelle e l'universo erano immensi, ma esplorabili. Prossima domanda, caro.
+Dal pianeta Tronk, dall&#x27;altro capo del deserto. L&#xEC; la mia razza ha sempre vissuto, guardando le stelle come d&#xE8;i e non come destinazioni. Una civilt&#xE0; barbara, per dirla come voi terrestri. Poi, un secolo fa, abbiamo cominciato a sviluppare tecnologie sempre pi&#xF9; avanzate, fino ad accorgerci che le stelle e l&#x27;universo erano immensi, ma esplorabili. Prossima domanda, caro.
 Simeoni
-Un secolo solo per sviluppare armi e navi capaci di viaggiare a velocità ultraluce... come avete fatto?
+Un secolo solo per sviluppare armi e navi capaci di viaggiare a velocit&#xE0; ultraluce... come avete fatto?
 Zurlin
-Buona domanda, terrestre. Siete stati voi. Un secolo fa, raccontano le nostre storie, arrivarono navi terrestri dal cielo. Scappavano dalla miseria dei pianeti dell'orlo della vostra galassia... come Bastiani. Pianeti poveri e dimenticati dal governo. Masse di disperati hanno costruito navi ultraluce dai rottami ed hanno iniziato una seconda colonizzazione, questa volta pacifica, che ha portato all'unione dei nostri popoli. Un'unione che mi piace definire letterale: voi ci chiamate il Nemico, ma il termine corretto sarebbe... Ibridi. Siamo l'alba di una nuova razza, mezzi terrestri e mezzi tronk, che si sta affacciando nel vasto panorama dell'universo. E siamo curiosi e... spaventati.
+Buona domanda, terrestre. Siete stati voi. Un secolo fa, raccontano le nostre storie, arrivarono navi terrestri dal cielo. Scappavano dalla miseria dei pianeti dell&#x27;orlo della vostra galassia... come Bastiani. Pianeti poveri e dimenticati dal governo. Masse di disperati hanno costruito navi ultraluce dai rottami ed hanno iniziato una seconda colonizzazione, questa volta pacifica, che ha portato all&#x27;unione dei nostri popoli. Un&#x27;unione che mi piace definire letterale: voi ci chiamate il Nemico, ma il termine corretto sarebbe... Ibridi. Siamo l&#x27;alba di una nuova razza, mezzi terrestri e mezzi tronk, che si sta affacciando nel vasto panorama dell&#x27;universo. E siamo curiosi e... spaventati.
 Simeoni
-E perché combattete?
+E perch&#xE9; combattete?
 Zurlin
 Noi non volevamo attaccarvi. Stiamo scappando. Abbiamo provato a venire in pace ma... siete stati voi ad attaccarci, invece che accoglierci. In pieno stile terrestre.
 Simeoni
 Scappate da cosa?
 Zurlin
-Ah ah ah. Tre domande, umano. Non una di più. Ma voglio farti un regalo, caro. Sappi che non sei l'unico terrestre a conoscere questa storia.
+Ah ah ah. Tre domande, umano. Non una di pi&#xF9;. Ma voglio farti un regalo, caro. Sappi che non sei l&#x27;unico terrestre a conoscere questa storia.
 Simeoni
 Cosa?
 Zurlin
@@ -48,13 +48,13 @@ Simeoni
 Ortiz
 Eccoti, maggiore. Ho un compito da affidarti.
 Simeoni
-Signorsì, signore.
+Signors&#xEC;, signore.
 Ortiz
-La situazione delle torrette è ormai ingestibile. Come ben sai ogni batteria di tre torrette presenta anomalie che non sono più sostenibili. Il tuo compito sarà quello di prendere le parti migliori da ogni torretta e renderle tutte utilizzabili.
+La situazione delle torrette &#xE8; ormai ingestibile. Come ben sai ogni batteria di tre torrette presenta anomalie che non sono pi&#xF9; sostenibili. Il tuo compito sar&#xE0; quello di prendere le parti migliori da ogni torretta e renderle tutte utilizzabili.
 Simeoni
 Sissignore. Devo sapere altro?
 Ortiz
-Le torrette hanno tre componenti fondamentali. La prima è l'energia del compressore del gas, che si occupa dello sparo del missile; la seconda è l'energia destinata allo spostamento del cannone; la terza è la pressione del carburante. Questi tre valori devono essere esatti, cioè né troppo alti, né troppo bassi. Dando troppa energia, per esempio, si aumenterebbe la velocità di riscaldamento della torretta; abbassandola troppo si avrebbe un'esagerata lentezza da parte del meccanismo. Hai capito?
+Le torrette hanno tre componenti fondamentali. La prima &#xE8; l&#x27;energia del compressore del gas, che si occupa dello sparo del missile; la seconda &#xE8; l&#x27;energia destinata allo spostamento del cannone; la terza &#xE8; la pressione del carburante. Questi tre valori devono essere esatti, cio&#xE8; n&#xE9; troppo alti, n&#xE9; troppo bassi. Dando troppa energia, per esempio, si aumenterebbe la velocit&#xE0; di riscaldamento della torretta; abbassandola troppo si avrebbe un&#x27;esagerata lentezza da parte del meccanismo. Hai capito?
 Simeoni
 Sissignore.
 Ortiz
@@ -63,120 +63,120 @@ Bene. Buona fortuna, maggiore.
 OBIETTIVO - Tab 1
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.
 Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:
-- l'energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
-- l'energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
+- l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
+- l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
 - la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.
-Queste tre variabili devono contenere il valore corretto, dunque né troppo alto, né troppo basso. Alcune torrette hanno già il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
+Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
 Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.
-L'obiettivo è comprendere quali dei valori della torretta centrale devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
+L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta centrale devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
 I valori corretti per le torrette sono quelli intermedi.
 Prendendo dunque i tre valori della variabile energiaCompressore, che sono:
 - 5, per la torretta centrale;
 - 30, per la torretta sinistra;
 - 80, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:
 var energiaCompressore = 30;
 Prendendo invece i tre valori della variabile energiaMirino, che sono:
 - 1, per la torretta centrale;
 - 10, per la torretta sinistra;
 - 50, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:
 var energiaMirino = 10;
 Prendendo infine i tre valori della variabile pressioneCarburante, che sono:
 - 15, per la torretta centrale;
 - 5, per la torretta sinistra;
 - 20, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
 Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:
 var pressioneCarburante = 10;
 
 OBIETTIVO - Tab 2
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.
 Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:
-- l'energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
-- l'energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
+- l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
+- l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
 - la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.
-Queste tre variabili devono contenere il valore corretto, dunque né troppo alto, né troppo basso. Alcune torrette hanno già il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
+Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
 Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.
-L'obiettivo è comprendere quali dei valori della torretta sinistra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
+L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta sinistra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
 I valori corretti per le torrette sono quelli intermedi.
 Prendendo dunque i tre valori della variabile energiaCompressore, che sono:
 - 5, per la torretta centrale;
 - 30, per la torretta sinistra;
 - 80, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:
 var energiaCompressore = 30;
 Prendendo invece i tre valori della variabile energiaMirino, che sono:
 - 1, per la torretta centrale;
 - 10, per la torretta sinistra;
 - 50, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:
 var energiaMirino = 10;
 Prendendo infine i tre valori della variabile pressioneCarburante, che sono:
 - 15, per la torretta centrale;
 - 5, per la torretta sinistra;
 - 20, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
 Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:
 var pressioneCarburante = 10;
 
 OBIETTIVO - Tab 3
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.
 Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:
-- l'energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
-- l'energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
+- l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
+- l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
 - la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.
-Queste tre variabili devono contenere il valore corretto, dunque né troppo alto, né troppo basso. Alcune torrette hanno già il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
+Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
 Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.
-L'obiettivo è comprendere quali dei valori della torretta destra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
+L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta destra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
 I valori corretti per le torrette sono quelli intermedi.
 Prendendo dunque i tre valori della variabile energiaCompressore, che sono:
 - 5, per la torretta centrale;
 - 30, per la torretta sinistra;
 - 80, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:
 var energiaCompressore = 30;
 Prendendo invece i tre valori della variabile energiaMirino, che sono:
 - 1, per la torretta centrale;
 - 10, per la torretta sinistra;
 - 50, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:
 var energiaMirino = 10;
 Prendendo infine i tre valori della variabile pressioneCarburante, che sono:
 - 15, per la torretta centrale;
 - 5, per la torretta sinistra;
 - 20, per la torretta destra;
-è necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
 Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:
 var pressioneCarburante = 10;
 
 MANUALE
-Preso un oggetto, è possibile accedere alle sue caratteristiche. Si prenda come esempio la classe Soldato vista in precedenza.
+Preso un oggetto, &#xE8; possibile accedere alle sue caratteristiche. Si prenda come esempio la classe Soldato vista in precedenza.
 function Soldato ( matricola, arma, battaglione ) {
-	this.matricola = matricola;
-	this.arma = arma;
-	this.battaglione = battaglione;
+&#x9;this.matricola = matricola;
+&#x9;this.arma = arma;
+&#x9;this.battaglione = battaglione;
 }
 Inizializziamo tre soldati di esempio:
-var soldatoFanteria = new Soldato ( 1, "fucile al plasma", "UTF-8, 42 battaglione" );
-var soldatoArtiglieria = new Soldato ( 2, "granate a rimbalzo", "UTF-16, 30 battaglione" );
-var soldatoScelto = new Soldato ( 3, "cannoni sonici", "UTF-32, 1 battaglione" );
-Per accedere alla caratteristica arma di un soldato, è necessario utilizzare un'istruzione come la seguente:
+var soldatoFanteria = new Soldato ( 1, &#x22;fucile al plasma&#x22;, &#x22;UTF-8, 42 battaglione&#x22; );
+var soldatoArtiglieria = new Soldato ( 2, &#x22;granate a rimbalzo&#x22;, &#x22;UTF-16, 30 battaglione&#x22; );
+var soldatoScelto = new Soldato ( 3, &#x22;cannoni sonici&#x22;, &#x22;UTF-32, 1 battaglione&#x22; );
+Per accedere alla caratteristica arma di un soldato, &#xE8; necessario utilizzare un&#x27;istruzione come la seguente:
 var armaSoldatoFanteria = soldatoFanteria.arma;
-La variabile armaSoldatoFanteria contiene ora la stringa "fucile al plasma". Ovviamente il meccanismo per estrarre le altre caratteristiche è uguale:
+La variabile armaSoldatoFanteria contiene ora la stringa &#x22;fucile al plasma&#x22;. Ovviamente il meccanismo per estrarre le altre caratteristiche &#xE8; uguale:
 var matricolaSoldatoArtiglieria = soldatoArtiglieria.matricola;
-conterrà 2, mentre
+conterr&#xE0; 2, mentre
 var battaglioneSoldatoScelto = soldatoScelto.battaglione;
-conterrà "UTF-32, 1 battaglione".
+conterr&#xE0; &#x22;UTF-32, 1 battaglione&#x22;.
 
 DIALOGO FINALE
 Ortiz
@@ -184,24 +184,24 @@ Ottimo lavoro, maggiore.
 Simeoni
 Grazie, generale. Si sa niente della detenuta?
 Ortiz
-Stai attento con la curiosità. Anche se in questo caso è giustificabile.
+Stai attento con la curiosit&#xE0;. Anche se in questo caso &#xE8; giustificabile.
 Simeoni
 Chiedo scusa, signore.
 Ortiz
-Comunque no, si è chiusa in uno strano silenzio. Mi inquieta, quella... quella donna. Ha una calma glaciale, anche per essere un soldato. È tutto, Simeoni.
+Comunque no, si &#xE8; chiusa in uno strano silenzio. Mi inquieta, quella... quella donna. Ha una calma glaciale, anche per essere un soldato. &#xC8; tutto, Simeoni.
 Simeoni
 ...
 Prosdocimo
-Se n'è andato? Il generale?
+Se n&#x27;&#xE8; andato? Il generale?
 Simeoni
-Sì, Prosdocimo.
+S&#xEC;, Prosdocimo.
 Prosdocimo
-Eh eh eh... non mi piace quell'uomo. Ieri l'ho sentito parlare per ore e, quando è uscito dalla stanza, sono entrato.
+Eh eh eh... non mi piace quell&#x27;uomo. Ieri l&#x27;ho sentito parlare per ore e, quando &#xE8; uscito dalla stanza, sono entrato.
 Simeoni
-Prosdocimo devi stare attento. L'ultima volta mi ha quasi sbattuto davanti alla corte marziale, a causa della nostra curiosità.
+Prosdocimo devi stare attento. L&#x27;ultima volta mi ha quasi sbattuto davanti alla corte marziale, a causa della nostra curiosit&#xE0;.
 Prosdocimo
 Tranquillo. Posso entrare nel suo ufficio. Del resto, faccio le pulizie. Eh eh eh.
 Simeoni
 Non sei molto credibile come uomo delle pulizie. Un giorno dovrai raccontarmi la tua storia.
 Prosdocimo
-Ti prometto che lo farò. Un giorno... eh eh eh. Comunque, il tuo generale stava parlando da solo. Ha parlato per ore, come ti ho detto. Ma dalla stanza è uscito solo lui. E non ha telefoni nella sua stanza, né ricevitori...
+Ti prometto che lo far&#xF2;. Un giorno... eh eh eh. Comunque, il tuo generale stava parlando da solo. Ha parlato per ore, come ti ho detto. Ma dalla stanza &#xE8; uscito solo lui. E non ha telefoni nella sua stanza, n&#xE9; ricevitori...

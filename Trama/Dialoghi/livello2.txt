@@ -1,20 +1,18 @@
-
-
 LIVELLO 2: Il pianeta misterioso
 
 DIALOGO INIZIALE
 Ortiz
 Capitano, le modifiche che hai apportato al sistema si sono rivelate inutili! Possiamo sparare e puntare, ma i missili non raggiungono correttamente il bersaglio! Hai qualche giustificazione?
 Simeoni
-Signore, ho fatto solo quello che mi &egrave stato chiesto, cio&egrave sbloccare il sistema antimissili. Se ci sono da apportare altre modifiche al codice sorgente lo far&ograve, ma mi servirebbe un punto preciso dal quale partire...
+Signore, ho fatto solo quello che mi &#xE8; stato chiesto, cio&#xE8; sbloccare il sistema antimissili. Se ci sono da apportare altre modifiche al codice sorgente lo far&#xF2;, ma mi servirebbe un punto preciso dal quale partire...
 Ortiz
 Stai pretendendo troppo, capitano. Siamo al fronte, non a scuola. Devi cavartela da solo! E devi stare attento, oppure la corte marziale potrebbe sentire il tuo nome.
 Simeoni
 Ma, signore...
 Ortiz
-Niente ma! Ora vai subito alla sala di comando! &Egrave un ordine!
+Niente ma! Ora vai subito alla sala di comando! &#xC8; un ordine!
 Simeoni
-Signors&igrave, signore.
+Signors&#xEC;, signore.
 Simeoni
 ...
 Simeoni
@@ -22,76 +20,76 @@ E tu chi saresti? Stavi origliando?
 Prosdocimo
 Sembrava parecchio arrabbiato il generale, eh eh eh...
 Simeoni
-Allora stavi origliando! Spiegami chi sei e forse non dir&ograve al generale che ci stavi ascoltando.
+Allora stavi origliando! Spiegami chi sei e forse non dir&#xF2; al generale che ci stavi ascoltando.
 Prosdocimo
 Prosdocimo, al tuo servizio! Eh eh eh...
 Simeoni
 Ah ma io ti conosco! Sei il vecchio che si occupa delle pulizie qua al quartier generale.
 Prosdocimo
-Esattamente! E ho le orecchie ancora buone, nonostante l'et&agrave. E forse so pure come aiutarti.
+Esattamente! E ho le orecchie ancora buone, nonostante l&#x27;et&#xE0;. E forse so pure come aiutarti.
 Simeoni
 Tu? Un povero vecchio? Ma non farmi ridere.
 Prosdocimo
-Eh eh eh non hai tutti i torti. Ma ti ripeto, conosco molte cose. Per esempio: sai che sul pianeta Bastiani soffia un vento diverso dal vento che soffia sulla Terra? E possiede una forza gravitazionale otto volte pi&ugrave potente di quella presente sul pianeta Colombre? Le armi lo sanno...
+Eh eh eh non hai tutti i torti. Ma ti ripeto, conosco molte cose. Per esempio: sai che sul pianeta Bastiani soffia un vento diverso dal vento che soffia sulla Terra? E possiede una forza gravitazionale otto volte pi&#xF9; potente di quella presente sul pianeta Colombre? Le armi lo sanno...
 Simeoni
 Spiegati meglio, ti ascolto.
 Prosdocimo
-Ecco, bravo. Le armi hanno dei file di configurazione che impostano la forza di sparo e la calibrazione del mirino in base al pianeta su cui si trovano. Devi modificare quei file: probabilmente le armi funzionano, ma sparano in modo errato perch&eacute pensano di essere su qualche altro pianeta, come Buzzati o Buttafuoco...
+Ecco, bravo. Le armi hanno dei file di configurazione che impostano la forza di sparo e la calibrazione del mirino in base al pianeta su cui si trovano. Devi modificare quei file: probabilmente le armi funzionano, ma sparano in modo errato perch&#xE9; pensano di essere su qualche altro pianeta, come Buzzati o Buttafuoco...
 Simeoni
 Grazie, vec... Prosdocimo. Spero che queste informazioni mi vengano utili.
 Prosdocimo
-Lo saranno, giovane capitano. Parola di Prosdocimo! Per&ograve facciamo cos&igrave: non dire al tuo generale che ti ho aiutato e che hai utilizzato questo file. Eh eh eh...
+Lo saranno, giovane capitano. Parola di Prosdocimo! Per&#xF2; facciamo cos&#xEC;: non dire al tuo generale che ti ho aiutato e che hai utilizzato questo file. Eh eh eh...
 
 OBIETTIVO - Tab 1
-L'obiettivo &egrave quello di sbloccare la calibrazione del mirino. Sar&agrave dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>. Fatto questo &egrave necessario entrare nella parte di codice raggiungibile dall'<i>else</i> dell'struzione <i>if-else</i>, modificando il confronto tra le parentesi tonde che seguono la parola chiave <i>if</i>: tutto questo per inserire nella variabile <tt>_codicePianeta</tt> il codice del pianeta Bastiani e non quello di default.
+L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino. Sar&#xE0; dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>. Fatto questo &#xE8; necessario entrare nella parte di codice raggiungibile dall&#x27;<i>else</i> dell&#x27;struzione <i>if-else</i>, modificando il confronto tra le parentesi tonde che seguono la parola chiave <i>if</i>: tutto questo per inserire nella variabile <tt>_codicePianeta</tt> il codice del pianeta Bastiani e non quello di default.
 AIUTI
-Come prima cosa &egrave necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>, nel seguente modo:
+Come prima cosa &#xE8; necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>, nel seguente modo:
 <pre><code>var sbloccoCalibrazione = true;
-</code></pre>
-Il secondo passo prevede di cambiare la condizione dell'<i>if</i>, rendedola come segue:
+</code><pre>
+Il secondo passo prevede di cambiare la condizione dell&#x27;<i>if</i>, rendedola come segue:
 <pre><code>if ( accessoConfigurazionePianeti === false )
-</code></pre>
+</code><pre>
 
 OBIETTIVO - Tab 2
-L'obiettivo &egrave quello di modificare correttamente il grosso blocco di istruzioni <i>if-else if</i>, in modo che venga eseguito il codice corretto per il pianeta Bastiani.
+L&#x27;obiettivo &#xE8; quello di modificare correttamente il grosso blocco di istruzioni <i>if-else if</i>, in modo che venga eseguito il codice corretto per il pianeta Bastiani.
 AIUTI
-Per avere la corretta configurazione di puntamento e sparo &egrave necessario cambiare il blocco di istruzioni <i>if-else if</i>: il modo migliore &egrave quello di sostituire il codice di Bastiani con 6, dunque inserire prima del primo <i>if</i> la seguente istruzione:
+Per avere la corretta configurazione di puntamento e sparo &#xE8; necessario cambiare il blocco di istruzioni <i>if-else if</i>: il modo migliore &#xE8; quello di sostituire il codice di Bastiani con 6, dunque inserire prima del primo <i>if</i> la seguente istruzione:
 <pre><code>_codicePianeta = 6;
-</code></pre>
+</code><pre>
 
 MANUALE
-Un altro punto fondamentale nei codici sorgenti del sistema antimissilistico Hob-2000 &egrave rappresentato dalle <b>istruzioni di controllo</b>.
-Un'istruzione di controllo si basa su una nuova tipologia di valore che pu&ograve essere inserito in una variabile, chiamato <b>booleano</b>.
-Una variabile booleana pu&ograve assumere due valori differenti:
+Un altro punto fondamentale nei codici sorgenti del sistema antimissilistico Hob-2000 &#xE8; rappresentato dalle <b>istruzioni di controllo</b>.
+Un&#x27;istruzione di controllo si basa su una nuova tipologia di valore che pu&#xF2; essere inserito in una variabile, chiamato <b>booleano</b>.
+Una variabile booleana pu&#xF2; assumere due valori differenti:
 <li> <i>true</i>, se essa rappresenta un concetto vero;</li>
 <li> <i>false</i>, se essa rappresenta un concetto falso.</li> <br>
-Per rappresentare il vero e il falso &egrave possibile utilizzare sia le parole chiave appropriate (rispettivamente <i>true</i> e <i>false</i>), oppure diversi tipi di operatori:
-<li> <tt>a === b</tt>, vero se a &egrave uguale a b;</li>
-<li> <tt>a !== b</tt>, vero se a &egrave diverso da b;</li>
-<li> <tt>a &#62 b</tt>, vero se a &egrave maggiore di b;</li>
-<li> <tt>a &#60 b</tt>, vero se a &egrave minore di b;</li>
-<li> <tt>a &#62= b</tt>, vero se a &egrave maggiore o uguale di b;</li>
-<li> <tt>a &#60= b</tt>, vero se a &egrave minore o uguale a b;</li>
+Per rappresentare il vero e il falso &#xE8; possibile utilizzare sia le parole chiave appropriate (rispettivamente <i>true</i> e <i>false</i>), oppure diversi tipi di operatori:
+<li> <tt>a === b</tt>, vero se a &#xE8; uguale a b;</li>
+<li> <tt>a !== b</tt>, vero se a &#xE8; diverso da b;</li>
+<li> <tt>a &#x3E; b</tt>, vero se a &#xE8; maggiore di b;</li>
+<li> <tt>a &#x3C; b</tt>, vero se a &#xE8; minore di b;</li>
+<li> <tt>a &#x3E;= b</tt>, vero se a &#xE8; maggiore o uguale di b;</li>
+<li> <tt>a &#x3C;= b</tt>, vero se a &#xE8; minore o uguale a b;</li>
 <li> <tt>!a</tt>, vero se a ha come valore <i>false</i>.</li> <br>
 Esempi di variabile contenente un valore vero possono essere:
-<pre><code>var b1 = 5 &#62 4;
+<pre><code>var b1 = 5 &#x3E; 4;
 var b2 = true;
 var b3 = !false;
-</code></pre>
+</code><pre>
 Esempi di variabile che contengono un valore false possono essere:
-<pre><code>var b4 = 3 &#62= 6;
+<pre><code>var b4 = 3 &#x3E;= 6;
 var b5 = false;
 var b6 = !true;
-</code></pre>
+</code><pre>
 Le istruzioni di controllo hanno bisogno delle variabili booleane. Esistono tre istruzioni di controllo.
-La prima &egrave identificata dalla parola chiave <b>if</b>. Eccone un esempio:
+La prima &#xE8; identificata dalla parola chiave <b>if</b>. Eccone un esempio:
 <pre><code>var x = 0;
 if ( a === true ) {
   var x = 1;
 }
-</code></pre>
-La variabile <tt>x</tt> parte con il valore 0 al proprio interno. A questo punto se <tt>a</tt> &egrave una variabile booleana che contiene un valore vero, allora <tt>x</tt> prender&agrave il valore 1 al proprio interno; altrimenti, cio&egrave se <tt>a</tt> &egrave falsa, <tt>x</tt> non verr&agrave aggiornata perch&eacute la parte di codice all'interno delle parentesi graffe non verr&agrave eseguita.
-Come si pu&ograve notare, le istruzioni di controllo sono semafori che, in base al valore che si ha all'interno delle parentesi tonde, decidono l'andamento del codice.
+</code><pre>
+La variabile <tt>x</tt> parte con il valore 0 al proprio interno. A questo punto se <tt>a</tt> &#xE8; una variabile booleana che contiene un valore vero, allora <tt>x</tt> prender&#xE0; il valore 1 al proprio interno; altrimenti, cio&#xE8; se <tt>a</tt> &#xE8; falsa, <tt>x</tt> non verr&#xE0; aggiornata perch&#xE9; la parte di codice all&#x27;interno delle parentesi graffe non verr&#xE0; eseguita.
+Come si pu&#xF2; notare, le istruzioni di controllo sono semafori che, in base al valore che si ha all&#x27;interno delle parentesi tonde, decidono l&#x27;andamento del codice.
 Una seconda tipologia di istruzione di controllo si basa sulle parole chiave <b>if</b> ed <b>else</b>. Eccone un esempio:
 <pre><code>var x;
 if ( a === false ) {
@@ -99,24 +97,24 @@ if ( a === false ) {
 } else {
   x = 0;
 }
-</code></pre>
-Questa istruzione descrive lo stesso meccanismo visto nell'esempio precedente: se la variabile <tt>a</tt> &egrave falsa, <tt>x</tt> conterr&agrave il valore 1; altrimenti (<i>else</i>, in inglese), conterr&agrave il valore 0.
-L'ultima istruzione di controllo da comprendere &egrave quella chiamata <b>if-else if</b>. Eccone un esempio:
+</code><pre>
+Questa istruzione descrive lo stesso meccanismo visto nell&#x27;esempio precedente: se la variabile <tt>a</tt> &#xE8; falsa, <tt>x</tt> conterr&#xE0; il valore 1; altrimenti (<i>else</i>, in inglese), conterr&#xE0; il valore 0.
+L&#x27;ultima istruzione di controllo da comprendere &#xE8; quella chiamata <b>if-else if</b>. Eccone un esempio:
 <pre><code>var x = 0;
 if ( a === false ) {
   x = 1;
-} else if ( b &#62= 4 ) {
+} else if ( b &#x3E;= 4 ) {
   x = 2;
 }
-</code></pre>
-Questa istruzione descrive un meccanismo leggermente differente da quello visto in precedenza. Se la variabile <tt>a</tt> &egrave falsa, allora <tt>x</tt> conterr&agrave il valore 1; altrimenti, cio&egrave se <tt>a</tt> &egrave vera, si controlla se <tt>b</tt> &egrave maggiore o uguale di 4. Se ci&ograve &egrave vero, allora <tt>x</tt> conterr&agrave il valore 2, altrimenti, cio&egrave se <tt>b</tt> &egrave minore di 4, non si fa nulla.
+</code><pre>
+Questa istruzione descrive un meccanismo leggermente differente da quello visto in precedenza. Se la variabile <tt>a</tt> &#xE8; falsa, allora <tt>x</tt> conterr&#xE0; il valore 1; altrimenti, cio&#xE8; se <tt>a</tt> &#xE8; vera, si controlla se <tt>b</tt> &#xE8; maggiore o uguale di 4. Se ci&#xF2; &#xE8; vero, allora <tt>x</tt> conterr&#xE0; il valore 2, altrimenti, cio&#xE8; se <tt>b</tt> &#xE8; minore di 4, non si fa nulla.
 
 DIALOGO FINALE
 Simeoni
 Capitano Simeoni a rapporto signore.
 Ortiz
-Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sar&ograve per sempre su questo pianeta ed &egrave giusto che tu sappia anche cavartela da solo. Ho solo una curiosit&agrave: come sei riuscito a risolvere questo problema? Devo ammettere che sono stato colpito...
+Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sar&#xF2; per sempre su questo pianeta ed &#xE8; giusto che tu sappia anche cavartela da solo. Ho solo una curiosit&#xE0;: come sei riuscito a risolvere questo problema? Devo ammettere che sono stato colpito...
 Simeoni
-Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto pi&ugrave forte. Ma non voglio annoiare nessuno, signore.
+Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto pi&#xF9; forte. Ma non voglio annoiare nessuno, signore.
 Ortiz
-Comunque ottimo lavoro capitano. Sei congedato, puoi andare a dormire. Domani un'altra lunga giornata ci attende, nell'eterna notte di Bastiani... 
+Comunque ottimo lavoro capitano. Sei congedato, puoi andare a dormire. Domani un&#x27;altra lunga giornata ci attende, nell&#x27;eterna notte di Bastiani... 

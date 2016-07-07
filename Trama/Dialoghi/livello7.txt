@@ -6,7 +6,7 @@ DIALOGO INIZIALE
 Ortiz
 Come sta il mio prigioniero preferito?
 Simeoni
-Risparmia l'umorismo, Ortiz.
+Risparmia l&#x27;umorismo, Ortiz.
 Ortiz
 Generale Ortiz. Almeno per oggi.
 Simeoni
@@ -14,9 +14,9 @@ Che significa?
 Ortiz
 Significa che per mantenere la mia bella faccia pulita da ogni sospetto, devo tirarti fuori da questa prigione, per oggi. Abbiamo bisogno di un tecnico informatico e, a detta dei miei uomini, sei il migliore.
 Simeoni
-E perché dovrei farlo? Non ti devo nulla. Anzi, mi hai sbattuto in galera e hai tradit...
+E perch&#xE9; dovrei farlo? Non ti devo nulla. Anzi, mi hai sbattuto in galera e hai tradit...
 Ortiz
-Taci! Devi farlo, fidati. Non vorrai che qualche vecchio inserviente scivoli durante la pulizia di un corridoio e si faccia male, spero. Inoltre c'è quella faccenda del tuo tradimento...
+Taci! Devi farlo, fidati. Non vorrai che qualche vecchio inserviente scivoli durante la pulizia di un corridoio e si faccia male, spero. Inoltre c&#x27;&#xE8; quella faccenda del tuo tradimento...
 Simeoni
 Maledetto! Sono costretto ad ascoltarti.
 Ortiz
@@ -28,13 +28,13 @@ Ciao caro.
 Simeoni
 Cosa dobbiamo fare? Un nuovo attacco ai loro sistemi informatici?
 Ortiz
-Magari. Purtroppo dopo l'ultima volta hanno alzato il livello di sicurezza. Non sappiamo più come entrare. In ogni caso, Zurlin ha trovato una cosa.
+Magari. Purtroppo dopo l&#x27;ultima volta hanno alzato il livello di sicurezza. Non sappiamo pi&#xF9; come entrare. In ogni caso, Zurlin ha trovato una cosa.
 Zurlin
 Il Nemico aveva sviluppato un nuovo tipo di missili, top secret.
 Ortiz
 ... e abbiamo intercettato una loro conversazione. Stanno per utilizzarli.
 Zurlin
-Sono composti da una particolare testata in grado di sdoppiarsi. Sono riuscita a... ricordarmi come fossero fatti. Dobbiamo implementare questa tecnologia nelle torrette dell'UTF-8.
+Sono composti da una particolare testata in grado di sdoppiarsi. Sono riuscita a... ricordarmi come fossero fatti. Dobbiamo implementare questa tecnologia nelle torrette dell&#x27;UTF-8.
 Simeoni
 Va bene, cominciamo.
 
@@ -42,19 +42,19 @@ OBIETTIVO - Tab 2
 Ci sono due classi:
 - MissileTestataMultipla: missile alieno che si sdoppia;
 - MissileStandard: missile di ordinanza terrestre.
-L'obiettivo è inserire la tecnologia aliena dello sdoppiamento dei missili nella nostra classe MissileStandard.
-Come si può notare, le due classi hanno una struttura comune: tra di esse l'unica differenza sta nei nomi delle caratteristiche e delle  funzioni.
-Per spostare la tecnologia dalla classe MissileTestataMultipla è necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalità di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.
+L&#x27;obiettivo &#xE8; inserire la tecnologia aliena dello sdoppiamento dei missili nella nostra classe MissileStandard.
+Come si pu&#xF2; notare, le due classi hanno una struttura comune: tra di esse l&#x27;unica differenza sta nei nomi delle caratteristiche e delle  funzioni.
+Per spostare la tecnologia dalla classe MissileTestataMultipla &#xE8; necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalit&#xE0; di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.
 AIUTI
-Come prima cosa è necessario modificare la funzione MissileStandard.prototype.miraBersaglio(), coerentemente con la funzione MissileTestataMultipla.prototype.identificaObiettivo(): al posto delle righe
+Come prima cosa &#xE8; necessario modificare la funzione MissileStandard.prototype.miraBersaglio(), coerentemente con la funzione MissileTestataMultipla.prototype.identificaObiettivo(): al posto delle righe
 var coordinateEsplosione = { esplosioneX: x, esplosioneY: y };
 this.agganciaObiettivo( bersaglio );
 return coordinateEsplosione.esplosioneY;
-andranno inserite le seguenti righe, che permettono di calcolare l'altezza di sdoppiamento del missile
+andranno inserite le seguenti righe, che permettono di calcolare l&#x27;altezza di sdoppiamento del missile
 var altezza = this.calcolaAltezzaSdoppiamento( x, y );
 this.agganciaObiettivo( bersaglio );
 return altezza;
-Successivamente sarà necessario modificare la funzione MissileStandard.prototype.esplodi(), coerentemente con la funzione MissileTestataMultipla.prototype.detonazione(), cambiando dunque le righe
+Successivamente sar&#xE0; necessario modificare la funzione MissileStandard.prototype.esplodi(), coerentemente con la funzione MissileTestataMultipla.prototype.detonazione(), cambiando dunque le righe
 var x = this.bersaglioAgganciato.x;
 var y = this.bersaglioAgganciato.y;
 return ( [ new FrammentoMissile( x, y ) ] );
@@ -67,27 +67,27 @@ frammentiMissile.push( frammentoMissile2 );
 return frammentiMissile;
 
 MANUALE
-Ogni classe può essere associata ad una serie di funzioni. Per essere più chiari, prendiamo la classe Arma:
+Ogni classe pu&#xF2; essere associata ad una serie di funzioni. Per essere pi&#xF9; chiari, prendiamo la classe Arma:
 function Arma () {
-	this.numeroMunizioni = 10;
+&#x9;this.numeroMunizioni = 10;
 }
-Un'arma può avere diverse funzionalità, per esempio la ricarica e lo sparo:
+Un&#x27;arma pu&#xF2; avere diverse funzionalit&#xE0;, per esempio la ricarica e lo sparo:
 Arma.prototype.ricarica = function () {
-	this.numeroMunizioni = 10;
+&#x9;this.numeroMunizioni = 10;
 }
 Arma.prototype.spara = function () {
-	if ( this.numeroMunizioni === 0 ) {
-		this.ricarica();
-	}
-	this.numeroMunizioni--;
+&#x9;if ( this.numeroMunizioni === 0 ) {
+&#x9;&#x9;this.ricarica();
+&#x9;}
+&#x9;this.numeroMunizioni--;
 }
-Queste due funzioni sono molto semplici. La prima re-imposta il numero di munizioni al valore iniziale di 10. La seconda controlla il numero di munizioni: se è uguale a 0, allora effettua una ricarica, poi spara; altrimenti spara, decrementando il numero di munizioni.
+Queste due funzioni sono molto semplici. La prima re-imposta il numero di munizioni al valore iniziale di 10. La seconda controlla il numero di munizioni: se &#xE8; uguale a 0, allora effettua una ricarica, poi spara; altrimenti spara, decrementando il numero di munizioni.
 Una funzione propria ad una classe viene indicata con la parola chiave prototype.
 Osserviamo il meccanismo, prendendo un oggetto di classe Arma:
 var cannone = new Arma();
 cannone.spara();
 var munizioniRimaste = cannone.numeroMunizioni.
-La variabile munizioniRimaste contiene il valore 9, poiché la funzione di sparo ha determinato un decremento del numeroMunizioni all'interno dell'oggetto cannone.
+La variabile munizioniRimaste contiene il valore 9, poich&#xE9; la funzione di sparo ha determinato un decremento del numeroMunizioni all&#x27;interno dell&#x27;oggetto cannone.
 
 DIALOGO FINALE
 Ortiz
@@ -97,25 +97,25 @@ Simeoni
 Prosdocimo
 Se ne sono andati tutti?
 Simeoni
-Prosdocimo! Devi stare attento, è pieno di telecamere.
+Prosdocimo! Devi stare attento, &#xE8; pieno di telecamere.
 Prosdocimo
 Lo so. Ma mentre pulivo la sala di controllo, potrebbe essermi scivolato del detersivo per pavimenti sulle prese delle telecamere, eh eh eh...
 Simeoni
 Ah ah ah! Sei un diavolo, Prosdocimo.
 Prosdocimo
-Eh eh eh. Sono qua per mantenere una promessa. Forse il tempo che mi rimane in questa base è agli sgoccioli...
+Eh eh eh. Sono qua per mantenere una promessa. Forse il tempo che mi rimane in questa base &#xE8; agli sgoccioli...
 Simeoni
 Non essere pessimista, Prosdocimo.
 Prosdocimo
-Sono realista, eh eh eh. Comunque, è ora che tu sappia chi sono io.
+Sono realista, eh eh eh. Comunque, &#xE8; ora che tu sappia chi sono io.
 Simeoni
 Sei sicuro di volermelo dire?
 Prosdocimo
-Sei un bravo ragazzo, Simeoni. Mi ricordi tanto un giovane tecnico giunto su Bastiani tanti anni fa. All'epoca avevo vent'anni, appena uscito dalla Scuola degli ufficiali tecnici.
+Sei un bravo ragazzo, Simeoni. Mi ricordi tanto un giovane tecnico giunto su Bastiani tanti anni fa. All&#x27;epoca avevo vent&#x27;anni, appena uscito dalla Scuola degli ufficiali tecnici.
 Simeoni
 Scuola degli ufficiali tecnici? Mai sentita.
 Prosdocimo
-Ovviamente. Non esiste più, è stata cancellata pochi anni dopo. Comunque, appena arrivato qui feci la conoscenza di Rusa, un anziano programmatore che lavorava qua. Al tempo ero già un ficcanaso, eh eh eh. Rusa mi insegnò un linguaggio ormai perduto.
+Ovviamente. Non esiste pi&#xF9;, &#xE8; stata cancellata pochi anni dopo. Comunque, appena arrivato qui feci la conoscenza di Rusa, un anziano programmatore che lavorava qua. Al tempo ero gi&#xE0; un ficcanaso, eh eh eh. Rusa mi insegn&#xF2; un linguaggio ormai perduto.
 Simeoni
 Il JS?
 Prosdocimo
@@ -123,11 +123,11 @@ Ovviamente. Per questo so diverse cose e odio Ortiz eh eh eh.
 Simeoni
 Cosa sai dirmi di lui?
 Prosdocimo
-Ero già qua quando è arrivato. Un giovane brillante e scavezzacollo. Tornò da una missione segreta, che prevedeva il primo atterraggio umano al di là del deserto... tornò solo lui. Raccontò di un massacro degli uomini da parte di una razza aliena e che lui era l'unico sopravvissuto. Si prese una medaglia e una promozione. Da quel giorno non fu più lo stesso però... Ortiz nasconde un segreto, ed intendo scoprirlo.
+Ero gi&#xE0; qua quando &#xE8; arrivato. Un giovane brillante e scavezzacollo. Torn&#xF2; da una missione segreta, che prevedeva il primo atterraggio umano al di l&#xE0; del deserto... torn&#xF2; solo lui. Raccont&#xF2; di un massacro degli uomini da parte di una razza aliena e che lui era l&#x27;unico sopravvissuto. Si prese una medaglia e una promozione. Da quel giorno non fu pi&#xF9; lo stesso per&#xF2;... Ortiz nasconde un segreto, ed intendo scoprirlo.
 Simeoni
-Forse posso aiutarti. È in combutta con gli Ibridi.
+Forse posso aiutarti. &#xC8; in combutta con gli Ibridi.
 Prosdocimo
-Allora la leggenda è vera... eh eh eh. Speravo di vivere abbastanza a lungo per accertarmene.
+Allora la leggenda &#xE8; vera... eh eh eh. Speravo di vivere abbastanza a lungo per accertarmene.
 Simeoni
 Arriva qualcuno! Vattene, Prosdocimo!
 Prosdocimo

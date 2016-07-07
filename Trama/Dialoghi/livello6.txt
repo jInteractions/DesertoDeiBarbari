@@ -4,9 +4,9 @@ LIVELLO 6: La telecamera
 
 DIALOGO INIZIALE
 Prosdocimo
-Il generale non si è fatto vedere nemmeno stamattina? Eh eh eh...
+Il generale non si &#xE8; fatto vedere nemmeno stamattina? Eh eh eh...
 Simeoni
-Purtroppo no, caro Prosdocimo. Stavo pensando infatti che senza ordini sono un po' limitato...
+Purtroppo no, caro Prosdocimo. Stavo pensando infatti che senza ordini sono un po&#x27; limitato...
 Prosdocimo
 Beh potrei aver sentito qualcosa in mensa, oggi a pranzo...
 Simeoni
@@ -14,28 +14,28 @@ Smettila con i tuoi giochetti e parla.
 Prosdocimo
 I nuovi tecnici, che stanno lentamente imparando il JS, hanno un nuovo sistema, ovviamente sperimentale, che permetterebbe di avere un unico pulsante di sparo. Questo garantirebbe una difesa planetaria migliore, sicuramente.
 Simeoni
-Ma i tre pulsanti sono direttamente collegati alle torrette, associati uno ad uno. Come è possibile utilizzare un solo pulsante? Quale torretta sparerebbe?
+Ma i tre pulsanti sono direttamente collegati alle torrette, associati uno ad uno. Come &#xE8; possibile utilizzare un solo pulsante? Quale torretta sparerebbe?
 Prosdocimo
-È qui che viene il bello: hanno inventato un sistema per scegliere automaticamente la torretta, prendendo quella più vicina al bersaglio dello sparo. Mi spiego meglio: prima, come hai ben detto, ogni pulsante era direttamente collegato ad una torretta. Con il nuovo sistema si utilizza il click del mouse per dare il comando di sparo, che viene preso da un filtro. Questo filtro, tramite l'algoritmo che hanno scritto questi tecnici, decide quale sia la torretta migliore per effettuare lo sparo e manda il comando di sparo ad essa. Capito?
+&#xC8; qui che viene il bello: hanno inventato un sistema per scegliere automaticamente la torretta, prendendo quella pi&#xF9; vicina al bersaglio dello sparo. Mi spiego meglio: prima, come hai ben detto, ogni pulsante era direttamente collegato ad una torretta. Con il nuovo sistema si utilizza il click del mouse per dare il comando di sparo, che viene preso da un filtro. Questo filtro, tramite l&#x27;algoritmo che hanno scritto questi tecnici, decide quale sia la torretta migliore per effettuare lo sparo e manda il comando di sparo ad essa. Capito?
 Simeoni
-Più o meno... in pratica cliccando con il mouse che uso per muovere il mirino, attivo un meccanismo di sparo che seleziona la torretta migliore.
+Pi&#xF9; o meno... in pratica cliccando con il mouse che uso per muovere il mirino, attivo un meccanismo di sparo che seleziona la torretta migliore.
 Prosdocimo
 Esattamente. Si tratta di andare a modificare la parte di codice che si occupa del meccanismo di sparo.
 Simeoni
-Ottimo. Ho solo una domanda. Esistono questi tecnici? C'è davvero qualcuno che sta imparando il JS?
+Ottimo. Ho solo una domanda. Esistono questi tecnici? C&#x27;&#xE8; davvero qualcuno che sta imparando il JS?
 Prosdocimo
-È davvero così importante? Eh eh eh...
+&#xC8; davvero cos&#xEC; importante? Eh eh eh...
 
 OBIETTIVO
-L'obiettivo è quello di cambiare il codice contenuto all'interno del meccanismo che si attiva tramite il click del mouse, cioè il contenuto del blocco:
-$( planciaComandi ).on( 'click', function () { /* codice da inserire */ } );
-Nel secondo file è infatti contenuto l'algoritmo di selezione automatica della torretta, non modificabile. Si deve inserire dunque nel meccanismo attivato dal mouse la chiamata a tale funzione. Questa chiamata necessita di tre prametri:
-- torrette, che abbiamo già;
+L&#x27;obiettivo &#xE8; quello di cambiare il codice contenuto all&#x27;interno del meccanismo che si attiva tramite il click del mouse, cio&#xE8; il contenuto del blocco:
+$( planciaComandi ).on( &#x27;click&#x27;, function () { /* codice da inserire */ } );
+Nel secondo file &#xE8; infatti contenuto l&#x27;algoritmo di selezione automatica della torretta, non modificabile. Si deve inserire dunque nel meccanismo attivato dal mouse la chiamata a tale funzione. Questa chiamata necessita di tre prametri:
+- torrette, che abbiamo gi&#xE0;;
 - una x corretta per il bersaglio;
 - una y corretta per il bersaglio.
-La x e la y rappresentano le coordinate nel piano cartesiano dell'area di sparo delle torrette.
-Si deve poi creare una variabile che conterrà il valore restituito da tale chiamata di funzione; poi effettuare un'altra chiamata, questa volta alla funzione azionaComandoSparo(), con i seguenti parametri:
-- la stringa 'keyup';
+La x e la y rappresentano le coordinate nel piano cartesiano dell&#x27;area di sparo delle torrette.
+Si deve poi creare una variabile che conterr&#xE0; il valore restituito da tale chiamata di funzione; poi effettuare un&#x27;altra chiamata, questa volta alla funzione azionaComandoSparo(), con i seguenti parametri:
+- la stringa &#x27;keyup&#x27;;
 - la torretta selezionata con la chiamata precedente;
 - la variabile sistema;
 - la x corretta;
@@ -45,27 +45,27 @@ AIUTI
 Un modo per creare il nuovo meccanismo di sparo prevede di inserire nel punto opportuno del codice il corretto valore nelle variabili x ed y:
 var x = mirino.x;
 var y = mirino.y;
-Poi è necessario salvare il valore restituito dalla chiamata alla funzione in una variabile:
+Poi &#xE8; necessario salvare il valore restituito dalla chiamata alla funzione in una variabile:
 var torrettaSelezionata = torrettaVicina( torrette, x, y);
 Ed utilizzare tale variabile per effettuare una seconda chiamata di funzione:
-azionaComandoSparo( 'keyup', torrettaSelezionata, sistema, x, y );
+azionaComandoSparo( &#x27;keyup&#x27;, torrettaSelezionata, sistema, x, y );
 
 MANUALE
 Chiamata di funzione
 Si prenda una funzione di prova, come la seguente:
 var calcolaSomma ( a, b ) {
-	return a + b;
+&#x9;return a + b;
 }
-Per effetuare una chiamata a tale funzione, è necessario creare una variabile che contenga il risultato dell'operazione, e inserire tra le parentesi i valori che nella funzione diventeranno a e b:
+Per effetuare una chiamata a tale funzione, &#xE8; necessario creare una variabile che contenga il risultato dell&#x27;operazione, e inserire tra le parentesi i valori che nella funzione diventeranno a e b:
 var risultatoSomma( 4, 5 );
-Nella variabile risultatoSomma ora c'è il numero 9.
+Nella variabile risultatoSomma ora c&#x27;&#xE8; il numero 9.
 Area di sparo
-L'area di sparo è un piano cartesiano: le coordinate vengono dunque espresse in termini di x e y, che indicano la posizione di un punto all'interno di quest'area.
+L&#x27;area di sparo &#xE8; un piano cartesiano: le coordinate vengono dunque espresse in termini di x e y, che indicano la posizione di un punto all&#x27;interno di quest&#x27;area.
 Il mirino ha dunque una x ed una y, che indicano precisamente dove si trova in quel momento il puntatore collegato al mouse.
 
 DIALOGO FINALE
 Ortiz
-... purtroppo è così. Non posso fare di meglio. I ficcanaso sono ovunque, e il nostro piano dovrà subire un leggero cambiamento. Non è colpa mia!
+... purtroppo &#xE8; cos&#xEC;. Non posso fare di meglio. I ficcanaso sono ovunque, e il nostro piano dovr&#xE0; subire un leggero cambiamento. Non &#xE8; colpa mia!
 Simeoni
 Maggiore Simeoni a rapporto, signore.
 Ortiz
@@ -79,16 +79,16 @@ Non puoi farlo! Con chi sei in combutta? Con il Nemico?
 Ortiz
 Sciocchezze. Tu sei in combutta con gli Ibridi.
 Simeoni
-Ah! Allora ho ragione! Ibridi è una parola che pochi conoscono qui... traditore!
+Ah! Allora ho ragione! Ibridi &#xE8; una parola che pochi conoscono qui... traditore!
 Ortiz
-Non ti permetto di parlarmi in questo modo! E smettila di urlare. Ho qua delle bellissime prove sul tuo tradimento. Pensi che non ci siano delle telecamere nelle celle? Ho una ripresa fantastica del giovane maggiore Simeoni che parla con la prigioniera Zurlin... purtroppo manca l'audio, ma sarà facile far credere alla corte marziale che sei un rinnegato.
+Non ti permetto di parlarmi in questo modo! E smettila di urlare. Ho qua delle bellissime prove sul tuo tradimento. Pensi che non ci siano delle telecamere nelle celle? Ho una ripresa fantastica del giovane maggiore Simeoni che parla con la prigioniera Zurlin... purtroppo manca l&#x27;audio, ma sar&#xE0; facile far credere alla corte marziale che sei un rinnegato.
 Simeoni
-Ma è una bugia... io e Zurlin abbiamo parlato d'altro.
+Ma &#xE8; una bugia... io e Zurlin abbiamo parlato d&#x27;altro.
 Ortiz
-Ah, ne sono certo. Ma ha poca rilevanza... ciò che importa è la parola della corte marziale. Pensi che crederanno al giovane maggiore, mentalmente distrutto dalla guerra o a un generale che per anni ha pattugliato il deserto dei Barbari?
+Ah, ne sono certo. Ma ha poca rilevanza... ci&#xF2; che importa &#xE8; la parola della corte marziale. Pensi che crederanno al giovane maggiore, mentalmente distrutto dalla guerra o a un generale che per anni ha pattugliato il deserto dei Barbari?
 Simeoni
 Maledetto...
 Ortiz
-Hai provato ad entrare in gioco più grosso di te, Simeoni. Ora... guardie! Portatelo via!
+Hai provato ad entrare in gioco pi&#xF9; grosso di te, Simeoni. Ora... guardie! Portatelo via!
 Simeoni
-Questa mano l'hai vinta tu Ortiz. Ma non finisce qui.
+Questa mano l&#x27;hai vinta tu Ortiz. Ma non finisce qui.

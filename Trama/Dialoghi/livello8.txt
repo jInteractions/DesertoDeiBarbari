@@ -8,23 +8,23 @@ Alzati, maggiore.
 Simeoni
 Buongiorno, generale.
 Ortiz
-Abbiamo un nuovo compito per te, forse l'ultimo, forse no.
+Abbiamo un nuovo compito per te, forse l&#x27;ultimo, forse no.
 Simeoni
 Non ho molta scelta, vero?
 Ortiz
 Decisamente no.
 Simeoni
-Qual è il problema?
+Qual &#xE8; il problema?
 Ortiz
-Abbiamo riorganizzato le basi al fronte. La metà di esse sono state svuotate, in modo da poterle usare come esca per confondere il Nemico. Il problema è che il Nemico sta intercettando le nostre comunicazioni e riesce a comprendere quali siano le basi per noi vitali e quali quelle finte.
+Abbiamo riorganizzato le basi al fronte. La met&#xE0; di esse sono state svuotate, in modo da poterle usare come esca per confondere il Nemico. Il problema &#xE8; che il Nemico sta intercettando le nostre comunicazioni e riesce a comprendere quali siano le basi per noi vitali e quali quelle finte.
 Simeoni
 Comincio a capire di cosa si tratta...
 Ortiz
-Ogni nas e ha un canale radio, che utilizza per comunicare con il quartier generale. Il canale n°0 viene usato dalla prima base a sinistra nello schermo, il n°1 dalla seconda e così via fino all'ultima base a destra, che utilizza il canale n°5.
+Ogni nas e ha un canale radio, che utilizza per comunicare con il quartier generale. Il canale n&#xB0;0 viene usato dalla prima base a sinistra nello schermo, il n&#xB0;1 dalla seconda e cos&#xEC; via fino all&#x27;ultima base a destra, che utilizza il canale n&#xB0;5.
 Simeoni
 Capito.
 Ortiz
-Il tuo compito sarà quello di cambiare il segnale che arriva al quartier generale, in modo tale da rendere le basi vitali come ausiliarie e viceversa, portando fuori strada il Nemico. In questo modo infatti colpirà prima le basi ausiliari, mascherate da basi vitali.
+Il tuo compito sar&#xE0; quello di cambiare il segnale che arriva al quartier generale, in modo tale da rendere le basi vitali come ausiliarie e viceversa, portando fuori strada il Nemico. In questo modo infatti colpir&#xE0; prima le basi ausiliari, mascherate da basi vitali.
 Simeoni
 Chiaro. Ma come facciamo a capire chi ci sta mandando il messaggio?
 Ortiz
@@ -35,12 +35,12 @@ Ortiz
 Corretto.
 
 OBIETTIVO - Tab 2
-L'obiettivo è quello di riempire due funzioni: la prima necessaria per la codifica del segnale radio e la seconda per la decodifica.
+L&#x27;obiettivo &#xE8; quello di riempire due funzioni: la prima necessaria per la codifica del segnale radio e la seconda per la decodifica.
 Nota bene! Le basi colorate di rosso sono quelle ausiliarie, mentre quelle ciano sono le basi vitali.
-La funzione di codifica andrà dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.
-La funzione di decodifica deve invece ripristinare il collegamento esattamente com'era prima della codifica: riscambiando cioè i codici dei canali radio.
+La funzione di codifica andr&#xE0; dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.
+La funzione di decodifica deve invece ripristinare il collegamento esattamente com&#x27;era prima della codifica: riscambiando cio&#xE8; i codici dei canali radio.
 AIUTI
-La funzione codificaSegnale() può essere implementata nel modo seguente:
+La funzione codificaSegnale() pu&#xF2; essere implementata nel modo seguente:
 var temporaneo;
 temporaneo = canaleTrasmissione[0];
 canaleTrasmissione[0] = canaleTrasmissione[1];
@@ -51,7 +51,7 @@ canaleTrasmissione[3] = temporaneo;
 temporaneo = canaleTrasmissione[4];
 canaleTrasmissione[4] = canaleTrasmissione[5];
 canaleTrasmissione[5] = temporaneo;
-Mentre la funzione decodificaSegnale(), che deve effettuare l'operazione contraria, può essere scritta nel modo seguente:
+Mentre la funzione decodificaSegnale(), che deve effettuare l&#x27;operazione contraria, pu&#xF2; essere scritta nel modo seguente:
 var temporaneo;
 temporaneo = canaleTrasmissione[1];
 canaleTrasmissione[1] = canaleTrasmissione[0];
@@ -62,16 +62,16 @@ canaleTrasmissione[2] = temporaneo;
 temporaneo = canaleTrasmissione[5];
 canaleTrasmissione[5] = canaleTrasmissione[4];
 canaleTrasmissione[4] = temporaneo;
-Nota bene! La variabile temporanea permette di scambiare agilmente i valori dei canali: senza sarebbe molto più complicata.
+Nota bene! La variabile temporanea permette di scambiare agilmente i valori dei canali: senza sarebbe molto pi&#xF9; complicata.
 
 MANUALE
 La codifica e la decodifica di un messaggio avvengono in maniera molto semplice. Prendiamo per esempio la parola:
 aiuto
-Supponiamo che la nostra codifica preveda di prendere ogni lettera della parola e sostituirla con la lettera immediatamente successiva nell'alfabeto. La parola aiuto diventa dunque:
+Supponiamo che la nostra codifica preveda di prendere ogni lettera della parola e sostituirla con la lettera immediatamente successiva nell&#x27;alfabeto. La parola aiuto diventa dunque:
 bjvup
-Il nemico se non sa qual è la codifica da noi utilizzata, quindi difficilmente comprenderà cosa vuol dire la parola bjvup. Quando noi però riceviamo il messaggio, conoscendo la codifica sostituiamo ogni lettera con quella che la precede nell'alfabeto, ottenendo di nuovo la parola:
+Il nemico se non sa qual &#xE8; la codifica da noi utilizzata, quindi difficilmente comprender&#xE0; cosa vuol dire la parola bjvup. Quando noi per&#xF2; riceviamo il messaggio, conoscendo la codifica sostituiamo ogni lettera con quella che la precede nell&#x27;alfabeto, ottenendo di nuovo la parola:
 aiuto
-La decodifica è dunque l'operazione inversa della codifica: senza conoscere la codifica sarà però molto difficile leggere un messaggio codificato.
+La decodifica &#xE8; dunque l&#x27;operazione inversa della codifica: senza conoscere la codifica sar&#xE0; per&#xF2; molto difficile leggere un messaggio codificato.
 
 DIALOGO FINALE
 Ortiz
@@ -81,35 +81,35 @@ Cosa ha in mente in di fare?
 Simeoni
 Non lo so, ma non mi aspetto nulla di buono.
 Ortiz
-Silenzio, laggiù in fondo. Ho appena ricevuto un ordine dallo stato maggiore, con priorità 0. Il governo terrestre, grazie a persone come me, è riuscito ad ottenere un'alleanza con gli Ibridi. Molti di voi si staranno chiedendo cosa sono gli Ibridi: ebbene, Zurlin, qui, ne è un esempio. Dall'altra parte del deserto, molti anni fa, arrivarono navi di disperati che fuggivano dalla povertà dei pianeti dell'orlo della galassia. Si sono fusi con la razza tronk, creando una nuova speranza per l'Universo.
+Silenzio, laggi&#xF9; in fondo. Ho appena ricevuto un ordine dallo stato maggiore, con priorit&#xE0; 0. Il governo terrestre, grazie a persone come me, &#xE8; riuscito ad ottenere un&#x27;alleanza con gli Ibridi. Molti di voi si staranno chiedendo cosa sono gli Ibridi: ebbene, Zurlin, qui, ne &#xE8; un esempio. Dall&#x27;altra parte del deserto, molti anni fa, arrivarono navi di disperati che fuggivano dalla povert&#xE0; dei pianeti dell&#x27;orlo della galassia. Si sono fusi con la razza tronk, creando una nuova speranza per l&#x27;Universo.
 Simeoni
 Traditore!
 Ortiz
-Zitto, maggiore. Avevi capito alcune cose, te lo concedo. Ma non tutto. Dall'orlo della galassia confinante, a migliaia di anni luce oltre il deserto dei Barbari, una nuova minaccia si è affacciata. Gli Ibridi stavano fuggendo, e non non li abbiamo accolti. Credo che sia ben chiaro nella mente di tutti voi che l'accoglienza, soprattutto di chi fugge dalla guerra, sia uno dei punti fondamentali dell'umanità.
+Zitto, maggiore. Avevi capito alcune cose, te lo concedo. Ma non tutto. Dall&#x27;orlo della galassia confinante, a migliaia di anni luce oltre il deserto dei Barbari, una nuova minaccia si &#xE8; affacciata. Gli Ibridi stavano fuggendo, e non non li abbiamo accolti. Credo che sia ben chiaro nella mente di tutti voi che l&#x27;accoglienza, soprattutto di chi fugge dalla guerra, sia uno dei punti fondamentali dell&#x27;umanit&#xE0;.
 Prosdocimo
 No ha tutti i torti, eh eh eh.
 Ortiz
-Grazie, Prosdocimo. L'unione fa la forza, dico bene?
+Grazie, Prosdocimo. L&#x27;unione fa la forza, dico bene?
 Zurlin
 Certo, caro.
 Ortiz
-Ed è per questo che ora, umani e Ibridi, sono chiamati a fronteggiare tale minaccia. I Faragi, i divoratori di mondi, stanno arrivando. Tutte le unità dell'UTF sono state dislocate sul pianeta Angustina. Se te lo stai chiedendo, maggiore, è il pianeta misterioso che compare nei file di configurazione.
+Ed &#xE8; per questo che ora, umani e Ibridi, sono chiamati a fronteggiare tale minaccia. I Faragi, i divoratori di mondi, stanno arrivando. Tutte le unit&#xE0; dell&#x27;UTF sono state dislocate sul pianeta Angustina. Se te lo stai chiedendo, maggiore, &#xE8; il pianeta misterioso che compare nei file di configurazione.
 Simeoni
 Questo spiega tutto...
 Ortiz
-Con effetto immediato ordino la mobilitazione del quartier generale dell'UTF-8 da Bastiani ad Angustina. Solo un'ultima cosa... maggiore, da che parte stai?
+Con effetto immediato ordino la mobilitazione del quartier generale dell&#x27;UTF-8 da Bastiani ad Angustina. Solo un&#x27;ultima cosa... maggiore, da che parte stai?
 Simeoni
 Ammetto di essermi sbagliato. Tutto quello che ho visto e sentito... puzzava di tradimento. Ora che dici queste cose, ho molti dubbi a riguardo.
 Zurlin
-Posso intervenire, caro? Simeoni, ti avevo detto che mi dovevi un favore. Bene, te lo chiedo ora. Credici. La minaccia che sta arrivando è maggiore di quello che ti aspetti.
+Posso intervenire, caro? Simeoni, ti avevo detto che mi dovevi un favore. Bene, te lo chiedo ora. Credici. La minaccia che sta arrivando &#xE8; maggiore di quello che ti aspetti.
 Simeoni
-Mmmmh... d'accordo, vi credo. Spero di non pentirmene.
+Mmmmh... d&#x27;accordo, vi credo. Spero di non pentirmene.
 Ortiz
-Allora è deciso. Slegate il colonnello Simeoni.
+Allora &#xE8; deciso. Slegate il colonnello Simeoni.
 Simeoni
 Colonnello?
 Ortiz
-Ovviamente. Hai dimostrato grande coraggio a sfidarmi. E l'hai fatto per il bene della Terra. La promozione è meritata. Ora, preparatevi per la partenza.
+Ovviamente. Hai dimostrato grande coraggio a sfidarmi. E l&#x27;hai fatto per il bene della Terra. La promozione &#xE8; meritata. Ora, preparatevi per la partenza.
 Prosdocimo
 Ehm ehm!
 Ortiz
@@ -119,12 +119,12 @@ Tu sai chi sono, vero Ortiz?
 Ortiz
 Posso facilmente immaginarlo...
 Prosdocimo
-Ho due richieste. La prima è di venire su Angustina con voi, come ufficiale tecnico.
+Ho due richieste. La prima &#xE8; di venire su Angustina con voi, come ufficiale tecnico.
 Ortiz
-Provvederò al più presto. La seconda?
+Provveder&#xF2; al pi&#xF9; presto. La seconda?
 Prosdocimo
-Cosa è successo alla spedizione segreta, trent'anni fa?
+Cosa &#xE8; successo alla spedizione segreta, trent&#x27;anni fa?
 Ortiz
-Memoria lunga, eh? Siamo arrivati su Tronk e abbiamo conosciuto gli Ibridi. I miei compagni sono rimasti là, mentre io sono tornato per eseguire questo lungo lavoro, che si è concluso con questa alleanza.
+Memoria lunga, eh? Siamo arrivati su Tronk e abbiamo conosciuto gli Ibridi. I miei compagni sono rimasti l&#xE0;, mentre io sono tornato per eseguire questo lungo lavoro, che si &#xE8; concluso con questa alleanza.
 Prosdocimo
 Ortiz, la vecchia volpe... eh eh eh.
