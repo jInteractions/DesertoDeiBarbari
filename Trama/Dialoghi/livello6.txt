@@ -1,5 +1,3 @@
-
-
 LIVELLO 6: La telecamera
 
 DIALOGO INIZIALE
@@ -27,14 +25,14 @@ Prosdocimo
 &#xC8; davvero cos&#xEC; importante? Eh eh eh...
 
 OBIETTIVO
-L&#x27;obiettivo &#xE8; quello di cambiare il codice contenuto all&#x27;interno del meccanismo che si attiva tramite il click del mouse, cio&#xE8; il contenuto del blocco:
+L&#x27;obiettivo &#xE8; quello di cambiare il codice contenuto all&#x27;interno del meccanismo che si attiva tramite il click del mouse, cio&#xE8; il contenuto del blocco:<br>
 $( planciaComandi ).on( &#x27;click&#x27;, function () { /* codice da inserire */ } );
-Nel secondo file &#xE8; infatti contenuto l&#x27;algoritmo di selezione automatica della torretta, non modificabile. Si deve inserire dunque nel meccanismo attivato dal mouse la chiamata a tale funzione. Questa chiamata necessita di tre prametri:
+Nel secondo file &#xE8; infatti contenuto l&#x27;algoritmo di selezione automatica della torretta, non modificabile. Si deve inserire dunque nel meccanismo attivato dal mouse la chiamata a tale funzione.<br> Questa chiamata necessita di tre prametri:<br>
 <li>torrette, che abbiamo gi&#xE0;;</li>
 <li>una x corretta per il bersaglio;</li>
 <li> una y corretta per il bersaglio.</li>
-La x e la y rappresentano le coordinate nel piano cartesiano dell&#x27;area di sparo delle torrette.
-Si deve poi creare una variabile che conterr&#xE0; il valore restituito da tale chiamata di funzione; poi effettuare un&#x27;altra chiamata, questa volta alla funzione azionaComandoSparo(), con i seguenti parametri:
+La x e la y rappresentano le coordinate nel piano cartesiano dell&#x27;area di sparo delle torrette.<br>
+Si deve poi creare una variabile che conterr&#xE0; il valore restituito da tale chiamata di funzione; poi effettuare un&#x27;altra chiamata, questa volta alla funzione azionaComandoSparo(), con i seguenti parametri:<br>
 <li>la stringa &#x27;keyup&#x27;;</li>
 <li>la torretta selezionata con la chiamata precedente;</li>
 <li>la variabile sistema;</li>
@@ -42,26 +40,26 @@ Si deve poi creare una variabile che conterr&#xE0; il valore restituito da tale 
 <li> la y corretta.</li>
 
 AIUTI
-Un modo per creare il nuovo meccanismo di sparo prevede di inserire nel punto opportuno del codice il corretto valore nelle variabili x ed y:
+Un modo per creare il nuovo meccanismo di sparo prevede di inserire nel punto opportuno del codice il corretto valore nelle variabili x ed y:<br>
 var x = mirino.x;
 var y = mirino.y;
-Poi &#xE8; necessario salvare il valore restituito dalla chiamata alla funzione in una variabile:
+Poi &#xE8; necessario salvare il valore restituito dalla chiamata alla funzione in una variabile:<br>
 var torrettaSelezionata = torrettaVicina( torrette, x, y);
-Ed utilizzare tale variabile per effettuare una seconda chiamata di funzione:
+Ed utilizzare tale variabile per effettuare una seconda chiamata di funzione:<br>
 azionaComandoSparo( &#x27;keyup&#x27;, torrettaSelezionata, sistema, x, y );
 
 MANUALE
-Chiamata di funzione
+Chiamata di funzione<br>
 Si prenda una funzione di prova, come la seguente:
 var calcolaSomma ( a, b ) {
 &#x9;return a + b;
 }
-Per effetuare una chiamata a tale funzione, &#xE8; necessario creare una variabile che contenga il risultato dell&#x27;operazione, e inserire tra le parentesi i valori che nella funzione diventeranno a e b:
+Per effetuare una chiamata a tale funzione, &#xE8; necessario creare una variabile che contenga il risultato dell&#x27;operazione, e inserire tra le parentesi i valori che nella funzione diventeranno a e b:<br>
 var risultatoSomma( 4, 5 );
-Nella variabile risultatoSomma ora c&#x27;&#xE8; il numero 9.
-Area di sparo
-L&#x27;area di sparo &#xE8; un piano cartesiano: le coordinate vengono dunque espresse in termini di x e y, che indicano la posizione di un punto all&#x27;interno di quest&#x27;area.
-Il mirino ha dunque una x ed una y, che indicano precisamente dove si trova in quel momento il puntatore collegato al mouse.
+Nella variabile risultatoSomma ora c&#x27;&#xE8; il numero 9.<br>
+Area di sparo<br>
+L&#x27;area di sparo &#xE8; un piano cartesiano: le coordinate vengono dunque espresse in termini di x e y, che indicano la posizione di un punto all&#x27;interno di quest&#x27;area.<br>
+Il mirino ha dunque una x ed una y, che indicano precisamente dove si trova in quel momento il puntatore collegato al mouse.<br>
 
 DIALOGO FINALE
 Ortiz

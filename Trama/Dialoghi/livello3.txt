@@ -1,5 +1,3 @@
-
-
 LIVELLO 3: Sabotaggio
 
 DIALOGO INIZIALE
@@ -43,74 +41,74 @@ Prosdocimo
 Attento a dire queste cose, potrei prenderti alla lettera. Eh eh eh...
 
 OBIETTIVO - Tab 1
-L&#x27;obiettivo &#xE8; quello di inserire nel caricatore delle torrette solo le munizioni al plasma. I due array, caricatoreTorretta e proiettiliScartati devono essere utilizzati correttamente, inserendo nel primo solo le munizioni al plasma e nel secondo solo le munizioni scartate, cio&#xE8; quelle al plutonio e quelle soniche.
-AIUTI
-Per risolvere il caricamento errato delle munizioni, &#xE8; necessario modificare due istruzioni all&#x27;interno del for.
-La prima &#xE8; la seguente:
+L&#x27;obiettivo &#xE8; quello di inserire nel caricatore delle torrette solo le munizioni al plasma. I due array, caricatoreTorretta e proiettiliScartati devono essere utilizzati correttamente, inserendo nel primo solo le munizioni al plasma e nel secondo solo le munizioni scartate, cio&#xE8; quelle al plutonio e quelle soniche.<br>
+AIUTI<br>
+Per risolvere il caricamento errato delle munizioni, &#xE8; necessario modificare due istruzioni all&#x27;interno del for.<br>
+La prima &#xE8; la seguente:<br>
 if( proiettile.nucleoEsplosivo === &#x27;plutonio&#x27; ) {
 &#x9;caricatoreTorretta.push( proiettile );
 }
-che deve diventare:
+che deve diventare:<br>
 if( proiettile.nucleoEsplosivo === &#x27;plutonio&#x27; ) {
   proiettiliScartati.push( proiettile  );
 }
-La seconda &#xE8; la seguente:
+La seconda &#xE8; la seguente:<br>
 if( proiettile.nucleoEsplosivo === &#x27;sonico&#x27; ) {
 &#x9;caricatoreTorretta.push( proiettile );
 }
-che deve diventare:
+che deve diventare:<br>
 if( proiettile.nucleoEsplosivo === &#x27;sonico&#x27; ) {
   proiettiliScartati.push( proiettile  );
 }
 
 OBIETTIVO - Tab 2
 L&#x27;obiettivo &#xE8; quello di impostare la corretta gestione del sistema di raffreddamento. Il primo punto da modificare &#xE8; la soglia della temperatura minima, cio&#xE8; fino a che punto si mantiene il blocco della torretta, durante il quale le pompe di raffreddamento abbassano la temperatura.
-Questa soglia pu&#xF2; essere abbassata a piacere, considerando che, nel momento in cui la torretta supera la temperatura di 799&#xB0;C, essa si bloccher&#xE0; e rimarr&#xE0; bloccata finch&#xE9; non si raggiunger&#xE0; tale soglia.
-Una soglia bassa permette dunque di sparare a lungo ma poi rimanere bloccati per molto tempo; una soglia alta permette di sparare poco ma con un tempo di raffreddamento (e dunque di blocco) decisamente minore.
-Il secondo punto da modificare &#xE8; la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura &#xE8; maggiore o uguale alla soglia decisa in precedenza.
+Questa soglia pu&#xF2; essere abbassata a piacere, considerando che, nel momento in cui la torretta supera la temperatura di 799&#xB0;C, essa si bloccher&#xE0; e rimarr&#xE0; bloccata finch&#xE9; non si raggiunger&#xE0; tale soglia.<br>
+Una soglia bassa permette dunque di sparare a lungo ma poi rimanere bloccati per molto tempo; una soglia alta permette di sparare poco ma con un tempo di raffreddamento (e dunque di blocco) decisamente minore.<br>
+Il secondo punto da modificare &#xE8; la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura &#xE8; maggiore o uguale alla soglia decisa in precedenza.<br>
 AIUTI
-Come prima cosa &#xE8; necessario decidere la soglia minima della temperatura, per esempio:
+Come prima cosa &#xE8; necessario decidere la soglia minima della temperatura, per esempio:<br>
 var sogliaTemperaturaMinima = 300;
-Ovviamente &#xE8; possibile lasciarla invariata.
-Successivamente la condizione del ciclo deve essere modificata nel seguente modo:
+Ovviamente &#xE8; possibile lasciarla invariata.<br>
+Successivamente la condizione del ciclo deve essere modificata nel seguente modo:<br>
 while( T &#x3E;= sogliaTemperaturaMinima ) {
 
 MANUALE
-Un punto molto importante del codice sorgente del sistema antimissilistico Hob-2000 riguarda il concetto di ciclo.
-Un ciclo &#xE8; formato da due cose: una condizione ed un corpo. Il corpo viene eseguito finch&#xE9; vale la condizione.
-Esistono due tipi principali di ciclo: il primo &#xE8; identificato dalla parola chiave for, il secondo dalla parola chiave while.
-Il ciclo for &#xE8; strutturato nella seguente maniera:
+Un punto molto importante del codice sorgente del sistema antimissilistico Hob-2000 riguarda il concetto di ciclo.<br>
+Un ciclo &#xE8; formato da due cose: una condizione ed un corpo. Il corpo viene eseguito finch&#xE9; vale la condizione.<br>
+Esistono due tipi principali di ciclo: il primo &#xE8; identificato dalla parola chiave for, il secondo dalla parola chiave while.<br>
+Il ciclo for &#xE8; strutturato nella seguente maniera:<br>
 var x = 0;
 for ( var i = 0; i &#x3C; lunghezza; i++ ) {
 &#x9;x++;
 }
-Nota bene!
-La scorciatoia i++ ha lo stesso significato dell&#x27;istruzione i = i + 1. Stesso vale per x++.
-Questa scrittura ha un significato semplice: partendo da 0, si controlla il valore di i. L&#x27;istruzione interna al for, cio&#xE8; x++, viene eseguita finch&#xE9; i, che viene incrementato ad ogni giro del ciclo, non &#xE8; lunga come lunghezza. Scomponiamo le operazioni:
+Nota bene!<br>
+La scorciatoia i++ ha lo stesso significato dell&#x27;istruzione i = i + 1. Stesso vale per x++.<br>
+Questa scrittura ha un significato semplice: partendo da 0, si controlla il valore di i. L&#x27;istruzione interna al for, cio&#xE8; x++, viene eseguita finch&#xE9; i, che viene incrementato ad ogni giro del ciclo, non &#xE8; lunga come lunghezza. Scomponiamo le operazioni:<br>
 <li>viene creata una variabile i, che contiene in valore 0;</li>
 <li>se i &#xE8; minore di lunghezza, si va avanti, altrimenti si esce dal ciclo;</li>
 <li>i viene incrementato, cio&#xE8; contiene ora il valore 0+1, cio&#xE8; 1;</li>
 <li>si esegue il codice interno al ciclo, dunque x diventa uguale a 1;</li>
 <li>si controlla se i (ora uguale a 1) &#xE8; minore di lunghezza: se lo &#xE8;, si torna dentro al ciclo, altrimenti si esce.</li>
-Il ciclo viene dunque ripetuto lunghezza volte.
-Il secondo tipo di ciclo &#xE8; quello identificato dalla parola chiave while. Eccone un esempio:
+Il ciclo viene dunque ripetuto lunghezza volte.<br>
+Il secondo tipo di ciclo &#xE8; quello identificato dalla parola chiave while. Eccone un esempio:<br>
 var x = 0;
 while ( x &#x3C; 5 ) {
 &#x9;x++;
 }
-Il significato di questo ciclo &#xE8; semplice: finch&#xE9; x &#xE8; minore di 5, viene eseguita la parte di codice interna al while.
-I cicli sono molto utili, soprattuto se si pensa al concetto di array. Un array &#xE8; una variabile che contiene pi&#xF9; valori. Un esempio di array pu&#xF2; essere il seguente:
+Il significato di questo ciclo &#xE8; semplice: finch&#xE9; x &#xE8; minore di 5, viene eseguita la parte di codice interna al while.<br>
+I cicli sono molto utili, soprattuto se si pensa al concetto di array. Un array &#xE8; una variabile che contiene pi&#xF9; valori. Un esempio di array pu&#xF2; essere il seguente:<br>
 var numeri = [1, 2, 3, 4];
-questo array contiene i numeri da 1 a 4.
-Per inserire successivamente un elemento in un array, &#xE8; necessario utilizzare l&#x27;istruzione di push. Per esempio, se vogliamo aggiungere l&#x27;elemento 5 nell&#x27;array numeri, &#xE8; necessario effettuare la seguente istruzione:
+questo array contiene i numeri da 1 a 4.<br>
+Per inserire successivamente un elemento in un array, &#xE8; necessario utilizzare l&#x27;istruzione di push. Per esempio, se vogliamo aggiungere l&#x27;elemento 5 nell&#x27;array numeri, &#xE8; necessario effettuare la seguente istruzione:<br>
 numeri.push( 5 );
-L&#x27;array che risulta da questa istruzione sar&#xE0; il seguente:
-[1, 2, 3, 4, 5] 
-Nota bene!
-Ogni elemento di un array ha un numero, che indica la sua posizione all&#x27;interno dell&#x27;array stesso. Tale numero parte da 0, e viene cos&#xEC; utilizzato:
+L&#x27;array che risulta da questa istruzione sar&#xE0; il seguente:<br>
+[1, 2, 3, 4, 5] <br>
+Nota bene!<br>
+Ogni elemento di un array ha un numero, che indica la sua posizione all&#x27;interno dell&#x27;array stesso. Tale numero parte da 0, e viene cos&#xEC; utilizzato:<br>
 var a = numeri[ 0 ];
 var b = numeri[ 4 ];
-In questo codice, a contiene il valore 1, che occupa la posizione 0 all&#x27;interno dell&#x27;array; la variabile b contiene invece il valore 5, che occupa la posizione 4.
+In questo codice, a contiene il valore 1, che occupa la posizione 0 all&#x27;interno dell&#x27;array; la variabile b contiene invece il valore 5, che occupa la posizione 4.<br>
 
 DIALOGO FINALE
 Simeoni

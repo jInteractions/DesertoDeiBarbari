@@ -1,5 +1,3 @@
-
-
 LIVELLO 4: Nelle fauci del Nemico
 
 DIALOGO INIZIALE
@@ -45,37 +43,37 @@ Ortiz
 Basta con i convenevoli. Simeoni, questa &#xE8; la tua ultima possibilit&#xE0;. Vedi di tenerlo bene a mente.
 
 OBIETTIVO - Tab 1
-L&#x27;obiettivo &#xE8; modificare le caratteristiche della classe dell&#x27;arma sabotata, che poi dovr&#xE0; essere caricata al posto delle armi funzionanti nel codice del Nemico. Si deve dunque alzare il tempo di ricarica massimo, cio&#xE8; il tempo che ogni torretta impiega a ricaricare il cannone; poi ridurre il numero del propellente, poich&#xE9; pi&#xF9; &#xE8; basso, pi&#xF9; indica propellente scadente; poi diminuire il numero di missili contenuti nel caricatore; infine cambiare il tipo di missile da massima_efficacia a massima_esplosione. Quest&#x27;ultima modifica permette di avere un maggior numero di esplosioni a catena: aumentando infatti la carica esplosiva del missile, se viene abbattuto in aria, ne distrugger&#xE0; molti altri intorno.
+L&#x27;obiettivo &#xE8; modificare le caratteristiche della classe dell&#x27;arma sabotata, che poi dovr&#xE0; essere caricata al posto delle armi funzionanti nel codice del Nemico. Si deve dunque alzare il tempo di ricarica massimo, cio&#xE8; il tempo che ogni torretta impiega a ricaricare il cannone; poi ridurre il numero del propellente, poich&#xE9; pi&#xF9; &#xE8; basso, pi&#xF9; indica propellente scadente; poi diminuire il numero di missili contenuti nel caricatore; infine cambiare il tipo di missile da massima_efficacia a massima_esplosione. Quest&#x27;ultima modifica permette di avere un maggior numero di esplosioni a catena: aumentando infatti la carica esplosiva del missile, se viene abbattuto in aria, ne distrugger&#xE0; molti altri intorno.<br>
 AIUTI
-Le caratteristiche della classe andranno cambiate nel seguente modo:
+Le caratteristiche della classe andranno cambiate nel seguente modo:<br>
 this.tempoRicaricaMassimo = 200;
 this.propellente = 3;
 this.numeroMissili = 10;
 this.tipoMunizione = &#x22;massima_esplosione&#x22;;
 
 OBIETTIVO - Tab 2
-L&#x27;obiettivo &#xE8; caricare la classe dell&#x27;arma sabotata al posto della classe delle armi normali utilizzata dal Nemico.
+L&#x27;obiettivo &#xE8; caricare la classe dell&#x27;arma sabotata al posto della classe delle armi normali utilizzata dal Nemico.<br>
 AIUTI
-L&#x27;operazione di new andr&#xE0; cambiata, creando un oggetto non di classe BatteriaAntiterrestre(), ma di classe ArmaNemicaSabotata().
+L&#x27;operazione di new andr&#xE0; cambiata, creando un oggetto non di classe BatteriaAntiterrestre(), ma di classe ArmaNemicaSabotata().<br>
 var batteria = new ArmaNemicaSabotata();
 
 OBIETTIVO - Tab 3
-L&#x27;obiettivo &#xE8; creare tutte le combinazioni possibili di password per forzare il salvataggio delle nostre modifiche. L&#x27;importante &#xE8; che, essendoci tre caratteri, il ciclo e la funzione ricorsiva vengano chiamate tre volte.
+L&#x27;obiettivo &#xE8; creare tutte le combinazioni possibili di password per forzare il salvataggio delle nostre modifiche. L&#x27;importante &#xE8; che, essendoci tre caratteri, il ciclo e la funzione ricorsiva vengano chiamate tre volte.<br>
 AIUTI
-Per eseguire la ricorsione il numero corretto di volte, &#xE8; necessario modificare la funzione generaPassword(), in particolare il controllo effettuato dall&#x27;if:
+Per eseguire la ricorsione il numero corretto di volte, &#xE8; necessario modificare la funzione generaPassword(), in particolare il controllo effettuato dall&#x27;if:<br>
 if ( k === 3 )
-Questo per creare tutte le combinazioni possibili.
+Questo per creare tutte le combinazioni possibili.<br>
 
 MANUALE
-Una funzione &#xE8; un particolare tipo di valore per una variabile, ed &#xE8; una sequenza di istruzioni che definisce una particolare operazione. Una funzione pu&#xF2; avere dei parametri in ingresso oppure dei risultati in uscita.
-Per esempio, una funzione che possiede parametri in entrata e risultati in uscita &#xE8; la seguente:
+Una funzione &#xE8; un particolare tipo di valore per una variabile, ed &#xE8; una sequenza di istruzioni che definisce una particolare operazione. Una funzione pu&#xF2; avere dei parametri in ingresso oppure dei risultati in uscita.<br>
+Per esempio, una funzione che possiede parametri in entrata e risultati in uscita &#xE8; la seguente:<br>
 var calcolaSomma = function ( a, b ) {
 &#x9;return a + b;
 }
-I parametri in ingresso sono a e b, che rappresentano le variabili da sommare, mentre return &#xE8; una parola chiave, che indica che ci&#xF2; che la segue &#xE8; il risultato in uscita. Per utilizzare una funzione &#xE8; necessario chiamarla, tramite una chiamata di funzione. Ecco un esempio per la funzione calcolaSomma():
+I parametri in ingresso sono a e b, che rappresentano le variabili da sommare, mentre return &#xE8; una parola chiave, che indica che ci&#xF2; che la segue &#xE8; il risultato in uscita. Per utilizzare una funzione &#xE8; necessario chiamarla, tramite una chiamata di funzione. Ecco un esempio per la funzione calcolaSomma():<br>
 var risultato = calcolaSomma ( 4, 5 );
-In risultato verr&#xE0; inserito il risultato della funzione, dunque 9.
-Un particolare tipo di funzione &#xE8; la funzione ricorsiva, cio&#xE8; una funzione che richiama se stessa pi&#xF9; volte, in modo da produrre un determinato tipo di risultato. Un esempio di funzione ricorsiva pu&#xF2; essere quella che calcola il fattoriale di un numero:
+In risultato verr&#xE0; inserito il risultato della funzione, dunque 9.<br>
+Un particolare tipo di funzione &#xE8; la funzione ricorsiva, cio&#xE8; una funzione che richiama se stessa pi&#xF9; volte, in modo da produrre un determinato tipo di risultato. Un esempio di funzione ricorsiva pu&#xF2; essere quella che calcola il fattoriale di un numero:<br>
 var fattoriale = function ( numero ) {
   if ( numero &#x3C; 0 ) {
     return -1;
@@ -87,17 +85,17 @@ var fattoriale = function ( numero ) {
     return ( numero * fattoriale( numero - 1 ) );
   }
 }
-Il risultato ritornato dalla funzione fattoriale( numero ) sar&#xE0; il valore del fattoriale di numero.
-L&#x27;ultimo tassello della grammatica del linguaggio di programmazione &#xE8; il concetto di classe. Una classe definisce un nuovo tipo di valore, che viene caratterizzato da una serie di caratteristiche, chiamati campi. Ecco un esempio, per la classe Soldato:
+Il risultato ritornato dalla funzione fattoriale( numero ) sar&#xE0; il valore del fattoriale di numero.<br>
+L&#x27;ultimo tassello della grammatica del linguaggio di programmazione &#xE8; il concetto di classe. Una classe definisce un nuovo tipo di valore, che viene caratterizzato da una serie di caratteristiche, chiamati campi. Ecco un esempio, per la classe Soldato:<br>
 function Soldato ( matricola, arma, battaglione ) {
 &#x9;this.matricola = matricola;
 &#x9;this.arma = arma;
 &#x9;this.battaglione = battaglione;
 }
-La parola chiave this indica che la parola che segue descrive una caratteristica propria della classe.
-La classe viene poi usata per creare degli oggetti, cio&#xE8;, nel caso della classe Soldato, tanti soldati, ognuno con le sue caratteristiche.
-Una classe viene creata tramite la parola chiave function, perch&#xE9; viene chiamata per la creazione di oggetti proprio come se fosse una funzione.
-Per creare nuovi soldati, dunque, &#xE8; necessario eseguire le seguenti istruzioni:
+La parola chiave this indica che la parola che segue descrive una caratteristica propria della classe.<br>
+La classe viene poi usata per creare degli oggetti, cio&#xE8;, nel caso della classe Soldato, tanti soldati, ognuno con le sue caratteristiche.<br>
+Una classe viene creata tramite la parola chiave function, perch&#xE9; viene chiamata per la creazione di oggetti proprio come se fosse una funzione.<br>
+Per creare nuovi soldati, dunque, &#xE8; necessario eseguire le seguenti istruzioni:<br>
 var soldatoFanteria = new Soldato ( 1, &#x22;fucile al plasma&#x22;, &#x22;UTF-8, 42 battaglione&#x22; );
 var soldatoArtiglieria = new Soldato ( 2, &#x22;granate a rimbalzo&#x22;, &#x22;UTF-16, 30 battaglione&#x22; );
 var soldatoScelto = new Soldato ( 3, &#x22;phaser sonici&#x22;, &#x22;UTF-32, 1 battaglione&#x22; );

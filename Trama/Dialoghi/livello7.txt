@@ -1,5 +1,3 @@
-
-
 LIVELLO 7: Fiamme dal passato
 
 DIALOGO INIZIALE
@@ -39,22 +37,22 @@ Simeoni
 Va bene, cominciamo.
 
 OBIETTIVO - Tab 2
-Ci sono due classi:
+Ci sono due classi:<br>
 <li>MissileTestataMultipla: missile alieno che si sdoppia;</li>
 <li>MissileStandard: missile di ordinanza terrestre.</li>
-L&#x27;obiettivo &#xE8; inserire la tecnologia aliena dello sdoppiamento dei missili nella nostra classe MissileStandard.
-Come si pu&#xF2; notare, le due classi hanno una struttura comune: tra di esse l&#x27;unica differenza sta nei nomi delle caratteristiche e delle  funzioni.
-Per spostare la tecnologia dalla classe MissileTestataMultipla &#xE8; necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalit&#xE0; di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.
+L&#x27;obiettivo &#xE8; inserire la tecnologia aliena dello sdoppiamento dei missili nella nostra classe MissileStandard.<br>
+Come si pu&#xF2; notare, le due classi hanno una struttura comune: tra di esse l&#x27;unica differenza sta nei nomi delle caratteristiche e delle  funzioni.<br>
+Per spostare la tecnologia dalla classe MissileTestataMultipla &#xE8; necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalit&#xE0; di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.<br>
 AIUTI
-Come prima cosa &#xE8; necessario modificare la funzione MissileStandard.prototype.miraBersaglio(), coerentemente con la funzione MissileTestataMultipla.prototype.identificaObiettivo(): al posto delle righe
+Come prima cosa &#xE8; necessario modificare la funzione MissileStandard.prototype.miraBersaglio(), coerentemente con la funzione<br> MissileTestataMultipla.prototype.identificaObiettivo(): al posto delle righe<br>
 var coordinateEsplosione = { esplosioneX: x, esplosioneY: y };
 this.agganciaObiettivo( bersaglio );
 return coordinateEsplosione.esplosioneY;
-andranno inserite le seguenti righe, che permettono di calcolare l&#x27;altezza di sdoppiamento del missile
+andranno inserite le seguenti righe, che permettono di calcolare l&#x27;altezza di sdoppiamento del missile<br>
 var altezza = this.calcolaAltezzaSdoppiamento( x, y );
 this.agganciaObiettivo( bersaglio );
 return altezza;
-Successivamente sar&#xE0; necessario modificare la funzione MissileStandard.prototype.esplodi(), coerentemente con la funzione MissileTestataMultipla.prototype.detonazione(), cambiando dunque le righe
+Successivamente sar&#xE0; necessario modificare la funzione MissileStandard.prototype.esplodi(), coerentemente con la funzione<br> MissileTestataMultipla.prototype.detonazione(), cambiando dunque le righe<br>
 var x = this.bersaglioAgganciato.x;
 var y = this.bersaglioAgganciato.y;
 return ( [ new FrammentoMissile( x, y ) ] );
@@ -67,11 +65,11 @@ frammentiMissile.push( frammentoMissile2 );
 return frammentiMissile;
 
 MANUALE
-Ogni classe pu&#xF2; essere associata ad una serie di funzioni. Per essere pi&#xF9; chiari, prendiamo la classe Arma:
+Ogni classe pu&#xF2; essere associata ad una serie di funzioni. Per essere pi&#xF9; chiari, prendiamo la classe Arma:<br>
 function Arma () {
 &#x9;this.numeroMunizioni = 10;
 }
-Un&#x27;arma pu&#xF2; avere diverse funzionalit&#xE0;, per esempio la ricarica e lo sparo:
+Un&#x27;arma pu&#xF2; avere diverse funzionalit&#xE0;, per esempio la ricarica e lo sparo:<br>
 Arma.prototype.ricarica = function () {
 &#x9;this.numeroMunizioni = 10;
 }
@@ -81,13 +79,13 @@ Arma.prototype.spara = function () {
 &#x9;}
 &#x9;this.numeroMunizioni--;
 }
-Queste due funzioni sono molto semplici. La prima re-imposta il numero di munizioni al valore iniziale di 10. La seconda controlla il numero di munizioni: se &#xE8; uguale a 0, allora effettua una ricarica, poi spara; altrimenti spara, decrementando il numero di munizioni.
-Una funzione propria ad una classe viene indicata con la parola chiave prototype.
-Osserviamo il meccanismo, prendendo un oggetto di classe Arma:
+Queste due funzioni sono molto semplici. La prima re-imposta il numero di munizioni al valore iniziale di 10. La seconda controlla il numero di munizioni: se &#xE8; uguale a 0, allora effettua una ricarica, poi spara; altrimenti spara, decrementando il numero di munizioni.<br>
+Una funzione propria ad una classe viene indicata con la parola chiave prototype.<br>
+Osserviamo il meccanismo, prendendo un oggetto di classe Arma:<br>
 var cannone = new Arma();
 cannone.spara();
 var munizioniRimaste = cannone.numeroMunizioni.
-La variabile munizioniRimaste contiene il valore 9, poich&#xE9; la funzione di sparo ha determinato un decremento del numeroMunizioni all&#x27;interno dell&#x27;oggetto cannone.
+La variabile munizioniRimaste contiene il valore 9, poich&#xE9; la funzione di sparo ha determinato un decremento del numeroMunizioni all&#x27;interno dell&#x27;oggetto cannone.<br>
 
 DIALOGO FINALE
 Ortiz
