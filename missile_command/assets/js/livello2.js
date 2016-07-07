@@ -166,12 +166,12 @@ var controlloConfigurazioneParametriPianeti = function () {
 
 // TAB 1
 
-/*
+/**********
 Benvenuto nel file di sblocco dei permessi di calibrazione.
 Il seguente file permette di sbloccare ed accedere alle funzionalità
 di configurazione planetaria, fondamentiali per la corretta impostazione
 delle armi.
-*/
+**********/
 
 // Variabile contenente il codice del pianeta su cui si trovano le armi.
 var _codicePianeta;
@@ -228,7 +228,7 @@ var sbloccoPermessiCalibrazione = function () {
 
 // TAB 2
 
-/*
+/**********
 Benvenuto nel file di configurazione planetaria del sistema Hob-2000.
 Troverai in elenco le caratteristiche di ogni pianeta,
 necessarie per il corretto funzionamento del sistema stesso.
@@ -236,7 +236,7 @@ Ogni pianeta ha cinque caratteristiche: il nome, la forza gravitazionale,
 il vento, l'atmosfera e il settore galattico.
 Tali caratteristiche influiscono pesantemente sulle capacità di sparo,
 rendendo potenzialmente inutilizzabili le armi se configurate per il pianeta errato.
-*/
+**********/
 
 var configurazioneParametriPianeti = function () {
   var nomePianeta;

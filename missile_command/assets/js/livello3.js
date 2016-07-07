@@ -213,13 +213,13 @@ var azionaPompeRaffreddamento = function ( ) {
 
 // TAB 1
 
-/*
+/**********
 Benvenuto nel file di caricamento delle torrette del sistema Hob-2000.
 Ogni torretta preleva dal magazzino i missili, uno ad uno,
 per inserirli automaticamente nel caricatore della torretta.
 Se sono presenti tipologie di proiettili difettose,
 modificare il codice seguente.
-*/
+**********/
 
 // Questo codice viene ripetuto per ogni torretta automaticamente.
 var meccanismoCaricamento = function ( ) {
@@ -281,14 +281,14 @@ function () {
 
 // TAB 2
 
-/*
+/**********
 Benvenuto nel file di raffreddamento torrette del sistema Hob-2000.
 Il codice seguente permette di modificare la soglia di temperatura minima,
 cioè la soglia di temperatura dalla quale è possibile ricominciare
 a sparare in caso di surriscaldamento della torretta.
 
 Questo codice vale per tutte le torrette.
-*/
+**********/
 
 var sistemaRaffreddamento = function ( ) {
   T = rilevaTemperatura();
