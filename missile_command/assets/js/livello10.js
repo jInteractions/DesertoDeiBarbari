@@ -13,11 +13,45 @@ function Livello10 ( callbackFineLivello ) {
 Livello10.prototype = Object.create( CoreLevel.prototype );
 Livello10.prototype.constructor = Livello10;
 
-Livello10.prototype.inizializzaTorrette = function ( ) {
-  var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue' ];
+Livello10.prototype.inizializzaLivello = function ( numeroOndata ) {
+  var mySelf = this;
   
-  var filtro = function ( missile ) {
-    return ( missile.y > 10 && missile instanceof MissileNemico);
+  this.numeroOndata = numeroOndata;
+  
+  this.inizializzaMirino();
+  this.coreGame = new CoreGame( this.canvas, this.mirino, {
+    coloreSfondo: 'black',
+    coloreTerreno: 'red',
+    coloreTestoPrimario: 'blue',
+    coloreTestoSecondario: 'red'
+  });
+  var coeff = this.calcolaCoefficienteOndata();
+  this.coreGame.aggiornaCoefficienteOndata( coeff );
+  this.inizializzaTorrette();
+  
+  if( this.numeroOndata === 1 ) {
+    this.inizializzaBasi();
+  } else {
+    $.each( this.basi, function ( indice, base ) {
+      base.coreGame = mySelf.coreGame
+    } );
+    mySelf.coreGame.basi = mySelf.basi;
+  }
+  
+  this.inizializzaArmiNemiche();
+  this.inizializzaArmiTerrestri();
+}
+
+Livello10.prototype.inizializzaTorrette = function ( ) {
+  var coloreMissili = [ 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow' ];
+  
+  var mySelf = this;
+  
+  var filtroSx = function ( missile ) {
+    return ( missile.y > 50 && missile.x < mySelf.canvas.width/2 && missile instanceof MissileNemico);
+  };
+  var filtroDx = function ( missile ) {
+    return ( missile.y > 50 && missile.x >= mySelf.canvas.width/2 && missile instanceof MissileNemico);
   };
   
   var opzioniBatteria1 = { 
@@ -32,7 +66,7 @@ Livello10.prototype.inizializzaTorrette = function ( ) {
     deltaRaffreddamento: 3
   };
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria1, 100, true, filtro, true, 15, 10, 'blue', this.coreGame) );
+    new TorrettaAutomatica( 0, opzioniBatteria1, 100, true, filtroSx, true, 15, 10, 'yellow', this.coreGame) );
   this.coreGame.aggiungiBatteriaAntimissile ( 
     new BatteriaAntimissile( 255, 410, 10, 10, coloreMissili, 50, 1000, 70, 10, this.coreGame ) );
   var opzioniBatteria2 = { 
@@ -47,7 +81,7 @@ Livello10.prototype.inizializzaTorrette = function ( ) {
     deltaRaffreddamento: 3
   };
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 475, opzioniBatteria2, 100, true, filtro, true, 15, 10, 'blue', this.coreGame ) );  
+    new TorrettaAutomatica( 475, opzioniBatteria2, 100, true, filtroDx, true, 15, 10, 'yellow', this.coreGame ) );  
 }
 
 Livello10.prototype.inizializzaArmiTerrestri = function ( ) {
@@ -62,7 +96,7 @@ Livello10.prototype.inizializzaArmiNemiche = function ( ) {
   var velRand;
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 10;
+  var numeroMissili = 100;
   
   for( var i = 0; i < numeroMissili / 2 ; i++ ) {
     xRand = rand( 0, ampiezzaAreaPertenza );
@@ -71,7 +105,7 @@ Livello10.prototype.inizializzaArmiNemiche = function ( ) {
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
       coloreScia: 'red',
-      massimoRaggioEsplosione: 30
+      massimoRaggioEsplosione: 10
     }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand, this.coreGame) );
   }
   
@@ -82,7 +116,7 @@ Livello10.prototype.inizializzaArmiNemiche = function ( ) {
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
       coloreScia: 'red',
-      massimoRaggioEsplosione: 30
+      massimoRaggioEsplosione: 10
     }, bersagli, this.canvas.width, xRand, velRand,  ritardoRand, this.coreGame ) );
   }
   
@@ -91,7 +125,7 @@ Livello10.prototype.inizializzaArmiNemiche = function ( ) {
   
   var opzioniBatteria1 = {
     x: astronaveNemica.x + 40, 
-    y: astronaveNemica.y + 53, 
+    y: astronaveNemica.y + 54, 
     nMissili: 0, 
     nSoldati: 10, 
     colori: [], 
@@ -106,10 +140,10 @@ Livello10.prototype.inizializzaArmiNemiche = function ( ) {
   };
   
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria1, 1500000, false, filtro, false, 1, 10, 'green', this.coreGame) );
+    new TorrettaAutomatica( 0, opzioniBatteria1, -10000, false, filtro, false, 0.5, 10, '#97F52D', this.coreGame) );
   var opzioniBatteria2 = { 
     x: astronaveNemica.x + 260, 
-    y: astronaveNemica.y + 53, 
+    y: astronaveNemica.y + 54, 
     nMissili: 0, 
     nSoldati: 10, 
     colori: [], 
@@ -119,32 +153,61 @@ Livello10.prototype.inizializzaArmiNemiche = function ( ) {
     deltaRaffreddamento: 3
   };
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new TorrettaAutomatica( 0, opzioniBatteria2, 1500000, false, filtro, false, 1, 10, 'green', this.coreGame) );
+    new TorrettaAutomatica( 0, opzioniBatteria2, -10000, false, filtro, false, 0.5, 10, '#97F52F', this.coreGame) );
+}
+
+Livello10.prototype.setupListeners = function ( ) { 
+  var mySelf = this;
+  $( '.gameContainer' ).off();
+  $( '.gameContainer' ).focus();
+  
+  $( '.gameContainer' ).on( 'click', function ( ) {
+    mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, null );
+  } );
+  
+  $( '.gameContainer' ).on( 'mouseover', function( event ) {
+    mySelf.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
+  });
+  $( '.gameContainer' ).on( 'mouseout', function( ) {
+    mySelf.coreGame.mirino.stato = Mirino.SPENTO;
+  });
+  $( '.gameContainer' ).on( 'mousemove', function( event ) {
+    var offset = $(".gameContainer").offset();
+    mySelf.coreGame.mirino.inseguiX = event.pageX - offset.left;
+    mySelf.coreGame.mirino.inseguiY = event.pageY - offset.top;
+    mySelf.coreGame.mirino.cambiaMira();
+  });
 }
 
 Livello10.prototype.scegliTorretta = function ( x, y, tasto ) {
-  var indiceTorretta = 0;
-  switch(tasto) {
-    case 50: indiceTorretta = 1; break;
-    default: return -1;
+  var nonFunzionante = function ( torretta ) {  
+    if( torretta.stato === BatteriaAntimissile.ATTIVA &&
+        torretta.numeroMissili > 0 &&
+        torretta.blocco === false )
+      return false;
+    else
+      return true;
   }
   
-  if ( this.coreGame.batterieAntimissile[ indiceTorretta ].stato === BatteriaAntimissile.ATTIVA ) {
-    return indiceTorretta;
-  }
+  var torrette = this.coreGame.batterieAntimissile;
+  var torrettaSelezionata = 1;
   
-  return -1;
-};
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    return -1;
+    
+  return torrettaSelezionata;
+}
 
 Livello10.prototype.sparo = function ( x, y, tasto ) {
-  var indiceTorretta = this.scegliTorretta( x, y, tasto);
-  
+  var indiceTorretta = this.scegliTorretta( x, y, tasto );
   if( indiceTorretta === -1 )
     return;
   
+  var torretta = this.coreGame.batterieAntimissile[indiceTorretta];
+  
   this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
-    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
-    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
+    xDiPartenza: torretta.x,
+    yDiPartenza: torretta.y,
     xDiArrivo: x,
     yDiArrivo: y,
     coloreTestata: 'yellow',
@@ -152,9 +215,15 @@ Livello10.prototype.sparo = function ( x, y, tasto ) {
     massimoRaggioEsplosione: 30,
     distanzaPerFrame: 7
   }, this.coreGame ) );
+  
   this.coreGame.aggiornaPunteggioMissiliSparati();
-  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
-  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += 150;
+  torretta.numeroMissili--;
+  torretta.temperatura += 100;
+  var temperaturaMinima = 500
+  torretta.temperaturaSblocco = temperaturaMinima;
+  if( torretta.temperatura >= 799 ) {
+    torretta.blocco = true;
+  };
 }
 
 Livello10.prototype.verificaFineLivello = function ( ) {
@@ -162,7 +231,8 @@ Livello10.prototype.verificaFineLivello = function ( ) {
     return true;  
   }
   
-  if( this.coreGame.missiliTerrestri.indexOf ( this.missileNucleare ) < 0 ) {
+  if( this.coreGame.missiliTerrestri.indexOf ( this.missileNucleare ) < 0  && 
+     this.coreGame.missiliTerrestri[0] < this.coreGame.minacce[ 0 ].y + 53 ) {
     return false;
   }
   
@@ -219,7 +289,7 @@ function MissileNucleare ( xDiPartenza, yDiPartenza, xDiArrivo, yDiArrivo, coreG
     coloreTestata: 'white',
     coloreScia: 'white',//'yellow',
     massimoRaggioEsplosione: 50,
-    distanzaPerFrame: 0.3
+    distanzaPerFrame: 0.4
   }, coreGame );
   this.coloreCorpo = 'white' //#FF00FF';
 }
@@ -271,7 +341,7 @@ MissileNucleare.prototype.disegna = function ( ctx, coreGame ) {
     }
     ctx.fill();
   }
-};
+}
 
 MissileNucleare.prototype.update = function () {
   if( this.stato === Missile.ATTIVO && this.y <= this.yDiArrivo ) {
@@ -285,7 +355,7 @@ MissileNucleare.prototype.update = function () {
   } else {
     this.esplodi();
   }
-};
+}
 
 MissileNucleare.prototype.esplodi = function () {  
   if( this.stato === Missile.ESPLOSIONE ) {
@@ -300,7 +370,7 @@ MissileNucleare.prototype.esplodi = function () {
   if( this.raggioDiEsplosione < 0 ) {
     this.stato = Missile.ESPLOSO;
   }
-};
+}
 
 function TorrettaAutomatica ( indice, opzioniBatteria, tempoRicarica, disegnaScritte, funzioneDiFiltroMissili, aggancio, velMissili, raggioEsplosione, coloreScia, coreGame ) {
   this.indice = indice;
@@ -335,16 +405,27 @@ function TorrettaAutomatica ( indice, opzioniBatteria, tempoRicarica, disegnaScr
   // Stato interno
   this.bersagliAgganciati = [];
   this.missilePronto = true;
-  this.timerRicarica = setTimeout( this.ricarica.bind( this, this ), this.tempoRicarica );
-};
+  
+  if( this.tempoRicarica < 0 )
+    this.timerRicarica = setTimeout( 
+      this.ricarica.bind( this, this ), rand(0, Math.abs( this.tempoRicarica )) );
+  else
+     this.timerRicarica = setTimeout( 
+      this.ricarica.bind( this, this ), this.tempoRicarica );
+  };
 
 // Ereditarietà da BatteriaAntimissile
 TorrettaAutomatica.prototype = Object.create( BatteriaAntimissile.prototype );
 TorrettaAutomatica.prototype.constructor = TorrettaAutomatica;
 
 TorrettaAutomatica.prototype.avvia = function ( ) {
-  this.timerRicarica = setTimeout( this.ricarica.bind( this, this ),  this.tempoRicarica );
-}
+  if( this.tempoRicarica < 0 )
+    this.timerRicarica = setTimeout( 
+      this.ricarica.bind( this, this ), rand(0, Math.abs( this.tempoRicarica )) );
+  else
+     this.timerRicarica = setTimeout( 
+      this.ricarica.bind( this, this ), this.tempoRicarica );
+  }
 
 TorrettaAutomatica.prototype.stop = function ( ) {
   clearTimeout(this.timerRicarica);
@@ -390,10 +471,11 @@ TorrettaAutomatica.prototype.identificaBersaglio = function ( ) {
     return true;
   } );
   
-  if( this.aggangio === true )
+  if( this.aggancio === true ) {
     // Esludo i missili già agganciati
     missiliInGioco = diff(missiliInGioco, this.bersagliAgganciati); 
-  
+  }
+    
   // Applico un filtro proprio della torretta
   missiliInGioco = missiliInGioco.filter( this.funzioneDiFiltroMissili );
   // Ordino per altezza
@@ -461,7 +543,12 @@ TorrettaAutomatica.prototype.spara = function ( coordinate ) {
   this.coreGame.missiliTerrestri.push(missile);
   
   clearTimeout(this.timerRicarica);
-  this.timerRicarica = setTimeout( this.ricarica.bind( this, this ), this.tempoRicarica );
+  if( this.tempoRicarica < 0 )
+    this.timerRicarica = setTimeout( 
+      this.ricarica.bind( this, this ), rand(0, Math.abs( this.tempoRicarica )) );
+  else
+     this.timerRicarica = setTimeout( 
+      this.ricarica.bind( this, this ), this.tempoRicarica );
   this.missilePronto = false;
   
   return missile;

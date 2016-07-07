@@ -32,12 +32,15 @@ AstronaveNemica.ESPLOSO = 4;
 
 AstronaveNemica.prototype.disegna = function () {
   if( this.stato === AstronaveNemica.ATTIVO || this.stato === AstronaveNemica.ESPLOSIONE) {    
-    this.ctx.fillStyle = "#00FF00";
-    this.ctx.beginPath();
-    this.ctx.rect( this.x, this.y,
-                   this.lunghezza, this.altezza );
-    this.ctx.closePath();
-    this.ctx.fill();
+//    this.ctx.fillStyle = "#00FF00";
+//    this.ctx.beginPath();
+//    this.ctx.rect( this.x, this.y,
+//                   this.lunghezza, this.altezza );
+//    this.ctx.closePath();
+//    this.ctx.fill();
+  
+    var immagine = document.getElementById( "nave-madre" );
+    this.ctx.drawImage( immagine, this.x, this.y );
   }
   
   if ( this.stato === AstronaveNemica.ESPLOSIONE 
@@ -55,14 +58,7 @@ AstronaveNemica.prototype.disegna = function () {
       this.ctx.closePath();
       this.ctx.fill();
     }
-  }
-  
-//  var immagine = new Image(); //document.getElementById( "img_prova" );
-//  immagine.src = "file:///Users/francesco/DesertoDeiBarbari/missile_command/index.html";
-//  immagine.onload = function () {
-//    this.ctx.drawImage( immagine, 0, 0);
-//                       //this.ctx.width / 2 - immagine.width / 2, 100 );
-//  }
+  }  
 }
 
 AstronaveNemica.prototype.update = function () {
