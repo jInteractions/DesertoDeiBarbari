@@ -87,11 +87,11 @@ for ( var i = 0; i &#x3C; lunghezza; i++ ) {
 Nota bene!
 La scorciatoia i++ ha lo stesso significato dell&#x27;istruzione i = i + 1. Stesso vale per x++.
 Questa scrittura ha un significato semplice: partendo da 0, si controlla il valore di i. L&#x27;istruzione interna al for, cio&#xE8; x++, viene eseguita finch&#xE9; i, che viene incrementato ad ogni giro del ciclo, non &#xE8; lunga come lunghezza. Scomponiamo le operazioni:
-- viene creata una variabile i, che contiene in valore 0;
-- se i &#xE8; minore di lunghezza, si va avanti, altrimenti si esce dal ciclo;
-- i viene incrementato, cio&#xE8; contiene ora il valore 0+1, cio&#xE8; 1;
-- si esegue il codice interno al ciclo, dunque x diventa uguale a 1;
-- si controlla se i (ora uguale a 1) &#xE8; minore di lunghezza: se lo &#xE8;, si torna dentro al ciclo, altrimenti si esce.
+<li>viene creata una variabile i, che contiene in valore 0;</li>
+<li>se i &#xE8; minore di lunghezza, si va avanti, altrimenti si esce dal ciclo;</li>
+<li>i viene incrementato, cio&#xE8; contiene ora il valore 0+1, cio&#xE8; 1;</li>
+<li>si esegue il codice interno al ciclo, dunque x diventa uguale a 1;</li>
+<li>si controlla se i (ora uguale a 1) &#xE8; minore di lunghezza: se lo &#xE8;, si torna dentro al ciclo, altrimenti si esce.</li>
 Il ciclo viene dunque ripetuto lunghezza volte.
 Il secondo tipo di ciclo &#xE8; quello identificato dalla parola chiave while. Eccone un esempio:
 var x = 0;

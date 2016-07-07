@@ -1,5 +1,3 @@
-
-
 LIVELLO 5: Gli Ibridi
 
 DIALOGO INIZIALE
@@ -63,32 +61,32 @@ Bene. Buona fortuna, maggiore.
 OBIETTIVO - Tab 1
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.
 Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:
-- l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
-- l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
-- la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;</li>
+<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.</li>
 Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
 Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.
 L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta centrale devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
 I valori corretti per le torrette sono quelli intermedi.
 Prendendo dunque i tre valori della variabile energiaCompressore, che sono:
-- 5, per la torretta centrale;
-- 30, per la torretta sinistra;
-- 80, per la torretta destra;
+<li>5, per la torretta centrale;</li>
+<li>30, per la torretta sinistra;</li>
+<li>80, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:
 var energiaCompressore = 30;
 Prendendo invece i tre valori della variabile energiaMirino, che sono:
-- 1, per la torretta centrale;
-- 10, per la torretta sinistra;
-- 50, per la torretta destra;
+<li>1, per la torretta centrale;</li>
+<li>10, per la torretta sinistra;</li>
+<li>50, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:
 var energiaMirino = 10;
 Prendendo infine i tre valori della variabile pressioneCarburante, che sono:
-- 15, per la torretta centrale;
-- 5, per la torretta sinistra;
-- 20, per la torretta destra;
+<li>15, per la torretta centrale;</li>
+<li>5, per la torretta sinistra;</li>
+<li>20, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
 Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:
 var pressioneCarburante = 10;
@@ -96,32 +94,32 @@ var pressioneCarburante = 10;
 OBIETTIVO - Tab 2
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.
 Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:
-- l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
-- l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
-- la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;</li>
+<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.</li>
 Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
 Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.
 L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta sinistra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
 I valori corretti per le torrette sono quelli intermedi.
 Prendendo dunque i tre valori della variabile energiaCompressore, che sono:
-- 5, per la torretta centrale;
-- 30, per la torretta sinistra;
-- 80, per la torretta destra;
+<li>5, per la torretta centrale;</li>
+<li>30, per la torretta sinistra;</li>
+<li>80, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:
 var energiaCompressore = 30;
 Prendendo invece i tre valori della variabile energiaMirino, che sono:
-- 1, per la torretta centrale;
-- 10, per la torretta sinistra;
-- 50, per la torretta destra;
+<li>1, per la torretta centrale;</li>
+<li>10, per la torretta sinistra;</li>
+<li>50, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:
 var energiaMirino = 10;
 Prendendo infine i tre valori della variabile pressioneCarburante, che sono:
-- 15, per la torretta centrale;
-- 5, per la torretta sinistra;
-- 20, per la torretta destra;
+<li>15, per la torretta centrale;</li>
+<li>5, per la torretta sinistra;</li>
+<li>20, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
 Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:
 var pressioneCarburante = 10;
@@ -129,32 +127,32 @@ var pressioneCarburante = 10;
 OBIETTIVO - Tab 3
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.
 Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:
-- l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;
-- l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;
-- la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;</li>
+<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.</li>
 Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.
 Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.
 L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta destra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
 I valori corretti per le torrette sono quelli intermedi.
 Prendendo dunque i tre valori della variabile energiaCompressore, che sono:
-- 5, per la torretta centrale;
-- 30, per la torretta sinistra;
-- 80, per la torretta destra;
+<li>5, per la torretta centrale;</li>
+<li>30, per la torretta sinistra;</li>
+<li>80, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:
 var energiaCompressore = 30;
 Prendendo invece i tre valori della variabile energiaMirino, che sono:
-- 1, per la torretta centrale;
-- 10, per la torretta sinistra;
-- 50, per la torretta destra;
+<li>1, per la torretta centrale;</li>
+<li>10, per la torretta sinistra;</li>
+<li>50, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.
 Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:
 var energiaMirino = 10;
 Prendendo infine i tre valori della variabile pressioneCarburante, che sono:
-- 15, per la torretta centrale;
-- 5, per la torretta sinistra;
-- 20, per la torretta destra;
+<li>15, per la torretta centrale;</li>
+<li>5, per la torretta sinistra;</li>
+<li>20, per la torretta destra;</li>
 &#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.
 Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:
 var pressioneCarburante = 10;

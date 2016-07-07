@@ -30,16 +30,16 @@ OBIETTIVO
 L&#x27;obiettivo &#xE8; quello di cambiare il codice contenuto all&#x27;interno del meccanismo che si attiva tramite il click del mouse, cio&#xE8; il contenuto del blocco:
 $( planciaComandi ).on( &#x27;click&#x27;, function () { /* codice da inserire */ } );
 Nel secondo file &#xE8; infatti contenuto l&#x27;algoritmo di selezione automatica della torretta, non modificabile. Si deve inserire dunque nel meccanismo attivato dal mouse la chiamata a tale funzione. Questa chiamata necessita di tre prametri:
-- torrette, che abbiamo gi&#xE0;;
-- una x corretta per il bersaglio;
-- una y corretta per il bersaglio.
+<li>torrette, che abbiamo gi&#xE0;;</li>
+<li>una x corretta per il bersaglio;</li>
+<li> una y corretta per il bersaglio.</li>
 La x e la y rappresentano le coordinate nel piano cartesiano dell&#x27;area di sparo delle torrette.
 Si deve poi creare una variabile che conterr&#xE0; il valore restituito da tale chiamata di funzione; poi effettuare un&#x27;altra chiamata, questa volta alla funzione azionaComandoSparo(), con i seguenti parametri:
-- la stringa &#x27;keyup&#x27;;
-- la torretta selezionata con la chiamata precedente;
-- la variabile sistema;
-- la x corretta;
-- la y corretta.
+<li>la stringa &#x27;keyup&#x27;;</li>
+<li>la torretta selezionata con la chiamata precedente;</li>
+<li>la variabile sistema;</li>
+<li>la x corretta;</li>
+<li> la y corretta.</li>
 
 AIUTI
 Un modo per creare il nuovo meccanismo di sparo prevede di inserire nel punto opportuno del codice il corretto valore nelle variabili x ed y:

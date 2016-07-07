@@ -40,8 +40,8 @@ Va bene, cominciamo.
 
 OBIETTIVO - Tab 2
 Ci sono due classi:
-- MissileTestataMultipla: missile alieno che si sdoppia;
-- MissileStandard: missile di ordinanza terrestre.
+<li>MissileTestataMultipla: missile alieno che si sdoppia;</li>
+<li>MissileStandard: missile di ordinanza terrestre.</li>
 L&#x27;obiettivo &#xE8; inserire la tecnologia aliena dello sdoppiamento dei missili nella nostra classe MissileStandard.
 Come si pu&#xF2; notare, le due classi hanno una struttura comune: tra di esse l&#x27;unica differenza sta nei nomi delle caratteristiche e delle  funzioni.
 Per spostare la tecnologia dalla classe MissileTestataMultipla &#xE8; necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalit&#xE0; di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.
