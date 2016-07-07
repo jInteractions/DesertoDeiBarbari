@@ -38,11 +38,56 @@ Sono composti da una particolare testata in grado di sdoppiarsi. Sono riuscita a
 Simeoni
 Va bene, cominciamo.
 
-OBIETTIVO
-
+OBIETTIVO - Tab 2
+Ci sono due classi:
+- MissileTestataMultipla: missile alieno che si sdoppia;
+- MissileStandard: missile di ordinanza terrestre.
+L'obiettivo è inserire la tecnologia aliena dello sdoppiamento dei missili nella nostra classe MissileStandard.
+Come si può notare, le due classi hanno una struttura comune: tra di esse l'unica differenza sta nei nomi delle caratteristiche e delle  funzioni.
+Per spostare la tecnologia dalla classe MissileTestataMultipla è necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalità di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.
 AIUTI
+Come prima cosa è necessario modificare la funzione MissileStandard.prototype.miraBersaglio(), coerentemente con la funzione MissileTestataMultipla.prototype.identificaObiettivo(): al posto delle righe
+var coordinateEsplosione = { esplosioneX: x, esplosioneY: y };
+this.agganciaObiettivo( bersaglio );
+return coordinateEsplosione.esplosioneY;
+andranno inserite le seguenti righe, che permettono di calcolare l'altezza di sdoppiamento del missile
+var altezza = this.calcolaAltezzaSdoppiamento( x, y );
+this.agganciaObiettivo( bersaglio );
+return altezza;
+Successivamente sarà necessario modificare la funzione MissileStandard.prototype.esplodi(), coerentemente con la funzione MissileTestataMultipla.prototype.detonazione(), cambiando dunque le righe
+var x = this.bersaglioAgganciato.x;
+var y = this.bersaglioAgganciato.y;
+return ( [ new FrammentoMissile( x, y ) ] );
+con le righe
+var frammentoMissile1 = new FrammentoMissile( this.bersaglio.x + 10, this.bersaglio.y );
+var frammentoMissile2 = new FrammentoMissile( this.bersaglio.x - 10, this.bersaglio.y );
+var frammentiMissile = [];
+frammentiMissile.push( frammentoMissile1 );
+frammentiMissile.push( frammentoMissile2 );
+return frammentiMissile;
 
 MANUALE
+Ogni classe può essere associata ad una serie di funzioni. Per essere più chiari, prendiamo la classe Arma:
+function Arma () {
+	this.numeroMunizioni = 10;
+}
+Un'arma può avere diverse funzionalità, per esempio la ricarica e lo sparo:
+Arma.prototype.ricarica = function () {
+	this.numeroMunizioni = 10;
+}
+Arma.prototype.spara = function () {
+	if ( this.numeroMunizioni === 0 ) {
+		this.ricarica();
+	}
+	this.numeroMunizioni--;
+}
+Queste due funzioni sono molto semplici. La prima re-imposta il numero di munizioni al valore iniziale di 10. La seconda controlla il numero di munizioni: se è uguale a 0, allora effettua una ricarica, poi spara; altrimenti spara, decrementando il numero di munizioni.
+Una funzione propria ad una classe viene indicata con la parola chiave prototype.
+Osserviamo il meccanismo, prendendo un oggetto di classe Arma:
+var cannone = new Arma();
+cannone.spara();
+var munizioniRimaste = cannone.numeroMunizioni.
+La variabile munizioniRimaste contiene il valore 9, poiché la funzione di sparo ha determinato un decremento del numeroMunizioni all'interno dell'oggetto cannone.
 
 DIALOGO FINALE
 Ortiz
