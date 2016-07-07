@@ -10,7 +10,7 @@ Ciao caro. Non sei a parlare con il tuo bel generale?
 Simeoni
 Non è affar tuo.
 Zurlin
-Non mi sembra un buon modo per cominciare. Del resto, se sei qui, vuol dire che hai bisgno di me...
+Non mi sembra un buon modo per cominciare. Del resto, se sei qui, vuol dire che hai bisogno di me...
 Simeoni
 D'accordo, scusami. La vita del soldato spesso fa dimenticare le buone maniere. E la curiosità mi mette fretta.
 Zurlin
@@ -30,7 +30,7 @@ Dal pianeta Tronk, dall'altro capo del deserto. Lì la mia razza ha sempre vissu
 Simeoni
 Un secolo solo per sviluppare armi e navi capaci di viaggiare a velocità ultraluce... come avete fatto?
 Zurlin
-Buona domanda, terrestre. Siete stati voi. Un secolo fa, raccontano le nostre storie, arrivarono navi terrestri dal cielo. Scappavano dalla miseria dei pianeti dell'orlo della vostra galassia... come Bastiani. Pianeti poveri e dimenticati dal governo terrestre. Masse di siperati hanno costruito navi ultraluce dai rottami ed hanno iniziato una seconda colonizzazione. Una colonizzazione pacifica, che ha portato all'unione dei nostri popoli. Un'unione che mi piace definire letterale: voi ci chiamate il Nemico, ma il termine corretto sarebbe... Ibridi. Siamo l'alba di una nuova razza, mezzi terrestri e mezzi tronk, che si sta affacciando nel vasto panorama dell'universo. E siamo curiosi e... spaventati.
+Buona domanda, terrestre. Siete stati voi. Un secolo fa, raccontano le nostre storie, arrivarono navi terrestri dal cielo. Scappavano dalla miseria dei pianeti dell'orlo della vostra galassia... come Bastiani. Pianeti poveri e dimenticati dal governo terrestre. Masse di disperati hanno costruito navi ultraluce dai rottami ed hanno iniziato una seconda colonizzazione. Una colonizzazione pacifica, che ha portato all'unione dei nostri popoli. Un'unione che mi piace definire letterale: voi ci chiamate il Nemico, ma il termine corretto sarebbe... Ibridi. Siamo l'alba di una nuova razza, mezzi terrestri e mezzi tronk, che si sta affacciando nel vasto panorama dell'universo. E siamo curiosi e... spaventati.
 Simeoni
 E perché combattete?
 Zurlin
@@ -87,7 +87,7 @@ DIALOGO FINALE
 Ortiz
 Ottimo lavoro, maggiore.
 Simeoni
-Grazie, generale. si sa niente della detenuta?
+Grazie, generale. Si sa niente della detenuta?
 Ortiz
 Stai attento con la curiosità. Anche se in questo caso è giustificabile.
 Simeoni

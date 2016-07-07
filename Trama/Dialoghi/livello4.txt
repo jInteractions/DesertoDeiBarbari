@@ -45,7 +45,7 @@ Ortiz
 Basta con i convenevoli. Simeoni, questa è la tua ultima possibilità. Vedi di tenerlo bene a mente.
 
 OBIETTIVO - Tab 1
-L'obiettivo è modificare le caratteristiche della classe dell'arma sabotata, che poi dovrà essere caricata al posto delle armi funzionanti nel codice del Nemico. Si deve dunque alzare il tempo di ricarica massimo, cioè il tempo che ogni torretta impiega a ricaricare il cannone; poi ridurre il numero del propellente, poiché più è basso, più indica propellente scadente; poi diminuire il numero di missili contenuti nel caricatore; infine cambiare il tipo di missile da massima_efficacia a massima_esplosione.
+L'obiettivo è modificare le caratteristiche della classe dell'arma sabotata, che poi dovrà essere caricata al posto delle armi funzionanti nel codice del Nemico. Si deve dunque alzare il tempo di ricarica massimo, cioè il tempo che ogni torretta impiega a ricaricare il cannone; poi ridurre il numero del propellente, poiché più è basso, più indica propellente scadente; poi diminuire il numero di missili contenuti nel caricatore; infine cambiare il tipo di missile da massima_efficacia a massima_esplosione. Quest'ultima modifica permette di avere un maggior numero di esplosioni a catena: aumentando infatti la carica esplosiva del missile, se viene abbattuto in aria, ne distruggerà molti altri intorno.
 AIUTI
 Le caratteristiche della classe andranno cambiate nel seguente modo:
 this.tempoRicaricaMassimo = 200;
