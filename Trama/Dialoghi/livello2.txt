@@ -6,7 +6,7 @@ DIALOGO INIZIALE
 Ortiz
 Capitano, le modifiche che hai apportato al sistema si sono rivelate inutili! Possiamo sparare e puntare, ma i missili non raggiungono correttamente il bersaglio! Hai qualche giustificazione?
 Simeoni
-Signore, ho fatto solo quello che mi è stato chiesto, cioè sbloccare il sistema antimissili. Se ci sono da apprtare altre modifiche al codice sorgente lo farò, ma mi servirebbe un punto preciso dal quale partire...
+Signore, ho fatto solo quello che mi è stato chiesto, cioè sbloccare il sistema antimissili. Se ci sono da apportare altre modifiche al codice sorgente lo farò, ma mi servirebbe un punto preciso dal quale partire...
 Ortiz
 Stai pretendendo troppo, capitano. Siamo al fronte, non a scuola. Devi cavartela da solo! E devi stare attento, oppure la corte marziale potrebbe sentire il tuo nome.
 Simeoni
@@ -22,7 +22,7 @@ E tu chi saresti? Stavi origliando?
 Prosdocimo
 Sembrava parecchio arrabbiato il generale, eh eh eh...
 Simeoni
-Allora stavi origliando! Spiegami chi sei e forse non ti farò rapporto alla corte marziale.
+Allora stavi origliando! Spiegami chi sei e forse non dirò al generale che ci stavi ascoltando.
 Prosdocimo
 Prosdocimo, al tuo servizio! Eh eh eh...
 Simeoni
@@ -40,7 +40,7 @@ Ecco, bravo. Le armi hanno dei file di configurazione che impostano la forza di 
 Simeoni
 Grazie, vec... Prosdocimo. Spero che queste informazioni mi vengano utili.
 Prosdocimo
-Lo saranno, giovane capitano. Parola di Prosdocimo! Eh eh eh...
+Lo saranno, giovane capitano. Parola di Prosdocimo! Però facciamo così: non dire al tuo generale che ti ho aiutato e che hai utilizzato questo file. Eh eh eh...
 
 OBIETTIVO - Tab 1
 L'obiettivo è quello di sbloccare la calibrazione del mirino. Sarà dunque necessario rendere vera la variabile sbloccoCalibrazione. Fatto questo è necessario entrare nella parte di codice raggiungibile dall'else dell'struzione if-else, modificando il confronto tra le parentesi tonde che seguono la parola chiave if: tutto questo per inserire nella variabile _codicePianeta il codice del pianeta Bastiani e non quello di default.
@@ -107,7 +107,7 @@ DIALOGO FINALE
 Simeoni
 Capitano Simeoni a rapporto signore.
 Ortiz
-Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sarò per sempre su questo pianeta, ed è giusto che tu sappia anche cavartela da solo. Ho solo una curiosità. Come sei riuscito a risolvere questo problema? Devo ammettere che sono stato colpito...
+Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sarò per sempre su questo pianeta ed è giusto che tu sappia anche cavartela da solo. Ho solo una curiosità: come sei riuscito a risolvere questo problema? Devo ammettere che sono stato colpito...
 Simeoni
 Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto più forte. Ma non voglio annoiare nessuno, signore.
 Ortiz

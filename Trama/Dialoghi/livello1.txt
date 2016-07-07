@@ -4,7 +4,11 @@ LIVELLO 1: Bastiani, la fortezza
 
 DIALOGO INIZIALE
 Ortiz
-Buongiorno, capitano Simeoni! Io sono il generale Ortiz, a capo dell'Ottava Armata delle United Terrestrial Forces, nome in codice UTF-8. Come puoi ben vedere, abbiamo appena subito un attacco del Nemico. Purtroppo le difese del pianeta Bastiani sono inutilizzabili!
+Buongiorno, capitano Simeoni. Io sono il generale Ortiz, a capo dell'Ottava Armata delle United Terrestrial Forces, nome in codice UTF-8. Sarà a me che dovrai fare rapporto nei mesi a venire. Chiaro?
+Simeoni
+Signorsì, signore.
+Ortiz
+Ottimo. Come puoi ben vedere, abbiamo appena subito un attacco del Nemico. Vorremmo reagire ma... purtroppo le difese del pianeta Bastiani sono inutilizzabili.
 Simeoni
 Inutilizzabili, signore?
 Ortiz
@@ -20,7 +24,7 @@ Il tuo primo compito sarà quello di modificare il codice sorgente per le armi d
 Simeoni
 Brutta notizia, signore?
 Ortiz
-Il linguaggio di programmazione utilizzato per la scrittura dei programmi militari si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti! Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, università... nulla! Come se non fosse mai esistito.
+Il linguaggio di programmazione utilizzato per la scrittura dei programmi militari si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti. Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, università... nulla! Come se non fosse mai esistito.
 Simeoni
 Bene, signore. La difficoltà è mia amica. Spero solo di essere in grado di capire questo linguaggio il prima possibile.
 Ortiz
@@ -36,16 +40,18 @@ Mi aspetto grandi cose da te, capitano. Non deludermi.
 
 OBIETTIVO - Tab 1
 L'obiettivo è costruire la frase d'accesso corretta per sbloccare il sistema di puntamento e sparo. Devi dunque inserire:
-- nella variabile 'nome', la stringa "Cpt Simeoni";
+- nella variabile <i>nome</i>, la stringa "Cpt Simeoni";
 - nella variabile 'matricola', il numero 150716;
 - nella variabile 'password', la stringa "utf-8_tuono".
 Dovrai poi inserire nella variabile 'stringaAccesso' la corretta composizione della parola d'accesso, che dovrà essere della forma
 "nome%matricola<password>".
 AIUTI
 Come prima cosa si devono effettuare i seguenti assegnamenti:
+<pre><code>
 var nome = "Cpt Simeoni";
 var matricola = 150716;
 var password = "utf-8_tuono";
+</code></pre>
 Poi cambiare la concatenazione di stringhe per riempire la variabile 'stringaAccesso':
 var stringaAccesso = nome + "%" + matricola + "<" + password + ">";
 

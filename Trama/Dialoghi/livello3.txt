@@ -4,7 +4,7 @@ LIVELLO 3: Sabotaggio
 
 DIALOGO INIZIALE
 Prosdocimo
-Eh eh eh
+Eh eh eh!
 Simeoni
 Cos'hai da ridere, Prosdocimo?
 Prosdocimo
@@ -12,7 +12,7 @@ Non ti ha convocato, eh? Il generale...
 Simeoni
 No, effettivamente è strano. Avrà da fare, alla fine detiene il comando di tutta la linea di fuoco di Bastiani.
 Prosdocimo
-Certo, certo, anche se questo punto è quello che soffre maggiormente gli attacchi del Nemico. Poi, c'è quel pianeta misterioso...
+Certo, certo, anche se questo è il punto che soffre maggiormente gli attacchi del Nemico. Poi, c'è quel pianeta misterioso...
 Simeoni
 Quello nel file di configurazione planetaria? Quelle scritte solo di 0 e 1? Hai ragione, c'è qualcosa di misterioso. Ma un soldato non ha tempo per i misteri, quando c'è una guerra da combattere.
 Prosdocimo
@@ -85,7 +85,7 @@ for ( var i = 0; i < lunghezza; i++ ) {
 	x++;
 }
 Nota bene!
-La scorciatoia i++ ha lo stesso significato dell'istruzione i = i + 1. Stesso vale per x.
+La scorciatoia i++ ha lo stesso significato dell'istruzione i = i + 1. Stesso vale per x++.
 Questa scrittura ha un significato semplice: partendo da 0, si controlla il valore di i. L'istruzione interna al for, cioè x++, viene eseguita finché i, che viene incrementato ad ogni giro del ciclo, non è lunga come lunghezza. Scomponiamo le operazioni:
 - viene creata una variabile i, che contiene in valore 0;
 - se i è minore di lunghezza, si va avanti, altrimenti si esce dal ciclo;
@@ -124,7 +124,7 @@ Non dormire sugli allori, però. Il Nemico continua a batterci, anche se forse..
 Simeoni
 Hai scoperto qualcosa, signore?
 Ortiz
-Abbiamo abbattuto un caccia nemico, a pochi chilometri da qui. Il pilota è conciato male, ma lo stiamo sistemando. Spero di poterlo interrogare, questa notte. Potremmo ricavare grandi benefici da questo incontro. È il primo prigioniero che riusciamo a prendere... e dunque il primo punto di contatto tra le nostre culture. Gli esseri umani non hanno mai parlato con nessuno che venisse dall'altro capo del deserto dei Barbari... sarà sicuramente interessante.
+Abbiamo abbattuto un caccia nemico, a pochi chilometri da qui. Il pilota è conciato male, ma lo stiamo sistemando. Spero di riuscire ad interrogarlo, questa notte. Potremmo ricavare grandi benefici da questo incontro. È il primo prigioniero che riusciamo a prendere... e dunque il primo punto di contatto tra le nostre culture. Gli esseri umani non hanno mai parlato con nessuno che venisse dall'altro capo del deserto dei Barbari... sarà sicuramente interessante.
 Simeoni
 Immagino di non poter partecipare a questo colloquio, signore.
 Ortiz
@@ -132,6 +132,6 @@ Immagini bene. Ma se tutto va come deve andare... parlerai presto con lei.
 Simeoni
 Lei?
 Ortiz
-Ti ho già detto troppo, solo perché in fondo mi sei simpatico. Ora vai a dormire, capitano. Un'altra...
+Ti ho già detto troppo, solo perché in fondo mi sei simpatico. Ora vai a dormire, capitano. Domani un'altra...
 Simeoni
 ... lunga giornata ci attende nell'eterna notte di Bastiani.

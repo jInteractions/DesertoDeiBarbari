@@ -38,7 +38,7 @@ Ottimo.
 Zurlin
 Calmo, caro. A quel punto sarà necessario effettuare un attacco a forza bruta alla password della nave, in modo che le modifiche che hai fatto alle armi possano essere salvate nel loro sistema. Ho già fatto preparare alcuni file da cui puoi partire, ma non sarà facile, caro...
 Simeoni
-E smettila con questo caro.
+E smettila di chiamarmi caro.
 Zurlin
 Certo, caro.
 Ortiz
@@ -77,15 +77,15 @@ var risultato = calcolaSomma ( 4, 5 );
 In risultato verrà inserito il risultato della funzione, dunque 9.
 Un particolare tipo di funzione è la funzione ricorsiva, cioè una funzione che richiama se stessa più volte, in modo da produrre un determinato tipo di risultato. Un esempio di funzione ricorsiva può essere quella che calcola il fattoriale di un numero:
 var fattoriale = function ( numero ) {
-    if ( numero < 0 ) {
-        return -1;
-    }
-    else if ( num == 0 ) {
-        return 1;
-    }
-    else {
-        return ( numero * fattoriale( numero - 1 ) );
-    }
+  if ( numero < 0 ) {
+    return -1;
+  }
+  else if ( num == 0 ) {
+    return 1;
+  }
+  else {
+    return ( numero * fattoriale( numero - 1 ) );
+  }
 }
 Il risultato ritornato dalla funzione fattoriale( numero ) sarà il valore del fattoriale di numero.
 L'ultimo tassello della grammatica del linguaggio di programmazione è il concetto di classe. Una classe definisce un nuovo tipo di valore, che viene caratterizzato da una serie di caratteristiche, chiamati campi. Ecco un esempio, per la classe Soldato:
@@ -107,9 +107,9 @@ DIALOGO FINALE
 Ortiz
 Un ottimo lavoro, direi.
 Simeoni
-Grazie, generale.
+Grazie, generale. Grazie... Zurlin.
 Zurlin
-Grazie, caro.
+Prego, caro.
 Ortiz
 Portate via Zurlin. Cella 42. Con te non ho ancora finito.
 Zurlin
