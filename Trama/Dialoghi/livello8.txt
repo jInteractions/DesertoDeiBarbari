@@ -34,7 +34,7 @@ Esattamente. Si prende un messaggio e lo si maschera tramite una codifica. Arriv
 Ortiz
 Corretto.
 
-OBIETTIVO
+OBIETTIVO - Tab 2
 L'obiettivo è quello di riempire due funzioni: la prima necessaria per la codifica del segnale radio e la seconda per la decodifica.
 Nota bene! Le basi colorate di rosso sono quelle ausiliarie, mentre quelle ciano sono le basi vitali.
 La funzione di codifica andrà dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.

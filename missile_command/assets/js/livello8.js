@@ -241,43 +241,19 @@ var trasmissione = function ( canaleTrasmissione ) {
 
 var codificaSegnale = function ( canaleTrasmissione ) {
 //###START_MODIFICABILE###
-  var temporaneo;
-  temporaneo = canaleTrasmissione[0];
-  canaleTrasmissione[0] = canaleTrasmissione[1];
-  canaleTrasmissione[1] = temporaneo;
-  
-  temporaneo = canaleTrasmissione[2];
-  canaleTrasmissione[2] = canaleTrasmissione[3];
-  canaleTrasmissione[3] = temporaneo;
-  
-  temporaneo = canaleTrasmissione[4];
-  canaleTrasmissione[4] = canaleTrasmissione[5];
-  canaleTrasmissione[5] = temporaneo;
+  // Codice da scrivere
 //###END_MODIFICABILE###
 }
 
 var decodificaSegnale = function ( canaleTrasmissione ) {
 //###START_MODIFICABILE###
-  var temporaneo;
-  temporaneo = canaleTrasmissione[1];
-  canaleTrasmissione[1] = canaleTrasmissione[0];
-  canaleTrasmissione[0] = temporaneo;
-  
-  temporaneo = canaleTrasmissione[3];
-  canaleTrasmissione[3] = canaleTrasmissione[2];
-  canaleTrasmissione[2] = temporaneo;
-  
-  temporaneo = canaleTrasmissione[5];
-  canaleTrasmissione[5] = canaleTrasmissione[4];
-  canaleTrasmissione[4] = temporaneo;
+  // Codice da scrivere
 //###END_MODIFICABILE###
 }
 
 // test
 
-//(
-var t1 = 
-  function () {
+/*( function () {
   var lettere = ["a","b","c","d","e","f","g","h","i","l","m","n","o","p","q","r","s","t","u","v","z"];
   var canale = [];
   var tx = new Trasmettitore( canale );
@@ -321,5 +297,4 @@ var t1 =
   } )
   
   return esito;  
-}
-//) ();
+}) ();
