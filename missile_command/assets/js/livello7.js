@@ -150,7 +150,7 @@ Livello7.prototype.esaminaMissileSdoppiabile = function ( x, y ) {
   
   var bersagli = [ { appartieneNemico: true, x: x, y: y} ];
   var ySdoppio = missileUtente.miraBersaglio( bersagli );
-  var bersaglio = missileUtente.bersagliAgganciato;
+  var bersaglio = missileUtente.bersaglioAgganciato;
   var missiliFrammenti = missileUtente.esplodi();
     
   if( missiliFrammenti.length === 1 ) {
@@ -287,6 +287,7 @@ MissileStandard.prototype.miraBersaglio = function ( listaBersagli ) {
   var numeroBersagli = listaBersagli.length;
   var i = 0;
   while( i <  numeroBersagli ) {
+//###START_MODIFICABILE###
     var bersaglio = listaBersagli[i];
     if( bersaglio.appartieneNemico === true ) {
       var x = bersaglio.x;
@@ -296,19 +297,22 @@ MissileStandard.prototype.miraBersaglio = function ( listaBersagli ) {
       this.agganciaObiettivo( bersaglio );
       
       return coordinateEsplosione.esplosioneY;
+//###END_MODIFICABILE###
     }
     ++i;
   }
 }
 
 MissileStandard.prototype.agganciaObiettivo = function ( bersaglio ) {
-  this.bersagliAgganciato = bersaglio;
+  this.bersaglioAgganciato = bersaglio;
 }
 
 MissileStandard.prototype.esplodi = function ( ) {
-  var x = this.bersagliAgganciato.x;
-  var y = this.bersagliAgganciato.y;
+//###START_MODIFICABILE###
+  var x = this.bersaglioAgganciato.x;
+  var y = this.bersaglioAgganciato.y;
   return ( [ new FrammentoMissile( x, y ) ] );
+//###END_MODIFICABILE###
 }
 
 // test
@@ -324,7 +328,7 @@ function ( ) {
   y = rand(0, 100);
   var bersagli = [ { appartieneNemico: true, x: x, y: y} ];
   var ySdoppio = missileUtente.miraBersaglio( bersagli );
-  var bersaglio = missileUtente.bersagliAgganciato;
+  var bersaglio = missileUtente.bersaglioAgganciato;
   var missiliFrammenti = missileUtente.esplodi();
   
   if( missiliFrammenti.length !== 2 ) {
