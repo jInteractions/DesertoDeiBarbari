@@ -15,8 +15,18 @@ Livello4.prototype.inizializzaArmiNemiche = function () {
   hackingPassword();
   
   if ( _login === false ) {
+    var combinazioniPossibili = [];
+    var combinazione = ['0', '0', '0'];
+    generaPassword( combinazioniPossibili, combinazione, 0 );
+    console.log( "Password generate: " )
+    $.each( combinazioniPossibili, function ( i, c ) {
+      var stringa = "Tentativo #" + (i+1) + ": ";
+      $.each( c, function( i, x ) { stringa = stringa + x + " "; } );
+      console.log( stringa )
+    } )
+    
     console.log("\n> Autenticazione per salvataggio modifiche al sistema Ibrido non riuscita.");
-  } else {
+  } else {    
     console.log("\n> Autenticazione per il salvataggio modifiche al sistema Ibrido riuscita.")
   }
   
@@ -27,22 +37,23 @@ Livello4.prototype.inizializzaArmiNemiche = function () {
   } 
   
   var areaPertenza = this.coreGame.canvas.width;
-  var ritardoMassimo = batteria.tempoRicaricaMassimo;
+  var ritardoMassimo = batteria.tempoRicaricaMassimo * this.numeroOndata * 0.05;
   var xRand;
   var velRand;
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = batteria.numeroMissili;
+  var numeroMissili = batteria.numeroMissili + Math.floor( this.numeroOndata );
   
   var raggio = 10;
   
   if ( batteria.tipoMunizione === "massima_esplosione" ) {
     raggio = 30;
   }
-  
+    
   for( var i = 0; i < numeroMissili ; i++ ) {
     xRand = rand( 0, areaPertenza );
-    velRand = rand( 1, batteria.propellente );
+    velRand = rand( 1.1 + this.numeroOndata * 0.05, 
+      batteria.propellente/2.6 + this.numeroOndata * 0.05 );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
@@ -157,7 +168,7 @@ var _password = [
 
 var _login = false;
 
-var autenticazioneOperatoreIbrido = function ( tentativo ) {
+var autenticazioneOperatoreNonTerrestre = function ( tentativo ) {
   if (
     tentativo[0] === _password[0]
     && tentativo[1] === _password[1]
@@ -230,7 +241,7 @@ var inizializzaBatteriaAntiterrestri = function () {
 //###START_MODIFICABILE###
   // Variabile contenente la batteria antiterrestre
   // di tipo standard.
-  var batteria = new BatteriaAntiterrestre();
+  var batteria = new ArmaNemicaSabotata();
   return batteria;
 //###END_MODIFICABILE###
 }
