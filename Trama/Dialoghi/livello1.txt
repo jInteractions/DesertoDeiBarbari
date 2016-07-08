@@ -14,7 +14,7 @@ Esattamente, capitano. Come se qualcuno avesse inserito una sicura di sparo. Ed 
 Simeoni
 Esatto, signore.
 Ortiz
-Questa parte di informatica consiste in un insieme di istruzioni su ci&#xF2; che le armi devono fare. Tali istruzioni devono essere scritte in un linguaggio comprensibile alle armi: un linguaggio di questo genere viene chiamato linguaggio di programmazione. L&#x27;insieme di istruzioni, scritte in un linguaggio di programmazione, viene chiamato codice sorgente. Quando l&#x27;arma prende il codice sorgente, esso diventa un programma. Mi sono spiegato bene?
+Questa parte di informatica consiste in un insieme di istruzioni su ci&#xF2; che le armi devono fare. Tali istruzioni devono essere scritte in un linguaggio comprensibile alle armi: un linguaggio di questo genere viene chiamato linguaggio di programmazione. L&#x27;insieme di istruzioni, scritte in un linguaggio di programmazione viene chiamato codice sorgente. Quando l&#x27;arma prende il codice sorgente, esso diventa un programma. Mi sono spiegato bene?
 Simeoni
 Affermativo, signore.
 Ortiz
@@ -30,7 +30,7 @@ Non preoccuparti, ho lasciato qualche commento di aiuto al codice. Come ben sai 
 Simeoni
 Grazie signore.
 Ortiz
-Di nulla. Per qualunque cosa, chiedi. Come prima cosa noterai che il sistema richiede un accesso automatico, effettuato tramite il controllo della tua retina. Se questo non funziona, non preoccuparti: raramente va tutto bene. Dovrai dunque eseguire un accesso manuale, modificando alcuni file che si occupano di tale controllo. Troverai comunque una descrizione pi&#xF9; dettagliata nel documento che ti ho lasciato.
+Di nulla. Per qualunque dubbio, chiedi. Come prima cosa noterai che il sistema richiede un accesso automatico, effettuato tramite il controllo della tua retina. Se questo non funziona, non preoccuparti: raramente va tutto bene. Dovrai dunque eseguire un accesso manuale, modificando alcuni file che si occupano di tale controllo. Troverai comunque una descrizione pi&#xF9; dettagliata nel documento che ti ho lasciato.
 Simeoni
 Signors&#xEC;, signore.
 Ortiz
@@ -42,7 +42,7 @@ L&#x27;obiettivo &#xE8; costruire la frase d&#x27;accesso corretta per sbloccare
 <li>nella variabile <tt>matricola</tt>, il numero 150716;</li>
 <li>nella variabile <tt>password</tt>, la stringa &#x22;utf-8_tuono&#x22;.</li> <br>
 Dovrai poi inserire nella variabile <tt>stringaAccesso</tt> la corretta composizione della parola d&#x27;accesso, che dovr&#xE0; essere della forma: <br>
-<tt>nome%matricola&#x3C;password&#x3E;</tt>. <br>
+<tt>nome%matricola&#x3C;password&#x3E;</tt>.
 AIUTI <br>
 Come prima cosa si devono effettuare i seguenti assegnamenti:
 <pre><code>var nome = &#x22;Cpt Simeoni&#x22;;
@@ -57,7 +57,7 @@ OBIETTIVO - Tab 2
 In questo file si verifica la presenza di un operatore umano, cio&#xE8; dotato di cervello. <br>
 Per ottenere l&#x27;accesso &#xE8; necessario che la variabile <tt>area</tt> contenga la formula corretta per il calcolo dell&#x27;area di un rettangolo.
 AIUTI
-Per passare l&#x27;autenticazione manuale &#xE8; necessario modificare l&#x27;operazione per il calcolo dell&#x27;area, rendendo la variabile <tt>area</tt> nel seguente modo:
+Per passare l&#x27;autenticazione manuale &#xE8; necessario modificare l&#x27;operazione per il calcolo dell&#x27;area di un rettangolo, rendendo la variabile <tt>area</tt> nel seguente modo:
 <pre><code>var area = base * altezza;
 </code></pre>
 
@@ -93,7 +93,7 @@ Nota bene! <i>var</i> &#xE8; una parola chiave, per cui non potrai utilizzarla c
 </code></pre>
 restituir&#xE0; un errore.
 Questo vale per tutte le parole chiave che incontrerai in futuro.
-Nota bene! I nomi da assegnare alle variabili devono essere significativi. Per esempio, la variabile nomeSoldato indica che stiamo creando una variabile che conterr&#xE0; una stringa indicante il nome del soldato; chiamandola stringa o in un altro modo, sarebbe stato pi&#xF9; difficile capire il suo scopo.
+Nota bene! I nomi da assegnare alle variabili devono essere significativi. Per esempio, la variabile <tt>nomeSoldato</tt> indica che stiamo creando una variabile che conterr&#xE0; una stringa indicante il nome di un soldato; chiamandola, per esempio, <tt>stringa</tt> o in un altro modo, sarebbe stato pi&#xF9; difficile capire il suo scopo.
 
 DIALOGO FINALE
 Simeoni
