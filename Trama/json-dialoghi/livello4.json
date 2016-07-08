@@ -1,0 +1,95 @@
+{
+  "nomeLivello": "Nelle fauci del Nemico",
+  "numeroLivello": 4,
+  "costoAiuti": 200,
+
+  "dialogoIniziale":
+  [
+    {"nome": "Ortiz",
+    "testo": "Entra pure, capitano."},
+    {"nome": "Simeoni",
+    "testo": "Ordini, generale?"},
+    {"nome": "Ortiz",
+    "testo": "S&#xEC;, ma dopo. Prima vorrei parlare di un certo file di configurazione per la calibrazione planetaria delle armi. Hai usato quel file, vero? Per sistemare le torrette l&#x27;altro giorno?"},
+    {"nome": "Simeoni",
+    "testo": "Non lo nego, signore."},
+    {"nome": "Ortiz",
+    "testo": "Non avevi il permesso di ficcare il naso in quel file! Sei solo un capitano! Qui stiamo parlando di difese che vengono utilizzate in tutta la galassia! Ti rendi conto di quello che sarebbe potuto accadere, se solo avessi sbagliato a manomettere quel file? E soprattutto, chi ti ha detto dell&#x27;esistenza di quel file?"},
+    {"nome": "Simeoni",
+    "testo": "L&#x27;ho trovato per caso signore. Stavo cercando di risolvere i problemi al sistema di puntamento e sparo. La fretta era tanta e non ho fatto complimenti."},
+    {"nome": "Ortiz",
+    "testo": "Non &#xE8; che qualche membro ausiliario della base ti ha aiutato? Qui dentro c&#x27;&#xE8; molta gente che deve imparare a tenere la bocca chiusa... e me ne occuper&#xF2; personalmente! Non posso tollerare che un capitano, con la responsabilit&#xE0; delle difese di un pianeta sotto attacco scavalchi le regole in questo modo!"},
+    {"nome": "Simeoni",
+    "testo": "Signore, alla fine ho salvato delle vite. Le vite dei nostri soldati, dei nostri compagni. Non mi pento di quello che ho fatto. E le posso giurare di aver fatto tutto da solo."},
+    {"nome": "Ortiz",
+    "testo": "Hai una bella faccia tosta, a non pentirti e a giurare il falso. Dovrei sbatterti davanti alla corte marziale, ma credo nelle seconde possibilit&#xE0;: far&#xF2; finta di crederti. D&#x27;altronde sei l&#x27;unico che pu&#xF2; svolgere la prossima missione... fate entrare il progioniero!"},
+    {"nome": "Zurlin",
+    "testo": "Ehi ehi ehi, gi&#xF9; quelle mani! Ho dato la mia parola sulla spontaneit&#xE0; della mia collaborazione. Non c&#x27;&#xE8; bisogno di spingere."},
+    {"nome": "Ortiz",
+    "testo": "Capitano, ti presento Zurlin, il pilota del Nemico abbattuto ieri."},
+    {"nome": "Zurlin",
+    "testo": "Ciao, caro."},
+    {"nome": "Ortiz",
+    "testo": "Zurlin ha promesso di collaborare con noi. Pu&#xF2; aprirci una porta per entrare nel codice delle navi del Nemico. Si sta parlando di hacking."},
+    {"nome": "Simeoni",
+    "testo": "Interessante. Spiegami un po&#x27;, Zurlin: cosa dovrei fare?"},
+    {"nome": "Zurlin",
+    "testo": "Allora caro, come prima cosa ci sar&#xE0; da creare un&#x27;arma sabotata, che poi andr&#xE0; caricata nel codice della nave, in modo che usi quella invece che quelle che utilizza normalmente. Non potrai esagerare con le modifiche... altrimenti potrebbero accorgersene subito."},
+    {"nome": "Simeoni",
+    "testo": "Ottimo."},
+    {"nome": "Zurlin",
+    "testo": "Calmo, caro. A quel punto sar&#xE0; necessario effettuare un attacco a forza bruta alla password della nave, in modo che le modifiche che hai fatto alle armi possano essere salvate nel loro sistema. Ho gi&#xE0; fatto preparare alcuni file da cui puoi partire, ma non sar&#xE0; facile, caro..."},
+    {"nome": "Simeoni",
+    "testo": "E smettila di chiamarmi caro."},
+    {"nome": "Zurlin",
+    "testo": "Certo, caro."},
+    {"nome": "Ortiz",
+    "testo": "Basta con i convenevoli. Simeoni, questa &#xE8; la tua ultima possibilit&#xE0;. Vedi di tenerlo bene a mente."}
+  ],
+  
+  "dialogoFinale":
+  [
+    {"nome": "Ortiz",
+    "testo": "Un ottimo lavoro, direi."},
+    {"nome": "Simeoni",
+    "testo": "Grazie, generale. Grazie... Zurlin."},
+    {"nome": "Zurlin",
+    "testo": "Prego, caro."},
+    {"nome": "Ortiz",
+    "testo": "Portate via Zurlin. Cella 42. Con te non ho ancora finito."},
+    {"nome": "Zurlin",
+    "testo": "Ma certo, caro."},
+    {"nome": "Ortiz",
+    "testo": "Bene, ora che quel... quella prigioniera se n&#x27;&#xE8; andata, passiamo a noi. Mi &#xE8; piaciuto come hai condotto l&#x27;operazione. Hai sfruttato bene la seconda possibilit&#xE0; che ti ho dato e non voglio che si dica che non premio i miei uomini. Complimenti, maggiore Simeoni."},
+    {"nome": "Simeoni",
+    "testo": "Maggiore? Grazie, signore."},
+    {"nome": "Ortiz",
+    "testo": "Non gongolare troppo. La notte eterna di Bastiani ha ancora tanto da chiederti... e dovrai farti trovare pronto. Inutile ricordarti che non tollerer&#xF2; altre interferenze come quella del file di configurazione. Sono stato chiaro, maggiore?"},
+    {"nome": "Simeoni",
+    "testo": "Trasparente."}
+  ],
+  
+  "manuale": "da inserire",
+
+  "codiceLivello": "da inserire",
+  
+  "fileVirtuali":
+  [
+    {"nomeFile": "da inserire",
+    "consultazione": false,
+    "codice": "da inserire",
+    "test": "da inserire",
+    "descrizione": "da inserire",
+    "aiuto": "da inserire",
+    "messaggioFallimento": "da inserire"},
+    {"nomeFile": "da inserire",
+    "consultazione": false,
+    "codice": "da inserire",
+    "test": "da inserire",
+    "descrizione": "da inserire",
+    "aiuto": "da inserire",
+    "messaggioFallimento": "da inserire"}
+  ]
+}
+  
+  
