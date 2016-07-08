@@ -1,5 +1,7 @@
 function Livello9 ( callbackFineLivello ) {
   CoreLevel.call( this, callbackFineLivello );
+  
+  console.log( t1() );
 }
 
 Livello9.prototype = Object.create( CoreLevel.prototype );
@@ -224,7 +226,7 @@ Livello9.prototype.mostraSchermataIniziale = function ( punteggio ) {
   } );                     
 }
 
-Livello9.prototype.sparoSpeciale = function ( x, y ) {
+Livello9.prototype.sparoSpeciale = function ( x, y ) {  
   var munizioniDaUtilizzare = function ( base ) {
     var n = base.numeroMissili;
     if ( n > 6 )
@@ -251,6 +253,7 @@ Livello9.prototype.sparoSpeciale = function ( x, y ) {
   var fine = x + area/2;
   var contatore = 0;
   
+  var ordineDiFuoco = [];
   while( sommaMunizioniUtilizzabili > 0 ) {
     $.each( this.coreGame.batterieAntimissile, function ( i, b ) {
       if( b.stato === BatteriaAntimissile.ATTIVA 
@@ -260,29 +263,174 @@ Livello9.prototype.sparoSpeciale = function ( x, y ) {
         --sommaMunizioniUtilizzabili;
         
         var torretta = b;
-        this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
-          xDiPartenza: torretta.x,
-          yDiPartenza: torretta.y,
-          xDiArrivo: inizio + (contatore * 30),
-          yDiArrivo: y,
-          coloreTestata: 'yellow',
-          coloreScia: 'blue',
-          massimoRaggioEsplosione: 30,
-          distanzaPerFrame: 10
-        }, this.coreGame ) );
-        this.coreGame.aggiornaPunteggioMissiliSparati();
-        torretta.numeroMissili--;
-        //torretta.temperatura += 100;
-        //var temperaturaMinima = 500
-        //torretta.temperaturaSblocco = temperaturaMinima;
-        //if( torretta.temperatura >= 799 ) {
-        //  torretta.blocco = true;
-        //};
+        
+        var xSparo = inizio + (contatore * 30);
+        var ySparo = y;
+        ordineDiFuoco.push ({ x: xSparo, y: ySparo, numeroTorretta: i });
         
         ++contatore;
       }
     } );
   }
+    
+  var torrette = [];
+  torrette[0] = new _TorrettaVirtuale ( 0 );
+  torrette[1] = new _TorrettaVirtuale ( 1 );
+  torrette[2] = new _TorrettaVirtuale ( 2 );
+
+  comandoSparoMultiplo( ordineDiFuoco, torrette );
+
+  var mySelf = this;
+  $.each( torrette, function ( i, t ) {
+    $.each( t._ordineSparo, function ( j, o ) {
+      var torretta = mySelf.coreGame.batterieAntimissile[i];
+      mySelf.coreGame.missiliTerrestri.push( new MissileTerrestre( {
+        xDiPartenza: torretta.x,
+        yDiPartenza: torretta.y,
+        xDiArrivo: o.x,
+        yDiArrivo: o.y,
+        coloreTestata: 'yellow',
+        coloreScia: 'blue',
+        massimoRaggioEsplosione: 30,
+        distanzaPerFrame: 10
+      }, mySelf.coreGame ) );
+      mySelf.coreGame.aggiornaPunteggioMissiliSparati();
+      torretta.numeroMissili--;
+    } );
+  } );
+    
+  //torretta.temperatura += 100;
+  //var temperaturaMinima = 500
+  //torretta.temperaturaSblocco = temperaturaMinima;
+  //if( torretta.temperatura >= 799 ) {
+  //  torretta.blocco = true;
+  //};
 }
+
+function _TorrettaVirtuale ( indice ) {
+  this.indice = indice;
+  this._ordineSparo = [];
+}
+
+_TorrettaVirtuale.prototype.cicloSparo = function ( x, y ) {
+  this._ordineSparo.push( { x: x, y: y } );
+}
+
+var sceltaTorrettaMigliore = function ( x, y, _torrette ) {
+  var nonFunzionante = function ( torretta ) {  
+    if( torretta.stato === BatteriaAntimissile.ATTIVA &&
+        torretta.numeroMissili > 0 &&
+        torretta.blocco === false )
+      return false;
+    else
+      return true;
+  }
+  
+  var torrette = this.coreGame.batterieAntimissile;
+  var torrettaSelezionata;
+  
+  if( 0 <= x && x < 170 ) {
+    torrettaSelezionata = 0;
+  }
+  if( 170 <= x && x < 340 ) {
+    torrettaSelezionata = 1;
+  }
+  if( 340 <= x && x <= 510 ) {
+    torrettaSelezionata = 2;
+  }
+  
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    torrettaSelezionata = 1;
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    torrettaSelezionata = 0;
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    torrettaSelezionata = 2;
+  if( nonFunzionante(torrette[torrettaSelezionata]) === true )
+    return undefined;
+    
+  return torrettaSelezionata;
+}
+
+// TAB 1
+
+var comandoSparoSingolo = function ( x, y, torrette ) {
+  var indiceTorretta = sceltaTorrettaMigliore( x, y, torrette );
+  
+  if( indiceTorretta !== undefined ) {
+    var torretta = torrette[indiceTorretta];
+    torretta.cicloSparo( x, y );
+  }
+} 
+
+// TAB 2
+
+var comandoSparoMultiplo = function ( ordiniDiFuoco, torrette ) {
+  var l = ordiniDiFuoco.length;
+  for( var i = 0; i < l; ++i ) {
+    var ordine = ordiniDiFuoco[i];
+    
+    var indiceTorretta = ordine.numeroTorretta;
+    var x = ordine.x;
+    var y = ordine.y;
+    var torretta = torrette[indiceTorretta];
+    torretta.cicloSparo( x, y );
+  }
+}
+ 
+// test
+
+var t1 = 
+function () {
+  var esito = true;
+
+  var torrette = [];
+  torrette[0] = new _TorrettaVirtuale ( 0 );
+  torrette[1] = new _TorrettaVirtuale ( 1 );
+  torrette[2] = new _TorrettaVirtuale ( 2 );
+
+  var ordiniDiFuoco = [];
+  for( var i = 0; i < rand(4, 4); ++i ) {
+    ordiniDiFuoco[i] = {
+      numeroTorretta: rand(0, 2),
+      x: rand(0, 510),
+      y: rand(0, 300)
+    }
+  }
+
+  var ordiniPerTorretta = [];
+  $.each( ordiniDiFuoco, function ( i, o ) {
+    ordiniPerTorretta[o.numeroTorretta] = [];
+  } );
+  $.each( ordiniDiFuoco, function ( i, o ) {
+    ordiniPerTorretta[o.numeroTorretta].push( {x: o.x, y: o.y} );
+  } );
+
+  comandoSparoMultiplo( ordiniDiFuoco, torrette );
+
+  $.each( torrette, function ( i, t ) {
+    if( ordiniPerTorretta[t.indice] === undefined )
+      return;
+
+    var ordineTest = ordiniPerTorretta[t.indice];
+    var ordineUtente = t._ordineSparo;
+
+    ordineTest.sort( function( a, b ) { return a.x < b.x; } );
+    ordineUtente.sort( function( a, b ) { return a.x < b.x; } );
+
+    if( ordineTest.length !== ordineUtente.length )
+      esito = false;
+    else {
+      $.each( ordineTest, function ( j, o1 ) {
+        var o2 = ordineUtente[j];
+        if( o1.x !== o2.x || o1.y != o2.y )
+          esito = false;  
+      } );
+    }
+  } );
+
+  return esito;
+}
+      
+      
 
 
