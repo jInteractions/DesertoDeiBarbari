@@ -40,7 +40,7 @@ Basta con i convenevoli. È ora di rispedire i faragi nelle tenebre che li hanno
 Ortiz
 Utilizzano missili molto veloci e molto potenti. Per contrastarli sarà necessario creare un nuovo sistema di sparo che li neutralizzi prima che tocchino il suolo di Angustina.
 Prosdocimo
-L'ideale sarebbe ideare un comando che rilasci tutti i missili di una torretta, in modo da creare una linea di fuoco unica. L'esplosione dei nostri missili fermerebbe l'avanzata dei loro. Eh eh eh...
+L'ideale sarebbe ideare un comando che rilasci tutti i missili di una torretta, in modo da creare uno sbarramento di fuoco. L'esplosione dei nostri missili fermerebbe l'avanzata dei loro. Eh eh eh...
 Simeoni
 Praticamente una striscia di esplosioni dalla quale nessuno dei missili dei faragi posso uscire... è una buona idea, Prosdocimo!
 Prosdocimo
@@ -48,11 +48,38 @@ Eh eh eh, grazie.
 Mellara
 Allora è deciso. Presto, cominciate a lavorare su questa nuova arma... me lo sento, stanno arrivando.
 
-OBIETTIVO
-
+OBIETTIVO - Tab 2
+L'obiettivo è la creazione di un'arma speciale in grado di eseguire un attacco speciale coordinato tra tutte le torrette, creando uno sbarramento di fuoco.<br>
+Tale arma viene attivata premendo la barra spaziatrice.<br>
+Ispirandoti alla funzione <tt>comandoSparoSingolo()</tt> dovrai implementare la funzione <tt>comandoSparoMultiplo()</tt>, in grado di fornire alle torrette gli ordini di sparo con le coordinate sulle quali dirigere i propri missili.
 AIUTI
+L'implementazione della funzione <tt>comandoSparoMultiplo()</tt> può essere così pensata:
+<pre><code>var l = ordiniDiFuoco.length;
+for( var i = 0; i < l; ++i ) {
+  var ordine = ordiniDiFuoco[i];
+  var indiceTorretta = ordine.numeroTorretta;
+  var x = ordine.x;
+  var y = ordine.y;
+  var torretta = torrette[indiceTorretta];
+  torretta.cicloSparo( x, y );
+}
 
 MANUALE
+Ti ricordi? Un array &#xE8; una variabile che contiene pi&#xF9; valori. Un esempio di array pu&#xF2; essere il seguente:
+<pre><code>var numeri = [1, 2, 3, 4];
+</code></pre>
+questo array contiene i numeri da 1 a 4.<br>
+Per inserire successivamente un elemento in un array, &#xE8; necessario utilizzare l&#x27;istruzione di <tt>push</tt>. Per esempio, se vogliamo aggiungere l&#x27;elemento 5 nell&#x27;array <tt>numeri</tt>, &#xE8; necessario effettuare la seguente istruzione:
+<pre><code>numeri.push( 5 );
+</code></pre>
+L&#x27;array che risulta da questa istruzione sar&#xE0; il seguente:
+<pre><code>[1, 2, 3, 4, 5]
+</code></pre>
+Nota bene! Ogni elemento di un array ha un numero, che indica la sua posizione all&#x27;interno dell&#x27;array stesso. Tale numero parte da 0, e viene cos&#xEC; utilizzato:
+<pre><code>var a = numeri[ 0 ];
+var b = numeri[ 4 ];
+</code></pre>
+In questo codice, <tt>a</tt> contiene il valore 1, che occupa la posizione 0 all&#x27;interno dell&#x27;array; la variabile <tt>b</tt> contiene invece il valore 5, che occupa la posizione 4.
 
 DIALOGO FINALE
 Mellara
@@ -67,3 +94,23 @@ Simeoni
 Ma siamo su Angustina, signore.
 Ortiz
 Ah ah ah. Perdonami, Simeoni. Ho passato talmente tanto tempo su quel pianeta...
+Simeoni
+...
+Zurlin
+Se ne sono andati tutti a dormire caro... dovresti andare anche tu.
+Simeoni
+Ah, sei tu Zurlin. Stavo guardando il cielo di Angustina... e riflettendo.
+Zurlin
+Su cosa, caro?
+Simeoni
+Questo potrebbe essere la nostra ultima notte.
+Zurlin
+Pensieri così cupi non ti si addicono. Ti pensavo uno abbastanza spavaldo da non spaventarsi davanti alle difficoltà...
+Simeoni
+Ed io pensavo lo stesso di te. Ma ho visto che quando lady Mellara ha nominato la Divoratrice sei sbiancata. Tu l'hai vista quell'astronave... o sbaglio?
+Zurlin
+Non sbagli, purtroppo. Ero ancora una ragazzina, quando su Tronk cominciarono a girare i video degli attacchi dei faragi... la Divoratrice non si limita ad uccidere. Ti trasforma in polvere. Come se non fossi mai esistito...
+Simeoni
+Speriamo di riuscire a sconfiggerla... anche se mi sembra un'impresa titanica.
+Zurlin
+Vedrai che ce la faremo, caro. Separati, non avremmo avuto possibilità... ma nulla è impossibile, ora che siamo uniti.
