@@ -1,0 +1,81 @@
+{
+  "nomeLivello": "Il pianeta misterioso",
+  "numeroLivello": 2,
+  "costoAiuti": 200,
+
+  "dialogoIniziale":
+  [
+    {"nome": "Ortiz",
+    "testo": "Capitano, le modifiche che hai apportato al sistema si sono rivelate inutili! Possiamo sparare e puntare, ma i missili non raggiungono correttamente il bersaglio! Hai qualche giustificazione?"},
+    {"nome": "Simeoni",
+    "testo": "Signore, ho fatto solo quello che mi &#xE8; stato chiesto, cio&#xE8; sbloccare il sistema antimissili. Se ci sono da apportare altre modifiche al codice sorgente lo far&#xF2;, ma mi servirebbe un punto preciso dal quale partire..."},
+    {"nome": "Ortiz",
+    "testo": "Stai pretendendo troppo, capitano. Siamo al fronte, non a scuola. Devi cavartela da solo! E devi stare attento, oppure la corte marziale potrebbe sentire il tuo nome."},
+    {"nome": "Simeoni",
+    "testo": "Ma, signore..."},
+    {"nome": "Ortiz",
+    "testo": "Niente ma! Ora vai subito alla sala di comando! &#xC8; un ordine!"},
+    {"nome": "Simeoni",
+    "testo": "Signors&#xEC;, signore."},
+    {"nome": "Simeoni",
+    "testo": "..."},
+    {"nome": "Simeoni",
+    "testo": "E tu chi saresti? Stavi origliando?"},
+    {"nome": "Prosdocimo",
+    "testo": "Sembrava parecchio arrabbiato il generale, eh eh eh..."},
+    {"nome": "Simeoni",
+    "testo": "Allora stavi origliando! Spiegami chi sei e forse non dir&#xF2; al generale che ci stavi ascoltando."},
+    {"nome": "Prosdocimo",
+    "testo": "Prosdocimo, al tuo servizio! Eh eh eh..."},
+    {"nome": "Simeoni",
+    "testo": "Ah ma io ti conosco! Sei il vecchio che si occupa delle pulizie qua al quartier generale."},
+    {"nome": "Prosdocimo",
+    "testo": "Esattamente! E ho le orecchie ancora buone, nonostante l&#x27;et&#xE0;. E forse so pure come aiutarti."},
+    {"nome": "Simeoni",
+    "testo": "Tu? Un povero vecchio? Ma non farmi ridere."},
+    {"nome": "Prosdocimo",
+    "testo": "Eh eh eh non hai tutti i torti. Ma ti ripeto, conosco molte cose. Per esempio: sai che sul pianeta Bastiani soffia un vento diverso dal vento che soffia sulla Terra? E possiede una forza gravitazionale otto volte pi&#xF9; potente di quella presente sul pianeta Colombre? Le armi lo sanno..."},
+    {"nome": "Simeoni",
+    "testo": "Spiegati meglio, ti ascolto."},
+    {"nome": "Prosdocimo",
+    "testo": "Ecco, bravo. Le armi hanno dei file di configurazione che impostano la forza di sparo e la calibrazione del mirino in base al pianeta su cui si trovano. Devi modificare quei file: probabilmente le armi funzionano, ma sparano in modo errato perch&#xE9; pensano di essere su qualche altro pianeta, come Buzzati o Buttafuoco..."},
+    {"nome": "Simeoni",
+    "testo": "Grazie, vec... Prosdocimo. Spero che queste informazioni mi vengano utili."},
+    {"nome": "Prosdocimo",
+    "testo": "Lo saranno, giovane capitano. Parola di Prosdocimo! Per&#xF2; facciamo cos&#xEC;: non dire al tuo generale che ti ho aiutato e che hai utilizzato questo file. Eh eh eh..."}
+  ],
+  
+  "dialogoFinale":
+  [
+    {"nome": "Simeoni",
+    "testo": "Capitano Simeoni a rapporto signore."},
+    {"nome": "Ortiz",
+    "testo": "Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sar&#xF2; per sempre su questo pianeta ed &#xE8; giusto che tu sappia anche cavartela da solo. Ho solo una curiosit&#xE0;: come sei riuscito a risolvere questo problema? Devo ammettere che sono stato colpito..."},
+    {"nome": "Simeoni",
+    "testo": "Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto pi&#xF9; forte. Ma non voglio annoiare nessuno, signore."},
+    {"nome": "Ortiz",
+    "testo": "Comunque ottimo lavoro capitano. Sei congedato, puoi andare a dormire. Domani un&#x27;altra lunga giornata ci attende, nell&#x27;eterna notte di Bastiani... "}
+  ],
+  
+  "manuale": "da inserire",
+
+  "codiceLivello": "da inserire",
+
+  "fileVirtuali":
+  [
+    {"nomeFile": "da inserire",
+    "consultazione": false,
+    "codice": "da inserire",
+    "test": "da inserire",
+    "descrizione": "da inserire",
+    "aiuto": "da inserire",
+    "messaggioFallimento": "da inserire"},
+    {"nomeFile": "da inserire",
+    "consultazione": false,
+    "codice": "da inserire",
+    "test": "da inserire",
+    "descrizione": "da inserire",
+    "aiuto": "da inserire",
+    "messaggioFallimento": "da inserire"}
+  ]
+}
