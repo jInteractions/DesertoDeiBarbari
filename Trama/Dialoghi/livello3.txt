@@ -1,4 +1,4 @@
-LIVELLO 3: Sabotaggio
+LIVELLO 3: Il pilota
 
 DIALOGO INIZIALE
 Prosdocimo
@@ -22,7 +22,7 @@ Eh eh eh, hai ragione. Per&#xF2; secondo me... secondo me le torrette hanno qual
 Simeoni
 A volte mi chiedo come tu faccia a sapere tutte queste cose.
 Prosdocimo
-Non preoccuparti, pensa solo che ti sto aiutando. Per carit&#xE0; umana o amicizia: sta a te deciderlo. Comunque, lo sai che esistono diversi tipi di cariche per le munizioni vero?
+Non preoccuparti, pensa solo che ti sto aiutando. Per carit&#xE0; umana o amicizia: sta a te deciderlo. Comunque, lo sai che esistono diversi tipi di cariche per le munizioni, vero?
 Simeoni
 Me l&#x27;hanno spiegato durante l&#x27;addestramento: munizioni al plasma, al plutonio e soniche. Qual &#xE8; il punto?
 Prosdocimo
@@ -41,74 +41,84 @@ Prosdocimo
 Attento a dire queste cose, potrei prenderti alla lettera. Eh eh eh...
 
 OBIETTIVO - Tab 1
-L&#x27;obiettivo &#xE8; quello di inserire nel caricatore delle torrette solo le munizioni al plasma. I due array, caricatoreTorretta e proiettiliScartati devono essere utilizzati correttamente, inserendo nel primo solo le munizioni al plasma e nel secondo solo le munizioni scartate, cio&#xE8; quelle al plutonio e quelle soniche.<br>
-AIUTI<br>
+L&#x27;obiettivo &#xE8; quello di inserire nel caricatore delle torrette solo le munizioni al plasma. I due array, caricatoreTorretta e proiettiliScartati devono essere utilizzati correttamente, inserendo nel primo solo le munizioni al plasma e nel secondo solo le munizioni scartate, cio&#xE8; quelle al plutonio e quelle soniche.
+AIUTI
 Per risolvere il caricamento errato delle munizioni, &#xE8; necessario modificare due istruzioni all&#x27;interno del for.<br>
-La prima &#xE8; la seguente:<br>
-if( proiettile.nucleoEsplosivo === &#x27;plutonio&#x27; ) {
+La prima &#xE8; la seguente:
+<pre><code>if( proiettile.nucleoEsplosivo === &#x27;plutonio&#x27; ) {
 &#x9;caricatoreTorretta.push( proiettile );
 }
-che deve diventare:<br>
-if( proiettile.nucleoEsplosivo === &#x27;plutonio&#x27; ) {
+</code></pre>
+che deve diventare:
+<pre><code>if( proiettile.nucleoEsplosivo === &#x27;plutonio&#x27; ) {
   proiettiliScartati.push( proiettile  );
 }
-La seconda &#xE8; la seguente:<br>
-if( proiettile.nucleoEsplosivo === &#x27;sonico&#x27; ) {
+</code></pre>
+La seconda &#xE8; la seguente:
+<pre><code>if( proiettile.nucleoEsplosivo === &#x27;sonico&#x27; ) {
 &#x9;caricatoreTorretta.push( proiettile );
 }
-che deve diventare:<br>
-if( proiettile.nucleoEsplosivo === &#x27;sonico&#x27; ) {
+</code></pre>
+che deve diventare:
+<pre><code>if( proiettile.nucleoEsplosivo === &#x27;sonico&#x27; ) {
   proiettiliScartati.push( proiettile  );
 }
+</code></pre>
 
 OBIETTIVO - Tab 2
 L&#x27;obiettivo &#xE8; quello di impostare la corretta gestione del sistema di raffreddamento. Il primo punto da modificare &#xE8; la soglia della temperatura minima, cio&#xE8; fino a che punto si mantiene il blocco della torretta, durante il quale le pompe di raffreddamento abbassano la temperatura.
 Questa soglia pu&#xF2; essere abbassata a piacere, considerando che, nel momento in cui la torretta supera la temperatura di 799&#xB0;C, essa si bloccher&#xE0; e rimarr&#xE0; bloccata finch&#xE9; non si raggiunger&#xE0; tale soglia.<br>
 Una soglia bassa permette dunque di sparare a lungo ma poi rimanere bloccati per molto tempo; una soglia alta permette di sparare poco ma con un tempo di raffreddamento (e dunque di blocco) decisamente minore.<br>
-Il secondo punto da modificare &#xE8; la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura &#xE8; maggiore o uguale alla soglia decisa in precedenza.<br>
+Il secondo punto da modificare &#xE8; la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura &#xE8; maggiore o uguale alla soglia decisa in precedenza.
 AIUTI
-Come prima cosa &#xE8; necessario decidere la soglia minima della temperatura, per esempio:<br>
-var sogliaTemperaturaMinima = 300;
+Come prima cosa &#xE8; necessario decidere la soglia minima della temperatura, per esempio:
+<pre><code>var sogliaTemperaturaMinima = 300;
+</code></pre>
 Ovviamente &#xE8; possibile lasciarla invariata.<br>
-Successivamente la condizione del ciclo deve essere modificata nel seguente modo:<br>
-while( T &#x3E;= sogliaTemperaturaMinima ) {
+Successivamente la condizione del ciclo deve essere modificata nel seguente modo:
+<pre><code>while( T &#x3E;= sogliaTemperaturaMinima )
+</code></pre>
 
 MANUALE
-Un punto molto importante del codice sorgente del sistema antimissilistico Hob-2000 riguarda il concetto di ciclo.<br>
+Un punto molto importante del codice sorgente del sistema antimissilistico Hob-2000 riguarda il concetto di <b>ciclo</b>.<br>
 Un ciclo &#xE8; formato da due cose: una condizione ed un corpo. Il corpo viene eseguito finch&#xE9; vale la condizione.<br>
-Esistono due tipi principali di ciclo: il primo &#xE8; identificato dalla parola chiave for, il secondo dalla parola chiave while.<br>
-Il ciclo for &#xE8; strutturato nella seguente maniera:<br>
-var x = 0;
+Esistono due tipi principali di ciclo: il primo &#xE8; identificato dalla parola chiave <b>for</b>, il secondo dalla parola chiave <b>while</b>.<br>
+Il ciclo <i>for</i> &#xE8; strutturato nella seguente maniera:
+<pre><code>var x = 0;
 for ( var i = 0; i &#x3C; lunghezza; i++ ) {
 &#x9;x++;
 }
-Nota bene!<br>
-La scorciatoia i++ ha lo stesso significato dell&#x27;istruzione i = i + 1. Stesso vale per x++.<br>
-Questa scrittura ha un significato semplice: partendo da 0, si controlla il valore di i. L&#x27;istruzione interna al for, cio&#xE8; x++, viene eseguita finch&#xE9; i, che viene incrementato ad ogni giro del ciclo, non &#xE8; lunga come lunghezza. Scomponiamo le operazioni:<br>
-<li>viene creata una variabile i, che contiene in valore 0;</li>
-<li>se i &#xE8; minore di lunghezza, si va avanti, altrimenti si esce dal ciclo;</li>
-<li>i viene incrementato, cio&#xE8; contiene ora il valore 0+1, cio&#xE8; 1;</li>
-<li>si esegue il codice interno al ciclo, dunque x diventa uguale a 1;</li>
-<li>si controlla se i (ora uguale a 1) &#xE8; minore di lunghezza: se lo &#xE8;, si torna dentro al ciclo, altrimenti si esce.</li>
-Il ciclo viene dunque ripetuto lunghezza volte.<br>
-Il secondo tipo di ciclo &#xE8; quello identificato dalla parola chiave while. Eccone un esempio:<br>
-var x = 0;
+</code></pre>
+Nota bene! La scorciatoia <tt>i++</tt> ha lo stesso significato dell&#x27;istruzione <tt>i = i + 1</tt>. Stesso vale per <tt>x++</tt>.<br>
+Questa scrittura ha un significato semplice: partendo da 0, si controlla il valore di <tt>i</tt>. L&#x27;istruzione interna al <i>for</i>, cio&#xE8; <tt>x++</tt>, viene eseguita finch&#xE9; <tt>i</tt>, che viene incrementata ad ogni giro del ciclo, non &#xE8; lunga come <tt>lunghezza</tt>. Scomponiamo le operazioni:<br>
+<li> viene creata una variabile <tt>i</tt>, che contiene il valore 0;</li>
+<li> se <tt>i</tt> &#xE8; minore di <tt>lunghezza</tt>, si va avanti, altrimenti si esce dal ciclo;</li>
+<li> <tt>i</tt> viene incrementata, cio&#xE8; contiene ora il valore 0+1, cio&#xE8; 1;</li>
+<li> si esegue il codice interno al ciclo, dunque <tt>x</tt> diventa uguale a 1;</li>
+<li> si controlla se <tt>i</tt> (ora uguale a 1) &#xE8; minore di <tt>lunghezza</tt>: se lo &#xE8;, si torna dentro al ciclo, altrimenti si esce.</li>
+Il ciclo viene dunque ripetuto <tt>lunghezza</tt> volte.<br>
+Il secondo tipo di ciclo &#xE8; quello identificato dalla parola chiave <i>while</i>. Eccone un esempio:
+<pre><code>var x = 0;
 while ( x &#x3C; 5 ) {
 &#x9;x++;
 }
-Il significato di questo ciclo &#xE8; semplice: finch&#xE9; x &#xE8; minore di 5, viene eseguita la parte di codice interna al while.<br>
-I cicli sono molto utili, soprattuto se si pensa al concetto di array. Un array &#xE8; una variabile che contiene pi&#xF9; valori. Un esempio di array pu&#xF2; essere il seguente:<br>
-var numeri = [1, 2, 3, 4];
+</code></pre>
+Il significato di questo ciclo &#xE8; semplice: finch&#xE9; <tt>x</tt> &#xE8; minore di 5, viene eseguita la parte di codice interna al <i>while</i>.<br>
+I cicli sono molto utili, soprattuto se si pensa al concetto di <b>array</b>. Un array &#xE8; una variabile che contiene pi&#xF9; valori. Un esempio di array pu&#xF2; essere il seguente:
+<pre><code>var numeri = [1, 2, 3, 4];
+</code></pre>
 questo array contiene i numeri da 1 a 4.<br>
-Per inserire successivamente un elemento in un array, &#xE8; necessario utilizzare l&#x27;istruzione di push. Per esempio, se vogliamo aggiungere l&#x27;elemento 5 nell&#x27;array numeri, &#xE8; necessario effettuare la seguente istruzione:<br>
-numeri.push( 5 );
-L&#x27;array che risulta da questa istruzione sar&#xE0; il seguente:<br>
-[1, 2, 3, 4, 5] <br>
-Nota bene!<br>
-Ogni elemento di un array ha un numero, che indica la sua posizione all&#x27;interno dell&#x27;array stesso. Tale numero parte da 0, e viene cos&#xEC; utilizzato:<br>
-var a = numeri[ 0 ];
+Per inserire successivamente un elemento in un array, &#xE8; necessario utilizzare l&#x27;istruzione di <tt>push</tt>. Per esempio, se vogliamo aggiungere l&#x27;elemento 5 nell&#x27;array <tt>numeri</tt>, &#xE8; necessario effettuare la seguente istruzione:
+<pre><code>numeri.push( 5 );
+</code></pre>
+L&#x27;array che risulta da questa istruzione sar&#xE0; il seguente:
+<pre><code>[1, 2, 3, 4, 5]
+</code></pre>
+Nota bene! Ogni elemento di un array ha un numero, che indica la sua posizione all&#x27;interno dell&#x27;array stesso. Tale numero parte da 0, e viene cos&#xEC; utilizzato:
+<pre><code>var a = numeri[ 0 ];
 var b = numeri[ 4 ];
-In questo codice, a contiene il valore 1, che occupa la posizione 0 all&#x27;interno dell&#x27;array; la variabile b contiene invece il valore 5, che occupa la posizione 4.<br>
+</code></pre>
+In questo codice, <tt>a</tt> contiene il valore 1, che occupa la posizione 0 all&#x27;interno dell&#x27;array; la variabile <tt>b</tt> contiene invece il valore 5, che occupa la posizione 4.
 
 DIALOGO FINALE
 Simeoni
