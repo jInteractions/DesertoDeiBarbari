@@ -1,0 +1,1101 @@
+{
+"nomeLivello": "Bastiani, la fortezza",
+"numeroLivello": 1,
+"costoAiuti": 200,
+
+"dialogoIniziale":
+[
+{"nome": "Ortiz",
+"testo": "Buongiorno, capitano Simeoni. Io sono il generale Ortiz, a capo dell&#x27;Ottava Armata delle United Terrestrial Forces, nome in codice UTF-8. Sar&#xE0; a me che dovrai fare rapporto nei mesi a venire. Chiaro?"},
+{"nome": "Simeoni",
+"testo": "Signors&#xEC;, signore."},
+{"nome": "Ortiz",
+"testo": "Ottimo. Come puoi ben vedere, abbiamo appena subito un attacco del Nemico. Vorremmo reagire ma... purtroppo le difese del pianeta Bastiani sono inutilizzabili."},
+{"nome": "Simeoni",
+"testo": "Inutilizzabili, signore?"},
+{"nome": "Ortiz",
+"testo": "Esattamente, capitano. Come se qualcuno avesse inserito una sicura di sparo. Ed &#xE8; qui che entri in gioco tu. Il tempo &#xE8; poco, ma confido in te. Sai cos&#x27;&#xE8; un codice sorgente? Come sicuramente ti avranno spiegato all&#x27;Accademia, ogni arma terrestre contiene una grossa parte di informatica."},
+{"nome": "Simeoni",
+"testo": "Esatto, signore."},
+{"nome": "Ortiz",
+"testo": "Questa parte di informatica consiste in un insieme di istruzioni su ci&#xF2; che le armi devono fare. Tali istruzioni devono essere scritte in un linguaggio comprensibile alle armi: un linguaggio di questo genere viene chiamato linguaggio di programmazione. L&#x27;insieme di istruzioni, scritte in un linguaggio di programmazione, viene chiamato codice sorgente. Quando l&#x27;arma prende il codice sorgente, esso diventa un programma. Mi sono spiegato bene?"},
+{"nome": "Simeoni",
+"testo": "Affermativo, signore."},
+{"nome": "Ortiz",
+"testo": "Il tuo primo compito sar&#xE0; quello di modificare il codice sorgente per le armi di Bastiani. I nostri tecnici ti hanno fornito una postazione di comando su cui lavorare. Ho per&#xF2; una brutta notizia."},
+{"nome": "Simeoni",
+"testo": "Brutta notizia, signore?"},
+{"nome": "Ortiz",
+"testo": "Il linguaggio di programmazione utilizzato per la scrittura dei programmi militari si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti. Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, universit&#xE0;... nulla! Come se non fosse mai esistito."},
+{"nome": "Simeoni",
+"testo": "Bene, signore. La difficolt&#xE0; &#xE8; mia amica. Spero solo di essere in grado di capire questo linguaggio il prima possibile."},
+{"nome": "Ortiz",
+"testo": "Non preoccuparti, ho lasciato qualche commento di aiuto al codice. Come ben sai un commento &#xE8; una parte del codice sorgente che non descrive un&#x27;istruzione, ma semplicemente aiuta chi legge il codice nel comprendere ci&#xF2; che c&#x27;&#xE8; scritto."},
+{"nome": "Simeoni",
+"testo": "Grazie signore."},
+{"nome": "Ortiz",
+"testo": "Di nulla. Per qualunque cosa, chiedi. Come prima cosa noterai che il sistema richiede un accesso automatico, effettuato tramite il controllo della tua retina. Se questo non funziona, non preoccuparti: raramente va tutto bene. Dovrai dunque eseguire un accesso manuale, modificando alcuni file che si occupano di tale controllo. Troverai comunque una descrizione pi&#xF9; dettagliata nel documento che ti ho lasciato."},
+{"nome": "Simeoni",
+"testo": "Signors&#xEC;, signore."},
+{"nome": "Ortiz",
+"testo": "Mi aspetto grandi cose da te, capitano. Non deludermi."},
+
+OBIETTIVO - Tab 1
+L&#x27;obiettivo &#xE8; costruire la frase d&#x27;accesso corretta per sbloccare il sistema di puntamento e sparo. Devi dunque inserire:
+<li>nella variabile <tt>nome</tt>, la stringa &#x22;Cpt Simeoni&#x22;;</li>
+<li>nella variabile <tt>matricola</tt>, il numero 150716;</li>
+<li>nella variabile <tt>password</tt>, la stringa &#x22;utf-8_tuono&#x22;.</li> <br>
+Dovrai poi inserire nella variabile <tt>stringaAccesso</tt> la corretta composizione della parola d&#x27;accesso, che dovr&#xE0; essere della forma: <br>
+<tt>nome%matricola&#x3C;password&#x3E;</tt>. <br>
+AIUTI <br>
+Come prima cosa si devono effettuare i seguenti assegnamenti:
+<pre><code>var nome = &#x22;Cpt Simeoni&#x22;;
+var matricola = 150716;
+var password = &#x22;utf-8_tuono&#x22;;
+</code></pre>
+Poi cambiare la concatenazione di stringhe per riempire la variabile <tt>stringaAccesso</tt>:
+<pre><code>var stringaAccesso = nome + &#x22;%&#x22; + matricola + &#x22;&#x3C;&#x22; + password + &#x22;&#x3E;&#x22;;
+</code></pre>
+
+OBIETTIVO - Tab 2
+In questo file si verifica la presenza di un operatore umano, cio&#xE8; dotato di cervello. <br>
+Per ottenere l&#x27;accesso &#xE8; necessario che la variabile <tt>area</tt> contenga la formula corretta per il calcolo dell&#x27;area di un rettangolo.
+AIUTI
+Per passare l&#x27;autenticazione manuale &#xE8; necessario modificare l&#x27;operazione per il calcolo dell&#x27;area, rendendo la variabile <tt>area</tt> nel seguente modo:
+<pre><code>var area = base * altezza;
+</code></pre>
+
+MANUALE
+Un linguaggio di programmazione possiede una grammatica: in esso esistono alcune parole dal significato speciale, chiamate <b>parole chiave</b>. <br>
+La prima parole chiave da imparare &#xE8; <b>var</b>. <br>
+Prendi per esempio la riga:
+<pre><code>var x;
+</code></pre>
+Essa indica che ogni volta che nel codice sorgente compare la parola <i>x</i>, essa rappresenta la <b>variabile</b> cos&#xEC; chiamata. <br>
+Una variabile altro non &#xE8; che un contenitore, una &#x22;scatola&#x22; in cui inserire dei valori. <br>
+Prendi per esempio l&#x27;istruzione:
+<pre><code>var x = 4;
+</code></pre>
+La variabile di nome <i>x</i> ora contiene un valore numerico, in questo caso 4. <br>
+Esistono differenti tipologie di valori che si possono inserire in una variabile: i <b>tipi</b> di valore pi&#xF9; utilizzati sono valori numerici e stringhe. <br>
+Esempi di valori numerici sono: 4, 6, 12.5, 24.3, ma anche operazioni aritmetiche come 16+5, 4*3, 5-12 o 24/6. <br>
+Una <b>stringa</b> &#xE8; invece un insieme di caratteri, come &#x22;Bastiani&#x22;, &#x22;Ortiz&#x22; o &#x22;battaglia&#x22;. Pu&#xF2; anche contenere numeri: per esempio, &#x22;UTF-8&#x22; &#xE8; una stringa. <br>
+Un&#x27;operazione utile da effettuare sulle stringhe &#xE8; la cosiddetta <b>concatenazione</b>, cio&#xE8; l&#x27;unione di due o pi&#xF9; stringhe. Per esempio:
+<pre><code>var stringaDiProva = &#x22;anti&#x22; + &#x22;missile&#x22;;
+</code></pre>
+indica che nella variabile <tt>stringaDiProva</tt> &#xE8; contenuta la stringa &#x22;antimissile&#x22;.
+Nota bene! Il nome della variabile pu&#xF2; contenere lettere e numeri, pi&#xF9; il carattere speciale &#x22;_&#x22;, ma nient&#x27;altro. Il nome di una variabile non pu&#xF2; mai iniziare con un numero, ma pu&#xF2; averne in mezzo ed anche alla fine. Per esempio:
+<pre><code>var 7Nani;
+</code></pre>
+&#xE8; errato, mentre
+<pre><code>var numero1;
+var caricatore6Cannone;
+</code></pre>
+sono corrette.
+Nota bene! <i>var</i> &#xE8; una parola chiave, per cui non potrai utilizzarla come nome per le variabili. Per esempio, l&#x27;istruzione:
+<pre><code>var var = 2;
+</code></pre>
+restituir&#xE0; un errore.
+Questo vale per tutte le parole chiave che incontrerai in futuro.
+Nota bene! I nomi da assegnare alle variabili devono essere significativi. Per esempio, la variabile nomeSoldato indica che stiamo creando una variabile che conterr&#xE0; una stringa indicante il nome del soldato; chiamandola stringa o in un altro modo, sarebbe stato pi&#xF9; difficile capire il suo scopo.
+
+"dialogoFinale":
+[
+{"nome": "Simeoni",
+"testo": "A rapporto, generale Ortiz."},
+{"nome": "Ortiz",
+"testo": "Bel lavoro Simeoni, con quel sistema. Era ora che arrivasse qualcuno in grado di gestirlo..."},
+{"nome": "Simeoni",
+"testo": "Grazie signore! Ho altri ordini, signore?"},
+{"nome": "Ortiz",
+"testo": "No, non per oggi. Vai a riposarti, sapendo che finalmente possiamo provare a respingere quei maledetti. Gli incursori hanno segnalato movimenti al confine del deserto... domani sar&#xE0; una giornata lunga, nell&#x27;eterna notte di Bastiani."},
+
+================================
+
+{
+"nomeLivello": "Il pianeta misterioso",
+"numeroLivello": 2,
+"costoAiuti": 200,
+
+"dialogoIniziale":
+[
+{"nome": "Ortiz",
+"testo": "Capitano, le modifiche che hai apportato al sistema si sono rivelate inutili! Possiamo sparare e puntare, ma i missili non raggiungono correttamente il bersaglio! Hai qualche giustificazione?"},
+{"nome": "Simeoni",
+"testo": "Signore, ho fatto solo quello che mi &#xE8; stato chiesto, cio&#xE8; sbloccare il sistema antimissili. Se ci sono da apportare altre modifiche al codice sorgente lo far&#xF2;, ma mi servirebbe un punto preciso dal quale partire..."},
+{"nome": "Ortiz",
+"testo": "Stai pretendendo troppo, capitano. Siamo al fronte, non a scuola. Devi cavartela da solo! E devi stare attento, oppure la corte marziale potrebbe sentire il tuo nome."},
+{"nome": "Simeoni",
+"testo": "Ma, signore..."},
+{"nome": "Ortiz",
+"testo": "Niente ma! Ora vai subito alla sala di comando! &#xC8; un ordine!"},
+{"nome": "Simeoni",
+"testo": "Signors&#xEC;, signore."},
+{"nome": "Simeoni",
+"testo": "..."},
+{"nome": "Simeoni",
+"testo": "E tu chi saresti? Stavi origliando?"},
+{"nome": "Prosdocimo",
+"testo": "Sembrava parecchio arrabbiato il generale, eh eh eh..."},
+{"nome": "Simeoni",
+"testo": "Allora stavi origliando! Spiegami chi sei e forse non dir&#xF2; al generale che ci stavi ascoltando."},
+{"nome": "Prosdocimo",
+"testo": "Prosdocimo, al tuo servizio! Eh eh eh..."},
+{"nome": "Simeoni",
+"testo": "Ah ma io ti conosco! Sei il vecchio che si occupa delle pulizie qua al quartier generale."},
+{"nome": "Prosdocimo",
+"testo": "Esattamente! E ho le orecchie ancora buone, nonostante l&#x27;et&#xE0;. E forse so pure come aiutarti."},
+{"nome": "Simeoni",
+"testo": "Tu? Un povero vecchio? Ma non farmi ridere."},
+{"nome": "Prosdocimo",
+"testo": "Eh eh eh non hai tutti i torti. Ma ti ripeto, conosco molte cose. Per esempio: sai che sul pianeta Bastiani soffia un vento diverso dal vento che soffia sulla Terra? E possiede una forza gravitazionale otto volte pi&#xF9; potente di quella presente sul pianeta Colombre? Le armi lo sanno..."},
+{"nome": "Simeoni",
+"testo": "Spiegati meglio, ti ascolto."},
+{"nome": "Prosdocimo",
+"testo": "Ecco, bravo. Le armi hanno dei file di configurazione che impostano la forza di sparo e la calibrazione del mirino in base al pianeta su cui si trovano. Devi modificare quei file: probabilmente le armi funzionano, ma sparano in modo errato perch&#xE9; pensano di essere su qualche altro pianeta, come Buzzati o Buttafuoco..."},
+{"nome": "Simeoni",
+"testo": "Grazie, vec... Prosdocimo. Spero che queste informazioni mi vengano utili."},
+{"nome": "Prosdocimo",
+"testo": "Lo saranno, giovane capitano. Parola di Prosdocimo! Per&#xF2; facciamo cos&#xEC;: non dire al tuo generale che ti ho aiutato e che hai utilizzato questo file. Eh eh eh..."},
+
+OBIETTIVO - Tab 1
+L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino. Sar&#xE0; dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>. Fatto questo &#xE8; necessario entrare nella parte di codice raggiungibile dall&#x27;<i>else</i> dell&#x27;struzione <i>if-else</i>, modificando il confronto tra le parentesi tonde che seguono la parola chiave <i>if</i>: tutto questo per inserire nella variabile <tt>_codicePianeta</tt> il codice del pianeta Bastiani e non quello di default.
+AIUTI
+Come prima cosa &#xE8; necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>, nel seguente modo:
+<pre><code>var sbloccoCalibrazione = true;
+</code><pre>
+Il secondo passo prevede di cambiare la condizione dell&#x27;<i>if</i>, rendedola come segue:
+<pre><code>if ( accessoConfigurazionePianeti === false )
+</code><pre>
+
+OBIETTIVO - Tab 2
+L&#x27;obiettivo &#xE8; quello di modificare correttamente il grosso blocco di istruzioni <i>if-else if</i>, in modo che venga eseguito il codice corretto per il pianeta Bastiani.
+AIUTI
+Per avere la corretta configurazione di puntamento e sparo &#xE8; necessario cambiare il blocco di istruzioni <i>if-else if</i>: il modo migliore &#xE8; quello di sostituire il codice di Bastiani con 6, dunque inserire prima del primo <i>if</i> la seguente istruzione:
+<pre><code>_codicePianeta = 6;
+</code><pre>
+
+MANUALE
+Un altro punto fondamentale nei codici sorgenti del sistema antimissilistico Hob-2000 &#xE8; rappresentato dalle <b>istruzioni di controllo</b>.
+Un&#x27;istruzione di controllo si basa su una nuova tipologia di valore che pu&#xF2; essere inserito in una variabile, chiamato <b>booleano</b>.
+Una variabile booleana pu&#xF2; assumere due valori differenti:
+<li> <i>true</i>, se essa rappresenta un concetto vero;</li>
+<li> <i>false</i>, se essa rappresenta un concetto falso.</li> <br>
+Per rappresentare il vero e il falso &#xE8; possibile utilizzare sia le parole chiave appropriate (rispettivamente <i>true</i> e <i>false</i>), oppure diversi tipi di operatori:
+<li> <tt>a === b</tt>, vero se a &#xE8; uguale a b;</li>
+<li> <tt>a !== b</tt>, vero se a &#xE8; diverso da b;</li>
+<li> <tt>a &#x3E; b</tt>, vero se a &#xE8; maggiore di b;</li>
+<li> <tt>a &#x3C; b</tt>, vero se a &#xE8; minore di b;</li>
+<li> <tt>a &#x3E;= b</tt>, vero se a &#xE8; maggiore o uguale di b;</li>
+<li> <tt>a &#x3C;= b</tt>, vero se a &#xE8; minore o uguale a b;</li>
+<li> <tt>!a</tt>, vero se a ha come valore <i>false</i>.</li> <br>
+Esempi di variabile contenente un valore vero possono essere:
+<pre><code>var b1 = 5 &#x3E; 4;
+var b2 = true;
+var b3 = !false;
+</code><pre>
+Esempi di variabile che contengono un valore false possono essere:
+<pre><code>var b4 = 3 &#x3E;= 6;
+var b5 = false;
+var b6 = !true;
+</code><pre>
+Le istruzioni di controllo hanno bisogno delle variabili booleane. Esistono tre istruzioni di controllo.
+La prima &#xE8; identificata dalla parola chiave <b>if</b>. Eccone un esempio:
+<pre><code>var x = 0;
+if ( a === true ) {
+  var x = 1;
+}
+</code><pre>
+La variabile <tt>x</tt> parte con il valore 0 al proprio interno. A questo punto se <tt>a</tt> &#xE8; una variabile booleana che contiene un valore vero, allora <tt>x</tt> prender&#xE0; il valore 1 al proprio interno; altrimenti, cio&#xE8; se <tt>a</tt> &#xE8; falsa, <tt>x</tt> non verr&#xE0; aggiornata perch&#xE9; la parte di codice all&#x27;interno delle parentesi graffe non verr&#xE0; eseguita.
+Come si pu&#xF2; notare, le istruzioni di controllo sono semafori che, in base al valore che si ha all&#x27;interno delle parentesi tonde, decidono l&#x27;andamento del codice.
+Una seconda tipologia di istruzione di controllo si basa sulle parole chiave <b>if</b> ed <b>else</b>. Eccone un esempio:
+<pre><code>var x;
+if ( a === false ) {
+  x = 1;
+} else {
+  x = 0;
+}
+</code><pre>
+Questa istruzione descrive lo stesso meccanismo visto nell&#x27;esempio precedente: se la variabile <tt>a</tt> &#xE8; falsa, <tt>x</tt> conterr&#xE0; il valore 1; altrimenti (<i>else</i>, in inglese), conterr&#xE0; il valore 0.
+L&#x27;ultima istruzione di controllo da comprendere &#xE8; quella chiamata <b>if-else if</b>. Eccone un esempio:
+<pre><code>var x = 0;
+if ( a === false ) {
+  x = 1;
+} else if ( b &#x3E;= 4 ) {
+  x = 2;
+}
+</code><pre>
+Questa istruzione descrive un meccanismo leggermente differente da quello visto in precedenza. Se la variabile <tt>a</tt> &#xE8; falsa, allora <tt>x</tt> conterr&#xE0; il valore 1; altrimenti, cio&#xE8; se <tt>a</tt> &#xE8; vera, si controlla se <tt>b</tt> &#xE8; maggiore o uguale di 4. Se ci&#xF2; &#xE8; vero, allora <tt>x</tt> conterr&#xE0; il valore 2, altrimenti, cio&#xE8; se <tt>b</tt> &#xE8; minore di 4, non si fa nulla.
+
+"dialogoFinale":
+[
+{"nome": "Simeoni",
+"testo": "Capitano Simeoni a rapporto signore."},
+{"nome": "Ortiz",
+"testo": "Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sar&#xF2; per sempre su questo pianeta ed &#xE8; giusto che tu sappia anche cavartela da solo. Ho solo una curiosit&#xE0;: come sei riuscito a risolvere questo problema? Devo ammettere che sono stato colpito..."},
+{"nome": "Simeoni",
+"testo": "Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto pi&#xF9; forte. Ma non voglio annoiare nessuno, signore."},
+{"nome": "Ortiz",
+"testo": "Comunque ottimo lavoro capitano. Sei congedato, puoi andare a dormire. Domani un&#x27;altra lunga giornata ci attende, nell&#x27;eterna notte di Bastiani... "},
+
+================================
+
+{
+"nomeLivello": "Sabotaggio",
+"numeroLivello": 3,
+"costoAiuti": 200,
+
+"dialogoIniziale":
+[
+{"nome": "Prosdocimo",
+"testo": "Eh eh eh!"},
+{"nome": "Simeoni",
+"testo": "Cos&#x27;hai da ridere, Prosdocimo?"},
+{"nome": "Prosdocimo",
+"testo": "Non ti ha convocato, eh? Il generale..."},
+{"nome": "Simeoni",
+"testo": "No, effettivamente &#xE8; strano. Avr&#xE0; da fare, alla fine detiene il comando di tutta la linea di fuoco di Bastiani."},
+{"nome": "Prosdocimo",
+"testo": "Certo, certo, anche se questo &#xE8; il punto che soffre maggiormente gli attacchi del Nemico. Poi, c&#x27;&#xE8; quel pianeta misterioso..."},
+{"nome": "Simeoni",
+"testo": "Quello nel file di configurazione planetaria? Quelle scritte solo di 0 e 1? Hai ragione, c&#x27;&#xE8; qualcosa di misterioso. Ma un soldato non ha tempo per i misteri, quando c&#x27;&#xE8; una guerra da combattere."},
+{"nome": "Prosdocimo",
+"testo": "Certo, certo. Vedo che le torrette hanno qualche problema..."},
+{"nome": "Simeoni",
+"testo": "Non avvicinarti, &#xE8; pur sempre un&#x27;area militare."},
+{"nome": "Prosdocimo",
+"testo": "Eh eh eh, hai ragione. Per&#xF2; secondo me... secondo me le torrette hanno qualche problema. Per l&#x27;esattezza due: uno sulle munizioni caricate ed uno sul sistema di raffreddamento."},
+{"nome": "Simeoni",
+"testo": "A volte mi chiedo come tu faccia a sapere tutte queste cose."},
+{"nome": "Prosdocimo",
+"testo": "Non preoccuparti, pensa solo che ti sto aiutando. Per carit&#xE0; umana o amicizia: sta a te deciderlo. Comunque, lo sai che esistono diversi tipi di cariche per le munizioni vero?"},
+{"nome": "Simeoni",
+"testo": "Me l&#x27;hanno spiegato durante l&#x27;addestramento: munizioni al plasma, al plutonio e soniche. Qual &#xE8; il punto?"},
+{"nome": "Prosdocimo",
+"testo": "Il punto &#xE8; che quelle al plutonio e quelle soniche potrebbero essere, come dire, fallate. Eh eh eh..."},
+{"nome": "Simeoni",
+"testo": "Dunque devo utilizzare solo quelle al plasma?"},
+{"nome": "Prosdocimo",
+"testo": "Esattamente. Scarta le altre, vedrai che il sistema te lo permette."},
+{"nome": "Simeoni",
+"testo": "Per quanto riguarda il sistema di raffreddamento? Io non vedo nessun problema."},
+{"nome": "Prosdocimo",
+"testo": "Beh, se per te le torrette esplodono a causa di un problema inesistente, hai un problema tu. Eh eh eh. Il sistema di raffreddamento &#xE8; stato manomesso: le torrette invece che fermarsi quando si surriscaldano, esplodono. Bum. Eh eh eh."},
+{"nome": "Simeoni",
+"testo": "Devo controllare il codice relativo a quel sistema... grazie Prosdocimo. Ti sono debitore."},
+{"nome": "Prosdocimo",
+"testo": "Attento a dire queste cose, potrei prenderti alla lettera. Eh eh eh..."},
+
+OBIETTIVO - Tab 1
+L&#x27;obiettivo &#xE8; quello di inserire nel caricatore delle torrette solo le munizioni al plasma. I due array, caricatoreTorretta e proiettiliScartati devono essere utilizzati correttamente, inserendo nel primo solo le munizioni al plasma e nel secondo solo le munizioni scartate, cio&#xE8; quelle al plutonio e quelle soniche.<br>
+AIUTI<br>
+Per risolvere il caricamento errato delle munizioni, &#xE8; necessario modificare due istruzioni all&#x27;interno del for.<br>
+La prima &#xE8; la seguente:<br>
+if( proiettile.nucleoEsplosivo === &#x27;plutonio&#x27; ) {
+&#x9;caricatoreTorretta.push( proiettile );
+}
+che deve diventare:<br>
+if( proiettile.nucleoEsplosivo === &#x27;plutonio&#x27; ) {
+  proiettiliScartati.push( proiettile  );
+}
+La seconda &#xE8; la seguente:<br>
+if( proiettile.nucleoEsplosivo === &#x27;sonico&#x27; ) {
+&#x9;caricatoreTorretta.push( proiettile );
+}
+che deve diventare:<br>
+if( proiettile.nucleoEsplosivo === &#x27;sonico&#x27; ) {
+  proiettiliScartati.push( proiettile  );
+}
+
+OBIETTIVO - Tab 2
+L&#x27;obiettivo &#xE8; quello di impostare la corretta gestione del sistema di raffreddamento. Il primo punto da modificare &#xE8; la soglia della temperatura minima, cio&#xE8; fino a che punto si mantiene il blocco della torretta, durante il quale le pompe di raffreddamento abbassano la temperatura.
+Questa soglia pu&#xF2; essere abbassata a piacere, considerando che, nel momento in cui la torretta supera la temperatura di 799&#xB0;C, essa si bloccher&#xE0; e rimarr&#xE0; bloccata finch&#xE9; non si raggiunger&#xE0; tale soglia.<br>
+Una soglia bassa permette dunque di sparare a lungo ma poi rimanere bloccati per molto tempo; una soglia alta permette di sparare poco ma con un tempo di raffreddamento (e dunque di blocco) decisamente minore.<br>
+Il secondo punto da modificare &#xE8; la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura &#xE8; maggiore o uguale alla soglia decisa in precedenza.<br>
+AIUTI
+Come prima cosa &#xE8; necessario decidere la soglia minima della temperatura, per esempio:<br>
+var sogliaTemperaturaMinima = 300;
+Ovviamente &#xE8; possibile lasciarla invariata.<br>
+Successivamente la condizione del ciclo deve essere modificata nel seguente modo:<br>
+while( T &#x3E;= sogliaTemperaturaMinima ) {
+
+MANUALE
+Un punto molto importante del codice sorgente del sistema antimissilistico Hob-2000 riguarda il concetto di ciclo.<br>
+Un ciclo &#xE8; formato da due cose: una condizione ed un corpo. Il corpo viene eseguito finch&#xE9; vale la condizione.<br>
+Esistono due tipi principali di ciclo: il primo &#xE8; identificato dalla parola chiave for, il secondo dalla parola chiave while.<br>
+Il ciclo for &#xE8; strutturato nella seguente maniera:<br>
+var x = 0;
+for ( var i = 0; i &#x3C; lunghezza; i++ ) {
+&#x9;x++;
+}
+Nota bene!<br>
+La scorciatoia i++ ha lo stesso significato dell&#x27;istruzione i = i + 1. Stesso vale per x++.<br>
+Questa scrittura ha un significato semplice: partendo da 0, si controlla il valore di i. L&#x27;istruzione interna al for, cio&#xE8; x++, viene eseguita finch&#xE9; i, che viene incrementato ad ogni giro del ciclo, non &#xE8; lunga come lunghezza. Scomponiamo le operazioni:<br>
+<li>viene creata una variabile i, che contiene in valore 0;</li>
+<li>se i &#xE8; minore di lunghezza, si va avanti, altrimenti si esce dal ciclo;</li>
+<li>i viene incrementato, cio&#xE8; contiene ora il valore 0+1, cio&#xE8; 1;</li>
+<li>si esegue il codice interno al ciclo, dunque x diventa uguale a 1;</li>
+<li>si controlla se i (ora uguale a 1) &#xE8; minore di lunghezza: se lo &#xE8;, si torna dentro al ciclo, altrimenti si esce.</li>
+Il ciclo viene dunque ripetuto lunghezza volte.<br>
+Il secondo tipo di ciclo &#xE8; quello identificato dalla parola chiave while. Eccone un esempio:<br>
+var x = 0;
+while ( x &#x3C; 5 ) {
+&#x9;x++;
+}
+Il significato di questo ciclo &#xE8; semplice: finch&#xE9; x &#xE8; minore di 5, viene eseguita la parte di codice interna al while.<br>
+I cicli sono molto utili, soprattuto se si pensa al concetto di array. Un array &#xE8; una variabile che contiene pi&#xF9; valori. Un esempio di array pu&#xF2; essere il seguente:<br>
+var numeri = [1, 2, 3, 4];
+questo array contiene i numeri da 1 a 4.<br>
+Per inserire successivamente un elemento in un array, &#xE8; necessario utilizzare l&#x27;istruzione di push. Per esempio, se vogliamo aggiungere l&#x27;elemento 5 nell&#x27;array numeri, &#xE8; necessario effettuare la seguente istruzione:<br>
+numeri.push( 5 );
+L&#x27;array che risulta da questa istruzione sar&#xE0; il seguente:<br>
+[1, 2, 3, 4, 5] <br>
+Nota bene!<br>
+Ogni elemento di un array ha un numero, che indica la sua posizione all&#x27;interno dell&#x27;array stesso. Tale numero parte da 0, e viene cos&#xEC; utilizzato:<br>
+var a = numeri[ 0 ];
+var b = numeri[ 4 ];
+In questo codice, a contiene il valore 1, che occupa la posizione 0 all&#x27;interno dell&#x27;array; la variabile b contiene invece il valore 5, che occupa la posizione 4.<br>
+
+"dialogoFinale":
+[
+{"nome": "Simeoni",
+"testo": "Capitano Simeoni a rapporto, signore."},
+{"nome": "Ortiz",
+"testo": "Ottimo lavoro Simeoni, con quelle torrette."},
+{"nome": "Simeoni",
+"testo": "Grazie, signore."},
+{"nome": "Ortiz",
+"testo": "Non dormire sugli allori, per&#xF2;. Il Nemico continua a batterci, anche se forse... le cose stanno per cambiare."},
+{"nome": "Simeoni",
+"testo": "Hai scoperto qualcosa, signore?"},
+{"nome": "Ortiz",
+"testo": "Abbiamo abbattuto un caccia nemico, a pochi chilometri da qui. Il pilota &#xE8; conciato male, ma lo stiamo sistemando. Spero di riuscire ad interrogarlo, questa notte. Potremmo ricavare grandi benefici da questo incontro. &#xC8; il primo prigioniero che riusciamo a prendere... e dunque il primo punto di contatto tra le nostre culture. Gli esseri umani non hanno mai parlato con nessuno che venisse dall&#x27;altro capo del deserto dei Barbari... sar&#xE0; sicuramente interessante."},
+{"nome": "Simeoni",
+"testo": "Immagino di non poter partecipare a questo colloquio, signore."},
+{"nome": "Ortiz",
+"testo": "Immagini bene. Ma se tutto va come deve andare... parlerai presto con lei."},
+{"nome": "Simeoni",
+"testo": "Lei?"},
+{"nome": "Ortiz",
+"testo": "Ti ho gi&#xE0; detto troppo, solo perch&#xE9; in fondo mi sei simpatico. Ora vai a dormire, capitano. Domani un&#x27;altra..."},
+{"nome": "Simeoni",
+"testo": "... lunga giornata ci attende nell&#x27;eterna notte di Bastiani."},
+
+================================
+
+{
+"nomeLivello": "Nelle fauci del Nemico",
+"numeroLivello": 4,
+"costoAiuti": 200,
+
+"dialogoIniziale":
+[
+{"nome": "Ortiz",
+"testo": "Entra pure, capitano."},
+{"nome": "Simeoni",
+"testo": "Ordini, generale?"},
+{"nome": "Ortiz",
+"testo": "S&#xEC;, ma dopo. Prima vorrei parlare di un certo file di configurazione per la calibrazione planetaria delle armi. Hai usato quel file, vero? Per sistemare le torrette l&#x27;altro giorno?"},
+{"nome": "Simeoni",
+"testo": "Non lo nego, signore."},
+{"nome": "Ortiz",
+"testo": "Non avevi il permesso di ficcare il naso in quel file! Sei solo un capitano! Qui stiamo parlando di difese che vengono utilizzate in tutta la galassia! Ti rendi conto di quello che sarebbe potuto accadere, se solo avessi sbagliato a manomettere quel file? E soprattutto, chi ti ha detto dell&#x27;esistenza di quel file?"},
+{"nome": "Simeoni",
+"testo": "L&#x27;ho trovato per caso signore. Stavo cercando di risolvere i problemi al sistema di puntamento e sparo. La fretta era tanta e non ho fatto complimenti."},
+{"nome": "Ortiz",
+"testo": "Non &#xE8; che qualche membro ausiliario della base ti ha aiutato? Qui dentro c&#x27;&#xE8; molta gente che deve imparare a tenere la bocca chiusa... e me ne occuper&#xF2; personalmente! Non posso tollerare che un capitano, con la responsabilit&#xE0; delle difese di un pianeta sotto attacco scavalchi le regole in questo modo!"},
+{"nome": "Simeoni",
+"testo": "Signore, alla fine ho salvato delle vite. Le vite dei nostri soldati, dei nostri compagni. Non mi pento di quello che ho fatto. E le posso giurare di aver fatto tutto da solo."},
+{"nome": "Ortiz",
+"testo": "Hai una bella faccia tosta, a non pentirti e a giurare il falso. Dovrei sbatterti davanti alla corte marziale, ma credo nelle seconde possibilit&#xE0;: far&#xF2; finta di crederti. D&#x27;altronde sei l&#x27;unico che pu&#xF2; svolgere la prossima missione... fate entrare il progioniero!"},
+{"nome": "Zurlin",
+"testo": "Ehi ehi ehi, gi&#xF9; quelle mani! Ho dato la mia parola sulla spontaneit&#xE0; della mia collaborazione. Non c&#x27;&#xE8; bisogno di spingere."},
+{"nome": "Ortiz",
+"testo": "Capitano, ti presento Zurlin, il pilota del Nemico abbattuto ieri."},
+{"nome": "Zurlin",
+"testo": "Ciao, caro."},
+{"nome": "Ortiz",
+"testo": "Zurlin ha promesso di collaborare con noi. Pu&#xF2; aprirci una porta per entrare nel codice delle navi del Nemico. Si sta parlando di hacking."},
+{"nome": "Simeoni",
+"testo": "Interessante. Spiegami un po&#x27;, Zurlin: cosa dovrei fare?"},
+{"nome": "Zurlin",
+"testo": "Allora caro, come prima cosa ci sar&#xE0; da creare un&#x27;arma sabotata, che poi andr&#xE0; caricata nel codice della nave, in modo che usi quella invece che quelle che utilizza normalmente. Non potrai esagerare con le modifiche... altrimenti potrebbero accorgersene subito."},
+{"nome": "Simeoni",
+"testo": "Ottimo."},
+{"nome": "Zurlin",
+"testo": "Calmo, caro. A quel punto sar&#xE0; necessario effettuare un attacco a forza bruta alla password della nave, in modo che le modifiche che hai fatto alle armi possano essere salvate nel loro sistema. Ho gi&#xE0; fatto preparare alcuni file da cui puoi partire, ma non sar&#xE0; facile, caro..."},
+{"nome": "Simeoni",
+"testo": "E smettila di chiamarmi caro."},
+{"nome": "Zurlin",
+"testo": "Certo, caro."},
+{"nome": "Ortiz",
+"testo": "Basta con i convenevoli. Simeoni, questa &#xE8; la tua ultima possibilit&#xE0;. Vedi di tenerlo bene a mente."},
+
+OBIETTIVO - Tab 1
+L&#x27;obiettivo &#xE8; modificare le caratteristiche della classe dell&#x27;arma sabotata, che poi dovr&#xE0; essere caricata al posto delle armi funzionanti nel codice del Nemico. Si deve dunque alzare il tempo di ricarica massimo, cio&#xE8; il tempo che ogni torretta impiega a ricaricare il cannone; poi ridurre il numero del propellente, poich&#xE9; pi&#xF9; &#xE8; basso, pi&#xF9; indica propellente scadente; poi diminuire il numero di missili contenuti nel caricatore; infine cambiare il tipo di missile da massima_efficacia a massima_esplosione. Quest&#x27;ultima modifica permette di avere un maggior numero di esplosioni a catena: aumentando infatti la carica esplosiva del missile, se viene abbattuto in aria, ne distrugger&#xE0; molti altri intorno.<br>
+AIUTI
+Le caratteristiche della classe andranno cambiate nel seguente modo:<br>
+this.tempoRicaricaMassimo = 200;
+this.propellente = 3;
+this.numeroMissili = 10;
+this.tipoMunizione = &#x22;massima_esplosione&#x22;;
+
+OBIETTIVO - Tab 2
+L&#x27;obiettivo &#xE8; caricare la classe dell&#x27;arma sabotata al posto della classe delle armi normali utilizzata dal Nemico.<br>
+AIUTI
+L&#x27;operazione di new andr&#xE0; cambiata, creando un oggetto non di classe BatteriaAntiterrestre(), ma di classe ArmaNemicaSabotata().<br>
+var batteria = new ArmaNemicaSabotata();
+
+OBIETTIVO - Tab 3
+L&#x27;obiettivo &#xE8; creare tutte le combinazioni possibili di password per forzare il salvataggio delle nostre modifiche. L&#x27;importante &#xE8; che, essendoci tre caratteri, il ciclo e la funzione ricorsiva vengano chiamate tre volte.<br>
+AIUTI
+Per eseguire la ricorsione il numero corretto di volte, &#xE8; necessario modificare la funzione generaPassword(), in particolare il controllo effettuato dall&#x27;if:<br>
+if ( k === 3 )
+Questo per creare tutte le combinazioni possibili.<br>
+
+MANUALE
+Una funzione &#xE8; un particolare tipo di valore per una variabile, ed &#xE8; una sequenza di istruzioni che definisce una particolare operazione. Una funzione pu&#xF2; avere dei parametri in ingresso oppure dei risultati in uscita.<br>
+Per esempio, una funzione che possiede parametri in entrata e risultati in uscita &#xE8; la seguente:<br>
+var calcolaSomma = function ( a, b ) {
+&#x9;return a + b;
+}
+I parametri in ingresso sono a e b, che rappresentano le variabili da sommare, mentre return &#xE8; una parola chiave, che indica che ci&#xF2; che la segue &#xE8; il risultato in uscita. Per utilizzare una funzione &#xE8; necessario chiamarla, tramite una chiamata di funzione. Ecco un esempio per la funzione calcolaSomma():<br>
+var risultato = calcolaSomma ( 4, 5 );
+In risultato verr&#xE0; inserito il risultato della funzione, dunque 9.<br>
+Un particolare tipo di funzione &#xE8; la funzione ricorsiva, cio&#xE8; una funzione che richiama se stessa pi&#xF9; volte, in modo da produrre un determinato tipo di risultato. Un esempio di funzione ricorsiva pu&#xF2; essere quella che calcola il fattoriale di un numero:<br>
+var fattoriale = function ( numero ) {
+  if ( numero &#x3C; 0 ) {
+    return -1;
+  }
+  else if ( num == 0 ) {
+    return 1;
+  }
+  else {
+    return ( numero * fattoriale( numero - 1 ) );
+  }
+}
+Il risultato ritornato dalla funzione fattoriale( numero ) sar&#xE0; il valore del fattoriale di numero.<br>
+L&#x27;ultimo tassello della grammatica del linguaggio di programmazione &#xE8; il concetto di classe. Una classe definisce un nuovo tipo di valore, che viene caratterizzato da una serie di caratteristiche, chiamati campi. Ecco un esempio, per la classe Soldato:<br>
+function Soldato ( matricola, arma, battaglione ) {
+&#x9;this.matricola = matricola;
+&#x9;this.arma = arma;
+&#x9;this.battaglione = battaglione;
+}
+La parola chiave this indica che la parola che segue descrive una caratteristica propria della classe.<br>
+La classe viene poi usata per creare degli oggetti, cio&#xE8;, nel caso della classe Soldato, tanti soldati, ognuno con le sue caratteristiche.<br>
+Una classe viene creata tramite la parola chiave function, perch&#xE9; viene chiamata per la creazione di oggetti proprio come se fosse una funzione.<br>
+Per creare nuovi soldati, dunque, &#xE8; necessario eseguire le seguenti istruzioni:<br>
+var soldatoFanteria = new Soldato ( 1, &#x22;fucile al plasma&#x22;, &#x22;UTF-8, 42 battaglione&#x22; );
+var soldatoArtiglieria = new Soldato ( 2, &#x22;granate a rimbalzo&#x22;, &#x22;UTF-16, 30 battaglione&#x22; );
+var soldatoScelto = new Soldato ( 3, &#x22;phaser sonici&#x22;, &#x22;UTF-32, 1 battaglione&#x22; );
+
+
+"dialogoFinale":
+[
+{"nome": "Ortiz",
+"testo": "Un ottimo lavoro, direi."},
+{"nome": "Simeoni",
+"testo": "Grazie, generale. Grazie... Zurlin."},
+{"nome": "Zurlin",
+"testo": "Prego, caro."},
+{"nome": "Ortiz",
+"testo": "Portate via Zurlin. Cella 42. Con te non ho ancora finito."},
+{"nome": "Zurlin",
+"testo": "Ma certo, caro."},
+{"nome": "Ortiz",
+"testo": "Bene, ora che quel... quella prigioniera se n&#x27;&#xE8; andata, passiamo a noi. Mi &#xE8; piaciuto come hai condotto l&#x27;operazione. Hai sfruttato bene la seconda possibilit&#xE0; che ti ho dato e non voglio che si dica che non premio i miei uomini. Complimenti, maggiore Simeoni."},
+{"nome": "Simeoni",
+"testo": "Maggiore? Grazie, signore."},
+{"nome": "Ortiz",
+"testo": "Non gongolare troppo. La notte eterna di Bastiani ha ancora tanto da chiederti... e dovrai farti trovare pronto. Inutile ricordarti che non tollerer&#xF2; altre interferenze come quella del file di configurazione. Sono stato chiaro, maggiore?"},
+{"nome": "Simeoni",
+"testo": "Trasparente."},
+
+================================
+
+{
+"nomeLivello": "Gli Ibridi",
+"numeroLivello": 5,
+"costoAiuti": 200,
+
+"dialogoIniziale":
+[
+{"nome": "Simeoni",
+"testo": "Salve, Zurlin."},
+{"nome": "Zurlin",
+"testo": "Ciao caro. Non sei a parlare con il tuo bel generale?"},
+{"nome": "Simeoni",
+"testo": "Non &#xE8; affar tuo."},
+{"nome": "Zurlin",
+"testo": "Non mi sembra un buon modo per cominciare. Del resto, se sei qui, vuol dire che hai bisogno di me..."},
+{"nome": "Simeoni",
+"testo": "D&#x27;accordo, scusami. La vita del soldato spesso fa dimenticare le buone maniere. E la curiosit&#xE0; mi mette fretta."},
+{"nome": "Zurlin",
+"testo": "Curiosit&#xE0;? Immaginavo... vuoi sapere da dove vengo vero? Vuoi sapere cosa si cela oltre buio del deserto, cosa vive oltre la vostra piccola galassia?"},
+{"nome": "Simeoni",
+"testo": "Diciamo che l&#x27;unico pregio di questa maledetta guerra &#xE8; l&#x27;avermi fatto capire che l&#x27;universo &#xE8; immenso... e noi non siamo che briciole davanti alla sua vastit&#xE0;."},
+{"nome": "Zurlin",
+"testo": "Una buona risposta, caro. Del resto, la curiosit&#xE0; accomuna noi a voi. Facciamo cos&#xEC;: mi stai simpatico, caro. Ho deciso che risponder&#xF2; a tre delle tue domande. Tre sole. Null&#x27;altro."},
+{"nome": "Simeoni",
+"testo": "E tu cosa ci guadagni?"},
+{"nome": "Zurlin",
+"testo": "Diciamo che mi devi un favore."},
+{"nome": "Simeoni",
+"testo": "D&#x27;accordo. Prima domanda: da dove vieni?"},
+{"nome": "Zurlin",
+"testo": "Dal pianeta Tronk, dall&#x27;altro capo del deserto. L&#xEC; la mia razza ha sempre vissuto, guardando le stelle come d&#xE8;i e non come destinazioni. Una civilt&#xE0; barbara, per dirla come voi terrestri. Poi, un secolo fa, abbiamo cominciato a sviluppare tecnologie sempre pi&#xF9; avanzate, fino ad accorgerci che le stelle e l&#x27;universo erano immensi, ma esplorabili. Prossima domanda, caro."},
+{"nome": "Simeoni",
+"testo": "Un secolo solo per sviluppare armi e navi capaci di viaggiare a velocit&#xE0; ultraluce... come avete fatto?"},
+{"nome": "Zurlin",
+"testo": "Buona domanda, terrestre. Siete stati voi. Un secolo fa, raccontano le nostre storie, arrivarono navi terrestri dal cielo. Scappavano dalla miseria dei pianeti dell&#x27;orlo della vostra galassia... come Bastiani. Pianeti poveri e dimenticati dal governo. Masse di disperati hanno costruito navi ultraluce dai rottami ed hanno iniziato una seconda colonizzazione, questa volta pacifica, che ha portato all&#x27;unione dei nostri popoli. Un&#x27;unione che mi piace definire letterale: voi ci chiamate il Nemico, ma il termine corretto sarebbe... Ibridi. Siamo l&#x27;alba di una nuova razza, mezzi terrestri e mezzi tronk, che si sta affacciando nel vasto panorama dell&#x27;universo. E siamo curiosi e... spaventati."},
+{"nome": "Simeoni",
+"testo": "E perch&#xE9; combattete?"},
+{"nome": "Zurlin",
+"testo": "Noi non volevamo attaccarvi. Stiamo scappando. Abbiamo provato a venire in pace ma... siete stati voi ad attaccarci, invece che accoglierci. In pieno stile terrestre."},
+{"nome": "Simeoni",
+"testo": "Scappate da cosa?"},
+{"nome": "Zurlin",
+"testo": "Ah ah ah. Tre domande, umano. Non una di pi&#xF9;. Ma voglio farti un regalo, caro. Sappi che non sei l&#x27;unico terrestre a conoscere questa storia."},
+{"nome": "Simeoni",
+"testo": "Cosa?"},
+{"nome": "Zurlin",
+"testo": "Ah ah ah. Non crucciarti, caro. Ed ora vattene alla tua sala di comando. Sono sicuro che gli Ibridi vi stiano attaccando di nuovo."},
+{"nome": "Simeoni",
+"testo": "..."},
+{"nome": "Ortiz",
+"testo": "Eccoti, maggiore. Ho un compito da affidarti."},
+{"nome": "Simeoni",
+"testo": "Signors&#xEC;, signore."},
+{"nome": "Ortiz",
+"testo": "La situazione delle torrette &#xE8; ormai ingestibile. Come ben sai ogni batteria di tre torrette presenta anomalie che non sono pi&#xF9; sostenibili. Il tuo compito sar&#xE0; quello di prendere le parti migliori da ogni torretta e renderle tutte utilizzabili."},
+{"nome": "Simeoni",
+"testo": "Sissignore. Devo sapere altro?"},
+{"nome": "Ortiz",
+"testo": "Le torrette hanno tre componenti fondamentali. La prima &#xE8; l&#x27;energia del compressore del gas, che si occupa dello sparo del missile; la seconda &#xE8; l&#x27;energia destinata allo spostamento del cannone; la terza &#xE8; la pressione del carburante. Questi tre valori devono essere esatti, cio&#xE8; n&#xE9; troppo alti, n&#xE9; troppo bassi. Dando troppa energia, per esempio, si aumenterebbe la velocit&#xE0; di riscaldamento della torretta; abbassandola troppo si avrebbe un&#x27;esagerata lentezza da parte del meccanismo. Hai capito?"},
+{"nome": "Simeoni",
+"testo": "Sissignore."},
+{"nome": "Ortiz",
+"testo": "Bene. Buona fortuna, maggiore."},
+
+OBIETTIVO - Tab 1
+Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.<br>
+Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:<br>
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;</li>
+<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.</li>
+Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.<br>
+Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.<br>
+L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta centrale devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.<br>
+AIUTI
+I valori corretti per le torrette sono quelli intermedi.<br>
+Prendendo dunque i tre valori della variabile energiaCompressore, che sono:<br>
+<li>5, per la torretta centrale;</li>
+<li>30, per la torretta sinistra;</li>
+<li>80, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:<br>
+var energiaCompressore = 30;
+Prendendo invece i tre valori della variabile energiaMirino, che sono:<br>
+<li>1, per la torretta centrale;</li>
+<li>10, per la torretta sinistra;</li>
+<li>50, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:<br>
+var energiaMirino = 10;
+Prendendo infine i tre valori della variabile pressioneCarburante, che sono:<br>
+<li>15, per la torretta centrale;</li>
+<li>5, per la torretta sinistra;</li>
+<li>20, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:<br>
+var pressioneCarburante = 10;
+
+OBIETTIVO - Tab 2
+Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.<br>
+Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:<br>
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;</li>
+<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.</li>
+Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.<br>
+Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.<br>
+L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta sinistra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.<br>
+AIUTI
+I valori corretti per le torrette sono quelli intermedi.<br>
+Prendendo dunque i tre valori della variabile energiaCompressore, che sono:<br>
+<li>5, per la torretta centrale;</li>
+<li>30, per la torretta sinistra;</li>
+<li>80, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:<br>
+var energiaCompressore = 30;
+Prendendo invece i tre valori della variabile energiaMirino, che sono:<br>
+<li>1, per la torretta centrale;</li>
+<li>10, per la torretta sinistra;</li>
+<li>50, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:<br>
+var energiaMirino = 10;
+Prendendo infine i tre valori della variabile pressioneCarburante, che sono:<br>
+<li>15, per la torretta centrale;</li>
+<li>5, per la torretta sinistra;</li>
+<li>20, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:<br>
+var pressioneCarburante = 10;
+
+OBIETTIVO - Tab 3
+Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.<br>
+Le torrette hanno tre caratteristiche fondamentali, contenute nelle variabili:<br>
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile energiaCompressore;</li>
+<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile energiaMirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile pressioneCarburante.</li>
+Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deveessere applicato anche alle altre torrette, in modo da ottenerne tre uguali.<br>
+Alla fine dunque si avranno tre torrette come prima, ma tutte dello stesso tipo: ora invece sono di tre tipi diversi.<br>
+L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta destra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.<br>
+AIUTI
+I valori corretti per le torrette sono quelli intermedi.<br>
+Prendendo dunque i tre valori della variabile energiaCompressore, che sono:<br>
+<li>5, per la torretta centrale;</li>
+<li>30, per la torretta sinistra;</li>
+<li>80, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 30.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile energiaCompressore, dunque:<br>
+var energiaCompressore = 30;
+Prendendo invece i tre valori della variabile energiaMirino, che sono:<br>
+<li>1, per la torretta centrale;</li>
+<li>10, per la torretta sinistra;</li>
+<li>50, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 10.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile energiaMirino, dunque:<br>
+var energiaMirino = 10;
+Prendendo infine i tre valori della variabile pressioneCarburante, che sono:<br>
+<li>15, per la torretta centrale;</li>
+<li>5, per la torretta sinistra;</li>
+<li>20, per la torretta destra;</li>
+&#xE8; necessario sceglierne uno non troppo alto e non troppo basso, dunque 15.<br>
+Tutte le torrette dovranno utilizzare tale valore per la variabile pressioneCarburante, dunque:<br>
+var pressioneCarburante = 10;
+
+MANUALE
+Preso un oggetto, &#xE8; possibile accedere alle sue caratteristiche. Si prenda come esempio la classe Soldato vista in precedenza.<br>
+function Soldato ( matricola, arma, battaglione ) {
+&#x9;this.matricola = matricola;
+&#x9;this.arma = arma;
+&#x9;this.battaglione = battaglione;
+}
+Inizializziamo tre soldati di esempio:
+var soldatoFanteria = new Soldato ( 1, &#x22;fucile al plasma&#x22;, &#x22;UTF-8, 42 battaglione&#x22; );
+var soldatoArtiglieria = new Soldato ( 2, &#x22;granate a rimbalzo&#x22;, &#x22;UTF-16, 30 battaglione&#x22; );
+var soldatoScelto = new Soldato ( 3, &#x22;cannoni sonici&#x22;, &#x22;UTF-32, 1 battaglione&#x22; );
+Per accedere alla caratteristica arma di un soldato, &#xE8; necessario utilizzare un&#x27;istruzione come la seguente:
+var armaSoldatoFanteria = soldatoFanteria.arma;
+La variabile armaSoldatoFanteria contiene ora la stringa &#x22;fucile al plasma&#x22;. Ovviamente il meccanismo per estrarre le altre caratteristiche &#xE8; uguale:
+var matricolaSoldatoArtiglieria = soldatoArtiglieria.matricola;
+conterr&#xE0; 2, mentre
+var battaglioneSoldatoScelto = soldatoScelto.battaglione;
+conterr&#xE0; &#x22;UTF-32, 1 battaglione&#x22;.
+
+"dialogoFinale":
+[
+{"nome": "Ortiz",
+"testo": "Ottimo lavoro, maggiore."},
+{"nome": "Simeoni",
+"testo": "Grazie, generale. Si sa niente della detenuta?"},
+{"nome": "Ortiz",
+"testo": "Stai attento con la curiosit&#xE0;. Anche se in questo caso &#xE8; giustificabile."},
+{"nome": "Simeoni",
+"testo": "Chiedo scusa, signore."},
+{"nome": "Ortiz",
+"testo": "Comunque no, si &#xE8; chiusa in uno strano silenzio. Mi inquieta, quella... quella donna. Ha una calma glaciale, anche per essere un soldato. &#xC8; tutto, Simeoni."},
+{"nome": "Simeoni",
+"testo": "..."},
+{"nome": "Prosdocimo",
+"testo": "Se n&#x27;&#xE8; andato? Il generale?"},
+{"nome": "Simeoni",
+"testo": "S&#xEC;, Prosdocimo."},
+{"nome": "Prosdocimo",
+"testo": "Eh eh eh... non mi piace quell&#x27;uomo. Ieri l&#x27;ho sentito parlare per ore e, quando &#xE8; uscito dalla stanza, sono entrato."},
+{"nome": "Simeoni",
+"testo": "Prosdocimo devi stare attento. L&#x27;ultima volta mi ha quasi sbattuto davanti alla corte marziale, a causa della nostra curiosit&#xE0;."},
+{"nome": "Prosdocimo",
+"testo": "Tranquillo. Posso entrare nel suo ufficio. Del resto, faccio le pulizie. Eh eh eh."},
+{"nome": "Simeoni",
+"testo": "Non sei molto credibile come uomo delle pulizie. Un giorno dovrai raccontarmi la tua storia."},
+{"nome": "Prosdocimo",
+"testo": "Ti prometto che lo far&#xF2;. Un giorno... eh eh eh. Comunque, il tuo generale stava parlando da solo. Ha parlato per ore, come ti ho detto. Ma dalla stanza &#xE8; uscito solo lui. E non ha telefoni nella sua stanza, n&#xE9; ricevitori..."},
+
+================================
+
+{
+"nomeLivello": "La telecamera",
+"numeroLivello": 6,
+"costoAiuti": 200,
+
+"dialogoIniziale":
+[
+{"nome": "Prosdocimo",
+"testo": "Il generale non si &#xE8; fatto vedere nemmeno stamattina? Eh eh eh..."},
+{"nome": "Simeoni",
+"testo": "Purtroppo no, caro Prosdocimo. Stavo pensando infatti che senza ordini sono un po&#x27; limitato..."},
+{"nome": "Prosdocimo",
+"testo": "Beh potrei aver sentito qualcosa in mensa, oggi a pranzo..."},
+{"nome": "Simeoni",
+"testo": "Smettila con i tuoi giochetti e parla."},
+{"nome": "Prosdocimo",
+"testo": "I nuovi tecnici, che stanno lentamente imparando il JS, hanno un nuovo sistema, ovviamente sperimentale, che permetterebbe di avere un unico pulsante di sparo. Questo garantirebbe una difesa planetaria migliore, sicuramente."},
+{"nome": "Simeoni",
+"testo": "Ma i tre pulsanti sono direttamente collegati alle torrette, associati uno ad uno. Come &#xE8; possibile utilizzare un solo pulsante? Quale torretta sparerebbe?"},
+{"nome": "Prosdocimo",
+"testo": "&#xC8; qui che viene il bello: hanno inventato un sistema per scegliere automaticamente la torretta, prendendo quella pi&#xF9; vicina al bersaglio dello sparo. Mi spiego meglio: prima, come hai ben detto, ogni pulsante era direttamente collegato ad una torretta. Con il nuovo sistema si utilizza il click del mouse per dare il comando di sparo, che viene preso da un filtro. Questo filtro, tramite l&#x27;algoritmo che hanno scritto questi tecnici, decide quale sia la torretta migliore per effettuare lo sparo e manda il comando di sparo ad essa. Capito?"},
+{"nome": "Simeoni",
+"testo": "Pi&#xF9; o meno... in pratica cliccando con il mouse che uso per muovere il mirino, attivo un meccanismo di sparo che seleziona la torretta migliore."},
+{"nome": "Prosdocimo",
+"testo": "Esattamente. Si tratta di andare a modificare la parte di codice che si occupa del meccanismo di sparo."},
+{"nome": "Simeoni",
+"testo": "Ottimo. Ho solo una domanda. Esistono questi tecnici? C&#x27;&#xE8; davvero qualcuno che sta imparando il JS?"},
+{"nome": "Prosdocimo",
+"testo": "&#xC8; davvero cos&#xEC; importante? Eh eh eh..."},
+
+OBIETTIVO
+L&#x27;obiettivo &#xE8; quello di cambiare il codice contenuto all&#x27;interno del meccanismo che si attiva tramite il click del mouse, cio&#xE8; il contenuto del blocco:<br>
+$( planciaComandi ).on( &#x27;click&#x27;, function () { /* codice da inserire */ } );
+Nel secondo file &#xE8; infatti contenuto l&#x27;algoritmo di selezione automatica della torretta, non modificabile. Si deve inserire dunque nel meccanismo attivato dal mouse la chiamata a tale funzione.<br> Questa chiamata necessita di tre prametri:<br>
+<li>torrette, che abbiamo gi&#xE0;;</li>
+<li>una x corretta per il bersaglio;</li>
+<li> una y corretta per il bersaglio.</li>
+La x e la y rappresentano le coordinate nel piano cartesiano dell&#x27;area di sparo delle torrette.<br>
+Si deve poi creare una variabile che conterr&#xE0; il valore restituito da tale chiamata di funzione; poi effettuare un&#x27;altra chiamata, questa volta alla funzione azionaComandoSparo(), con i seguenti parametri:<br>
+<li>la stringa &#x27;keyup&#x27;;</li>
+<li>la torretta selezionata con la chiamata precedente;</li>
+<li>la variabile sistema;</li>
+<li>la x corretta;</li>
+<li> la y corretta.</li>
+
+AIUTI
+Un modo per creare il nuovo meccanismo di sparo prevede di inserire nel punto opportuno del codice il corretto valore nelle variabili x ed y:<br>
+var x = mirino.x;
+var y = mirino.y;
+Poi &#xE8; necessario salvare il valore restituito dalla chiamata alla funzione in una variabile:<br>
+var torrettaSelezionata = torrettaVicina( torrette, x, y);
+Ed utilizzare tale variabile per effettuare una seconda chiamata di funzione:<br>
+azionaComandoSparo( &#x27;keyup&#x27;, torrettaSelezionata, sistema, x, y );
+
+MANUALE
+Chiamata di funzione<br>
+Si prenda una funzione di prova, come la seguente:
+var calcolaSomma ( a, b ) {
+&#x9;return a + b;
+}
+Per effetuare una chiamata a tale funzione, &#xE8; necessario creare una variabile che contenga il risultato dell&#x27;operazione, e inserire tra le parentesi i valori che nella funzione diventeranno a e b:<br>
+var risultatoSomma( 4, 5 );
+Nella variabile risultatoSomma ora c&#x27;&#xE8; il numero 9.<br>
+Area di sparo<br>
+L&#x27;area di sparo &#xE8; un piano cartesiano: le coordinate vengono dunque espresse in termini di x e y, che indicano la posizione di un punto all&#x27;interno di quest&#x27;area.<br>
+Il mirino ha dunque una x ed una y, che indicano precisamente dove si trova in quel momento il puntatore collegato al mouse.<br>
+
+"dialogoFinale":
+[
+{"nome": "Ortiz",
+"testo": "... purtroppo &#xE8; cos&#xEC;. Non posso fare di meglio. I ficcanaso sono ovunque, e il nostro piano dovr&#xE0; subire un leggero cambiamento. Non &#xE8; colpa mia!"},
+{"nome": "Simeoni",
+"testo": "Maggiore Simeoni a rapporto, signore."},
+{"nome": "Ortiz",
+"testo": "Non ti hanno insegnato a bussare??"},
+{"nome": "Simeoni",
+"testo": "Chiedo scusa signore. Ma con chi stavate parlando? Era un discorso decisamente sospetto..."},
+{"nome": "Ortiz",
+"testo": "Niente scuse Simeoni. E per quanto riguarda i miei discorsi, sei in arresto."},
+{"nome": "Simeoni",
+"testo": "Non puoi farlo! Con chi sei in combutta? Con il Nemico?"},
+{"nome": "Ortiz",
+"testo": "Sciocchezze. Tu sei in combutta con gli Ibridi."},
+{"nome": "Simeoni",
+"testo": "Ah! Allora ho ragione! Ibridi &#xE8; una parola che pochi conoscono qui... traditore!"},
+{"nome": "Ortiz",
+"testo": "Non ti permetto di parlarmi in questo modo! E smettila di urlare. Ho qua delle bellissime prove sul tuo tradimento. Pensi che non ci siano delle telecamere nelle celle? Ho una ripresa fantastica del giovane maggiore Simeoni che parla con la prigioniera Zurlin... purtroppo manca l&#x27;audio, ma sar&#xE0; facile far credere alla corte marziale che sei un rinnegato."},
+{"nome": "Simeoni",
+"testo": "Ma &#xE8; una bugia... io e Zurlin abbiamo parlato d&#x27;altro."},
+{"nome": "Ortiz",
+"testo": "Ah, ne sono certo. Ma ha poca rilevanza... ci&#xF2; che importa &#xE8; la parola della corte marziale. Pensi che crederanno al giovane maggiore, mentalmente distrutto dalla guerra o a un generale che per anni ha pattugliato il deserto dei Barbari?"},
+{"nome": "Simeoni",
+"testo": "Maledetto..."},
+{"nome": "Ortiz",
+"testo": "Hai provato ad entrare in gioco pi&#xF9; grosso di te, Simeoni. Ora... guardie! Portatelo via!"},
+{"nome": "Simeoni",
+"testo": "Questa mano l&#x27;hai vinta tu Ortiz. Ma non finisce qui."},
+
+================================
+
+{
+"nomeLivello": "Fiamme dal passato",
+"numeroLivello": 7,
+"costoAiuti": 200,
+
+"dialogoIniziale":
+[
+{"nome": "Ortiz",
+"testo": "Come sta il mio prigioniero preferito?"},
+{"nome": "Simeoni",
+"testo": "Risparmia l&#x27;umorismo, Ortiz."},
+{"nome": "Ortiz",
+"testo": "Generale Ortiz. Almeno per oggi."},
+{"nome": "Simeoni",
+"testo": "Che significa?"},
+{"nome": "Ortiz",
+"testo": "Significa che per mantenere la mia bella faccia pulita da ogni sospetto, devo tirarti fuori da questa prigione, per oggi. Abbiamo bisogno di un tecnico informatico e, a detta dei miei uomini, sei il migliore."},
+{"nome": "Simeoni",
+"testo": "E perch&#xE9; dovrei farlo? Non ti devo nulla. Anzi, mi hai sbattuto in galera e hai tradit..."},
+{"nome": "Ortiz",
+"testo": "Taci! Devi farlo, fidati. Non vorrai che qualche vecchio inserviente scivoli durante la pulizia di un corridoio e si faccia male, spero. Inoltre c&#x27;&#xE8; quella faccenda del tuo tradimento..."},
+{"nome": "Simeoni",
+"testo": "Maledetto! Sono costretto ad ascoltarti."},
+{"nome": "Ortiz",
+"testo": "Seguimi."},
+{"nome": "Simeoni",
+"testo": "..."},
+{"nome": "Zurlin",
+"testo": "Ciao caro."},
+{"nome": "Simeoni",
+"testo": "Cosa dobbiamo fare? Un nuovo attacco ai loro sistemi informatici?"},
+{"nome": "Ortiz",
+"testo": "Magari. Purtroppo dopo l&#x27;ultima volta hanno alzato il livello di sicurezza. Non sappiamo pi&#xF9; come entrare. In ogni caso, Zurlin ha trovato una cosa."},
+{"nome": "Zurlin",
+"testo": "Il Nemico aveva sviluppato un nuovo tipo di missili, top secret."},
+{"nome": "Ortiz",
+"testo": "... e abbiamo intercettato una loro conversazione. Stanno per utilizzarli."},
+{"nome": "Zurlin",
+"testo": "Sono composti da una particolare testata in grado di sdoppiarsi. Sono riuscita a... ricordarmi come fossero fatti. Dobbiamo implementare questa tecnologia nelle torrette dell&#x27;UTF-8."},
+{"nome": "Simeoni",
+"testo": "Va bene, cominciamo."},
+
+OBIETTIVO - Tab 2
+Ci sono due classi:<br>
+<li>MissileTestataMultipla: missile alieno che si sdoppia;</li>
+<li>MissileStandard: missile di ordinanza terrestre.</li>
+L&#x27;obiettivo &#xE8; inserire la tecnologia aliena dello sdoppiamento dei missili nella nostra classe MissileStandard.<br>
+Come si pu&#xF2; notare, le due classi hanno una struttura comune: tra di esse l&#x27;unica differenza sta nei nomi delle caratteristiche e delle  funzioni.<br>
+Per spostare la tecnologia dalla classe MissileTestataMultipla &#xE8; necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalit&#xE0; di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.<br>
+AIUTI
+Come prima cosa &#xE8; necessario modificare la funzione MissileStandard.prototype.miraBersaglio(), coerentemente con la funzione<br> MissileTestataMultipla.prototype.identificaObiettivo(): al posto delle righe<br>
+var coordinateEsplosione = { esplosioneX: x, esplosioneY: y };
+this.agganciaObiettivo( bersaglio );
+return coordinateEsplosione.esplosioneY;
+andranno inserite le seguenti righe, che permettono di calcolare l&#x27;altezza di sdoppiamento del missile<br>
+var altezza = this.calcolaAltezzaSdoppiamento( x, y );
+this.agganciaObiettivo( bersaglio );
+return altezza;
+Successivamente sar&#xE0; necessario modificare la funzione MissileStandard.prototype.esplodi(), coerentemente con la funzione<br> MissileTestataMultipla.prototype.detonazione(), cambiando dunque le righe<br>
+var x = this.bersaglioAgganciato.x;
+var y = this.bersaglioAgganciato.y;
+return ( [ new FrammentoMissile( x, y ) ] );
+con le righe
+var frammentoMissile1 = new FrammentoMissile( this.bersaglio.x + 10, this.bersaglio.y );
+var frammentoMissile2 = new FrammentoMissile( this.bersaglio.x - 10, this.bersaglio.y );
+var frammentiMissile = [];
+frammentiMissile.push( frammentoMissile1 );
+frammentiMissile.push( frammentoMissile2 );
+return frammentiMissile;
+
+MANUALE
+Ogni classe pu&#xF2; essere associata ad una serie di funzioni. Per essere pi&#xF9; chiari, prendiamo la classe Arma:<br>
+function Arma () {
+&#x9;this.numeroMunizioni = 10;
+}
+Un&#x27;arma pu&#xF2; avere diverse funzionalit&#xE0;, per esempio la ricarica e lo sparo:<br>
+Arma.prototype.ricarica = function () {
+&#x9;this.numeroMunizioni = 10;
+}
+Arma.prototype.spara = function () {
+&#x9;if ( this.numeroMunizioni === 0 ) {
+&#x9;&#x9;this.ricarica();
+&#x9;}
+&#x9;this.numeroMunizioni--;
+}
+Queste due funzioni sono molto semplici. La prima re-imposta il numero di munizioni al valore iniziale di 10. La seconda controlla il numero di munizioni: se &#xE8; uguale a 0, allora effettua una ricarica, poi spara; altrimenti spara, decrementando il numero di munizioni.<br>
+Una funzione propria ad una classe viene indicata con la parola chiave prototype.<br>
+Osserviamo il meccanismo, prendendo un oggetto di classe Arma:<br>
+var cannone = new Arma();
+cannone.spara();
+var munizioniRimaste = cannone.numeroMunizioni.
+La variabile munizioniRimaste contiene il valore 9, poich&#xE9; la funzione di sparo ha determinato un decremento del numeroMunizioni all&#x27;interno dell&#x27;oggetto cannone.<br>
+
+"dialogoFinale":
+[
+{"nome": "Ortiz",
+"testo": "Riportatelo in cella."},
+{"nome": "Simeoni",
+"testo": "..."},
+{"nome": "Prosdocimo",
+"testo": "Se ne sono andati tutti?"},
+{"nome": "Simeoni",
+"testo": "Prosdocimo! Devi stare attento, &#xE8; pieno di telecamere."},
+{"nome": "Prosdocimo",
+"testo": "Lo so. Ma mentre pulivo la sala di controllo, potrebbe essermi scivolato del detersivo per pavimenti sulle prese delle telecamere, eh eh eh..."},
+{"nome": "Simeoni",
+"testo": "Ah ah ah! Sei un diavolo, Prosdocimo."},
+{"nome": "Prosdocimo",
+"testo": "Eh eh eh. Sono qua per mantenere una promessa. Forse il tempo che mi rimane in questa base &#xE8; agli sgoccioli..."},
+{"nome": "Simeoni",
+"testo": "Non essere pessimista, Prosdocimo."},
+{"nome": "Prosdocimo",
+"testo": "Sono realista, eh eh eh. Comunque, &#xE8; ora che tu sappia chi sono io."},
+{"nome": "Simeoni",
+"testo": "Sei sicuro di volermelo dire?"},
+{"nome": "Prosdocimo",
+"testo": "Sei un bravo ragazzo, Simeoni. Mi ricordi tanto un giovane tecnico giunto su Bastiani tanti anni fa. All&#x27;epoca avevo vent&#x27;anni, appena uscito dalla Scuola degli ufficiali tecnici."},
+{"nome": "Simeoni",
+"testo": "Scuola degli ufficiali tecnici? Mai sentita."},
+{"nome": "Prosdocimo",
+"testo": "Ovviamente. Non esiste pi&#xF9;, &#xE8; stata cancellata pochi anni dopo. Comunque, appena arrivato qui feci la conoscenza di Rusa, un anziano programmatore che lavorava qua. Al tempo ero gi&#xE0; un ficcanaso, eh eh eh. Rusa mi insegn&#xF2; un linguaggio ormai perduto."},
+{"nome": "Simeoni",
+"testo": "Il JS?"},
+{"nome": "Prosdocimo",
+"testo": "Ovviamente. Per questo so diverse cose e odio Ortiz eh eh eh."},
+{"nome": "Simeoni",
+"testo": "Cosa sai dirmi di lui?"},
+{"nome": "Prosdocimo",
+"testo": "Ero gi&#xE0; qua quando &#xE8; arrivato. Un giovane brillante e scavezzacollo. Torn&#xF2; da una missione segreta, che prevedeva il primo atterraggio umano al di l&#xE0; del deserto... torn&#xF2; solo lui. Raccont&#xF2; di un massacro degli uomini da parte di una razza aliena e che lui era l&#x27;unico sopravvissuto. Si prese una medaglia e una promozione. Da quel giorno non fu pi&#xF9; lo stesso per&#xF2;... Ortiz nasconde un segreto, ed intendo scoprirlo."},
+{"nome": "Simeoni",
+"testo": "Forse posso aiutarti. &#xC8; in combutta con gli Ibridi."},
+{"nome": "Prosdocimo",
+"testo": "Allora la leggenda &#xE8; vera... eh eh eh. Speravo di vivere abbastanza a lungo per accertarmene."},
+{"nome": "Simeoni",
+"testo": "Arriva qualcuno! Vattene, Prosdocimo!"},
+{"nome": "Prosdocimo",
+"testo": "Eh eh eh, non preoccuparti, ora me ne vado. Ma ne vdremo delle belle, mio giovane amico. Eh eh eh..."},
+
+================================
+
+{
+"nomeLivello": "Una nuova minaccia",
+"numeroLivello": 8,
+"costoAiuti": 200,
+
+"dialogoIniziale":
+[
+{"nome": "Ortiz",
+"testo": "Alzati, maggiore."},
+{"nome": "Simeoni",
+"testo": "Buongiorno, generale."},
+{"nome": "Ortiz",
+"testo": "Abbiamo un nuovo compito per te, forse l&#x27;ultimo, forse no."},
+{"nome": "Simeoni",
+"testo": "Non ho molta scelta, vero?"},
+{"nome": "Ortiz",
+"testo": "Decisamente no."},
+{"nome": "Simeoni",
+"testo": "Qual &#xE8; il problema?"},
+{"nome": "Ortiz",
+"testo": "Abbiamo riorganizzato le basi al fronte. La met&#xE0; di esse sono state svuotate, in modo da poterle usare come esca per confondere il Nemico. Il problema &#xE8; che il Nemico sta intercettando le nostre comunicazioni e riesce a comprendere quali siano le basi per noi vitali e quali quelle finte."},
+{"nome": "Simeoni",
+"testo": "Comincio a capire di cosa si tratta..."},
+{"nome": "Ortiz",
+"testo": "Ogni nas e ha un canale radio, che utilizza per comunicare con il quartier generale. Il canale n&#xB0;0 viene usato dalla prima base a sinistra nello schermo, il n&#xB0;1 dalla seconda e cos&#xEC; via fino all&#x27;ultima base a destra, che utilizza il canale n&#xB0;5."},
+{"nome": "Simeoni",
+"testo": "Capito."},
+{"nome": "Ortiz",
+"testo": "Il tuo compito sar&#xE0; quello di cambiare il segnale che arriva al quartier generale, in modo tale da rendere le basi vitali come ausiliarie e viceversa, portando fuori strada il Nemico. In questo modo infatti colpir&#xE0; prima le basi ausiliari, mascherate da basi vitali."},
+{"nome": "Simeoni",
+"testo": "Chiaro. Ma come facciamo a capire chi ci sta mandando il messaggio?"},
+{"nome": "Ortiz",
+"testo": "Ottima domanda. I segnali, quando arrivano al quartier generale, devono essere interpretati correttamente. Come ben sai in informatica questa procedura si chiama codifica e decodifica."},
+{"nome": "Simeoni",
+"testo": "Esattamente. Si prende un messaggio e lo si maschera tramite una codifica. Arrivato il messaggio codificato, si applica una decodifica per leggere il messaggio originale."},
+{"nome": "Ortiz",
+"testo": "Corretto."},
+
+OBIETTIVO - Tab 2
+L&#x27;obiettivo &#xE8; quello di riempire due funzioni: la prima necessaria per la codifica del segnale radio e la seconda per la decodifica.<br>
+Nota bene! Le basi colorate di rosso sono quelle ausiliarie, mentre quelle ciano sono le basi vitali.<br>
+La funzione di codifica andr&#xE0; dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.<br>
+La funzione di decodifica deve invece ripristinare il collegamento esattamente com&#x27;era prima della codifica: riscambiando cio&#xE8; i codici dei canali radio.<br>
+AIUTI
+La funzione codificaSegnale() pu&#xF2; essere implementata nel modo seguente:<br>
+var temporaneo;
+temporaneo = canaleTrasmissione[0];
+canaleTrasmissione[0] = canaleTrasmissione[1];
+canaleTrasmissione[1] = temporaneo;
+temporaneo = canaleTrasmissione[2];
+canaleTrasmissione[2] = canaleTrasmissione[3];
+canaleTrasmissione[3] = temporaneo;
+temporaneo = canaleTrasmissione[4];
+canaleTrasmissione[4] = canaleTrasmissione[5];
+canaleTrasmissione[5] = temporaneo;
+Mentre la funzione decodificaSegnale(), che deve effettuare l&#x27;operazione contraria, pu&#xF2; essere scritta nel modo seguente:<br>
+var temporaneo;
+temporaneo = canaleTrasmissione[1];
+canaleTrasmissione[1] = canaleTrasmissione[0];
+canaleTrasmissione[0] = temporaneo;
+temporaneo = canaleTrasmissione[3];
+canaleTrasmissione[3] = canaleTrasmissione[2];
+canaleTrasmissione[2] = temporaneo;
+temporaneo = canaleTrasmissione[5];
+canaleTrasmissione[5] = canaleTrasmissione[4];
+canaleTrasmissione[4] = temporaneo;
+Nota bene! La variabile temporanea permette di scambiare agilmente i valori dei canali: senza sarebbe molto pi&#xF9; complicata.<br>
+
+MANUALE
+La codifica e la decodifica di un messaggio avvengono in maniera molto semplice. Prendiamo per esempio la parola:<br>
+aiuto<br>
+Supponiamo che la nostra codifica preveda di prendere ogni lettera della parola e sostituirla con la lettera immediatamente successiva nell&#x27;alfabeto. La parola aiuto diventa dunque:<br>
+bjvup<br>
+Il nemico se non sa qual &#xE8; la codifica da noi utilizzata, quindi difficilmente comprender&#xE0; cosa vuol dire la parola bjvup. Quando noi per&#xF2; riceviamo il messaggio, conoscendo la codifica sostituiamo ogni lettera con quella che la precede nell&#x27;alfabeto, ottenendo di nuovo la parola:<br>
+aiuto<br>
+La decodifica &#xE8; dunque l&#x27;operazione inversa della codifica: senza conoscere la codifica sar&#xE0; per&#xF2; molto difficile leggere un messaggio codificato.<br>
+
+"dialogoFinale":
+[
+{"nome": "Ortiz",
+"testo": "Ottimo lavoro, uomini. Ora ho una comunicazione molto importante da fare."},
+{"nome": "Prosdocimo",
+"testo": "Cosa ha in mente in di fare?"},
+{"nome": "Simeoni",
+"testo": "Non lo so, ma non mi aspetto nulla di buono."},
+{"nome": "Ortiz",
+"testo": "Silenzio, laggi&#xF9; in fondo. Ho appena ricevuto un ordine dallo stato maggiore, con priorit&#xE0; 0. Il governo terrestre, grazie a persone come me, &#xE8; riuscito ad ottenere un&#x27;alleanza con gli Ibridi. Molti di voi si staranno chiedendo cosa sono gli Ibridi: ebbene, Zurlin, qui, ne &#xE8; un esempio. Dall&#x27;altra parte del deserto, molti anni fa, arrivarono navi di disperati che fuggivano dalla povert&#xE0; dei pianeti dell&#x27;orlo della galassia. Si sono fusi con la razza tronk, creando una nuova speranza per l&#x27;Universo."},
+{"nome": "Simeoni",
+"testo": "Traditore!"},
+{"nome": "Ortiz",
+"testo": "Zitto, maggiore. Avevi capito alcune cose, te lo concedo. Ma non tutto. Dall&#x27;orlo della galassia confinante, a migliaia di anni luce oltre il deserto dei Barbari, una nuova minaccia si &#xE8; affacciata. Gli Ibridi stavano fuggendo, e non non li abbiamo accolti. Credo che sia ben chiaro nella mente di tutti voi che l&#x27;accoglienza, soprattutto di chi fugge dalla guerra, sia uno dei punti fondamentali dell&#x27;umanit&#xE0;."},
+{"nome": "Prosdocimo",
+"testo": "No ha tutti i torti, eh eh eh."},
+{"nome": "Ortiz",
+"testo": "Grazie, Prosdocimo. L&#x27;unione fa la forza, dico bene?"},
+{"nome": "Zurlin",
+"testo": "Certo, caro."},
+{"nome": "Ortiz",
+"testo": "Ed &#xE8; per questo che ora, umani e Ibridi, sono chiamati a fronteggiare tale minaccia. I Faragi, i divoratori di mondi, stanno arrivando. Tutte le unit&#xE0; dell&#x27;UTF sono state dislocate sul pianeta Angustina. Se te lo stai chiedendo, maggiore, &#xE8; il pianeta misterioso che compare nei file di configurazione."},
+{"nome": "Simeoni",
+"testo": "Questo spiega tutto..."},
+{"nome": "Ortiz",
+"testo": "Con effetto immediato ordino la mobilitazione del quartier generale dell&#x27;UTF-8 da Bastiani ad Angustina. Solo un&#x27;ultima cosa... maggiore, da che parte stai?"},
+{"nome": "Simeoni",
+"testo": "Ammetto di essermi sbagliato. Tutto quello che ho visto e sentito... puzzava di tradimento. Ora che dici queste cose, ho molti dubbi a riguardo."},
+{"nome": "Zurlin",
+"testo": "Posso intervenire, caro? Simeoni, ti avevo detto che mi dovevi un favore. Bene, te lo chiedo ora. Credici. La minaccia che sta arrivando &#xE8; maggiore di quello che ti aspetti."},
+{"nome": "Simeoni",
+"testo": "Mmmmh... d&#x27;accordo, vi credo. Spero di non pentirmene."},
+{"nome": "Ortiz",
+"testo": "Allora &#xE8; deciso. Slegate il colonnello Simeoni."},
+{"nome": "Simeoni",
+"testo": "Colonnello?"},
+{"nome": "Ortiz",
+"testo": "Ovviamente. Hai dimostrato grande coraggio a sfidarmi. E l&#x27;hai fatto per il bene della Terra. La promozione &#xE8; meritata. Ora, preparatevi per la partenza."},
+{"nome": "Prosdocimo",
+"testo": "Ehm ehm!"},
+{"nome": "Ortiz",
+"testo": "Prosdocimo... hai qualcosa da aggiungere?"},
+{"nome": "Prosdocimo",
+"testo": "Tu sai chi sono, vero Ortiz?"},
+{"nome": "Ortiz",
+"testo": "Posso facilmente immaginarlo..."},
+{"nome": "Prosdocimo",
+"testo": "Ho due richieste. La prima &#xE8; di venire su Angustina con voi, come ufficiale tecnico."},
+{"nome": "Ortiz",
+"testo": "Provveder&#xF2; al pi&#xF9; presto. La seconda?"},
+{"nome": "Prosdocimo",
+"testo": "Cosa &#xE8; successo alla spedizione segreta, trent&#x27;anni fa?"},
+{"nome": "Ortiz",
+"testo": "Memoria lunga, eh? Siamo arrivati su Tronk e abbiamo conosciuto gli Ibridi. I miei compagni sono rimasti l&#xE0;, mentre io sono tornato per eseguire questo lungo lavoro, che si &#xE8; concluso con questa alleanza."},
+{"nome": "Prosdocimo",
+"testo": "Ortiz, la vecchia volpe... eh eh eh."},
