@@ -99,19 +99,22 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
   var incrementoTemperatura = 150;
   var coloreScia = 'blue';
   var raggioEsplosione = 2;
-  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'blue' ) { 
-    vel = 7; coloreScia = 'blue'; raggioEsplosione = 20; 
-  }
-  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'red' ) { 
-    vel = 8; coloreScia = 'red'; raggioEsplosione = 2; 
-  }
-  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === '#33CCFF' ) { 
-    vel = 0.5; coloreScia = '#33CCFF'; raggioEsplosione = 30; 
-  }
   
   if( indiceTorretta === -1 )
     return;
   
+  var torretta = this.coreGame.batterieAntimissile[indiceTorretta];
+    
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'blue' ) { 
+    vel = 7; coloreScia = 'blue'; raggioEsplosione = 20;
+  }
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'red' ) { 
+    vel = 8; coloreScia = 'red'; raggioEsplosione = 2;
+  }
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === '#33CCFF' ) { 
+    vel = 0.5; coloreScia = '#33CCFF'; raggioEsplosione = 30;
+  }
+    
   if ( sbloccaSparo() === false ) {
     console.log("> Sicura attiva!");
     return;
@@ -123,7 +126,7 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
     xDiArrivo: xModificata,
     yDiArrivo: yModificata,
     coloreTestata: 'yellow',
-    coloreScia: 'blue',
+    coloreScia: coloreScia,
     massimoRaggioEsplosione: raggio,
     distanzaPerFrame: vel
   }, this.coreGame ) );
