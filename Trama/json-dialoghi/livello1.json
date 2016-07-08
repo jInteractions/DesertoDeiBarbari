@@ -1,0 +1,81 @@
+{
+  "nomeLivello": "Bastiani, la fortezza",
+  "numeroLivello": 1,
+  "costoAiuti": 200,
+
+  "dialogoIniziale":
+  [
+    {"nome": "Ortiz",
+    "testo": "Buongiorno, capitano Simeoni. Io sono il generale Ortiz, a capo dell&#x27;Ottava Armata delle United Terrestrial Forces, nome in codice UTF-8. Sar&#xE0; a me che dovrai fare rapporto nei mesi a venire. Chiaro?"},
+    {"nome": "Simeoni",
+    "testo": "Signors&#xEC;, signore."},
+    {"nome": "Ortiz",
+    "testo": "Ottimo. Come puoi ben vedere, abbiamo appena subito un attacco del Nemico. Vorremmo reagire ma... purtroppo le difese del pianeta Bastiani sono inutilizzabili."},
+    {"nome": "Simeoni",
+    "testo": "Inutilizzabili, signore?"},
+    {"nome": "Ortiz",
+    "testo": "Esattamente, capitano. Come se qualcuno avesse inserito una sicura di sparo. Ed &#xE8; qui che entri in gioco tu. Il tempo &#xE8; poco, ma confido in te. Sai cos&#x27;&#xE8; un codice sorgente? Come sicuramente ti avranno spiegato all&#x27;Accademia, ogni arma terrestre contiene una grossa parte di informatica."},
+    {"nome": "Simeoni",
+    "testo": "Esatto, signore."},
+    {"nome": "Ortiz",
+    "testo": "Questa parte di informatica consiste in un insieme di istruzioni su ci&#xF2; che le armi devono fare. Tali istruzioni devono essere scritte in un linguaggio comprensibile alle armi: un linguaggio di questo genere viene chiamato linguaggio di programmazione. L&#x27;insieme di istruzioni, scritte in un linguaggio di programmazione, viene chiamato codice sorgente. Quando l&#x27;arma prende il codice sorgente, esso diventa un programma. Mi sono spiegato bene?"},
+    {"nome": "Simeoni",
+    "testo": "Affermativo, signore."},
+    {"nome": "Ortiz",
+    "testo": "Il tuo primo compito sar&#xE0; quello di modificare il codice sorgente per le armi di Bastiani. I nostri tecnici ti hanno fornito una postazione di comando su cui lavorare. Ho per&#xF2; una brutta notizia."},
+    {"nome": "Simeoni",
+    "testo": "Brutta notizia, signore?"},
+    {"nome": "Ortiz",
+    "testo": "Il linguaggio di programmazione utilizzato per la scrittura dei programmi militari si chiama JS. Purtroppo tutti i documenti relativi a questo linguaggio sono... spariti. Non ne esiste una sola testimonianza in tutta la galassia. Archivi militari, archivi civili, biblioteche, universit&#xE0;... nulla! Come se non fosse mai esistito."},
+    {"nome": "Simeoni",
+    "testo": "Bene, signore. La difficolt&#xE0; &#xE8; mia amica. Spero solo di essere in grado di capire questo linguaggio il prima possibile."},
+    {"nome": "Ortiz",
+    "testo": "Non preoccuparti, ho lasciato qualche commento di aiuto al codice. Come ben sai un commento &#xE8; una parte del codice sorgente che non descrive un&#x27;istruzione, ma semplicemente aiuta chi legge il codice nel comprendere ci&#xF2; che c&#x27;&#xE8; scritto."},
+    {"nome": "Simeoni",
+    "testo": "Grazie signore."},
+    {"nome": "Ortiz",
+    "testo": "Di nulla. Per qualunque cosa, chiedi. Come prima cosa noterai che il sistema richiede un accesso automatico, effettuato tramite il controllo della tua retina. Se questo non funziona, non preoccuparti: raramente va tutto bene. Dovrai dunque eseguire un accesso manuale, modificando alcuni file che si occupano di tale controllo. Troverai comunque una descrizione pi&#xF9; dettagliata nel documento che ti ho lasciato."},
+    {"nome": "Simeoni",
+    "testo": "Signors&#xEC;, signore."},
+    {"nome": "Ortiz",
+    "testo": "Mi aspetto grandi cose da te, capitano. Non deludermi."}
+  ],
+
+  "dialogoFinale":
+  [
+    {"nome": "Simeoni",
+    "testo": "A rapporto, generale Ortiz."},
+    {"nome": "Ortiz",
+    "testo": "Bel lavoro Simeoni, con quel sistema. Era ora che arrivasse qualcuno in grado di gestirlo..."},
+    {"nome": "Simeoni",
+    "testo": "Grazie signore! Ho altri ordini, signore?"},
+    {"nome": "Ortiz",
+    "testo": "No, non per oggi. Vai a riposarti, sapendo che finalmente possiamo provare a respingere quei maledetti. Gli incursori hanno segnalato movimenti al confine del deserto... domani sar&#xE0; una giornata lunga, nell&#x27;eterna notte di Bastiani."}
+  ],
+
+
+  "manuale": "da inserire",
+
+  "codiceLivello": "da inserire",
+
+  "fileVirtuali":
+  [
+    {"nomeFile": "da inserire",
+    "consultazione": false,
+    "codice": "da inserire",
+    "test": "da inserire",
+    "descrizione": "da inserire",
+    "aiuto": "da inserire",
+    "messaggioFallimento": "da inserire"},
+    {"nomeFile": "da inserire",
+    "consultazione": false,
+    "codice": "da inserire",
+    "test": "da inserire",
+    "descrizione": "da inserire",
+    "aiuto": "da inserire",
+    "messaggioFallimento": "da inserire"}
+  ]
+
+}
+
+
