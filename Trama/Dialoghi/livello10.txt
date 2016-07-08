@@ -45,10 +45,55 @@ Mellara
 Buona fortuna, soldati. Il destino della galassia è nelle vostre mani, ma non credo sia necessario ricordarvelo.
 
 OBIETTIVO
-
+L'obiettivo è rendere le due torrette laterali automatiche. Per fare ciò è necessario scrivere la funzione che consente di identificare i bersagli corretti.<br>
+L'area di sparo è larga 510 unità sull'asse <i>x</i>: la torretta di sinistra dovrà occuparsi esclusivamente dei missili nemici presenti nella prima metà di essa, dunque entro 255 unità; la torretta destra invece si dovrà occupare solamente dei missili nemici oltre la metà, dunque con una coordinata <i>x</i> maggiore di 255. Inoltre bisogna prestare attenzione affinché tali torrette identifichino i nostri missili come non ostili e dunque non li abbattano.<br>
+Ricapitolando, dato un array chiamato <tt>bersagli</tt> contenente tutti i missili in volo (amici e nemici), si dovrà:
+- escludere i missili amici (appartenenti alla classe <tt>MissileTerrestre</tt>);
+- includere i missili nemici (appartenenti alla classe <tt>MissileNemico</tt>);
+- includere solo i missili nella metà di area di sparo corrispondente alla posizione della torretta;
+- ricorda: le torrette hanno un identificatore ciascuna, chiamato <tt>numeroTorretta</tt>; quella sinistra lo ha uguale a 0 e quella destra uguale a 2.
+Una volta individuati i candidati, si dovrà identificare quello più urgente, considerando la funzione <tt>ordinamentoBersagliPerAltezza()</tt>.<br>
+La funzione <tt>identificaBersaglio()</tt> alla fine dovrà ritornare uno ed un solo bersaglio.
 AIUTI
+Un esempio di implementazione della funzione <tt>identificaBersaglio()</tt> può essere la seguente:
+<pre><code>var lunghezzaAreaPortata = 510;
+var altezzaAreaPortata = 460;
+var bersagliCandidati = [];
+for( var i = 0; i < bersagli.length; ++i ) {
+  var bersaglio = bersagli[i];
+  if( this.numeroTorretta === 0 ) {
+    if( bersaglio.tipo instanceof MissileNemico 
+    && bersaglio.x < lunghezzaAreaPortata/2 ) {
+      bersagliCandidati.push( bersaglio );
+    }
+  }
+  if( this.numeroTorretta === 2 ) {
+    if( bersaglio.tipo instanceof MissileNemico 
+    && bersaglio.x >= lunghezzaAreaPortata/2 ) {
+      bersagliCandidati.push( bersaglio );
+    }
+  }
+}
+ordinamentoBersagliPerAltezza( bersagliCandidati );
+var candidato = bersagliCandidati.pop(); // oppure bersagliCandidati[0]
+return candidato;
+</code></pre>
 
 MANUALE
+L'ultima parola chiave importante per comprendere il linguaggio JS è <b>instanceof</b>.<br>
+<i>instanceof</i> viene utilizzata per capire se un oggetto appartiene o meno ad una classe.<br>
+Prendi l'esempio seguente, dove vengono creati alcuni oggetti:
+<pre><code>var fucile = new Arma();
+var padella = new Utensile();
+</code></pre>
+I due oggetti sono stati creati da due classi diverse, ma possono essere facilmente riconosciute. Prendi per esempio la funzione seguente:
+<pre><code>var assegnaArma = function ( oggetto, soldato ) {
+  if ( oggetto instanceof Arma ) {
+    soldato.arma = oggetto;
+  }
+}
+</code></pre>
+Chiamando tale funzione con l'oggetto <tt>padella</tt> non viene assegnata nessuna arma al soldato, perché <tt>padella</tt> è di tipo <tt>Utensile</tt>, e non di tipo <tt>Arma</tt>. Se invece viene chiamata passandogli l'oggetto <tt>fucile</tt>, il soldato riceverà il fucile come arma, perché <tt>fucile</tt> è di tipo <tt>Arma</tt>.
 
 DIALOGO FINALE
 Simeoni
