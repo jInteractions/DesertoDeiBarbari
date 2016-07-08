@@ -1,0 +1,85 @@
+{
+  "nomeLivello": "La telecamera",
+  "numeroLivello": 6,
+  "costoAiuti": 200,
+
+  "dialogoIniziale":
+  [
+    {"nome": "Prosdocimo",
+    "testo": "Il generale non si &#xE8; fatto vedere nemmeno stamattina? Eh eh eh..."},
+    {"nome": "Simeoni",
+    "testo": "Purtroppo no, caro Prosdocimo. Stavo pensando infatti che senza ordini sono un po&#x27; limitato..."},
+    {"nome": "Prosdocimo",
+    "testo": "Beh potrei aver sentito qualcosa in mensa, oggi a pranzo..."},
+    {"nome": "Simeoni",
+    "testo": "Smettila con i tuoi giochetti e parla."},
+    {"nome": "Prosdocimo",
+    "testo": "I nuovi tecnici, che stanno lentamente imparando il JS, hanno un nuovo sistema, ovviamente sperimentale, che permetterebbe di avere un unico pulsante di sparo. Questo garantirebbe una difesa planetaria migliore, sicuramente."},
+    {"nome": "Simeoni",
+    "testo": "Ma i tre pulsanti sono direttamente collegati alle torrette, associati uno ad uno. Come &#xE8; possibile utilizzare un solo pulsante? Quale torretta sparerebbe?"},
+    {"nome": "Prosdocimo",
+    "testo": "&#xC8; qui che viene il bello: hanno inventato un sistema per scegliere automaticamente la torretta, prendendo quella pi&#xF9; vicina al bersaglio dello sparo. Mi spiego meglio: prima, come hai ben detto, ogni pulsante era direttamente collegato ad una torretta. Con il nuovo sistema si utilizza il click del mouse per dare il comando di sparo, che viene preso da un filtro. Questo filtro, tramite l&#x27;algoritmo che hanno scritto questi tecnici, decide quale sia la torretta migliore per effettuare lo sparo e manda il comando di sparo ad essa. Capito?"},
+    {"nome": "Simeoni",
+    "testo": "Pi&#xF9; o meno... in pratica cliccando con il mouse che uso per muovere il mirino, attivo un meccanismo di sparo che seleziona la torretta migliore."},
+    {"nome": "Prosdocimo",
+    "testo": "Esattamente. Si tratta di andare a modificare la parte di codice che si occupa del meccanismo di sparo."},
+    {"nome": "Simeoni",
+    "testo": "Ottimo. Ho solo una domanda. Esistono questi tecnici? C&#x27;&#xE8; davvero qualcuno che sta imparando il JS?"},
+    {"nome": "Prosdocimo",
+    "testo": "&#xC8; davvero cos&#xEC; importante? Eh eh eh..."}
+  ],
+  
+  "dialogoFinale":
+  [
+    {"nome": "Ortiz",
+    "testo": "... purtroppo &#xE8; cos&#xEC;. Non posso fare di meglio. I ficcanaso sono ovunque, e il nostro piano dovr&#xE0; subire un leggero cambiamento. Non &#xE8; colpa mia!"},
+    {"nome": "Simeoni",
+    "testo": "Maggiore Simeoni a rapporto, signore."},
+    {"nome": "Ortiz",
+    "testo": "Non ti hanno insegnato a bussare??"},
+    {"nome": "Simeoni",
+    "testo": "Chiedo scusa signore. Ma con chi stavate parlando? Era un discorso decisamente sospetto..."},
+    {"nome": "Ortiz",
+    "testo": "Niente scuse Simeoni. E per quanto riguarda i miei discorsi, sei in arresto."},
+    {"nome": "Simeoni",
+    "testo": "Non puoi farlo! Con chi sei in combutta? Con il Nemico?"},
+    {"nome": "Ortiz",
+    "testo": "Sciocchezze. Tu sei in combutta con gli Ibridi."},
+    {"nome": "Simeoni",
+    "testo": "Ah! Allora ho ragione! Ibridi &#xE8; una parola che pochi conoscono qui... traditore!"},
+    {"nome": "Ortiz",
+    "testo": "Non ti permetto di parlarmi in questo modo! E smettila di urlare. Ho qua delle bellissime prove sul tuo tradimento. Pensi che non ci siano delle telecamere nelle celle? Ho una ripresa fantastica del giovane maggiore Simeoni che parla con la prigioniera Zurlin... purtroppo manca l&#x27;audio, ma sar&#xE0; facile far credere alla corte marziale che sei un rinnegato."},
+    {"nome": "Simeoni",
+    "testo": "Ma &#xE8; una bugia... io e Zurlin abbiamo parlato d&#x27;altro."},
+    {"nome": "Ortiz",
+    "testo": "Ah, ne sono certo. Ma ha poca rilevanza... ci&#xF2; che importa &#xE8; la parola della corte marziale. Pensi che crederanno al giovane maggiore, mentalmente distrutto dalla guerra o a un generale che per anni ha pattugliato il deserto dei Barbari?"},
+    {"nome": "Simeoni",
+    "testo": "Maledetto..."},
+    {"nome": "Ortiz",
+    "testo": "Hai provato ad entrare in gioco pi&#xF9; grosso di te, Simeoni. Ora... guardie! Portatelo via!"},
+    {"nome": "Simeoni",
+    "testo": "Questa mano l&#x27;hai vinta tu Ortiz. Ma non finisce qui."}
+  ],
+  
+  "manuale": "da inserire",
+
+  "codiceLivello": "da inserire",
+  
+  "fileVirtuali":
+  [
+    {"nomeFile": "da inserire",
+    "consultazione": false,
+    "codice": "da inserire",
+    "test": "da inserire",
+    "descrizione": "da inserire",
+    "aiuto": "da inserire",
+    "messaggioFallimento": "da inserire"},
+    {"nomeFile": "da inserire",
+    "consultazione": false,
+    "codice": "da inserire",
+    "test": "da inserire",
+    "descrizione": "da inserire",
+    "aiuto": "da inserire",
+    "messaggioFallimento": "da inserire"}
+  ]
+}
