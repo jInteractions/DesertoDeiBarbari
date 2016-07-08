@@ -355,7 +355,6 @@ var sceltaTorrettaMigliore = function ( x, y, _torrette ) {
 
 var comandoSparoSingolo = function ( x, y, torrette ) {
   var indiceTorretta = sceltaTorrettaMigliore( x, y, torrette );
-  
   if( indiceTorretta !== undefined ) {
     var torretta = torrette[indiceTorretta];
     torretta.cicloSparo( x, y );
@@ -367,8 +366,7 @@ var comandoSparoSingolo = function ( x, y, torrette ) {
 var comandoSparoMultiplo = function ( ordiniDiFuoco, torrette ) {
   var l = ordiniDiFuoco.length;
   for( var i = 0; i < l; ++i ) {
-    var ordine = ordiniDiFuoco[i];
-    
+    var ordine = ordiniDiFuoco[i]; 
     var indiceTorretta = ordine.numeroTorretta;
     var x = ordine.x;
     var y = ordine.y;
