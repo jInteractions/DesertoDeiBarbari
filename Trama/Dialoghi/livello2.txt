@@ -41,7 +41,7 @@ Prosdocimo
 Lo saranno, giovane capitano. Parola di Prosdocimo! Per&#xF2; facciamo cos&#xEC;: non dire al tuo generale che ti ho aiutato e che hai utilizzato questo file. Eh eh eh...
 
 OBIETTIVO - Tab 1
-L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino. Sar&#xE0; dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>. Fatto questo &#xE8; necessario entrare nella parte di codice raggiungibile dall&#x27;<i>else</i> dell&#x27;struzione <i>if-else</i>, modificando il confronto tra le parentesi tonde che seguono la parola chiave <i>if</i>: tutto questo per inserire nella variabile <tt>_codicePianeta</tt> il codice del pianeta Bastiani e non quello di default.
+L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino. Sar&#xE0; dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>. Fatto questo &#xE8; necessario entrare nella parte di codice raggiungibile dall&#x27;<i>else</i> dell&#x27;struzione <i>if-else</i>, modificando il confronto tra le parentesi tonde che seguono la parola chiave <i>if</i>: tutto questo per inserire nella variabile <tt>_codicePianeta</tt> il codice del pianeta Bastiani e non quello preimpostato.
 AIUTI
 Come prima cosa &#xE8; necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>, nel seguente modo:
 <pre><code>var sbloccoCalibrazione = true;
@@ -53,7 +53,7 @@ Il secondo passo prevede di cambiare la condizione dell&#x27;<i>if</i>, rendedol
 OBIETTIVO - Tab 2
 L&#x27;obiettivo &#xE8; quello di modificare correttamente il grosso blocco di istruzioni <i>if-else if</i>, in modo che venga eseguito il codice corretto per il pianeta Bastiani.
 AIUTI
-Per avere la corretta configurazione di puntamento e sparo &#xE8; necessario cambiare il blocco di istruzioni <i>if-else if</i>: il modo migliore &#xE8; quello di sostituire il codice di Bastiani con 6, dunque inserire prima del primo <i>if</i> la seguente istruzione:
+Per avere la corretta configurazione di puntamento e sparo &#xE8; necessario entrare nel corretto pezzo del blocco di istruzioni <i>if-else if</i>: il modo migliore &#xE8; quello di sostituire il codice del pianeta con 6, dunque inserire prima del primo <i>if</i> la seguente istruzione:
 <pre><code>_codicePianeta = 6;
 </code><pre>
 
@@ -64,30 +64,30 @@ Una variabile booleana pu&#xF2; assumere due valori differenti:
 <li> <i>true</i>, se essa rappresenta un concetto vero;</li>
 <li> <i>false</i>, se essa rappresenta un concetto falso.</li> <br>
 Per rappresentare il vero e il falso &#xE8; possibile utilizzare sia le parole chiave appropriate (rispettivamente <i>true</i> e <i>false</i>), oppure diversi tipi di operatori:
-<li> <tt>a === b</tt>, vero se a &#xE8; uguale a b;</li>
-<li> <tt>a !== b</tt>, vero se a &#xE8; diverso da b;</li>
-<li> <tt>a &#x3E; b</tt>, vero se a &#xE8; maggiore di b;</li>
-<li> <tt>a &#x3C; b</tt>, vero se a &#xE8; minore di b;</li>
-<li> <tt>a &#x3E;= b</tt>, vero se a &#xE8; maggiore o uguale di b;</li>
-<li> <tt>a &#x3C;= b</tt>, vero se a &#xE8; minore o uguale a b;</li>
-<li> <tt>!a</tt>, vero se a ha come valore <i>false</i>.</li> <br>
+<li> <tt>a === b</tt>, vero se <tt>a</tt> &#xE8; uguale a <tt>b</tt>;</li>
+<li> <tt>a !== b</tt>, vero se <tt>a</tt> &#xE8; diverso da <tt>b</tt>;</li>
+<li> <tt>a &#x3E; b</tt>, vero se <tt>a</tt> &#xE8; maggiore di <tt>b</tt>;</li>
+<li> <tt>a &#x3C; b</tt>, vero se <tt>a</tt> &#xE8; minore di <tt>b</tt>;</li>
+<li> <tt>a &#x3E;= b</tt>, vero se <tt>a</tt> &#xE8; maggiore o uguale di <tt>b</tt>;</li>
+<li> <tt>a &#x3C;= b</tt>, vero se <tt>a</tt> &#xE8; minore o uguale a <tt>b</tt>;</li>
+<li> <tt>!a</tt>, vero se <tt>a</tt> ha come valore <i>false</i>.</li> <br>
 Esempi di variabile contenente un valore vero possono essere:
 <pre><code>var b1 = 5 &#x3E; 4;
 var b2 = true;
 var b3 = !false;
-</code><pre>
-Esempi di variabile che contengono un valore false possono essere:
+</code></pre>
+Esempi di variabile che contengono un valore falso possono essere:
 <pre><code>var b4 = 3 &#x3E;= 6;
 var b5 = false;
 var b6 = !true;
-</code><pre>
+</code></pre>
 Le istruzioni di controllo hanno bisogno delle variabili booleane. Esistono tre istruzioni di controllo.
 La prima &#xE8; identificata dalla parola chiave <b>if</b>. Eccone un esempio:
 <pre><code>var x = 0;
 if ( a === true ) {
   var x = 1;
 }
-</code><pre>
+</code></pre>
 La variabile <tt>x</tt> parte con il valore 0 al proprio interno. A questo punto se <tt>a</tt> &#xE8; una variabile booleana che contiene un valore vero, allora <tt>x</tt> prender&#xE0; il valore 1 al proprio interno; altrimenti, cio&#xE8; se <tt>a</tt> &#xE8; falsa, <tt>x</tt> non verr&#xE0; aggiornata perch&#xE9; la parte di codice all&#x27;interno delle parentesi graffe non verr&#xE0; eseguita.
 Come si pu&#xF2; notare, le istruzioni di controllo sono semafori che, in base al valore che si ha all&#x27;interno delle parentesi tonde, decidono l&#x27;andamento del codice.
 Una seconda tipologia di istruzione di controllo si basa sulle parole chiave <b>if</b> ed <b>else</b>. Eccone un esempio:
@@ -97,7 +97,7 @@ if ( a === false ) {
 } else {
   x = 0;
 }
-</code><pre>
+</code></pre>
 Questa istruzione descrive lo stesso meccanismo visto nell&#x27;esempio precedente: se la variabile <tt>a</tt> &#xE8; falsa, <tt>x</tt> conterr&#xE0; il valore 1; altrimenti (<i>else</i>, in inglese), conterr&#xE0; il valore 0.
 L&#x27;ultima istruzione di controllo da comprendere &#xE8; quella chiamata <b>if-else if</b>. Eccone un esempio:
 <pre><code>var x = 0;
@@ -106,7 +106,7 @@ if ( a === false ) {
 } else if ( b &#x3E;= 4 ) {
   x = 2;
 }
-</code><pre>
+</code></pre>
 Questa istruzione descrive un meccanismo leggermente differente da quello visto in precedenza. Se la variabile <tt>a</tt> &#xE8; falsa, allora <tt>x</tt> conterr&#xE0; il valore 1; altrimenti, cio&#xE8; se <tt>a</tt> &#xE8; vera, si controlla se <tt>b</tt> &#xE8; maggiore o uguale di 4. Se ci&#xF2; &#xE8; vero, allora <tt>x</tt> conterr&#xE0; il valore 2, altrimenti, cio&#xE8; se <tt>b</tt> &#xE8; minore di 4, non si fa nulla.
 
 DIALOGO FINALE
