@@ -70,16 +70,16 @@ Livello1.prototype.inizializzaTorrette = function () {
 
 Livello1.prototype.inizializzaArmiNemiche = function () {
   var areaPertenza = this.coreGame.canvas.width;
-  var ritardoMassimo = 100;
-  var xRand;
-  var velRand;
+  var ritardoMassimo = 100 + this.numeroOndata * 0.05;
+  var velMin = 1.0 + this.numeroOndata * 0.05;
+  var velMax = 1.2 + this.numeroOndata * 0.05;
+  var numeroMissili = 10 + Math.floor( this.numeroOndata );
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 10;
   
   for( var i = 0; i < numeroMissili ; i++ ) {
-    xRand = rand( 0, areaPertenza );
-    velRand = rand( 1, 1.5 );
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
