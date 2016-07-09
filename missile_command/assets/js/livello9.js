@@ -1,7 +1,5 @@
 function Livello9 ( callbackFineLivello ) {
   CoreLevel.call( this, callbackFineLivello );
-  
-  console.log( t1() );
 }
 
 Livello9.prototype = Object.create( CoreLevel.prototype );
@@ -18,10 +16,13 @@ Livello9.prototype.inizializzaBasi = function ( ) {
 
 Livello9.prototype.inizializzaArmiNemiche = function ( ) {
   var areaPertenza = this.coreGame.canvas.width;
-  var ritardoMassimo = 100;
-  var xRand;
-  var velRand;
+  var ritardoMassimo = 900 * (this.numeroOndata * 0.05);
+  var velMin = 1.8 + this.numeroOndata * 0.1;
+  var velMax = 2.0 + this.numeroOndata * 0.1;
+  var numeroMissili = 30 + Math.floor( this.numeroOndata );
+  var numeroMissiliSdoppiabili = rand( 0, numeroMissili );
   var ritardoRand;
+  var bersagli = this.coreGame.bersagliAttaccabili();
   
   var bersagliPrioritari = [];
   $.each( this.coreGame.basi, function ( i, b ) {
@@ -43,10 +44,9 @@ Livello9.prototype.inizializzaArmiNemiche = function ( ) {
   else
     var bersagli = bersagliNonBasi.concat( bersagliPrioritari );
   
-  var numeroMissili = 50;
   for( var i = 0; i < numeroMissili ; i++ ) {
-    xRand = rand( 0, areaPertenza );
-    velRand = rand( 1, 1.5 );
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
@@ -54,6 +54,10 @@ Livello9.prototype.inizializzaArmiNemiche = function ( ) {
       massimoRaggioEsplosione: 30
     }, bersagli, areaPertenza, xRand, velRand,  ritardoRand, this.coreGame) );
   }
+}
+
+Livello9.prototype.calcolaCoefficienteOndata = function ( ) {
+  return this.numeroOndata * 2.5;
 }
 
 Livello9.prototype.setupListeners = function ( ) { 
@@ -119,13 +123,19 @@ Livello9.prototype.scegliTorretta = function ( x, y, tasto ) {
 }
 
 Livello9.prototype.sparo = function ( x, y, tasto ) {
+
   var indiceTorretta = this.scegliTorretta( x, y, tasto );
   if( indiceTorretta === -1 )
     return;
   
   var torretta = this.coreGame.batterieAntimissile[indiceTorretta];
-  
-  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
+  var x1 = x + 10;
+  var x2 = x - 10;
+  var ySdoppio = (Math.abs(430 - y) / 2) + y;
+    
+  var distanzaX = Math.abs( x - torretta.x );
+  var distanzaY = Math.abs( y - torretta.y );
+  this.coreGame.missiliTerrestri.push( new _MissileTerrestreDoppio( {
     xDiPartenza: torretta.x,
     yDiPartenza: torretta.y,
     xDiArrivo: x,
@@ -134,7 +144,7 @@ Livello9.prototype.sparo = function ( x, y, tasto ) {
     coloreScia: 'blue',
     massimoRaggioEsplosione: 30,
     distanzaPerFrame: 7
-  }, this.coreGame ) );
+  }, this.coreGame, torretta.x - distanzaX/2, ySdoppio, 2 ) );
   
   this.coreGame.aggiornaPunteggioMissiliSparati();
   torretta.numeroMissili--;
@@ -144,10 +154,6 @@ Livello9.prototype.sparo = function ( x, y, tasto ) {
   if( torretta.temperatura >= 799 ) {
     torretta.blocco = true;
   };
-}
-
-Livello9.prototype.calcolaCoefficienteOndata = function ( ) {
-  return this.numeroOndata * 1.2;
 }
 
 Livello9.prototype.mostraSchermataIniziale = function ( punteggio ) {
@@ -391,15 +397,9 @@ con gli ordini contenuti in ordiniDiFuoco.
 **********/
 var comandoSparoMultiplo = function ( ordiniDiFuoco, torrette ) {
 //###START_MODIFICABILE###
-  var l = ordiniDiFuoco.length;
-  for( var i = 0; i < l; ++i ) {
-    var ordine = ordiniDiFuoco[i]; 
-    var indiceTorretta = ordine.numeroTorretta;
-    var x = ordine.x;
-    var y = ordine.y;
-    var torretta = torrette[indiceTorretta];
-    torretta.cicloSparo( x, y );
-  }
+  
+  // Implementare la funzione!
+  
 //###END_MODIFICABILE###
 }
  
