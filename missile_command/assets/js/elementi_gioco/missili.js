@@ -328,3 +328,66 @@ MissileNemicoFrammento.prototype.update = function () {
     this.esplodi();
   }
 };
+
+function _MissileTerrestreDoppio ( parametri, coreGame, xSdoppio, ySdoppio, missili ) {
+  MissileTerrestre.call( this, parametri, coreGame );
+
+  this.xSdoppio = xSdoppio;
+  this.ySdoppio = ySdoppio;
+  this.missiliFrammenti = missili;
+  
+  var distanza = Math.sqrt( Math.pow(this.xSdoppio - this.xDiPartenza, 2) + 
+      Math.pow(this.ySdoppio - this.yDiPartenza, 2) );
+  
+  this.ritardoSuddivisione = Math.floor(distanza / parametri.distanzaPerFrame);
+  this.suddivisioneAvvenuta = false;
+}
+
+_MissileTerrestreDoppio.prototype = Object.create( MissileTerrestre.prototype );
+_MissileTerrestreDoppio.prototype.constructor = _MissileTerrestreDoppio;
+
+_MissileTerrestreDoppio.prototype.sdoppiati = function () {
+  for( var i = 0; i < this.missiliFrammenti; ++i ) {
+    this.coreGame.missiliTerrestri.push(
+      new MissileTerrestre( {
+        xDiPartenza: this.x,
+        yDiPartenza: this.y,
+        xDiArrivo: this.xDiArrivo + 40,
+        yDiArrivo: this.yDiArrivo,
+        coloreTestata: 'yellow',
+        coloreScia: 'blue',
+        massimoRaggioEsplosione: 30,
+        distanzaPerFrame: 7
+      }, this.coreGame ) );
+  }
+  this.suddivisioneAvvenuta = true;
+}
+
+_MissileTerrestreDoppio.prototype.update = function () {
+  //console.log( this.ritardoSuddivisione );
+  
+  if( this.ritardoSuddivisione !== 0 )
+    this.ritardoSuddivisione--;			
+  else {
+    if( this.suddivisioneAvvenuta === false ) {
+      this.sdoppiati();
+    }
+  }
+  
+  if( this.stato === Missile.ATTIVO && this.y <= this.yDiArrivo ) {
+    this.x = this.xDiArrivo;
+    this.y = this.yDiArrivo;
+    this.stato = Missile.ESPLOSIONE;
+  }
+  if( this.stato === Missile.ATTIVO ) {
+    this.x += this.dx;
+    this.y += this.dy;
+  } else {
+    this.esplodi();
+  }
+};
+
+function FrammentoMissile ( x, y ) {
+  this.x = x;
+  this.y = y;
+}

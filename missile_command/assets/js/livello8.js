@@ -14,18 +14,21 @@ Livello8.prototype.inizializzaBasi = function ( ) {
   this.coreGame.aggiungiBase( new BaseMilitare( 400,  430, true, 100, 'cyan', this.coreGame ) );
 }
 
-Livello8.prototype.inizializzaArmiNemiche = function ( ) {
+Livello8.prototype.inizializzaArmiNemiche = function () {
   var areaPertenza = this.coreGame.canvas.width;
-  var ritardoMassimo = 100;
-  var xRand;
-  var velRand;
+  var ritardoMassimo = 900 * (this.numeroOndata * 0.05);
+  var velMin = 1.5 + this.numeroOndata * 0.1;
+  var velMax = 1.6 + this.numeroOndata * 0.1;
+  var numeroMissili = 25 + Math.floor( this.numeroOndata );
+  var numeroMissiliSdoppiabili = rand( 0, numeroMissili );
   var ritardoRand;
+  var bersagli = this.coreGame.bersagliAttaccabili();
   
   var bersagliPrioritari = [];
   $.each( this.esaminaCanaliRadio(), function ( i, b ) {
     bersagliPrioritari.push( {x: b.x + 15, y: b.y - 10, tipo: b} )
   } );
-
+  
   var bersagliNonBasi = this.coreGame.bersagliAttaccabili().filter( function( b ) {
     if( b.tipo instanceof BaseMilitare )
       return false;
@@ -44,10 +47,9 @@ Livello8.prototype.inizializzaArmiNemiche = function ( ) {
     var bersagli = bersagliNonBasi.concat( bersagliPrioritari );   
   }
   
-  var numeroMissili = 50;
   for( var i = 0; i < numeroMissili ; i++ ) {
-    xRand = rand( 0, areaPertenza );
-    velRand = rand( 1, 1.5 );
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
@@ -55,6 +57,10 @@ Livello8.prototype.inizializzaArmiNemiche = function ( ) {
       massimoRaggioEsplosione: 30
     }, bersagli, areaPertenza, xRand, velRand,  ritardoRand, this.coreGame) );
   }
+}
+
+Livello8.prototype.calcolaCoefficienteOndata = function ( ) {
+  return this.numeroOndata * 2.5;
 }
 
 Livello8.prototype.setupListeners = function ( ) { 
@@ -121,8 +127,13 @@ Livello8.prototype.sparo = function ( x, y, tasto ) {
     return;
   
   var torretta = this.coreGame.batterieAntimissile[indiceTorretta];
+  var x1 = x + 10;
+  var x2 = x - 10;
+  var ySdoppio = (Math.abs(430 - y) / 2) + y;
   
-  this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
+  var distanzaX = Math.abs( x - torretta.x );
+  var distanzaY = Math.abs( y - torretta.y );
+  this.coreGame.missiliTerrestri.push( new _MissileTerrestreDoppio( {
     xDiPartenza: torretta.x,
     yDiPartenza: torretta.y,
     xDiArrivo: x,
@@ -131,7 +142,7 @@ Livello8.prototype.sparo = function ( x, y, tasto ) {
     coloreScia: 'blue',
     massimoRaggioEsplosione: 30,
     distanzaPerFrame: 7
-  }, this.coreGame ) );
+  }, this.coreGame, torretta.x - distanzaX/2, ySdoppio, 2 ) );
   
   this.coreGame.aggiornaPunteggioMissiliSparati();
   torretta.numeroMissili--;
@@ -141,10 +152,6 @@ Livello8.prototype.sparo = function ( x, y, tasto ) {
   if( torretta.temperatura >= 799 ) {
     torretta.blocco = true;
   };
-}
-
-Livello8.prototype.calcolaCoefficienteOndata = function ( ) {
-  return this.numeroOndata * 1.2;
 }
 
 Livello8.prototype.mostraSchermataIniziale = function ( punteggio ) {
@@ -392,4 +399,4 @@ var decodificaSegnale = function ( canaleTrasmissione ) {
   } )
   
   return esito;  
-}) ();
+}) (); */
