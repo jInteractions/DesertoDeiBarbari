@@ -118,31 +118,31 @@ var controlloArmaNemicaSabotata = function () {
   var arma = new ArmaNemicaSabotata();
   var risultato = true;
   if ( arma.tempoRicaricaMassimo < 150 ) {
-    console.log( "\n> Attenzione: tempo di ricarica troppo basso!" );
+    console.log( "Attenzione: tempo di ricarica troppo basso!" );
     risultato = false;
   }
   if ( arma.tempoRicaricaMassimo > 200 ) {
-    console.log( "\n> Attenzione: tempo di ricarica troppo alto!" );
+    console.log( "Attenzione: tempo di ricarica troppo alto!" );
     risultato = false;
   }
   if ( arma.propellente < 3 ) {
-    console.log( "\n> Attenzione: propellente obsoleto!" );
+    console.log( "Attenzione: propellente obsoleto!" );
     risultato = false;
   }
   if ( arma.propellente > 3.5 ) {
-    console.log( "\n> Attenzione: propellente troppo potente!" );
+    console.log( "Attenzione: propellente troppo potente!" );
     risultato = false;
   }
   if ( arma.numeroMissili > 15 ) {
-    console.log( "\n> Attenzione: troppi missili caricati!" );
+    console.log( "Attenzione: troppi missili caricati!" );
     risultato = false;
   }
   if ( arma.numeroMissili < 10 ) {
-    console.log( "\n> Attenzione: numero missili insufficiente!" );
+    console.log( "Attenzione: numero missili insufficiente!" );
     risultato = false;
   }
   if ( arma.tipoMunizione !== "massima_esplosione" ) {
-    console.log( "\n> Attenzione: tipologia di munizioni inesistente!" );
+    console.log( "Attenzione: tipologia di munizioni inesistente!" );
     risultato = false;
   }
   return risultato;
@@ -151,9 +151,9 @@ var controlloArmaNemicaSabotata = function () {
 var controlloInizializzazioneBatteriaAntiterrestri = function () {
   var batteria = inizializzaBatteriaAntiterrestri();
   if ( batteria instanceof ArmaNemicaSabotata ) {
-    console.log("\n> Arma nemica sabotata correttamente.");
+    console.log("Arma nemica sabotata correttamente.");
   } else {
-    console.log("\n> Arma nemica non sabotata!");
+    console.log("Arma nemica non sabotata!");
   }
   return batteria;
 }
@@ -174,7 +174,7 @@ var autenticazioneOperatoreNonTerrestre = function ( tentativo ) {
     && tentativo[1] === _password[1]
     && tentativo[2] === _password[2]
   ) {
-    console.log("\n> Password trovata.");
+    console.log("Password trovata.");
     _login = true;
     return true;
   } else {
