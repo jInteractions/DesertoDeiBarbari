@@ -92,13 +92,13 @@ Livello10.prototype.inizializzaArmiTerrestri = function ( ) {
 
 Livello10.prototype.inizializzaArmiNemiche = function ( ) {
   var ampiezzaAreaPertenza = 50;
-  var ritardoMassimo = 300;
+  var ritardoMassimo = 1000;
   var xRand;
   var velRand;
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 50;
-  
+  var numeroMissili = 100;
+    
   for( var i = 0; i < numeroMissili / 2 ; i++ ) {
     xRand = rand( 0, ampiezzaAreaPertenza );
     velRand = rand( 5, 5 );
@@ -141,7 +141,7 @@ Livello10.prototype.inizializzaArmiNemiche = function ( ) {
   };
   
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new _TorrettaAutomatica( 0, opzioniBatteria1, -10000, false, filtro, false, 0.5, 10, '#97F52D', this.coreGame) );
+    new _TorrettaAutomatica( 0, opzioniBatteria1, -10000 + (this.numeroOndata*100), false, filtro, false, 0.5, 10, '#97F52D', this.coreGame) );
   var opzioniBatteria2 = { 
     x: astronaveNemica.x + 260, 
     y: astronaveNemica.y + 54, 
@@ -154,7 +154,11 @@ Livello10.prototype.inizializzaArmiNemiche = function ( ) {
     deltaRaffreddamento: 3
   };
   this.coreGame.aggiungiBatteriaAntimissile ( 
-    new _TorrettaAutomatica( 0, opzioniBatteria2, -10000, false, filtro, false, 0.5, 10, '#97F52F', this.coreGame) );
+    new _TorrettaAutomatica( 0, opzioniBatteria2, -10000 + (this.numeroOndata*100), false, filtro, false, 0.5, 10, '#97F52F', this.coreGame) );
+}
+
+Livello10.prototype.calcolaCoefficienteOndata = function ( ) {
+  return this.numeroOndata * 3.0;
 }
 
 Livello10.prototype.setupListeners = function ( ) { 
@@ -874,30 +878,13 @@ TorrettaAutomatica.prototype.identificaBersaglio = function ( bersagli ) {
   var lunghezzaAreaPortata = 510;
   var altezzaAreaPortata = 460;
   var bersagliCandidati = [];
+  var candidato = undefined;
 //###START_MODIFICABILE###
-  for( var i = 0; i < bersagli.length; ++i ) {
-    var bersaglio = bersagli[i];
-    
-    if( this.numeroTorretta === 0 ) {      
-      if( bersaglio.tipo instanceof MissileNemico 
-        && bersaglio.x < lunghezzaAreaPortata/2 ) {
-        bersagliCandidati.push( bersaglio );
-      }
-    }
   
-    if( this.numeroTorretta === 2 ) {
-      if( bersaglio.tipo instanceof MissileNemico 
-        && bersaglio.x >= lunghezzaAreaPortata/2 ) {
-        bersagliCandidati.push( bersaglio );
-        
-      }
-    }
-  }
-  ordinamentoBersagliPerAltezza( bersagliCandidati );
-  var candidato = bersagliCandidati.pop(); // oppure bersagliCandidati[0]
+  // Implementare individuazione bersaglio tra i bersagli
   
-  return candidato;
 //###END_MODIFICABILE###
+  return candidato;
 }
 
 /**********
@@ -948,11 +935,14 @@ intercettarlo ed infine sparare un missile.
 **********/
 TorrettaAutomatica.prototype.cicloSparoAutomatico = function ( bersagliPossibili ) {
 //###START_MODIFICABILE###
-  var bersaglioAgganciato = this.identificaBersaglio( bersagliPossibili );
   
-  var coordinate = this.mira( bersaglioAgganciato );
+  // Implementare il ciclo di sparo utilizzando le funzionalità
+  // già implementate nella TorrettaAutomatica.
+  // Ciclo sparo: 
+  //  1) identificare bersaglio;
+  //  2) mirare;
+  //  3) fare fuoco.
   
-  this.sparo( coordinate.x, coordinate.y );
 //###END_MODIFICABILE###  
 }
 
