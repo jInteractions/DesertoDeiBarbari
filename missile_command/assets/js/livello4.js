@@ -25,9 +25,9 @@ Livello4.prototype.inizializzaArmiNemiche = function () {
       console.log( stringa )
     } )
     
-    console.log("\n> Autenticazione per salvataggio modifiche al sistema Ibrido non riuscita.");
+    console.log("Autenticazione per salvataggio modifiche al sistema Ibrido non riuscita.");
   } else {    
-    console.log("\n> Autenticazione per il salvataggio modifiche al sistema Ibrido riuscita.")
+    console.log("Autenticazione per il salvataggio modifiche al sistema Ibrido riuscita.")
   }
   
   if ( controlloArmaNemicaSabotata() === true && _login === true ) {
@@ -317,6 +317,7 @@ var hackingPassword = function () {
 
 // test
 /* (function () {
+  hackingPassword();
   var risultato = _login;
   return risultato;
 }) (); */
