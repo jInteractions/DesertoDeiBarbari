@@ -5,29 +5,43 @@ function Livello7 ( callbackFineLivello ) {
 Livello7.prototype = Object.create( CoreLevel.prototype );
 Livello7.prototype.constructor = Livello7;
 
-Livello7.prototype.inizializzaArmiNemiche = function ( ) {
-  var areaPartenza = this.coreGame.canvas.width;
-  var ritardoMassimo = 100;
-  var xRand;
-  var velRand;
+Livello7.prototype.inizializzaArmiNemiche = function () {
+  this.numeroOndata = 10;
+  
+  var areaPertenza = this.coreGame.canvas.width;
+  var ritardoMassimo = 900 * (this.numeroOndata * 0.05);
+  var velMin = 1.6 + this.numeroOndata * 0.1;
+  var velMax = 1.8 + this.numeroOndata * 0.1;
+  var numeroMissili = 20 + Math.floor( this.numeroOndata );
+  var numeroMissiliSdoppiabili = rand( 0, numeroMissili );
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 10;
   
   for( var i = 0; i < numeroMissili ; i++ ) {
-    xRand = rand( 0, areaPartenza );
-    velRand = rand( 1, 1.5 );
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
+    ritardoRand = rand( 0, ritardoMassimo );
+    this.coreGame.missiliNemici.push( new MissileNemico( {
+      coloreTestata: 'yellow',
+      coloreScia: 'red',
+      massimoRaggioEsplosione: 30
+    }, bersagli, areaPertenza, xRand, velRand,  ritardoRand, this.coreGame) );
+  }
+  
+  for( var i = 0; i < numeroMissiliSdoppiabili ; i++ ) {
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemicoDoppio( {
       coloreTestata: 'yellow',
       coloreScia: 'red',
       massimoRaggioEsplosione: 30
-    }, bersagli, areaPartenza, xRand, velRand, ritardoRand, 3, this.coreGame) );
+    }, bersagli, areaPertenza, xRand, velRand, ritardoRand, 3, this.coreGame) );
   }
 }
 
 Livello7.prototype.calcolaCoefficienteOndata = function ( ) {
-  return this.numeroOndata * 1.2;
+  return this.numeroOndata * 1.8;
 }
 
 Livello7.prototype.setupListeners = function ( ) { 
@@ -94,6 +108,8 @@ Livello7.prototype.sparo = function ( x, y, tasto ) {
     return;
   
   var sdoppiabili = this.esaminaMissileSdoppiabile( x, y );
+  if( sdoppiabili.missiliFrammenti.length === 0 )
+    return;
   
   var torretta = this.coreGame.batterieAntimissile[indiceTorretta];
   var x1 = sdoppiabili.x1;
@@ -153,6 +169,14 @@ Livello7.prototype.esaminaMissileSdoppiabile = function ( x, y ) {
   var bersaglio = missileUtente.bersaglioAgganciato;
   var missiliFrammenti = missileUtente.esplodi();
     
+  if( missiliFrammenti === undefined )
+    return ( {
+      x1: undefined,
+      x2: undefined,
+      y: undefined,
+      ySdoppio: undefined,
+      missiliFrammenti: [] } );
+  
   if( missiliFrammenti.length === 1 ) {
     return ( {
     x1: missiliFrammenti[0].x,
