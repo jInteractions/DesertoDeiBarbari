@@ -5,24 +5,36 @@ function Livello6 ( callbackFineLivello ) {
 Livello6.prototype = Object.create( CoreLevel.prototype );
 Livello6.prototype.constructor = Livello6;
 
-Livello6.prototype.inizializzaArmiNemiche = function ( ) {
+Livello6.prototype.inizializzaArmiNemiche = function () {
   var areaPertenza = this.coreGame.canvas.width;
-  var ritardoMassimo = 100;
-  var xRand;
-  var velRand;
+  var ritardoMassimo = 800 * (this.numeroOndata * 0.05);
+  var velMin = 1.3 + this.numeroOndata * 0.08;
+  var velMax = 1.4 + this.numeroOndata * 0.08;
+  var numeroMissili = 15 + Math.floor( this.numeroOndata );
+  var numeroMissiliSdoppiabili = rand( 0, numeroMissili );
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 1;
   
   for( var i = 0; i < numeroMissili ; i++ ) {
-    xRand = rand( 0, areaPertenza );
-    velRand = rand( 1, 1.5 );
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
       coloreScia: 'red',
       massimoRaggioEsplosione: 30
     }, bersagli, areaPertenza, xRand, velRand,  ritardoRand, this.coreGame) );
+  }
+  
+  for( var i = 0; i < numeroMissiliSdoppiabili ; i++ ) {
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
+    ritardoRand = rand( 0, ritardoMassimo );
+    this.coreGame.missiliNemici.push( new MissileNemicoDoppio( {
+      coloreTestata: 'yellow',
+      coloreScia: 'red',
+      massimoRaggioEsplosione: 30
+    }, bersagli, areaPertenza, xRand, velRand, ritardoRand, 3, this.coreGame) );
   }
 }
 
@@ -184,10 +196,40 @@ var azionaComandoSparo = function ( chiamante, torrettaSelezionata, sistema, x, 
 // TAB 1
 
 /**********
+Funzione che abilita il comando di fuoco tramite click del mouse
+nella plancia comandi.
 **********/
+var abilitaClickMouse = function ( planciaComandi, torrette, mirino, sistema ) {
+  mouseAbilitato = true;
+  // Comandi plancia azionati da click del mouse
+  $( planciaComandi ).click( function ( ) {
+//###START_MODIFICABILE###
+    var x = mirino.x;
+    var y = mirino.y;
+    
+    var t = torrettaVicina ( torrette, x, y );
+    
+    azionaComandoSparo( t, sistema, x, y );
+//###END_MODIFICABILE###
+  } );
+}
 
+/**********
+Funzione che abilita i comandi della plancia. Attualmente prendo i tasti 1, 2, 3
+sulla tastiera si fa fuoco con la torretta rispettivamente sinistra, centrale e
+destra.
+Il comando click è abilitato ma non funzionante.
+
+La funzione prende come parametri:
+  - planciaComandi: classe che legge i comandi attivati;
+  - torrette: array di torrette controllate;
+  - mirino: classe che rappresenta il sistema di puntamento, restituisce
+    le coordinate in cui è attualmente tramite mirino.x() e mirino.y();
+  - sistema: è il sistema missilistico a cui sono rivolti i comandi.
+**********/
 var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sistema ) {
-  // Comandi plancia azionati da tastiera
+  // Comandi plancia azionati da tastiera, sostituire con CLICK MOUSE!
+//###START_MODIFICABILE###
   $( planciaComandi ).bind( 'keyup', function ( tastoPremuto ) {
     // Selezione della torretta corrispondente
     var torrettaSelezionata;
@@ -203,24 +245,21 @@ var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sis
     var y = mirino.y;
     
     // Lancio del missile
-    azionaComandoSparo( 'keyup', torrettaSelezionata, sistema, x, y );
-  } );
-  
-//###START_MODIFICABILE###
-  // Comandi plancia azionati da click del mouse
-  $( planciaComandi ).on( 'click', function ( ) {
-    
+    azionaComandoSparo( torrettaSelezionata, sistema, x, y );
   } );
 //###END_MODIFICABILE###
 }
 
 // test
 
-/*( 
+
+//(
+var t1 = 
   function () {
-    return true;
+    azionamentoComandiPlancia( null, null, null, null );
+    return mouseAbilitato;
   }
-) ();*/
+//) ();
 
 // TAB 2
 
