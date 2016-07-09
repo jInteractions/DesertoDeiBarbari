@@ -42,7 +42,7 @@ Ci sono due classi:<br>
 <li>MissileStandard: missile di ordinanza terrestre.</li>
 L&#x27;obiettivo &#xE8; inserire la tecnologia aliena dello sdoppiamento dei missili nella nostra classe MissileStandard.<br>
 Come si pu&#xF2; notare, le due classi hanno una struttura comune: tra di esse l&#x27;unica differenza sta nei nomi delle caratteristiche e delle  funzioni.<br>
-Per spostare la tecnologia dalla classe MissileTestataMultipla &#xE8; necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalit&#xE0; di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.<br>
+Per spostare la tecnologia dalla classe MissileTestataMultipla &#xE8; necessario comprendere in quale punto della classe MissileStandard devono essere collocate le funzionalit&#xE0; di sdoppiamento, tenendo conto della somiglianza tra le due classi e dei nomi diversi.
 AIUTI
 Come prima cosa &#xE8; necessario modificare la funzione MissileStandard.prototype.miraBersaglio(), coerentemente con la funzione<br> MissileTestataMultipla.prototype.identificaObiettivo(): al posto delle righe<br>
 var coordinateEsplosione = { esplosioneX: x, esplosioneY: y };
@@ -85,7 +85,7 @@ Osserviamo il meccanismo, prendendo un oggetto di classe Arma:<br>
 var cannone = new Arma();
 cannone.spara();
 var munizioniRimaste = cannone.numeroMunizioni.
-La variabile munizioniRimaste contiene il valore 9, poich&#xE9; la funzione di sparo ha determinato un decremento del numeroMunizioni all&#x27;interno dell&#x27;oggetto cannone.<br>
+La variabile munizioniRimaste contiene il valore 9, poich&#xE9; la funzione di sparo ha determinato un decremento del numeroMunizioni all&#x27;interno dell&#x27;oggetto cannone.
 
 DIALOGO FINALE
 Ortiz
