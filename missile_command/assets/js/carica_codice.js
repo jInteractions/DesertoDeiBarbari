@@ -3,7 +3,7 @@ function CaricaCodice ( fileVirtuali ) {
 };
 
 CaricaCodice.PAROLE_VIETATE = [
-    'eval', '.call', 'call(', 'apply', 'bind',
+    'eval', '.call', 'call(', 'apply',
     'setTimeout', 'setInterval',
     'requestAnimationFrame', 'mozRequestAnimationFrame',
     'webkitRequestAnimationFrame', 'setImmediate',

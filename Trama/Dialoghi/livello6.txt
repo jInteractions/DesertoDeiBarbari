@@ -65,7 +65,7 @@ Per effetuare una chiamata a tale funzione, &#xE8; necessario creare una variabi
 Nella variabile <tt>risultatoSomma</tt> ora c&#x27;&#xE8; il numero 9.<br>
 Area di sparo<br>
 L&#x27;area di sparo &#xE8; un piano cartesiano: le coordinate vengono dunque espresse in termini di <i>x</i> e <i>y</i>, che indicano la posizione di un punto all&#x27;interno di quest&#x27;area.<br>
-Il mirino ha dunque una <i>x</i> ed una <i>y</i>, che indicano precisamente dove si trova in quel momento il puntatore collegato al mouse.<br>
+Il mirino ha dunque una <i>x</i> ed una <i>y</i>, che indicano precisamente dove si trova in quel momento il puntatore collegato al mouse.
 
 DIALOGO FINALE
 Ortiz

@@ -6,8 +6,6 @@ Livello7.prototype = Object.create( CoreLevel.prototype );
 Livello7.prototype.constructor = Livello7;
 
 Livello7.prototype.inizializzaArmiNemiche = function () {
-  this.numeroOndata = 10;
-  
   var areaPertenza = this.coreGame.canvas.width;
   var ritardoMassimo = 900 * (this.numeroOndata * 0.05);
   var velMin = 1.6 + this.numeroOndata * 0.1;

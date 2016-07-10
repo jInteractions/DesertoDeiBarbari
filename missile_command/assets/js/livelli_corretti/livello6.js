@@ -1,7 +1,5 @@
 function Livello6 ( callbackFineLivello ) {
   CoreLevel.call( this, callbackFineLivello );
-  
-  console.log( t1() );
 }
 
 Livello6.prototype = Object.create( CoreLevel.prototype );
@@ -41,7 +39,7 @@ Livello6.prototype.inizializzaArmiNemiche = function () {
 }
 
 Livello6.prototype.calcolaCoefficienteOndata = function ( ) {
-  return this.numeroOndata * 1.8;
+  return this.numeroOndata * 1.2;
 }
 
 Livello6.prototype.setupListeners = function( ) { 
@@ -54,10 +52,7 @@ Livello6.prototype.setupListeners = function( ) {
     mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, event.which );
   });
   */
-  azionamentoComandiPlancia( '.gameContainer', 
-    this.coreGame.batterieAntimissile, 
-    this.coreGame.mirino,
-    this );
+  azionamentoComandiPlancia( '.gameContainer', this.coreGame.batterieAntimissile,     this.coreGame.mirino, mySelf );
   
   $( '.gameContainer' ).on( 'mouseover', function( event ) {
     mySelf.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
@@ -193,12 +188,11 @@ Livello6.prototype.mostraSchermataIniziale = function ( punteggio ) {
   } );                     
 }
 
-var mouseAbilitato = false;
-
 var azionaComandoSparo = function ( torrettaSelezionata, sistema, x, y ) {
   sistema.sparo( x, y, torrettaSelezionata );
 }
   
+var mouseAbilitato = false;
 // TAB 1
 
 /**********
@@ -207,20 +201,19 @@ nella plancia comandi.
 **********/
 var abilitaClickMouse = function ( planciaComandi, torrette, mirino, sistema ) {
   mouseAbilitato = true;
-  console.log( mouseAbilitato );
-//###START_MODIFICABILE###
   // Comandi plancia azionati da click del mouse
   $( planciaComandi ).click( function ( ) {
+//###START_MODIFICABILE###
     var x = mirino.x;
     var y = mirino.y;
     
     var t = torrettaVicina ( torrette, x, y );
     
     azionaComandoSparo( t, sistema, x, y );
-  } );
 //###END_MODIFICABILE###
+  } );
 }
-
+ 
 /**********
 Funzione che abilita i comandi della plancia. Attualmente prendo i tasti 1, 2, 3
 sulla tastiera si fa fuoco con la torretta rispettivamente sinistra, centrale e
@@ -236,46 +229,35 @@ La funzione prende come parametri:
 **********/
 var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sistema ) {
   // Comandi plancia azionati da tastiera, sostituire con CLICK MOUSE!
-  $( planciaComandi ).bind( 'keyup', function ( tastoPremuto ) {
-    // Selezione della torretta corrispondente
-    var torrettaSelezionata;
-    if( tastoPremuto.which === 49 ) // tasto 1
-      torrettaSelezionata = torrette[0];
-    if( tastoPremuto.which === 50 ) // tasto 2
-      torrettaSelezionata = torrette[1];
-    if( tastoPremuto.which === 51 ) // tasto 3
-      torrettaSelezionata = torrette[2];
-    
-    // Selezione coordinate a cui sparare
-    var x = mirino.x;
-    var y = mirino.y;
-    
-    // Lancio del missile
-    azionaComandoSparo( torrettaSelezionata, sistema, x, y );
-  } );
-  
-  abilitaClickMouse( planciaComandi, torrette, mirino, sistema );
+//###START_MODIFICABILE###
+  abilitaClickMouse (  planciaComandi, torrette, mirino, sistema ) ;
+//###END_MODIFICABILE###
 }
 
 // test
 
-
-//(
 var t1 = 
+(
   function () {
+    mouseAbilitato = false;
     azionamentoComandiPlancia( null, null, null, null );
     return mouseAbilitato;
   }
-//) ();
+) ();
 
 // TAB 2
 
 /**********
-Funzione che dato un array di torrette e le coordinate
-di un obiettivo restituisce la torretta migliore
-per colpire.
-**********/
+Funzione che date le coordinate del bersaglio
+determinana la torretta migliore, e funzionante,
+per colpire il bersaglio.
 
+Questa funzione prende come parametri:
+  - torretta: un array di torrette;
+  - x: un intero che rappresenta la coordinata x;
+  - y: un intero che rappresenta la coordinata y;
+Questa funzione restituisce la torretta migliore.
+**********/
 var torrettaVicina = function ( torrette, x, y ) {
   var torrettaSelezionata;
   
@@ -298,11 +280,10 @@ var torrettaVicina = function ( torrette, x, y ) {
   
   return torrettaSelezionata;
 }
-
+ 
 /**********
-Funzione che informa sullo stato di salute,
-munizione e surriscaldamento di una torretta 
-data.
+Funzione che restituisce true (vero) o false (falso)
+nel caso in cui la torretta sia o meno funzionante.
 **********/
 var nonFunzionante = function ( torretta ) {
   if( torretta.stato === BatteriaAntimissile.ATTIVA &&
