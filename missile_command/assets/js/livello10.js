@@ -9,6 +9,8 @@ var diff = function ( a1, a2 ) {
 
 function Livello10 ( callbackFineLivello ) {
   CoreLevel.call( this, callbackFineLivello );
+  
+  console.log( t1() );
 }
 
 Livello10.prototype = Object.create( CoreLevel.prototype );
@@ -949,59 +951,62 @@ TorrettaAutomatica.prototype.cicloSparoAutomatico = function ( bersagliPossibili
 // test
 
 var t1 = 
-    function ( ) {
-      var esito = true;
-      
-      var numeroTorretta = 0;
-      var x = rand( 0, 100 );
-      var y = 430;
-      var torretta = new TorrettaAutomatica( numeroTorretta, {x: x, y: y}, 2 );
-      var bersagli = [];
-      var tipiBersagli = [ new MissileTerrestre( { xDiPartenza: 0,
-                            yDiPartenza: 0,
-                            xDiArrivo: 100,
-                            yDiArrivo: 100,
-                            coloreTestata: 'yellow',
-                            coloreScia: 'blue',
-                            massimoRaggioEsplosione: 30,
-                            distanzaPerFrame: 7
-                           }, null ),
-                           new MissileNemico( {
-                            coloreTestata: 'yellow',
-                            coloreScia: 'red',
-                            massimoRaggioEsplosione: 10
-                           }, [ {x: 200, y: 200} ], 0, 0, 1,  1, null ) ];
-      
-      for( var i = 0; i < rand(20, 20); ++i ) {
-        bersagli.push ( { x: rand(0, 510/2), y: rand(0, 100), 
-          xArrivo: rand(0, 510), yArrivo: 430, 
-          velocita: rand(5, 5), tipo: tipiBersagli[rand(1, 1)] } );
-      }
-      
-      _missiliSparati = []; 
-      var candidati = bersagli.filter( function ( b ) {
-        if( numeroTorretta === 0 )
-          return (b.tipo instanceof MissileNemico && b.x < 510/2);
-        else
-          return (b.tipo instanceof MissileNemico && b.x >= 510/2);
-      } );
-      ordinamentoBersagliPerAltezza( candidati );
-      var bersaglio = candidati.pop();
-   
-      var coordinate = coordinateIntercettaBersaglio( bersaglio.x, bersaglio.y, 
-        bersaglio.xArrivo, bersaglio.yArrivo,
-        2, bersaglio.velocita, torretta.posizioneTorretta );
+var t1 = 
+(
+function ( ) {
+  var esito = true;
 
-      torretta.cicloSparoAutomatico( bersagli );
-      
-      if( _missiliSparati.length !== 1 ) {
-        esito = false;
-        return esito;
-      }
-      
-      var missile = _missiliSparati[0];
-      if( missile.x !== coordinate.x || missile.y !== coordinate.y )
-        esito = false;
-      
-      return esito;
-    }
+  var indiciT = [0, 2]
+  var numeroTorretta = indiciT[rand(0, 1)];
+  var x = rand( 0, 100 );
+  var y = 430
+  var torretta = new TorrettaAutomatica( numeroTorretta, {x: x, y: y}, 2 );
+  var bersagli = [];
+  var tipiBersagli = [ new MissileTerrestre( { xDiPartenza: 0,
+                        yDiPartenza: 0,
+                        xDiArrivo: 100,
+                        yDiArrivo: 100,
+                        coloreTestata: 'yellow',
+                        coloreScia: 'blue',
+                        massimoRaggioEsplosione: 30,
+                        distanzaPerFrame: 7
+                       }, null ),
+                       new MissileNemico( {
+                        coloreTestata: 'yellow',
+                        coloreScia: 'red',
+                        massimoRaggioEsplosione: 10
+                       }, [ {x: 200, y: 200} ], 0, 0, 1,  1, null ) ];
+
+  for( var i = 0; i < rand(20, 20); ++i ) {
+    bersagli.push ( { x: rand(0, 510), y: rand(150, 250), 
+      xArrivo: rand(0, 510), yArrivo: 430, 
+      velocita: rand(1.0, 1.0), tipo: tipiBersagli[rand(0, 1)] } );
+  }
+
+  _missiliSparati = []; 
+  var candidati = bersagli.filter( function ( b ) {
+    if( numeroTorretta === 0 )
+      return (b.tipo instanceof MissileNemico && b.x < 510/2 );
+    if( numeroTorretta === 2 )
+      return (b.tipo instanceof MissileNemico && b.x >= 510/2);
+  } );
+  
+  ordinamentoBersagliPerAltezza( candidati );
+  var bersaglio = candidati[0];
+  
+  var coordinate = coordinateIntercettaBersaglio( bersaglio.x, bersaglio.y, 
+    bersaglio.xArrivo, bersaglio.yArrivo,
+    2, bersaglio.velocita, torretta.posizioneTorretta );  
+  
+  torretta.cicloSparoAutomatico( bersagli );
+
+  if( _missiliSparati.length !== 1 ) {
+    return esito;
+  }
+  
+  var missile = _missiliSparati[0];
+  if( missile.x !== coordinate.x || missile.y !== coordinate.y )
+     esito = false;
+
+  return esito;
+} ) ();

@@ -412,6 +412,7 @@ var comandoSparoMultiplo = function ( ordiniDiFuoco, torrette ) {
 // test
 
 var t1 = 
+(
 function () {
   var esito = true;
 
@@ -441,7 +442,7 @@ function () {
 
   $.each( torrette, function ( i, t ) {
     if( ordiniPerTorretta[t.indice] === undefined )
-      return;
+      return false;
 
     var ordineTest = ordiniPerTorretta[t.indice];
     var ordineUtente = t._ordineSparo;
@@ -462,6 +463,7 @@ function () {
 
   return esito;
 }
+) ();
       
       
 

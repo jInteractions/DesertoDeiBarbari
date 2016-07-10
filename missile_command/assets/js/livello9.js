@@ -374,7 +374,7 @@ var comandoSparoSingolo = function ( x, y, torrette ) {
     var torretta = torrette[indiceTorretta];
     torretta.cicloSparo( x, y );
   }
-} 
+}
 
 // TAB 2
 
@@ -397,15 +397,14 @@ con gli ordini contenuti in ordiniDiFuoco.
 **********/
 var comandoSparoMultiplo = function ( ordiniDiFuoco, torrette ) {
 //###START_MODIFICABILE###
-  
   // Implementare la funzione!
-  
 //###END_MODIFICABILE###
 }
  
 // test
 
-var t1 = 
+//var t1 = 
+(
 function () {
   var esito = true;
 
@@ -455,7 +454,7 @@ function () {
   } );
 
   return esito;
-}
+} ) ();
       
       
 
