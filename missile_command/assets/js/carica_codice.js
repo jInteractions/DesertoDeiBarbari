@@ -160,9 +160,7 @@ CaricaCodice.prototype.esecuzioneTest = function () {
   var mySelf = this;
   var esiti = [];
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
-    if( fileVirtuale.consultazione === false ) {
       window.eval( fileVirtuale.codice );
-    }
   } );
          
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {

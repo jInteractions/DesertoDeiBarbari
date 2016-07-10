@@ -36,7 +36,7 @@ OBIETTIVO - Tab 2
 L&#x27;obiettivo &#xE8; quello di riempire due funzioni: la prima necessaria per la codifica del segnale radio e la seconda per la decodifica.<br>
 Nota bene! Le basi colorate di rosso sono quelle ausiliarie, mentre quelle ciano sono le basi vitali.<br>
 La funzione di codifica andr&#xE0; dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.<br>
-La funzione di decodifica deve invece ripristinare il collegamento esattamente com&#x27;era prima della codifica: riscambiando cio&#xE8; i codici dei canali radio.<br>
+La funzione di decodifica deve invece ripristinare il collegamento esattamente com&#x27;era prima della codifica: riscambiando cio&#xE8; i codici dei canali radio.
 AIUTI
 La funzione codificaSegnale() pu&#xF2; essere implementata nel modo seguente:<br>
 var temporaneo;
@@ -60,7 +60,7 @@ canaleTrasmissione[2] = temporaneo;
 temporaneo = canaleTrasmissione[5];
 canaleTrasmissione[5] = canaleTrasmissione[4];
 canaleTrasmissione[4] = temporaneo;
-Nota bene! La variabile temporanea permette di scambiare agilmente i valori dei canali: senza sarebbe molto pi&#xF9; complicata.<br>
+Nota bene! La variabile temporanea permette di scambiare agilmente i valori dei canali: senza sarebbe molto pi&#xF9; complicata.
 
 MANUALE
 La codifica e la decodifica di un messaggio avvengono in maniera molto semplice. Prendiamo per esempio la parola:<br>
@@ -69,7 +69,7 @@ Supponiamo che la nostra codifica preveda di prendere ogni lettera della parola 
 bjvup<br>
 Il nemico se non sa qual &#xE8; la codifica da noi utilizzata, quindi difficilmente comprender&#xE0; cosa vuol dire la parola bjvup. Quando noi per&#xF2; riceviamo il messaggio, conoscendo la codifica sostituiamo ogni lettera con quella che la precede nell&#x27;alfabeto, ottenendo di nuovo la parola:<br>
 aiuto<br>
-La decodifica &#xE8; dunque l&#x27;operazione inversa della codifica: senza conoscere la codifica sar&#xE0; per&#xF2; molto difficile leggere un messaggio codificato.<br>
+La decodifica &#xE8; dunque l&#x27;operazione inversa della codifica: senza conoscere la codifica sar&#xE0; per&#xF2; molto difficile leggere un messaggio codificato.
 
 DIALOGO FINALE
 Ortiz

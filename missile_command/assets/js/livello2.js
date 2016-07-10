@@ -125,14 +125,14 @@ var controlloPermessiCalibrazione = function () {
     && risultato[ 1 ] === true
     && risultato[ 2 ] === 4
   ) {
-    console.log("> Permessi di calibrazione mira sbloccati.\n Procedere al sistema di configurazione planetario.\n");
+    console.log("Permessi di calibrazione mira sbloccati.\n Procedere al sistema di configurazione planetario.\n");
     return true;
   } else {
     console.log(
-      "> Sblocco Calibrazione: " + risultato[ 0 ]
-      + "\n> Accesso Configurazione Pianeti: " + risultato[ 1 ]
-      + "\n> Codice Pianeta: " + risultato[ 2 ]
-      + "\n> Informazioni non corrette."
+      "Sblocco Calibrazione: " + risultato[ 0 ]
+      + "Accesso Configurazione Pianeti: " + risultato[ 1 ]
+      + "Codice Pianeta: " + risultato[ 2 ]
+      + "Informazioni non corrette."
     );
     return false;
   } 
@@ -153,16 +153,16 @@ var controlloConfigurazioneParametriPianeti = function () {
     && atmosfera === "respirabile"
     && settore === 7
   ) {
-    console.log("> Configurazione sistema antimissile...\n> Pianeta Bastiani.\n> Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
+    console.log("Configurazione sistema antimissile... Pianeta Bastiani. Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
     return true;
   } else {
     console.log(
-      "> Nome pianeta: " + nome
-      + "\n> Forza Gravitazionale: " + grav
-      + "\n> Vento: " + vento
-      + "\n> Atmosfera: " + atmosfera
-      + "\n> Settore Galattico: " + settore
-      + "\n> Informazioni non corrette."
+      "Nome pianeta: " + nome
+      + "Forza Gravitazionale: " + grav
+      + "Vento: " + vento
+      + "Atmosfera: " + atmosfera
+      + "Settore Galattico: " + settore
+      + "Informazioni non corrette."
     );
     return false;
   }
