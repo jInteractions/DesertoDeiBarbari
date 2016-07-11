@@ -267,7 +267,7 @@ var t1 =
 
 /**********
 Funzione che date le coordinate del bersaglio
-determinana la torretta migliore, e funzionante,
+determina la torretta migliore, e funzionante,
 per colpire il bersaglio.
 
 Questa funzione prende come parametri:
