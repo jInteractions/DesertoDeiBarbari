@@ -195,8 +195,7 @@ HOB-2000.
 
 
 Buongiorno, sono il sistema antimissilistico HOB-2000, per comunicarvi che
-l'autenticazione automatica è fallita. Se proprio desiderate procedere, avete la
-possibilità di utilizzare l'autenticazione manuale.
+l'autenticazione automatica è fallita. Se proprio desiderate procedere, avete la possibilità di utilizzare l'autenticazione manuale.
 
 Grazie per aver scelto HOB-2000.
 Copyright (C) 4096 Orsa Minore Software Inc. - Tutti i diritti riservati
