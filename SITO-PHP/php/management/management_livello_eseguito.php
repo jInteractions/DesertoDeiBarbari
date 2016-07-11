@@ -960,7 +960,7 @@ function insertIntolivello_eseguito($connection, $email, $idlivello, $file_virtu
 }/*END SEZIONE INSERT*/
 
 function update_LIVELLO_ESEGUITO_SET_file_virtuali_aggiornati_WITH_idlivello_email_AS_KEYS($connection,$file_virtuali_aggiornati_val,$idlivello,$email){
-	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati = ? WHERE idlivello=? AND email=?";
+	$query="UPDATE livello_eseguito SET file_virtuali_aggiornati=? WHERE idlivello=? AND email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
 		$stmt->bind_param( "sss",$file_virtuali_aggiornati_val,$idlivello,$email);

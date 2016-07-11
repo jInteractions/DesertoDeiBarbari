@@ -23,11 +23,14 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/css/AdminLTE.css">
     <link rel="stylesheet" href="assets/css/skins/skin-blue.css">
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
     
+    <link rel="stylesheet" href="/assets/css/highlighter-theme.css">
+  
     <!-- Codemirror Styles -->
     <link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+    
+       <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -36,7 +39,18 @@
     <![endif]-->
   </head>
 
-  <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">  
+  <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+    
+  <div style="display:none;">
+    <img id="source-mouse-click" src="http://localhost:8888/assets/img/mouse-sx-click.png" />
+  </div>
+  <div style="display:none;">
+    <img id="source-tasti-123" src="http://localhost:8888/assets/img/1-2-3-tasti.png" />
+  </div>
+  <div style="display:none;">
+    <img id="nave-madre" src="http://localhost:8888/assets/img/mothership-sfondo.png" />
+  </div>
+    
   <?php
     require "php/config.php";
     require "php/generic.php";
@@ -204,7 +218,7 @@
     ?>
     
     
-    <header class="main-header">
+  <header class="main-header">
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -360,8 +374,8 @@
                                   echo '<div class="tab-pane codePanel fade in active" id="tab'.$chiave.'default">';
                                 else
                                   echo '<div class="tab-pane codePanel fade" id="tab'.$chiave.'default">';
-                                echo '<textarea rows="4" cols="50" name="codesnippet_editable" id="codesnippet_editable'.$chiave.'">';
-                                echo $valore["codice"];                    
+                                echo '<textarea rows="4" cols="50" css=" width: 100%; height: 100%" name="codesnippet_editable" id="codesnippet_editable'.$chiave.'">';
+                                echo $valore["codice"];
                                 echo '</textarea> </div>';
                                 $primo=false;
                               } else {
@@ -370,7 +384,7 @@
                                 else
                                   echo '<div class="tab-pane codePanel fade" id="tab'.$chiave.'default">';
                                 echo '<textarea rows="4" cols="50" name="codesnippet_editable" id="codesnippet_editable'.$chiave.'">';
-                                echo $fileVirtualiAggiornati["fileVirtuali"][$chiave]["codice"];                    
+                                echo $fileVirtualiAggiornati["fileVirtuali"][$chiave]["codice"];  
                                 echo '</textarea> </div>';
                                 $primo=false;
                               }
@@ -382,7 +396,7 @@
                     </div>
                   </div>
                   <div class="riga center-block">
-                    <div class="col-md-2 text-center">
+                    <div class="col-md-3 text-center">
                       <button type="button" class="bottone btn btn-lg btn-success center-block" data-toggle="tooltip" data-placement="bottom" title="Effettua il test del codice modificato" id="bottoneCaricaCodice">
                         Avvia <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
                          
@@ -394,7 +408,7 @@
                          
                       </button>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-3 text-center">
                       <button type="button" class="bottone btn btn-lg btn-warning center-block" data-toggle="tooltip" data-placement="bottom" title="Vai al livello successivo" id="bottoneLivelloSuccessivo">
                         Livello successivo <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                       </button>
@@ -436,9 +450,9 @@
                             <?php echo '<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</p>'; ?>
                           </p>
                         <?php
-                          if (strcmp($valore["aiuto"], "true")===0){
+                          if (strcmp($valore["aiutoUtilizzato"], "true")===0){
                             echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'" disabled>Aiuto</button>';
-                            echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'">'.$valore["aiuto"].'</p>';
+                            echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'">'.$valore["aiutoUtilizzato"].'</p>';
                           } else {
                             echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
                             echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'" />';
@@ -499,13 +513,15 @@
     <script>
       $.widget.bridge('uibutton', $.ui.button);
     </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/chiamateAjax.js"></script>
     <script src="assets/js/codice-modificabile.js"></script>
+
+    <!-- Script gestione missile command -->
     <script src="missile_command/core_game.js"></script>
     <script src="missile_command/core_level.js"></script>
     <script src="missile_command/carica_codice.js"></script>
-<!--    <script src="missile_command/livello1-corretto.js"></script>-->
     <script src="missile_command/elementi_gioco/base.js"></script>
     <script src="missile_command/elementi_gioco/minacce.js"></script>
     <script src="missile_command/elementi_gioco/mirino.js"></script>
@@ -513,17 +529,33 @@
     <script src="missile_command/elementi_gioco/batteria_antimissile.js"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/app.js"></script>
+
     <!-- Bootstrap WYSIHTML5 -->
     <script src="assets/js/bootstrap3-wysihtml5.all.min.js"></script>
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<!-------------------------------------------------------------------
+Script che gestiscono per intero la pagina lato client
+-------------------------------------------------------------------->
     <script>
+      // Array di editor code mirror
       var editorCodice = [];
+      // coreLevel rappresenta il livello
       var coreLevel;
+      // Numero ondata corrente
       var nOndata;
-      var risoltoTuttiObiettivi = false;
+      // Punteggio totale accumulato
+      var punteggioTotale = 0;
+      // Booleano che indica se tutti gli obiettivi sono superati
+      var risoltoTuttiObiettivi = false
+      // Backup console classica
+      var oldConsole = console;
       
-      var editor = function (id){
+      /** Funzione che inizializza l'editor di codeMirror dato
+          l'id di un obiettivo */
+      var editor = function ( id ) {
         var x = CodeMirror.fromTextArea(id, {
             mode: "javascript",
             theme: "default",
@@ -533,30 +565,82 @@
             autoRefresh: true,
             styleActiveLine: true,
             lineWrapping: true,
-            matchBrackets: true
+            matchBrackets: true,
+            viewportMargin: Infinity
         });
         inserisciCodiceEditor(x, x.getValue());
         return x;
-      };
+};
       
-      var mostraAiuto = function(indice){
+      /** Classe terminale che sostituira la console */
+      function Terminale( idTerminale ) {        
+        this.htmlTerminale = $( idTerminale );
+        this.id = idTerminale;
+        this.output = true;
+        console = this;
+      }
+      Terminale.prototype.reset = function () {
+        $("#terminale").empty();
+      }
+      Terminale.prototype.errore = function( oggetto ) {
+        var stringa = oggetto.toString();
+        stringa.trim();
+        stringa = stringa.replace(/\n/g, "<br>\&gt;\&nbsp");
+        var testoDaStampare = "<span class='terminaleRigaErrore'>\&gt;\&nbsp" + stringa + "<\/span><br>";
+         this.stampa( testoDaStampare );
+      }
+      Terminale.prototype.successo = function( oggetto ) {
+        var stringa = oggetto.toString();
+        stringa.trim();
+        stringa = stringa.replace(/\n/g, "<br>\&gt;\&nbsp");
+        var testoDaStampare = "<span class='terminaleRigaSuccesso'>\&gt;\&nbsp" + stringa + "<\/span><br>";
+         this.stampa( testoDaStampare );
+      }
+      Terminale.prototype.sistema = function( oggetto ) {
+        var stringa = oggetto.toString();
+        stringa.trim();
+        stringa = stringa.replace(/\n/g, "<br>#\&nbsp");
+        var testoDaStampare = "<span class='terminaleSistema'>#\&nbsp" + stringa + "<\/span><br>";
+        this.stampa( testoDaStampare );
+      }
+      Terminale.prototype.log = function( oggetto ) {
+        var stringa = oggetto.toString();
+        stringa.trim();
+        stringa = stringa.replace(/\n/g, "<br>\&gt;\&nbsp");
+        var testoDaStampare = "<span class='terminaleRiga'>\&gt;\&nbsp" + stringa + "<\/span><br>";
+        this.stampa( testoDaStampare );
+      }
+      Terminale.prototype.stampa = function ( stringa ) {
+        if( this.output === false )
+          return
+        this.htmlTerminale.append( stringa );
+        this.htmlTerminale.stop();
+        this.htmlTerminale.animate({ scrollTop: $(document).height() }, "slow");
+      }
+
+      // Mostrare l'aiuto per l'obiettivo di indice "indice" */
+      var mostraAiuto = function( indice ) {
         var testoAiutoStr = "#testoAiuto" + indice;
         var titoloCodice = $(".tab"+indice+"default").text();
         var nomeBottoneAiuto = "#buttonModalAiuto" + indice;
         funzioneSalvaCodice();
         getHelp(<?php echo $_GET["idlivello"]; ?>, titoloCodice, testoAiutoStr, "<?php echo $_SESSION["email"]; ?>", nomeBottoneAiuto);
       };
-      
-      var resetCodice = function (id){
+
+      /** Reset codice nella tab con id obiettivo "id" */
+      var resetCodice = function ( id ) {
+        oldConsole.log( id )
           resetCodiceUtente(<?php echo $_GET["idlivello"]; ?>, $(".tab" + id + "default").text(), editorCodice[id]);
       };
-      var funzioneSalvaCodice = function (){
+
+      /** Salvataggio codice */
+      var funzioneSalvaCodice = function ( ) {
         var jsonFileVirtuali;
         var conAiuti = [<?php 
               $primoGiro = true;
               foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
               {
-                if($valore["consultazione"]===false){
+                if($valore["consultazione"] === false){
                   if ($primoGiro){
                     echo $chiave;
                     $primoGiro = false;
@@ -568,23 +652,40 @@
 
         var richiestoAiuto = [];
         var nomeFile = [];
-        var codiceUtente = "";
+        var codiceUtente = [];
 
         for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
-          if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).disabled){
+          //console.log( conAiuti.indexOf(i) )
+          //console.log( $("#buttonModalAiuto" + i) )
+          if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).disabled ){
+            //console.log( "aiuto usato" )
             richiestoAiuto[i] = "true";
             nomeFile[i] = $(".tab"+i+"default").text();
-            codiceUtente = codiceUtente + (escape(salvaCodiceEditor(editorCodice[i])+"########FineCodiceUtente########"));
+            codiceUtente[i] = salvaCodiceEditor(editorCodice[i]);
           } else {
             richiestoAiuto[i] = "false";
             nomeFile[i] = $(".tab"+i+"default").text();
-            codiceUtente = codiceUtente + (escape(salvaCodiceEditor(editorCodice[i])+"########FineCodiceUtente########"));
+            codiceUtente[i] = salvaCodiceEditor(editorCodice[i]);
           }
         }
 
         updateCodiceUtente(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", richiestoAiuto, nomeFile, codiceUtente);
       };
-     $(document).ready(function () {
+
+      /** Documento pronto */
+      $(document).ready( function ( ) {
+        // Disabilito lo scrolling attraverso "spacebar"
+        $(document).keydown(function(e) {
+          if (e.which == 32 
+              && (e.target == document.body || $( e.target ).hasClass( "gameContainer" ) )) {
+            e.preventDefault();
+          }
+        });
+        
+        
+        // Questa funzione effettua l'highlight di tutto il codice in <code>
+        hljs.initHighlightingOnLoad();
+
         <?php 
           if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
             echo '$("#modalDialoghi").modal("show");';
@@ -599,7 +700,7 @@
             location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
         });
         $("#bottoneSalvaCodice").click(funzioneSalvaCodice);
-        
+
         $('textarea').each(function(){
            if( $(this).attr('id').match('codesnippet_editable.*') ) {
               var codesnippet = document.getElementById($(this).attr('id'));
@@ -614,12 +715,15 @@
           }); 
         }
         
-       ricaricaCodice();
-       
-     });
-     var punteggioTotale = 0;
-     var ricaricaCodice = function (){
-        punteggioTotale = 0;
+        console = new Terminale( "#terminale" );
+
+        ricaricaCodice();
+     } );
+
+      /** Funzione che carica il codice nel gioco e resetta
+          il livello. Questa funzione valida anche il codice 
+          utente sintatticamente e tramite i test. */
+      var ricaricaCodice = function () {
         var callback = function ( risultatoOndata ) {
           if( risultatoOndata.esito === true ) {
             if(nOndata===1 && risoltoTuttiObiettivi){
@@ -628,17 +732,25 @@
               $("#bottoneLivelloSuccessivo").prop("disabled",false);
               aggiungiLivelloSuccessivo(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>");
             }
+               
             updateStatisticheUtenti(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", nOndata, risultatoOndata.punteggio, risultatoOndata.missiliAbbattuti, risultatoOndata.missiliRimasti, risultatoOndata.minacceAbbattute, risultatoOndata.torretteSalvate, risultatoOndata.missiliSparati, risultatoOndata.morti);
             ++nOndata;
+            punteggioTotale += risultatoOndata.punteggio;
             coreLevel.inizializzaLivello(nOndata);
-            coreLevel.mostraSchermataIniziale(); 
+            coreLevel.mostraSchermataIniziale( punteggioTotale ); 
           } else {
             nOndata = 1;
+            punteggioTotale = 0;
             coreLevel.inizializzaLivello(1);
-            coreLevel.mostraSchermataGameOver();
+            coreLevel.mostraSchermataGameOver( punteggioTotale );
           }
         }
-       
+        
+        punteggioTotale = 0;
+        console.reset();
+        console.sistema( "*** Benvenuto nel sistema antimissilistico HOB-2000 ***" );
+        console.sistema( "*** Qui troverai le informazioni sullo stato del sistema. ***" );
+        
         var jsonLivello = <?php echo $informazioniLivelloAttuale["json"] ?>;
         window.eval( jsonLivello.codiceLivello );
         var caricaCodice = new CaricaCodice( jsonLivello.fileVirtuali );
@@ -646,44 +758,52 @@
         var e = caricaCodice.validazioneCodiceUtente();
 
         $.each(e.erroriSintassi, function(indice, errore) {
-          $("#terminale").append(errore.file + ": " + errore.testo + " alla riga " + errore.riga + "<br>");
+          console.errore("ERRORE SINTASSI in " + errore.file + ": " + errore.testo + " alla riga " + errore.riga );
         });
-        $.each(e.erroreParole, function(indice, errore) {
-          $("#terminale").append(errore.file + ": " + errore.testo + " alla riga " + errore.riga + "<br>");
+       
+        $.each(e.erroriParole, function(indice, errore) {
+          console.errore("ERRORE USO PAROLA PROIBITA in " + errore.file + ": usata la parola '" + errore.testo + "' alla riga " + errore.riga );
         });
         $.each(e.erroriCiclo, function(indice, errore) {
-          $("#terminale").append(errore.file + ": " + errore.testo + " alla riga " + errore.riga + "<br>");
+          console.errore("ERRORE RILEVATO CICLO INFINITO in " + errore.file + " alla riga " + errore.riga );
         });
-        
-       
-        nOndata = 1;
 
-       
+        nOndata = 1;
+        
         if(e.erroriCiclo.length === 0 
           && e.erroriSintassi.length === 0
           && e.erroriParole.length === 0 ) {
-
-          esiti = caricaCodice.esecuzioneTest();
+          
           risoltoTuttiObiettivi = true;
-          $.each(esiti, function (i, esito){
+          
+          esiti = caricaCodice.esecuzioneTest();
+          $.each(esiti, function (i, esito) {
             var obiettivo = esito.nomeFile.replace('.','');
             var risultato = esito.esito;
-            if(risultato === true){
-              $("#obiettivo" + obiettivo).css('color', 'green');
-              $("#spanObiettivo" + obiettivo).css("visibility", "visible");
-              $("#collapseObiettivo").click();
-            } else {
-              risoltoTuttiObiettivi = false;
-              $("#pannelloContenteCodici").removeClass("panel-success");
-              $("#pannelloContenteCodici").addClass("panel-danger");
-              $("#collapseObiettivo").click();
-              var fileVirtuale = jsonLivello.fileVirtuali.find(function (f){
-                return f.nomeFile === esito.nomeFile;
-              });
-              $("#terminale").append(fileVirtuale.messaggioFallimento + "<br>");
-            }
+            var errori = esito.errori;
+            
+            $.each(errori, function(indice, errore) {
+              console.errore("ERRORE SINTASSI in " + errore.file + ": " + errore.testo );
+            });
+                    
+            if( errori.length === 0 )
+              if(risultato === true ) {
+                $("#obiettivo" + obiettivo).css('color', 'green');
+                $("#spanObiettivo" + obiettivo).css("visibility", "visible");
+                //$("#collapseObiettivo").click();
+                console.successo("Obiettivo #" + (i+1) + " superato!" );
+              } else {
+                risoltoTuttiObiettivi = false;
+                //$("#pannelloContenteCodici").removeClass("panel-success");
+                //$("#pannelloContenteCodici").addClass("panel-danger");
+                //$("#collapseObiettivo").collapse('show');
+                var fileVirtuale = jsonLivello.fileVirtuali.find(function (f){
+                  return f.nomeFile === esito.nomeFile;
+                });
+                console.errore("Obiettivo #" + (i+1) + " fallito: " + fileVirtuale.messaggioFallimento);
+              }
           });
-
+          
           if(risoltoTuttiObiettivi){
             $("#pannelloContenteCodici").removeClass("panel-danger");
             $("#pannelloContenteCodici").addClass("panel-success");
@@ -696,20 +816,9 @@
 
           coreLevel = new Livello<?php echo $_GET["idlivello"]?>( callback );
           coreLevel.inizializzaLivello(nOndata);
-          console.log(Base);
-          console.log(coreLevel.coreGame.basi);
-          coreLevel.mostraSchermataIniziale();
+          coreLevel.mostraSchermataIniziale( punteggioTotale );
         }
      }    
-     /*
-     setInterval(function(){
-        console.log("chiamata");
-        $.each( $('.CodeMirror-line'), function( key, value ) {
-          if($(this).find('.disabled').length > 0)
-            $(this).css("background-color","gray");
-        });
-      },300);*/
-      
     </script>
     <script src="http://codemirror.net/lib/codemirror.js"></script>
     <script src="https://codemirror.net/addon/display/autorefresh.js"></script>

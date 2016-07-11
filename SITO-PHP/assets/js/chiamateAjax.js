@@ -12,7 +12,7 @@ var getHelp = function (livello, file, testoAiutoStr, email, nomeBottoneAiuto){
             $(nomeBottoneAiuto).prop("disabled",true);
         },
         error: function (error) {
-            console.log(error);
+            oldConsole.log(error);
         }
     });
 
@@ -26,33 +26,60 @@ var resetCodiceUtente = function (livello, nomefile, editorCodice){
         dataType: "text",
         success: function (result) {
           var codice = result.replace("<h1>Connection established</h1>", "");
-          console.log(livello);
-          console.log(nomefile);
+          oldConsole.log(livello);
+          oldConsole.log(nomefile);
           //editorCodice.setValue(codice);
           inserisciCodiceEditor(editorCodice, codice);
-          console.log(codice);
+          oldConsole.log(codice);
         },
         error: function (error) {
-            console.log(error);
+            oldConsole.log(error);
         }
     });
 };
 
 var updateCodiceUtente = function (livello, email, richiestoAiuto, nomeFile, codiceUtente){
-    $.ajax({
-        type: "GET",
+  function escape (key, val) {
+    if (typeof(val)!="string") return val;
+    return val
+      //.replace(/[\"]/g, '\\"')
+      //.replace(/[\\]/g, '\\\\')
+      //.replace(/[\/]/g, '\\/')
+      .replace(/[\b]/g, '\\b')
+      .replace(/[\f]/g, '\\f')
+      .replace(/[\n]/g, '\\n')
+      .replace(/[\r]/g, '\\r')
+      .replace(/[\t]/g, '\\t')
+    ; 
+}
+
+
+  
+  var strutturaJson = { "fileVirtuali": [] };
+  $.each( nomeFile, function( i, nome ) {
+    strutturaJson.fileVirtuali.push( {
+      nomeFile: nomeFile[i],
+      codice: codiceUtente[i],
+      aiutoUtilizzato: richiestoAiuto[i]
+    } );
+  } );
+  
+  var myJSONString = encodeURIComponent(JSON.stringify(strutturaJson));
+  //oldConsole.log( myJSONString );
+  
+  //oldConsole.log(host + "php/setCodiceUtente.php" );
+  $.ajax({
+        type: "POST",
         url: host + "php/setCodiceUtente.php",
         data: "idlivello=" + livello + "&" +
         "email=" + email + "&" +
-        "richiestoAiuto=" + JSON.stringify(richiestoAiuto)+ "&" +
-        "nomeFile=" + JSON.stringify(nomeFile) + "&" +
-        "codiceUtente=" + codiceUtente,
+        "json=" + myJSONString,
         dataType: "text",
         success: function (result) {
-            console.log(result);
+          oldConsole.log(result);
         },
         error: function (error) {
-            alert(error);
+          oldConsole.log(error);
         }
     });
 }
@@ -73,10 +100,10 @@ var updateStatisticheUtenti = function (livello, email, ondate, punteggio, missi
         "morti=" + morti,
         dataType: "text",
         success: function (result) {
-            console.log(result);
+            oldConsole.log(result);
         },
         error: function (error) {
-            alert(error);
+            oldConsole.log(error);
         }
     });
 }
@@ -89,10 +116,10 @@ var aggiungiLivelloSuccessivo = function (livello, email){
         "email=" + email,
         dataType: "text",
         success: function (result) {
-            console.log(result);
+            oldConsole.log(result);
         },
         error: function (error) {
-            alert(error);
+            oldConsole.log(error);
         }
     });
 }

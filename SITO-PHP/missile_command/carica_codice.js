@@ -3,7 +3,7 @@ function CaricaCodice ( fileVirtuali ) {
 };
 
 CaricaCodice.PAROLE_VIETATE = [
-    'eval', '.call', 'call(', 'apply', 'bind',
+    'eval', '.call', 'call(', 'apply',
     'setTimeout', 'setInterval',
     'requestAnimationFrame', 'mozRequestAnimationFrame',
     'webkitRequestAnimationFrame', 'setImmediate',
@@ -21,11 +21,10 @@ CaricaCodice.PAROLE_VIETATE = [
     'this['
 ];
 CaricaCodice.ATTESA_MASSIMA = 1000;
+CaricaCodice.NUMERO_RIPETIZIONI_TEST = 10;
 
 CaricaCodice.prototype.aggiornaCodiceUtente = function () {
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
-      //fileVirtuale.codice = $("")
-      //console.log(editorCodice[indice].getValue());
       fileVirtuale.codice = editorCodice[indice].getValue();
   } );
 };
@@ -38,10 +37,7 @@ CaricaCodice.prototype.validazioneCodiceUtente = function () {
     var e = mySelf.verificaCicliInfiniti( file );
     errori.erroriCiclo = errori.erroriCiclo.concat( e );
   } );
-  
-  //if( errori.erroriCiclo.length !== 0 )
-  //  return errori;
-  
+    
   $.each( this.fileVirtuali, function ( indice, file) {
     var e = mySelf.trovaErroriSintassi( file );
     errori.erroriSintassi = errori.erroriSintassi.concat( e );
@@ -140,9 +136,7 @@ CaricaCodice.prototype.verificaCicliInfiniti = function ( file ) {
       "if (Date.now() - startTime > " + CaricaCodice.ATTESA_MASSIMA + ") {" +
       "throw ({ riga: " + ( i + 1 ) + ", testo: \"msgCicloInfinito\" });}" );
   } ).join('\n');
-  
-  //console.log( codice + "\n" + test );
-  
+    
   try {
     eval( codice );
     eval( test );
@@ -159,17 +153,36 @@ CaricaCodice.prototype.verificaCicliInfiniti = function ( file ) {
 CaricaCodice.prototype.esecuzioneTest = function () {
   var mySelf = this;
   var esiti = [];
+  var errori = [];
+  
+  $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
+    window.eval( fileVirtuale.codice );
+  } );
+        
+  console.output = true;
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
     if( fileVirtuale.consultazione === false ) {
-      window.eval( fileVirtuale.codice );
+      risultato = true;
+      for( var j = 0; j < CaricaCodice.NUMERO_RIPETIZIONI_TEST; ++j ) {
+        try {
+          risultato = window.eval( fileVirtuale.test ) && risultato;
+          
+        } catch( e ) {
+          var erroreSingoloTest = { file: fileVirtuale.nomeFile, testo: e.message };
+          presente = false;
+          $.each( errori, function( i, err ) { 
+            presente = presente || ( err.testo === erroreSingoloTest.testo )
+          } );
+          if( ! presente )
+            errori.push( erroreSingoloTest );
+          risultato = false;
+        }
+      }
+      
+      esiti.push( { nomeFile: fileVirtuale.nomeFile, esito: risultato, errori: errori } );
     }
   } );
-         
-  $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
-    if( fileVirtuale.consultazione === false ) {
-      var risultato = window.eval( fileVirtuale.test );
-      esiti.push( { nomeFile: fileVirtuale.nomeFile, esito: risultato } );
-    }
-  } );
+  console.output = true;
+      
   return esiti;
 };

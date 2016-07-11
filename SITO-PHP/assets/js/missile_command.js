@@ -918,7 +918,6 @@ var missileCommand = (function () {
       $( '.gameContainer' ).on( 'mousemove', function( event ) {
         mirino.inseguiX = event.pageX - this.offsetParent.offsetLeft;
         mirino.inseguiY = event.pageY - this.offsetParent.offsetTop;
-        console.log(event.pageX + " " + event.pageY + " " + this.offsetLeft + " " + this.offsetTop);
         mirino.cambiaMira();
       });
     });
