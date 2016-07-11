@@ -126,7 +126,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
           </div>
         </div>
       </div>
@@ -138,7 +138,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel"><?=$informazioniLivelloAttuale["nome"] ?></h4>
+            <h4 class="modal-title" id="myModalLabel">Complimenti! Hai completato il livello!</h4>
           </div>
           <div class="modal-body">
             <!-- /.panel -->
@@ -179,12 +179,50 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <h5>Puoi passare al livello successivo o continuare a combattere per migliorare il punteggio.</h5>
+            <div class="col-md-3 col-md-offset-6 colonna">
+              <button type="button" class="btn btn-warning center-block" id="bottoneLivelloSuccessivoModal"> Livello successivo </button>
+            </div>
+            <div class="col-md-3 colonna">
+              <button type="button" class="btn btn-info center-block" data-dismiss="modal">Continua a giocare</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
+  
+  <?php 
+      foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
+      {
+        echo '<div class="modal fade" id="modalResetCodice'.$chiave.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
+    ?>
+    
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Reset codice</h4>
+          </div>
+          <div class="modal-body">
+            <!-- /.panel -->
+            <div class="panel panel-default">
+              <!-- /.panel-heading -->
+              <div class="panel-body">
+                Sei sicuro di voler ripristinare il codice iniziale? 
+              </div>
+              <!-- /.panel-body -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <?php echo '<button type="button" id="resetCode'.$chiave.'" class="btn btn-primary" data-dismiss="modal">Sì</button>'; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <?php 
+      }
+    ?>
     
     <?php 
       foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
@@ -359,7 +397,7 @@
                               echo '<li>';
                             echo '<a href="#tab'.$chiave.'default" class="tab'.$chiave.'default" data-toggle="tab">';
                             echo $valore["nomeFile"];
-                            echo '<span class="iconaReset glyphicon glyphicon-repeat" id="resetCode'.$chiave.'" aria-hidden="true"/>';
+                            echo '<span class="iconaReset glyphicon glyphicon-repeat" aria-hidden="true" data-toggle="modal" data-target="#modalResetCodice'.$chiave.'"/>';
                             echo '</a>';
                         ?>                      
                             
@@ -447,7 +485,7 @@
                         if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
                   ?>
                           <p>
-                            <?php echo '<div id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</div>'; ?>
+                            <?php echo '<div class="divObiettivo">'.'<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="titoloObiettivo"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="iconaOkObiettivo glyphicon glyphicon-unchecked"></span>'.$valore["nomeFile"].'</p><br>'.$valore["descrizione"].'</div>'; ?>
                           </p>
                         <?php
                           echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
@@ -455,7 +493,7 @@
                         } else {
                          ?>
                           <p>
-                            <?php echo '<div id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</div>'; ?>
+                            <?php echo '<div class="divObiettivo">'.'<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="titoloObiettivo"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="iconaOkObiettivo glyphicon glyphicon-unchecked"></span>'.$valore["nomeFile"].'</p><br>'.$valore["descrizione"].'</div>'; ?>
                           </p>
                         <?php
                           if (strcmp($fileVirtualiAggiornati["fileVirtuali"][$chiave]["aiutoUtilizzato"], "true")===0){
@@ -482,7 +520,7 @@
                 </h4>
               </div>
               <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                <div class="accordionPanel-body panel-body">
+                <div class="divManuale accordionPanel-body panel-body">
                   <?php
                     echo $jsonLivello["manuale"];
                   ?>
@@ -714,6 +752,9 @@ Script che gestiscono per intero la pagina lato client
         $("#bottoneLivelloSuccessivo").click(function () {
             location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
         });
+        $("#bottoneLivelloSuccessivoModal").click(function () {
+            location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
+        });
         $("#bottoneSalvaCodice").click(funzioneSalvaCodice);
 
         $('textarea').each(function(){
@@ -804,9 +845,11 @@ Script che gestiscono per intero la pagina lato client
             if( errori.length === 0 )
               if(risultato === true ) {
                 $("#obiettivo" + obiettivo).css('color', 'green');
-                $("#spanObiettivo" + obiettivo).css("visibility", "visible");
+                $("#spanObiettivo" + obiettivo).removeClass("glyphicon-unchecked");
+                $("#spanObiettivo" + obiettivo).addClass("glyphicon-check");
                 //$("#collapseObiettivo").click();
                 console.successo("Obiettivo #" + (i+1) + " superato!" );
+                funzioneSalvaCodice();
               } else {
                 risoltoTuttiObiettivi = false;
                 //$("#pannelloContenteCodici").removeClass("panel-success");

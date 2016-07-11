@@ -7,6 +7,7 @@ html {
   font-size: 14px;
 }
 
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -834,9 +835,25 @@ code {
 }
 
 .pTestoAiuto {
-    border-bottom: 1px solid;
-    border-color: cornflowerblue;
-    padding-bottom: 5px;
+  border-bottom: 1px solid;
+  border-color: cornflowerblue;
+  padding-bottom: 5px;
+  font-size: 12pt;
+}
+
+pre {
+  padding: 0px;
+  border: none;
+  margin-top: 10px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+}
+
+.divManuale {
+  font-size: 12pt;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .CodeMirror {
@@ -845,4 +862,18 @@ code {
 
 .CodeMirror-lines .disabled {
 	background: rgba(255, 0, 0, 0.5); /* semi-transparent so we can see selection over it */
+}
+.titoloObiettivo {
+  font-size: 16pt;
+  font-weight: 600;
+}
+
+.iconaOkObiettivo{
+  margin-right: 15px;
+}
+
+.divObiettivo{
+  font-size: 12pt;    
+  margin-left: 10px;
+  margin-right: 10px;
 }

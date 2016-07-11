@@ -150,7 +150,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="statistiche.php">
             <i class="fa fa-bar-chart"></i> <span>Statistiche</span>
           </a>
         </li>
@@ -255,7 +255,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <!-- DataTables -->
-    <script src="assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/datatables/jquery.dataTables.js"></script>
     <script src="assets/datatables/dataTables.bootstrap.min.js"></script>
     
     <script>
