@@ -86,7 +86,8 @@ Una <b>struttura</b> è invece simile ad una classe, ma possiede solamente campi
 È possibile accedere ad un campo di una struttura in maniera molto semplice:
 <pre><code>var matricola = soldato.matricola;
 </code></pre>
-In questo caso, la variabile <tt>matricola</tt> conterrà il valore 150716. 
+In questo caso, la variabile <tt>matricola</tt> conterrà il valore 150716.
+
 DIALOGO FINALE
 Mellara
 Ottimo lavoro, soldati. Ma torneranno. Ci manca l'ultimo passo per la vittoria, ma è il passo più difficile. I faragi stanno preparando la loro nave madre, capace con una sola cannonata di ditruggere Angustina.
