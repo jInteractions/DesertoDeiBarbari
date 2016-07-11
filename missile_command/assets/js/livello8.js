@@ -313,7 +313,7 @@ Trasmettitore.prototype.riceviMessaggio = function ( identificatoreRadio, numero
 // Funzione di trasmissione.
 var trasmissione = function ( canaleTrasmissione ) {
   var identificatoreRadio = "AX2";
-  var messaggio = "[21:02] Parla base AX2, ci serve immediato aiuto, siamo sotto attacco!"
+  var messaggio = "[21:02] Parla base AX2, ci serve immediato aiuto, siamo sotto attacco!";
   var numeroCanale = 1;
   
   trasmettitore = new Trasmettitore( canaleTrasmissione );
