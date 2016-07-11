@@ -447,29 +447,29 @@
                         if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
                   ?>
                           <p>
-                            <?php echo '<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</p>'; ?>
+                            <?php echo '<div id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</div>'; ?>
                           </p>
                         <?php
                           echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
-                          echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'" />';
+                          echo '<div class="pTestoAiuto" id="testoAiuto'.$chiave.'"></div>';
                         } else {
                          ?>
                           <p>
-                            <?php echo '<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</p>'; ?>
+                            <?php echo '<div id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</div>'; ?>
                           </p>
                         <?php
                           if (strcmp($fileVirtualiAggiornati["fileVirtuali"][$chiave]["aiutoUtilizzato"], "true")===0){
                             echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'" disabled>Aiuto</button>';
-                            echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'">'.$valore["aiuto"].'</p>';
+                            echo '<div class="pTestoAiuto" id="testoAiuto'.$chiave.'">'.$valore["aiuto"].'</div>';
                           } else {
                             echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
-                            echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'" />';
+                            echo '<div class="pTestoAiuto" id="testoAiuto'.$chiave.'"></div>';
                           }
                           
                         }
                       }
                     }
-                  ?>'<p  id="testoAiuto'.$chiave.'" />'
+                  ?>
                 </div>
               </div>
             </div>
