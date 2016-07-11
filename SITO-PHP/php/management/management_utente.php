@@ -152,15 +152,7 @@ function selectMAX_tutorial_From_UTENTE($connection,$value){
 	return NULL;
 }
 function selectMIN_tutorial_From_UTENTE($connection,$value){
-	 $query="SELECT MIN(tutorial) FROM utente ";
- 	if ($stmt = $connection->prepare($query)) {
-		$stmt->execute();
-		$stmt->bind_result($min);
-		$stmt->fetch(); 
-		$stmt->close();
-		return $min;
-	}
-	return NULL;
+	 return 0;
 }
 function selectAVERAGE_tutorial_From_UTENTE($connection,$value){
 	 $query="SELECT AV(tutorial) FROM utente ";
@@ -273,15 +265,15 @@ function update_UTENTE_SET_password_WITH_alias_AS_KEY($connection,$password_val,
 	}
 	return $result;
 }
-function update_UTENTE_SET_tutorial_WITH_email_AS_KEY($connection,$tutorial_val,$email_val){
-	$query="UPDATE utenteSET tutorial = ? WHERE email=?";
+function update_UTENTE_SET_tutorial_WITH_email_AS_KEY($connection,$email_val){
+	$query="UPDATE utente SET tutorial = ? WHERE email=?";
 	$result = 0;
 	if ($stmt = $connection->prepare($query)) {
-		$stmt->bind_param( "ss",$tutorial_val,$email_val);
+		$stmt->bind_param( "is", $uno = 1,$email_val);
 		$result = $stmt->execute();
 		$stmt->close();
 	}
-	return $result;
+	return $email_val;
 }
 function update_UTENTE_SET_tutorial_WITH_password_AS_KEY($connection,$tutorial_val,$password_val){
 	$query="UPDATE utenteSET tutorial = ? WHERE password=?";
