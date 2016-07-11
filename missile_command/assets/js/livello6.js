@@ -1,5 +1,7 @@
 function Livello6 ( callbackFineLivello ) {
   CoreLevel.call( this, callbackFineLivello );
+  
+  console.log( t1() );
 }
 
 Livello6.prototype = Object.create( CoreLevel.prototype );
@@ -191,28 +193,68 @@ Livello6.prototype.mostraSchermataIniziale = function ( punteggio ) {
 var azionaComandoSparo = function ( torrettaSelezionata, sistema, x, y ) {
   sistema.sparo( x, y, torrettaSelezionata );
 }
-  
-var mouseAbilitato = false;
+
 // TAB 1
 
 /**********
-Funzione che abilita il comando di fuoco tramite click del mouse
-nella plancia comandi.
+Funzione che abilita il click del mouse per azionare la macchinetta del caffè.
+Questa funzione potrebbe essere d'ispirazione per altri scopi...
 **********/
-var abilitaClickMouse = function ( planciaComandi, torrette, mirino, sistema ) {
-  mouseAbilitato = true;
-  // Comandi plancia azionati da click del mouse
-  $( planciaComandi ).click( function ( ) {
-//###START_MODIFICABILE###
-    var x = mirino.x;
-    var y = mirino.y;
-    
-    var t = torrettaVicina ( torrette, x, y );
-    
-    azionaComandoSparo( t, sistema, x, y );
-//###END_MODIFICABILE###
+var azionaMacchinaCaffeConClick = function ( pulsantieraMacchinaCaffe ) {
+  // Comandi plancia azionati da click del mouse, notale il 'click'
+  $( pulsantieraMacchinaCaffe ).bind( 'click', function ( ) {
+    // Questa parte di codice si attiva quando si clicca
+    macchinaCaffe.faiIlCaffe();
   } );
 }
+
+// TAB 2
+
+/**********
+Funzione che date le coordinate del bersaglio
+determina la torretta migliore, e funzionante,
+per colpire il bersaglio.
+
+Questa funzione prende come parametri:
+  - torretta: un array di torrette;
+  - x: un intero che rappresenta la coordinata x;
+  - y: un intero che rappresenta la coordinata y;
+Questa funzione restituisce la torretta migliore.
+**********/
+var torrettaPiuVicina = function ( torrette, x, y ) {
+  /** Funzione che restituisce true (vero) o false (falso)
+  nel caso in cui la torretta sia o meno funzionante. */
+  var torrettaNonFunzionante = function ( torretta ) {
+    if( torretta.stato === BatteriaAntimissile.ATTIVA &&
+        torretta.numeroMissili > 0 &&
+        torretta.blocco === false )
+      return false;
+    else
+      return true;
+  } 
+  
+  var torrettaSelezionata;
+  if( 0 <= x && x < 170 ) {
+    torrettaSelezionata = torrette[0];
+  }
+  if( 170 <= x && x < 340 ) {
+    torrettaSelezionata = torrette[1];
+  }
+  if( 340 <= x && x <= 510 ) {
+    torrettaSelezionata = torrette[2];
+  }
+  
+  if( torrettaNonFunzionante(torrettaSelezionata) )
+    torrettaSelezionata = torrette[1];
+  if( torrettaNonFunzionante(torrettaSelezionata) )
+    torrettaSelezionata = torrette[0];
+  if( torrettaNonFunzionante(torrettaSelezionata) )
+    torrettaSelezionata = torrette[2];
+  
+  return torrettaSelezionata;
+}
+ 
+// TAB 3
  
 /**********
 Funzione che abilita i comandi della plancia. Attualmente prendo i tasti 1, 2, 3
@@ -228,12 +270,14 @@ La funzione prende come parametri:
   - sistema: è il sistema missilistico a cui sono rivolti i comandi.
 **********/
 var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sistema ) {
-  // Comandi plancia azionati da tastiera, sostituire con CLICK MOUSE!
+  // Comandi plancia azionati da tastiera, sostituire con click mouse ed inserire selezione automatica torretta.
 //###START_MODIFICABILE###
-  abilitaClickMouse (  planciaComandi, torrette, mirino, sistema ) ;
-  /*
   $( planciaComandi ).bind( 'keyup', function ( tastoPremuto ) {
-    // Selezione della torretta corrispondente
+    // Selezione coordinate a cui sparare
+    var x = mirino.x;
+    var y = mirino.y;
+  
+    // Selezione della torretta corrispondente, "which" significa "quale" in inglese
     var torrettaSelezionata;
     if( tastoPremuto.which === 49 ) // tasto 1
       torrettaSelezionata = torrette[0];
@@ -242,75 +286,67 @@ var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sis
     if( tastoPremuto.which === 51 ) // tasto 3
       torrettaSelezionata = torrette[2];
     
-    // Selezione coordinate a cui sparare
-    var x = mirino.x;
-    var y = mirino.y;
-    
     // Lancio del missile
     azionaComandoSparo( torrettaSelezionata, sistema, x, y );
-  } );*/
+  } );
 //###END_MODIFICABILE###
 }
-
 // test
 
-var t1 = 
-(
+var _x;
+var _y;
+var _tSelezionata;
+
+function _SistemaFinto () { }
+_SistemaFinto.prototype.sparo = function ( x, y, torrettaSelezionata ) {
+  this._x = x;
+  this._y = y;
+  this._tSelezionata = torrettaSelezionata;
+}
+    
+var t1 =
+//(
   function () {
-    mouseAbilitato = false;
-    azionamentoComandiPlancia( null, null, null, null );
-    return mouseAbilitato;
-  }
-) ();
+    var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+    var nMissili = coloreMissili.length;
+    var nSoldati = 10;
+    var Tmin = 50;
+    var Tmax = 1000;
+    var deltaTempo = 70;
+    var deltaRaffreddamento = 3;
+    var _torrette = [];
+    
+    _torrette.push (
+      new BatteriaAntimissile ( 35, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento, null )
+    );
+    _torrette.push (
+      new BatteriaAntimissile ( 255, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento, null )
+    );
+    _torrette.push (
+      new BatteriaAntimissile ( 475, 410, nMissili, nSoldati, coloreMissili, Tmin, Tmax, deltaTempo, deltaRaffreddamento, null )
+    );
+    var _mirino = new Mirino( rand(0, 510), rand(0, 460));
 
-// TAB 2
-
-/**********
-Funzione che date le coordinate del bersaglio
-determina la torretta migliore, e funzionante,
-per colpire il bersaglio.
-
-Questa funzione prende come parametri:
-  - torretta: un array di torrette;
-  - x: un intero che rappresenta la coordinata x;
-  - y: un intero che rappresenta la coordinata y;
-Questa funzione restituisce la torretta migliore.
-**********/
-var torrettaVicina = function ( torrette, x, y ) {
-  var torrettaSelezionata;
-  
-  if( 0 <= x && x < 170 ) {
-    torrettaSelezionata = torrette[0];
+    var _s = new _SistemaFinto();
+    azionamentoComandiPlancia( $("#dummy-div"), _torrette, _mirino, _s );
+    var t = torrettaPiuVicina ( _torrette, _mirino.x, _mirino.y );
+    $("#dummy-div").click();
+    $("#dummy-div").off();
+    //console.log( _mirino );
+    //console.log( t )
+    //console.log( _s )
+    
+    var esito = true;
+    if( _s._x !== _mirino.x ) 
+      esito = false;
+    if( _s._y !== _mirino.y )
+       esito = false;
+    if( _s._tSelezionata !== t) 
+       esito = false;
+    
+    return esito;
   }
-  if( 170 <= x && x < 340 ) {
-    torrettaSelezionata = torrette[1];
-  }
-  if( 340 <= x && x <= 510 ) {
-    torrettaSelezionata = torrette[2];
-  }
-  
-  if( nonFunzionante(torrettaSelezionata) )
-    torrettaSelezionata = torrette[1];
-  if( nonFunzionante(torrettaSelezionata) )
-    torrettaSelezionata = torrette[0];
-  if( nonFunzionante(torrettaSelezionata) )
-    torrettaSelezionata = torrette[2];
-  
-  return torrettaSelezionata;
-}
- 
-/**********
-Funzione che restituisce true (vero) o false (falso)
-nel caso in cui la torretta sia o meno funzionante.
-**********/
-var nonFunzionante = function ( torretta ) {
-  if( torretta.stato === BatteriaAntimissile.ATTIVA &&
-      torretta.numeroMissili > 0 &&
-      torretta.blocco === false )
-    return false;
-  else
-    return true;
-}
+//) ();
 
 /*
 var torrettaSelezionata;
@@ -320,3 +356,18 @@ var y = mirino.y;
 torrettaSelezionata = torrettaVicina( torrette, x, y )
 azionaComandoSparo( 'click', torrettaSelezionata, sistema, x, y );
 */
+
+/* SOLUZIONE
+$( planciaComandi ).bind( 'click', function ( evento ) {  
+    
+    // Selezione coordinate a cui sparare
+    var x = mirino.x;
+    var y = mirino.y;
+    
+    // Selezione della torretta corrispondente
+    var torrettaSelezionata = torrettaPiuVicina( torrette, x, y );
+    
+    // Lancio del missile
+    azionaComandoSparo( torrettaSelezionata, sistema, x, y );
+  } );
+  */
