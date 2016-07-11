@@ -5,18 +5,18 @@ function Livello3 ( callbackFineLivello ) {
 Livello3.prototype = Object.create( CoreLevel.prototype );
 Livello3.prototype.constructor = Livello3;
 
-Livello3.prototype.inizializzaArmiNemiche = function ( ) {
+Livello3.prototype.inizializzaArmiNemiche = function () {
   var areaPertenza = this.coreGame.canvas.width;
-  var ritardoMassimo = 100;
-  var xRand;
-  var velRand;
+  var ritardoMassimo = 300 * (this.numeroOndata * 0.05);
+  var velMin = 1.1 + this.numeroOndata * 0.05;
+  var velMax = 1.3 + this.numeroOndata * 0.05;
+  var numeroMissili = 15 + Math.floor( this.numeroOndata );
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 1;
   
   for( var i = 0; i < numeroMissili ; i++ ) {
-    xRand = rand( 0, areaPertenza );
-    velRand = rand( 1, 1.5 );
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
@@ -30,7 +30,7 @@ Livello3.prototype.calcolaCoefficienteOndata = function ( ) {
   return this.numeroOndata * 1.2;
 }
 
-CoreLevel.prototype.inizializzaTorrette = function ( ) {
+Livello3.prototype.inizializzaTorrette = function ( ) {
   var coloreMissili = [];
   var nSoldati = 10;
   var Tmin = 50;
@@ -213,32 +213,46 @@ var azionaPompeRaffreddamento = function ( ) {
 
 // TAB 1
 
+/**********
+Benvenuto nel file di caricamento delle torrette del sistema Hob-2000.
+Ogni torretta preleva dal magazzino i missili, uno ad uno,
+per inserirli automaticamente nel caricatore della torretta.
+Se sono presenti tipologie di proiettili difettose,
+modificare il codice seguente.
+**********/
+
+// Questo codice viene ripetuto per ogni torretta automaticamente.
 var meccanismoCaricamento = function ( ) {
+  // Variabile contenente il carico del magazzino.
   var magazzino = prelevaCarico();
+  // Array vuoti per il caricatore della torretta e
+  // per il deposito dei missili difettosi.
   var caricatoreTorretta = [];
   var proiettiliScartati = [];
   
-  //###START_MODIFICABILE###
+//###START_MODIFICABILE###
   for( i = 0; i < magazzino.length; ++i ) {
+    // Variabile contenente il proiettile i-esimo del magazzino.
     var proiettile = magazzino[i];
-    
+    // Se i missili al plutonio sono difettosi,
+    // inserirli nell'array dei missili scartati.
     if( proiettile.nucleoEsplosivo === 'plutonio' ) {
       caricatoreTorretta.push( proiettile );
     }
-    
+    // Se i missili al plasma sono difettosi,
+    // inserirli nell'array dei missili scartati.
     if( proiettile.nucleoEsplosivo === 'plasma' ) {
       caricatoreTorretta.push( proiettile  );
     }
-    
+    // Se i missili sonici sono difettosi,
+    // inserirli nell'array dei missili scartati.
     if( proiettile.nucleoEsplosivo === 'sonico' ) {
       caricatoreTorretta.push( proiettile );
     }
-    
+//###END_MODIFICABILE###    
     if( caricatoreTorretta.length >= 10 )
       break;
   }
-  //###END_MODIFICABILE###
-  
   return caricatoreTorretta;
 }
 
@@ -265,19 +279,32 @@ function () {
 
 // TAB 2
 
+/**********
+Benvenuto nel file di raffreddamento torrette del sistema Hob-2000.
+Il codice seguente permette di modificare la soglia di temperatura minima,
+cioè la soglia di temperatura dalla quale è possibile ricominciare
+a sparare in caso di surriscaldamento della torretta.
+
+Questo codice vale per tutte le torrette.
+**********/
+
 var sistemaRaffreddamento = function ( ) {
   T = rilevaTemperatura();
-  //###START_MODIFICABILE###
+//###START_MODIFICABILE###
+  // Variabile contenente la soglia di temperatura minima.
   var sogliaTemperaturaMinima = 500;
-  //###END_MODIFICABILE###
+//###END_MODIFICABILE###
   
   if( T >= 799 ) {
-    //###START_MODIFICABILE###
+//###START_MODIFICABILE###
+    // Ciclo per la gestione delle pompe di raffreddamento.
+    // Deve rimanere attivo finché la temperatura T non è
+    // uguale o superiore alla soglia.
     while( T === sogliaTemperaturaMinima ) {
       azionaPompeRaffreddamento();
       T = rilevaTemperatura();
     }
-    //###END_MODIFICABILE###
+//###END_MODIFICABILE###
   }
 }
 
@@ -302,9 +329,3 @@ var sistemaRaffreddamento = function ( ) {
 }
 ) ();
 */
-
-
-
-
-
-

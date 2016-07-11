@@ -1,5 +1,5 @@
 function Livello2 ( callbackFineLivello ) {
-  CoreLevel.call( this, callbackFineLivello );
+  CoreLevel.call( this, callbackFineLivello );  
 }
 
 Livello2.prototype = Object.create( CoreLevel.prototype );
@@ -9,18 +9,18 @@ Livello2.prototype.inizializzaMirino = function () {
   this.mirino = new Mirino( this.canvas.width / 2, this.canvas.height / 2, 10.0 );
 }
 
-Livello2.prototype.inizializzaArmiNemiche = function () {
+Livello2.prototype.inizializzaArmiNemiche = function () {  
   var areaPertenza = this.coreGame.canvas.width;
-  var ritardoMassimo = 100;
-  var xRand;
-  var velRand;
+  var ritardoMassimo = 100 * (this.numeroOndata * 0.05);
+  var velMin = 1.0 + this.numeroOndata * 0.05;
+  var velMax = 1.2 + this.numeroOndata * 0.05;
+  var numeroMissili = 10 + Math.floor( this.numeroOndata );
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 10;
   
   for( var i = 0; i < numeroMissili ; i++ ) {
-    xRand = rand( 0, areaPertenza );
-    velRand = rand( 1, 1.5 );
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
@@ -30,8 +30,51 @@ Livello2.prototype.inizializzaArmiNemiche = function () {
   }
 }
 
+Livello2.prototype.inizializzaTorrette = function () {
+  var nMissili = 10;
+  var nSoldati = 10;
+  var Tmin = 50;
+  var Tmax = 1000;
+  var deltaTempo = 70;
+  var deltaRaffreddamento = 3;
+  
+  var coloreMissili0 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  coloreMissili0[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  coloreMissili0[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 35, 410, nMissili, nSoldati, coloreMissili0, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+  
+  coloreMissili1 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  coloreMissili1[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  coloreMissili1[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 255, 410, nMissili, nSoldati, coloreMissili1, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+  
+  var coloreMissili2 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  coloreMissili2[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  coloreMissili2[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 475, 410, nMissili, nSoldati, coloreMissili2, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+};
+
 Livello2.prototype.sparo = function ( x, y, tasto ) {
   var indiceTorretta = this.scegliTorretta( x, y, tasto);
+   if( indiceTorretta === -1 )
+    return;
+  var torretta = this.coreGame.batterieAntimissile[ indiceTorretta ];
+  
   var raggio = 30;
   var xModificata = x;
   var yModificata = y;
@@ -39,25 +82,38 @@ Livello2.prototype.sparo = function ( x, y, tasto ) {
     xModificata += rand( -raggio, raggio );
     yModificata += rand( -raggio, raggio );
   }
-  var vel = 7;
-  var incrementoTemperatura = 150;
   
-  if( indiceTorretta === -1 )
-    return;
+  var vel = 0;
+  var incrementoTemperatura = 150;
+  var coloreScia = 'blue';
+  var raggioEsplosione = 2;
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'blue' ) { 
+    vel = 7; coloreScia = 'blue'; raggioEsplosione = 20; 
+  }
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'red' ) { 
+    vel = 8; coloreScia = 'red'; raggioEsplosione = 2; 
+  }
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === '#33CCFF' ) { 
+    vel = 0.5; coloreScia = '#33CCFF'; raggioEsplosione = 30; 
+  }
   
   this.coreGame.missiliTerrestri.push( new MissileTerrestre( {
-    xDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].x,
-    yDiPartenza: this.coreGame.batterieAntimissile[ indiceTorretta ].y,
+    xDiPartenza: torretta.x,
+    yDiPartenza: torretta.y,
     xDiArrivo: xModificata,
     yDiArrivo: yModificata,
     coloreTestata: 'yellow',
-    coloreScia: 'blue',
-    massimoRaggioEsplosione: raggio,
+    coloreScia: coloreScia,
+    massimoRaggioEsplosione: raggioEsplosione,
     distanzaPerFrame: vel
   }, this.coreGame ) );
   this.coreGame.aggiornaPunteggioMissiliSparati();
-  this.coreGame.batterieAntimissile[ indiceTorretta ].numeroMissili--;
-  this.coreGame.batterieAntimissile[ indiceTorretta ].temperatura += incrementoTemperatura;
+  torretta.numeroMissili--;
+  torretta.temperatura += incrementoTemperatura;
+}
+
+Livello2.prototype.calcolaCoefficienteOndata = function () {
+  return this.numeroOndata * 1.2;
 }
 
 // interfaccia test - codice utente
@@ -69,14 +125,14 @@ var controlloPermessiCalibrazione = function () {
     && risultato[ 1 ] === true
     && risultato[ 2 ] === 2
   ) {
-    console.log("> Permessi di calibrazione mira sbloccati.\n Procedere al sistema di configurazione planetario.\n");
+    console.log("Permessi di calibrazione mira sbloccati.\n Procedere al sistema di configurazione planetario.");
     return true;
   } else {
     console.log(
-      "> Sblocco Calibrazione: " + risultato[ 0 ]
-      + "\n> Accesso Configurazione Pianeti: " + risultato[ 1 ]
-      + "\n> Codice Pianeta: " + risultato[ 2 ]
-      + "\n> Informazioni non corrette."
+      "Sblocco Calibrazione: " + risultato[ 0 ]
+      + "Accesso Configurazione Pianeti: " + risultato[ 1 ]
+      + "Codice Pianeta: " + risultato[ 2 ]
+      + "Informazioni non corrette."
     );
     return false;
   } 
@@ -97,16 +153,16 @@ var controlloConfigurazioneParametriPianeti = function () {
     && atmosfera === "respirabile"
     && settore === 7
   ) {
-    console.log("> Configurazione sistema antimissile...\n> Pianeta Bastiani.\n> Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
+    console.log("Configurazione sistema antimissile... Pianeta Bastiani. Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.");
     return true;
   } else {
     console.log(
-      "> Nome pianeta: " + nome
-      + "\n> Forza Gravitazionale: " + grav
-      + "\n> Vento: " + vento
-      + "\n> Atmosfera: " + atmosfera
-      + "\n> Settore Galattico: " + settore
-      + "\n> Informazioni non corrette."
+      "Nome pianeta: " + nome
+      + "Forza Gravitazionale: " + grav
+      + "Vento: " + vento
+      + "Atmosfera: " + atmosfera
+      + "Settore Galattico: " + settore
+      + "Informazioni non corrette."
     );
     return false;
   }
@@ -114,25 +170,44 @@ var controlloConfigurazioneParametriPianeti = function () {
 
 // TAB 1
 
+/**********
+Benvenuto nel file di sblocco dei permessi di calibrazione.
+Il seguente file permette di sbloccare ed accedere alle funzionalità
+di configurazione planetaria, fondamentiali per la corretta impostazione
+delle armi.
+**********/
+
+// Variabile contenente il codice del pianeta su cui si trovano le armi.
 var _codicePianeta;
 
-
+// Codice per lo sblocco dei permessi di calibrazione,
+// contenente anche lo sblocco di configurazione planetaria.
+// Attenzione! Senza lo sblocco della calibrazione attiva,
+// non sarà possibile attivare la configurazione planetaria.
 var sbloccoPermessiCalibrazione = function () {
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
+  // Variabile di sblocco del sistema di calibrazione.
   var sbloccoCalibrazione = false;
-  // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
   var accessoConfigurazionePianeti = false;
-  var codiceDefault = 3;
+  // Variabili contenenti i codici planetari.
+  var codiceTerra = 1;
   var codiceBastiani = 2;
+  var codiceColombre = 3;
+  var codiceButtafuoco = 4;
+  var codiceBarnabo = 5;
+  var codiceBuzzati = 6;
   
   if ( sbloccoCalibrazione === true ) {
     accessoConfigurazionePianeti = true;
   }
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
+  // Attenzione! Modificare solo se il pianeta desiderato non è quello di default.
   if ( accessoConfigurazionePianeti === true ) {
-    // ###END_MODIFICABILE###
-    _codicePianeta = codiceDefault;
+//###END_MODIFICABILE###
+    _codicePianeta = codiceTerra;
   } else {
+    // Assegnare alla variabile il codice del pianeta desiderato.
     _codicePianeta = codiceBastiani;
   }
   
@@ -157,6 +232,16 @@ var sbloccoPermessiCalibrazione = function () {
 
 // TAB 2
 
+/**********
+Benvenuto nel file di configurazione planetaria del sistema Hob-2000.
+Troverai in elenco le caratteristiche di ogni pianeta,
+necessarie per il corretto funzionamento del sistema stesso.
+Ogni pianeta ha cinque caratteristiche: il nome, la forza gravitazionale,
+il vento, l'atmosfera e il settore galattico.
+Tali caratteristiche influiscono pesantemente sulle capacità di sparo,
+rendendo potenzialmente inutilizzabili le armi se configurate per il pianeta errato.
+**********/
+
 var configurazioneParametriPianeti = function () {
   var nomePianeta;
   var forzaGravitazionale;
@@ -164,7 +249,7 @@ var configurazioneParametriPianeti = function () {
   var atmosfera;
   var settoreGalattico;
   
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
   if ( _codicePianeta === 1 ) {
     nomePianeta = "Terra";
     forzaGravitazionale = 1;
@@ -201,7 +286,9 @@ var configurazioneParametriPianeti = function () {
     vento = 23;
     atmosfera = "respirabile";
     settoreGalattico = 7;
-    // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
+    // /\/\/\ £Nos****Kn£$%BsorJOJSONHbooooooLK666dbw**
+    // **&fgHJS666&78765&4%4$$L£sC&GSTntadjr /\/\/\
   } else if ( _codicePianeta === "00110111" ) {
     nomePianeta = "01000001 01101110 01100111 01110101 01110011 01110100 01101001 01101110 01100001";
     forzaGravitazionale = "00110010 00101110 00110011";

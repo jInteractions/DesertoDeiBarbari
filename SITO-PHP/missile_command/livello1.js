@@ -29,18 +29,57 @@ Livello1.prototype.inizializzaLivello = function ( ) {
   this.setupListeners();
 }
 
+Livello1.prototype.inizializzaTorrette = function () {
+  var nMissili = 10;
+  var nSoldati = 10;
+  var Tmin = 50;
+  var Tmax = 1000;
+  var deltaTempo = 70;
+  var deltaRaffreddamento = 3;
+  
+  var coloreMissili0 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  coloreMissili0[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  coloreMissili0[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili0[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 35, 410, nMissili, nSoldati, coloreMissili0, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+  
+  coloreMissili1 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  coloreMissili1[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  coloreMissili1[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili1[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 255, 410, nMissili, nSoldati, coloreMissili1, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+  
+  var coloreMissili2 = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  coloreMissili2[ rand( 0, 9 ) ] = '#33CCFF';
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  coloreMissili2[ rand( 0, 9 ) ] = '#33CCFF';       
+  coloreMissili2[ rand( 0, 9 ) ] = 'red';
+  this.coreGame.aggiungiBatteriaAntimissile(
+    new BatteriaAntimissile ( 475, 410, nMissili, nSoldati, coloreMissili2, Tmin, Tmax, deltaTempo, deltaRaffreddamento, this.coreGame )
+  );
+};
+
 Livello1.prototype.inizializzaArmiNemiche = function () {
   var areaPertenza = this.coreGame.canvas.width;
-  var ritardoMassimo = 100;
-  var xRand;
-  var velRand;
+  var ritardoMassimo = 100 + this.numeroOndata * 0.05;
+  var velMin = 1.0 + this.numeroOndata * 0.05;
+  var velMax = 1.2 + this.numeroOndata * 0.05;
+  var numeroMissili = 10 + Math.floor( this.numeroOndata );
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  var numeroMissili = 10;
   
   for( var i = 0; i < numeroMissili ; i++ ) {
-    xRand = rand( 0, areaPertenza );
-    velRand = rand( 1, 1.5 );
+    var xRand = rand( 0, areaPertenza );
+    var velRand = rand( velMin, velMax );
     ritardoRand = rand( 0, ritardoMassimo );
     this.coreGame.missiliNemici.push( new MissileNemico( {
       coloreTestata: 'yellow',
@@ -55,14 +94,29 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
   var raggio = 30;
   var xModificata = x + rand( -raggio, raggio );
   var yModificata = y + rand( -raggio, raggio );
-  var vel = 7;
+  
+  var vel = 0;
   var incrementoTemperatura = 150;
+  var coloreScia = 'blue';
+  var raggioEsplosione = 2;
   
   if( indiceTorretta === -1 )
     return;
   
+  var torretta = this.coreGame.batterieAntimissile[indiceTorretta];
+    
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'blue' ) { 
+    vel = 7; coloreScia = 'blue'; raggioEsplosione = 20;
+  }
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === 'red' ) { 
+    vel = 8; coloreScia = 'red'; raggioEsplosione = 2;
+  }
+  if( torretta.tipoMunizioni[ torretta.numeroMissili - 1 ] === '#33CCFF' ) { 
+    vel = 0.5; coloreScia = '#33CCFF'; raggioEsplosione = 30;
+  }
+    
   if ( sbloccaSparo() === false ) {
-    console.log("> Sicura attiva!");
+    console.log("Sicura attiva!");
     return;
   }
   
@@ -72,7 +126,7 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
     xDiArrivo: xModificata,
     yDiArrivo: yModificata,
     coloreTestata: 'yellow',
-    coloreScia: 'blue',
+    coloreScia: coloreScia,
     massimoRaggioEsplosione: raggio,
     distanzaPerFrame: vel
   }, this.coreGame ) );
@@ -99,15 +153,15 @@ var controlloAccesso = function () {
     && password === "utf-8_tuono"
     && stringa === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
   ) {
-    console.log("> Informazioni inserite correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
+    console.log("Informazioni inserite correttamente.\nBuon proseguimento con il sistema Hob-2000.");
     return true;
   } else {
     console.log(
-      "> Nome: " + nome
-      + "\n> Matricola: " + matricola
-      + "\n> Password: " + Array(password.length + 1).join("*")
-      + "\n> Stringa: " + stringa
-      + "\n> Informazioni non corrette."
+      "Nome: " + nome
+      + "Matricola: " + matricola
+      + "Password: " + Array(password.length + 1).join("*")
+      + "Stringa: " + stringa
+      + "Informazioni non corrette."
     );
     return false;
   }
@@ -118,10 +172,10 @@ var sbloccaSparo = function ( ) {
   var base = rand(1, Math.sqrt(Number.MAX_VALUE));
   var altezza = rand(1, Math.sqrt(Number.MAX_VALUE));
   if( base * altezza === verificaPresenzaCervelloOperatore( base, altezza ) ) {
-    console.log("> Formula corretta, verifica completata.");
+    console.log("Formula corretta, verifica completata.");
     return true;
   } else {
-    console.log("> Formula errata, forma di vita intelligente non rilevata.");
+    console.log("Formula errata, forma di vita intelligente non rilevata.");
     return false;
   }
 }
@@ -141,28 +195,30 @@ HOB-2000.
 
 
 Buongiorno, sono il sistema antimissilistico HOB-2000, per comunicarvi che
-l'autenticazione automatica è fallita. Se proprio desiderate procedere, avete la
-possibilità di utilizzare l'autenticazione manuale.
+l'autenticazione automatica è fallita. Se proprio desiderate procedere, avete la possibilità di utilizzare l'autenticazione manuale.
 
 Grazie per aver scelto HOB-2000.
+Copyright (C) 4096 Orsa Minore Software Inc. - Tutti i diritti riservati
+È possibile utilizzare, distribuire o modificare questo file secondo i termini della licenza galattica GGPA-DA1979, che sfortunatamente non verrà scritta se non nel prossimo secolo.
 */
 
 // TAB 2
 
-/*
+/**********
+Il codice seguente permette l'autenticazione manuale di un operatore, tramite la creazione di una parola di accesso ottenuta dalla concatenazione di più stringhe.
+ATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione automatica.
 
-Questo codice permette l'autenticazione manuale di un operatore.
-
-ATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione
-            automatica.
-*/
+Inserire il proprio nome utente nella variabile "nome", la propria matricola nella variabile "matricola" e la propria password nella variabile "password".
+**********/
 var autenticazioneManuale = function () {
-  // ###START_MODIFICABILE###
+//###START_MODIFICABILE###
+  // Ricorda: il simbolo = permette di assegnare il valore alla variabile.
   var nome = "captano";
   var matricola = 0;
   var password = "utf";
+  // Ricorda: il simbolo + tra due stringhe indica la loro concatenazione.
   var stringaAccesso = "UTF-8" + nome + "&&--"+ password + "%" + matricola;
-  // ###END_MODIFICABILE###
+//###END_MODIFICABILE###
   
   return [nome, matricola, password, stringaAccesso];
 }
@@ -184,12 +240,15 @@ var autenticazioneManuale = function () {
 }) ();*/
 
 // TAB 3
-
+/**********
+Il codice che segue è necessario per verificare la presenza di un operatore umano.
+Il quesito posto è semplice: la variabile "areaRettangolo" deve contenere la corretta formula per il calcolo dell'area di un rettangolo.
+**********/
 var verificaPresenzaCervelloOperatore = function ( base, altezza ) {
-  // ###START_MODIFICABILE###
-  var area = base + altezza;
-  // ###END_MODIFICABILE###
-  return area;
+//###START_MODIFICABILE###
+  var areaRettangolo = base + altezza;
+//###END_MODIFICABILE###
+  return areaRettangolo;
 }
 
 // test
