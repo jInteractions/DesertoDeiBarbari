@@ -12,10 +12,9 @@
     }
 		$result = selectFrom_LIVELLO_By_idlivello($connection,$_GET["idlivello"]);
     $json = json_decode($result["json"]);
-    
     if($punteggio >= $json->costoAiuti) {
-      foreach ($json->fileVirtuali as $file) {
-        if(strcmp($file->nomeFile, $_GET["nomefile"])){ 
+      foreach ($json->fileVirtuali as $chiave => $file) {
+        if(strcmp($file->nomeFile, $_GET["nomefile"])===0){
           $livelloAttuale = selectFrom_LIVELLO_ESEGUITO_idlivello_name_By_email($connection,$_GET["idlivello"],$_GET["email"]);
           $nuovoPunteggio = $livelloAttuale["punteggio"] - $json->costoAiuti; update_LIVELLO_ESEGUITO_SET_punteggio_WITH_email_idLivello_AS_KEY($connection,$nuovoPunteggio,$_GET["idlivello"],$_GET["email"]);
           echo $file->aiuto;
@@ -24,9 +23,9 @@
       }
     } else
       echo "Punteggio a disposizione non sufficiente per richiedere l'aiuto!";
-	}
+  }
 	else
-		echo "{'result':'error'}";
+		echo "Merda";
 
 
 

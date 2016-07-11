@@ -8,11 +8,10 @@ var getHelp = function (livello, file, testoAiutoStr, email, nomeBottoneAiuto){
         dataType: "text",
         success: function (result) {
             var aiuto = result.replace("<h1>Connection established</h1>", "");
-            $(testoAiutoStr).html(aiuto);
-            $(nomeBottoneAiuto).prop("disabled",true);
+            $(testoAiutoStr).html(aiuto);           
         },
-        error: function (error) {
-            oldConsole.log(error);
+        error: function (errore) {
+            oldConsole.log(errore);
         }
     });
 
@@ -39,21 +38,6 @@ var resetCodiceUtente = function (livello, nomefile, editorCodice){
 };
 
 var updateCodiceUtente = function (livello, email, richiestoAiuto, nomeFile, codiceUtente){
-  function escape (key, val) {
-    if (typeof(val)!="string") return val;
-    return val
-      //.replace(/[\"]/g, '\\"')
-      //.replace(/[\\]/g, '\\\\')
-      //.replace(/[\/]/g, '\\/')
-      .replace(/[\b]/g, '\\b')
-      .replace(/[\f]/g, '\\f')
-      .replace(/[\n]/g, '\\n')
-      .replace(/[\r]/g, '\\r')
-      .replace(/[\t]/g, '\\t')
-    ; 
-}
-
-
   
   var strutturaJson = { "fileVirtuali": [] };
   $.each( nomeFile, function( i, nome ) {

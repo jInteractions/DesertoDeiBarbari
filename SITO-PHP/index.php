@@ -64,7 +64,7 @@
       $_SESSION["email"] = $_COOKIE["user"];
     }
     if(isset($_GET["idlivello"])){
-        $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+        $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, false);
         $informazioniLivelloAttuale = selectFrom_LIVELLO_By_idlivello($connection,$_GET["idlivello"]);
         $fileVirtualiAggiornati = select_file_virtuali_aggiornati_From_LIVELLO_ESEGUITO_By_idlivello_email ($connection, $_GET["idlivello"], $_SESSION["email"]);
         $livelloEseguito = selectFrom_LIVELLO_ESEGUITO_By_idlivello_email($connection, $_GET["idlivello"], $_SESSION["email"]);
@@ -203,7 +203,15 @@
                   <h4 class="modal-title" id="myModalLabel">Aiuto di <?php echo $valore["nomeFile"] ?></h4>
                 </div>
                 <div class="modal-body">
-                  <h3>Sei sicuro di voler utilizzare un token aiuto? Costerà <?php echo $jsonLivello["costoAiuti"]; ?> punti del tuo punteggio esperienza!</h3>
+                  <h3>Sei sicuro di voler utilizzare un token aiuto? Costerà <?php echo $jsonLivello["costoAiuti"]; ?> punti del tuo punteggio esperienza! <br> Hai a disposizione 
+                  <?php   
+                    $informazioniLivelliEseguiti = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $_SESSION["email"]);
+                    $punteggio = 0;
+                    foreach($informazioniLivelliEseguiti as $chiave_punteggio => $valore_punteggio) {
+                      $punteggio+=$valore_punteggio["punteggio"];
+                    }
+                    echo $punteggio; 
+                  ?> punti.</h3>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -410,7 +418,7 @@
                     </div>
                     <div class="col-md-3 text-center">
                       <button type="button" class="bottone btn btn-lg btn-warning center-block" data-toggle="tooltip" data-placement="bottom" title="Vai al livello successivo" id="bottoneLivelloSuccessivo">
-                        Livello successivo <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        Livello successivo
                       </button>
                     </div>
                     <div class="col-md-3 text-center">
@@ -450,9 +458,9 @@
                             <?php echo '<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="glyphicon glyphicon-ok" aria-hidden="true" style="visibility: hidden;"></span> '.$valore["descrizione"].'</p>'; ?>
                           </p>
                         <?php
-                          if (strcmp($valore["aiutoUtilizzato"], "true")===0){
+                          if (strcmp($fileVirtualiAggiornati["fileVirtuali"][$chiave]["aiutoUtilizzato"], "true")===0){
                             echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'" disabled>Aiuto</button>';
-                            echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'">'.$valore["aiutoUtilizzato"].'</p>';
+                            echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'">'.$valore["aiuto"].'</p>';
                           } else {
                             echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
                             echo '<p class="pTestoAiuto" id="testoAiuto'.$chiave.'" />';
@@ -623,8 +631,12 @@ Script che gestiscono per intero la pagina lato client
         var testoAiutoStr = "#testoAiuto" + indice;
         var titoloCodice = $(".tab"+indice+"default").text();
         var nomeBottoneAiuto = "#buttonModalAiuto" + indice;
-        funzioneSalvaCodice();
+        oldConsole.log(testoAiutoStr);
+        oldConsole.log(titoloCodice);
+        oldConsole.log(nomeBottoneAiuto);
         getHelp(<?php echo $_GET["idlivello"]; ?>, titoloCodice, testoAiutoStr, "<?php echo $_SESSION["email"]; ?>", nomeBottoneAiuto);
+        $(nomeBottoneAiuto).prop("disabled",true); 
+        funzioneSalvaCodice();
       };
 
       /** Reset codice nella tab con id obiettivo "id" */
@@ -657,7 +669,10 @@ Script che gestiscono per intero la pagina lato client
         for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
           //console.log( conAiuti.indexOf(i) )
           //console.log( $("#buttonModalAiuto" + i) )
-          if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).disabled ){
+          oldConsole.log(conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop("disabled")+"\n");
+          oldConsole.log($("#buttonModalAiuto" + i).prop("disabled")+"\n");
+          oldConsole.log(conAiuti.indexOf(i)!=-1);
+          if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop("disabled") ){
             //console.log( "aiuto usato" )
             richiestoAiuto[i] = "true";
             nomeFile[i] = $(".tab"+i+"default").text();
