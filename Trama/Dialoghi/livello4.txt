@@ -30,7 +30,7 @@ Zurlin ha promesso di collaborare con noi. Pu&#xF2; aprirci una porta per entrar
 Simeoni
 Interessante. Spiegami un po&#x27;, Zurlin: cosa dovrei fare?
 Zurlin
-Allora caro, come prima cosa ci sar&#xE0; da creare un&#x27;arma sabotata, che poi andr&#xE0; caricata nel codice della nave, in modo che usi quella invece che quelle che utilizza normalmente. Non potrai esagerare con le modifiche... altrimenti potrebbero accorgersene subito.
+Allora caro, come prima cosa ci sar&#xE0; da creare un&#x27;arma sabotata, che poi andr&#xE0; caricata nel codice della nave, in modo che il vostro Nemico usi questa invece che le armi antiterrestre che utilizza normalmente. Non potrai esagerare con le modifiche... altrimenti potrebbero accorgersene subito.
 Simeoni
 Ottimo.
 Zurlin
