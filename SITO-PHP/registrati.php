@@ -26,7 +26,7 @@
 <body class="hold-transition login-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="#">Il deserto dei barbari</a>
+    <a href="#">Il Deserto dei Barbari</a>
   </div>
 
   <div class="register-box-body">
@@ -54,7 +54,7 @@
       </div>
     </form>
 
-    <a href="login.html" class="text-center">Sono già registrato</a>
+    <a href="login.php" class="text-center">Sono già registrato</a>
   </div>
   <!-- /.form-box -->
 </div>

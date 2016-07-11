@@ -49,6 +49,7 @@
         <!-- /.col -->
       </div>
     </form>
+    <a href="registrati.php" class="text-center">Se non sei ancora registrato, registrati!</a>
   </div>
   <!-- /.login-box-body -->
 </div>

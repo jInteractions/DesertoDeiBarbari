@@ -179,12 +179,12 @@
             </div>
           </div>
           <div class="modal-footer">
-            <h5>Puoi passare al livello successivo o continuare a combattere per migliorare il punteggio.</h5>
+            <h5>Puoi passare al livello successivo o continuare a combattere per migliorare il punteggio.</h5> 
             <div class="col-md-3 col-md-offset-6 colonna">
-              <button type="button" class="btn btn-warning center-block" id="bottoneLivelloSuccessivoModal"> Livello successivo </button>
+              <button type="button" class="btn btn-info center-block" data-dismiss="modal">Continua a giocare</button>
             </div>
             <div class="col-md-3 colonna">
-              <button type="button" class="btn btn-info center-block" data-dismiss="modal">Continua a giocare</button>
+              <button type="button" class="btn btn-warning center-block" id="bottoneLivelloSuccessivoModal"> Livello successivo </button>
             </div>
           </div>
         </div>
@@ -748,7 +748,7 @@ Script che gestiscono per intero la pagina lato client
         $(document).on("click", "button.bottoneAiutoClass" , function() {
             mostraAiuto(this.id.replace("bottoneAiuto", ""));
         });
-        $("#bottoneCaricaCodice").click(ricaricaCodice);
+        $("#bottoneCaricaCodice").click(function(){funzioneSalvaCodice(); ricaricaCodice();});
         $("#bottoneLivelloSuccessivo").click(function () {
             location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
         });
