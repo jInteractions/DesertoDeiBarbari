@@ -10,7 +10,7 @@ Generale Ortiz. Almeno per oggi.
 Simeoni
 Che significa?
 Ortiz
-Significa che per mantenere la mia bella faccia pulita da ogni sospetto, devo tirarti fuori da questa prigione, per oggi. Abbiamo bisogno di un tecnico informatico e, a detta dei miei uomini, sei il migliore.
+Significa che per mantenere la mia bella faccia pulita da ogni sospetto, devo tirarti fuori da questa prigione. In via straordinaria e solo per oggi. Abbiamo bisogno di un tecnico informatico e, a detta dei miei uomini, sei il migliore.
 Simeoni
 E perch&#xE9; dovrei farlo? Non ti devo nulla. Anzi, mi hai sbattuto in galera e hai tradit...
 Ortiz
@@ -28,9 +28,9 @@ Cosa dobbiamo fare? Un nuovo attacco ai loro sistemi informatici?
 Ortiz
 Magari. Purtroppo dopo l&#x27;ultima volta hanno alzato il livello di sicurezza. Non sappiamo pi&#xF9; come entrare. In ogni caso, Zurlin ha trovato una cosa.
 Zurlin
-Il Nemico aveva sviluppato un nuovo tipo di missili, top secret.
+Il Nemico aveva sviluppato un nuovo tipo di missili, top secret...
 Ortiz
-... e abbiamo intercettato una loro conversazione. Stanno per utilizzarli.
+... ed abbiamo intercettato una loro conversazione. Stanno per utilizzarli.
 Zurlin
 Sono composti da una particolare testata in grado di sdoppiarsi. Sono riuscita a... ricordarmi come fossero fatti. Dobbiamo implementare questa tecnologia nelle torrette dell&#x27;UTF-8.
 Simeoni
@@ -117,7 +117,7 @@ Ovviamente. Non esiste pi&#xF9;, &#xE8; stata cancellata pochi anni dopo. Comunq
 Simeoni
 Il JS?
 Prosdocimo
-Ovviamente. Per questo so diverse cose e odio Ortiz eh eh eh.
+Ovviamente. Per questo so diverse cose ed odio Ortiz eh eh eh.
 Simeoni
 Cosa sai dirmi di lui?
 Prosdocimo
@@ -129,4 +129,4 @@ Allora la leggenda &#xE8; vera... eh eh eh. Speravo di vivere abbastanza a lungo
 Simeoni
 Arriva qualcuno! Vattene, Prosdocimo!
 Prosdocimo
-Eh eh eh, non preoccuparti, ora me ne vado. Ma ne vdremo delle belle, mio giovane amico. Eh eh eh...
+Eh eh eh, non preoccuparti, ora me ne vado. Ma ne vedremo delle belle, mio giovane amico. Eh eh eh...

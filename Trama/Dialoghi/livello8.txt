@@ -18,11 +18,11 @@ Abbiamo riorganizzato le basi al fronte. La met&#xE0; di esse sono state svuotat
 Simeoni
 Comincio a capire di cosa si tratta...
 Ortiz
-Ogni nas e ha un canale radio, che utilizza per comunicare con il quartier generale. Il canale n&#xB0;0 viene usato dalla prima base a sinistra nello schermo, il n&#xB0;1 dalla seconda e cos&#xEC; via fino all&#x27;ultima base a destra, che utilizza il canale n&#xB0;5.
+Ogni base ha un canale radio, che utilizza per comunicare con il quartier generale. Il canale n&#xB0;0 viene usato dalla prima base a sinistra nello schermo, il n&#xB0;1 dalla seconda e cos&#xEC; via fino all&#x27;ultima base a destra, che utilizza il canale n&#xB0;5.
 Simeoni
 Capito.
 Ortiz
-Il tuo compito sar&#xE0; quello di cambiare il segnale che arriva al quartier generale, in modo tale da rendere le basi vitali come ausiliarie e viceversa, portando fuori strada il Nemico. In questo modo infatti colpir&#xE0; prima le basi ausiliari, mascherate da basi vitali.
+Il tuo compito sar&#xE0; quello di cambiare il segnale che arriva al quartier generale, in modo tale da rendere le basi vitali rilevate come vuote e viceversa, portando fuori strada il Nemico. In questo modo infatti colpir&#xE0; prima le basi finte, mascherate da basi vitali.
 Simeoni
 Chiaro. Ma come facciamo a capire chi ci sta mandando il messaggio?
 Ortiz
@@ -75,15 +75,15 @@ DIALOGO FINALE
 Ortiz
 Ottimo lavoro, uomini. Ora ho una comunicazione molto importante da fare.
 Prosdocimo
-Cosa ha in mente in di fare?
+Cosa ha in mente?
 Simeoni
 Non lo so, ma non mi aspetto nulla di buono.
 Ortiz
-Silenzio, laggi&#xF9; in fondo. Ho appena ricevuto un ordine dallo stato maggiore, con priorit&#xE0; 0. Il governo terrestre, grazie a persone come me, &#xE8; riuscito ad ottenere un&#x27;alleanza con gli Ibridi. Molti di voi si staranno chiedendo cosa sono gli Ibridi: ebbene, Zurlin, qui, ne &#xE8; un esempio. Dall&#x27;altra parte del deserto, molti anni fa, arrivarono navi di disperati che fuggivano dalla povert&#xE0; dei pianeti dell&#x27;orlo della galassia. Si sono fusi con la razza tronk, creando una nuova speranza per l&#x27;Universo.
+Silenzio, laggi&#xF9; in fondo. Ho appena ricevuto un ordine dallo stato maggiore, con priorit&#xE0; 0. Il governo terrestre, grazie a persone come me, &#xE8; riuscito ad ottenere un&#x27;alleanza con gli Ibridi. Molti di voi si staranno chiedendo cosa siano gli Ibridi: ebbene, Zurlin, qui, ne &#xE8; un esempio. Dall&#x27;altra parte del deserto, molti anni fa, arrivarono navi di disperati che fuggivano dalla povert&#xE0; dei pianeti dell&#x27;orlo della galassia. Si sono fusi con la razza tronk, creando una nuova speranza per l&#x27;Universo.
 Simeoni
 Traditore!
 Ortiz
-Zitto, maggiore. Avevi capito alcune cose, te lo concedo. Ma non tutto. Dall&#x27;orlo della galassia confinante, a migliaia di anni luce oltre il deserto dei Barbari, una nuova minaccia si &#xE8; affacciata. Gli Ibridi stavano fuggendo, e non non li abbiamo accolti. Credo che sia ben chiaro nella mente di tutti voi che l&#x27;accoglienza, soprattutto di chi fugge dalla guerra, sia uno dei punti fondamentali dell&#x27;umanit&#xE0;.
+Zitto, maggiore. Avevi capito alcune cose, te lo concedo. Ma non tutto. Dall&#x27;orlo della galassia confinante, a migliaia di anni luce oltre il deserto dei Barbari, una nuova minaccia si &#xE8; affacciata. Gli Ibridi stavano fuggendo e non non li abbiamo accolti. Credo che sia ben chiaro nella mente di tutti voi che l&#x27;accoglienza, soprattutto di chi fugge dalla guerra, sia uno dei valori pi&#xF9; importanti dell&#x27;umanit&#xE0;.
 Prosdocimo
 No ha tutti i torti, eh eh eh.
 Ortiz
@@ -123,6 +123,6 @@ Provveder&#xF2; al pi&#xF9; presto. La seconda?
 Prosdocimo
 Cosa &#xE8; successo alla spedizione segreta, trent&#x27;anni fa?
 Ortiz
-Memoria lunga, eh? Siamo arrivati su Tronk e abbiamo conosciuto gli Ibridi. I miei compagni sono rimasti l&#xE0;, mentre io sono tornato per eseguire questo lungo lavoro, che si &#xE8; concluso con questa alleanza.
+Memoria lunga, eh? Siamo arrivati su Tronk e abbiamo conosciuto gli Ibridi. I miei compagni sono rimasti l&#xE0;, mentre io sono tornato per eseguire questo lungo lavoro, che si &#xE8; concluso con l&#x27;alleanza di oggi.
 Prosdocimo
 Ortiz, la vecchia volpe... eh eh eh.
