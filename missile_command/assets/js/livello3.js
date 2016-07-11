@@ -249,12 +249,10 @@ var meccanismoCaricamento = function ( ) {
     if( proiettile.nucleoEsplosivo === 'sonico' ) {
       caricatoreTorretta.push( proiettile );
     }
-    
+//###END_MODIFICABILE###    
     if( caricatoreTorretta.length >= 10 )
       break;
   }
-//###END_MODIFICABILE###
-  
   return caricatoreTorretta;
 }
 

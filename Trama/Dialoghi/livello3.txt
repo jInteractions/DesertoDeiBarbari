@@ -66,8 +66,12 @@ che deve diventare:
 </code></pre>
 
 OBIETTIVO - Tab 2
-L&#x27;obiettivo &#xE8; quello di impostare la corretta gestione del sistema di raffreddamento. Il primo punto da modificare &#xE8; la soglia della temperatura minima, cio&#xE8; fino a che punto si mantiene il blocco della torretta, durante il quale le pompe di raffreddamento abbassano la temperatura.
-Questa soglia pu&#xF2; essere abbassata a piacere, considerando che, nel momento in cui la torretta supera la temperatura di 799&#xB0;C, essa si bloccher&#xE0; e rimarr&#xE0; bloccata finch&#xE9; non si raggiunger&#xE0; tale soglia.<br>
+L&#x27;obiettivo &#xE8; quello di impostare la corretta gestione del sistema di raffreddamento. Il primo punto da modificare &#xE8; la soglia della temperatura minima.<br>
+La soglia di temperatura minima &#xE8; la temperatura alla quale le torrette surriscaldate tornano a funzionare.<br>
+Il sistema di raffreddamento delle torrette funziona nel modo seguente:
+<li> ogni volta che una torretta supera i 799&#xB0;C, si blocca; </li>
+<li> a questo punto le pompe di raffreddamento abbassano la temperatura della torretta; </li>
+<li> raggiunta la soglia di temperatura minima, la torretta si sblocca e ricomincia a sparare. </li> <br>
 Una soglia bassa permette dunque di sparare a lungo ma poi rimanere bloccati per molto tempo; una soglia alta permette di sparare poco ma con un tempo di raffreddamento (e dunque di blocco) decisamente minore.<br>
 Il secondo punto da modificare &#xE8; la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura &#xE8; maggiore o uguale alla soglia decisa in precedenza.
 AIUTI
@@ -130,7 +134,7 @@ Grazie, signore.
 Ortiz
 Non dormire sugli allori, per&#xF2;. Il Nemico continua a batterci, anche se forse... le cose stanno per cambiare.
 Simeoni
-Hai scoperto qualcosa, signore?
+Scoperto qualcosa, signore?
 Ortiz
 Abbiamo abbattuto un caccia nemico, a pochi chilometri da qui. Il pilota &#xE8; conciato male, ma lo stiamo sistemando. Spero di riuscire ad interrogarlo, questa notte. Potremmo ricavare grandi benefici da questo incontro. &#xC8; il primo prigioniero che riusciamo a prendere... e dunque il primo punto di contatto tra le nostre culture. Gli esseri umani non hanno mai parlato con nessuno che venisse dall&#x27;altro capo del deserto dei Barbari... sar&#xE0; sicuramente interessante.
 Simeoni
