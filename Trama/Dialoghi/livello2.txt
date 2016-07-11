@@ -41,7 +41,7 @@ Prosdocimo
 Lo saranno, giovane capitano. Parola di Prosdocimo! Per&#xF2; facciamo cos&#xEC;: non dire al tuo generale che ti ho aiutato e che hai utilizzato questo file. Eh eh eh...
 
 OBIETTIVO - Tab 1
-L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino. Sar&#xE0; dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>. Fatto questo &#xE8; necessario entrare nella parte di codice raggiungibile dall&#x27;<i>else</i> dell&#x27;struzione <i>if-else</i>, modificando il confronto tra le parentesi tonde che seguono la parola chiave <i>if</i>: tutto questo per inserire nella variabile <tt>_codicePianeta</tt> il codice del pianeta Bastiani e non quello preimpostato.
+L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino. Sar&#xE0; dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>. Fatto questo &#xE8; necessario entrare nella parte di codice raggiungibile dall&#x27;<i>else</i> dell&#x27;struzione <i>if-else</i>, modificando il confronto all'interno delle parentesi tonde che seguono la parola chiave <i>if</i>: infatti la parte di codice dell'<i>else</i> imposta correttamente la variabile <tt>_codicePianeta</tt>.
 AIUTI
 Come prima cosa &#xE8; necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>, nel seguente modo:
 <pre><code>var sbloccoCalibrazione = true;
@@ -113,7 +113,7 @@ DIALOGO FINALE
 Simeoni
 Capitano Simeoni a rapporto signore.
 Ortiz
-Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sar&#xF2; per sempre su questo pianeta ed &#xE8; giusto che tu sappia anche cavartela da solo. Ho solo una curiosit&#xE0;: come sei riuscito a risolvere questo problema? Devo ammettere che sono stato colpito...
+Bene. Sapevo che il discorsetto che ti ho fatto stamattina sarebbe servito a qualcosa. Io non sar&#xF2; per sempre su questo pianeta ed &#xE8; giusto che tu sappia anche cavartela da solo. Ho solo una curiosit&#xE0;: come sei riuscito a risolvere questo problema? Devo ammettere che sono colpito...
 Simeoni
 Signore, ho solo osservato i missili lanciati nel cielo. Usavano meno propellente, non abbastanza per la forza gravitazionale di Bastiani. Poi il mirino era decisamente sfalsato, come se fosse stato impostato per un vento molto pi&#xF9; forte. Ma non voglio annoiare nessuno, signore.
 Ortiz

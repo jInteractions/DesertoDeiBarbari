@@ -123,7 +123,7 @@ var controlloPermessiCalibrazione = function () {
   if (
     risultato[ 0 ] === true
     && risultato[ 1 ] === true
-    && risultato[ 2 ] === 4
+    && risultato[ 2 ] === 2
   ) {
     console.log("Permessi di calibrazione mira sbloccati.\n Procedere al sistema di configurazione planetario.");
     return true;
@@ -191,7 +191,7 @@ var sbloccoPermessiCalibrazione = function () {
 //###END_MODIFICABILE###
   var accessoConfigurazionePianeti = false;
   // Variabili contenenti i codici planetari.
-  var codiceDefault = 1;
+  var codiceTerra = 1;
   var codiceBastiani = 2;
   var codiceColombre = 3;
   var codiceButtafuoco = 4;
@@ -205,10 +205,10 @@ var sbloccoPermessiCalibrazione = function () {
   // Attenzione! Modificare solo se il pianeta desiderato non è quello di default.
   if ( accessoConfigurazionePianeti === true ) {
 //###END_MODIFICABILE###
-    _codicePianeta = codiceDefault;
+    _codicePianeta = codiceTerra;
   } else {
     // Assegnare alla variabile il codice del pianeta desiderato.
-    _codicePianeta = codiceButtafuoco;
+    _codicePianeta = codiceBastiani;
   }
   
   return [sbloccoCalibrazione, accessoConfigurazionePianeti, _codicePianeta]
@@ -221,7 +221,7 @@ var sbloccoPermessiCalibrazione = function () {
   if (
     risultato[ 0 ] === true
     && risultato[ 1 ] === true
-    && risultato[ 2 ] === 4
+    && risultato[ 2 ] === 2
   ) {
     return true;
   } else {
