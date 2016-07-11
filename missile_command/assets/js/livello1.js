@@ -116,7 +116,7 @@ Livello1.prototype.sparo = function ( x, y, tasto ) {
   }
     
   if ( sbloccaSparo() === false ) {
-    console.log("> Sicura attiva!");
+    console.log("Sicura attiva!");
     return;
   }
   
@@ -153,15 +153,15 @@ var controlloAccesso = function () {
     && password === "utf-8_tuono"
     && stringa === risultato[ 0 ] + "%" + risultato[ 1 ] + "<" + risultato[ 2 ] + ">"
   ) {
-    console.log("> Informazioni inserite correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
+    console.log("Informazioni inserite correttamente.\nBuon proseguimento con il sistema Hob-2000.");
     return true;
   } else {
     console.log(
-      "> Nome: " + nome
-      + "\n> Matricola: " + matricola
-      + "\n> Password: " + Array(password.length + 1).join("*")
-      + "\n> Stringa: " + stringa
-      + "\n> Informazioni non corrette."
+      "Nome: " + nome
+      + "Matricola: " + matricola
+      + "Password: " + Array(password.length + 1).join("*")
+      + "Stringa: " + stringa
+      + "Informazioni non corrette."
     );
     return false;
   }
@@ -172,10 +172,10 @@ var sbloccaSparo = function ( ) {
   var base = rand(1, Math.sqrt(Number.MAX_VALUE));
   var altezza = rand(1, Math.sqrt(Number.MAX_VALUE));
   if( base * altezza === verificaPresenzaCervelloOperatore( base, altezza ) ) {
-    console.log("> Formula corretta, verifica completata.");
+    console.log("Formula corretta, verifica completata.");
     return true;
   } else {
-    console.log("> Formula errata, forma di vita intelligente non rilevata.");
+    console.log("Formula errata, forma di vita intelligente non rilevata.");
     return false;
   }
 }
