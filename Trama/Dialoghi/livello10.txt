@@ -48,10 +48,10 @@ OBIETTIVO
 L'obiettivo è rendere le due torrette laterali automatiche. Per fare ciò è necessario scrivere la funzione che consente di identificare i bersagli corretti.<br>
 L'area di sparo è larga 510 unità sull'asse <i>x</i>: la torretta di sinistra dovrà occuparsi esclusivamente dei missili nemici presenti nella prima metà di essa, dunque entro 255 unità; la torretta destra invece si dovrà occupare solamente dei missili nemici oltre la metà, dunque con una coordinata <i>x</i> maggiore di 255. Inoltre bisogna prestare attenzione affinché tali torrette identifichino i nostri missili come non ostili e dunque non li abbattano.<br>
 Ricapitolando, dato un array chiamato <tt>bersagli</tt> contenente tutti i missili in volo (amici e nemici), si dovrà:
-- escludere i missili amici (appartenenti alla classe <tt>MissileTerrestre</tt>);
-- includere i missili nemici (appartenenti alla classe <tt>MissileNemico</tt>);
-- includere solo i missili nella metà di area di sparo corrispondente alla posizione della torretta;
-- ricorda: le torrette hanno un identificatore ciascuna, chiamato <tt>numeroTorretta</tt>; quella sinistra lo ha uguale a 0 e quella destra uguale a 2.
+<li> escludere i missili amici (appartenenti alla classe <tt>MissileTerrestre</tt>); </li>
+<li> includere i missili nemici (appartenenti alla classe <tt>MissileNemico</tt>); </li>
+<li> includere solo i missili nella metà di area di sparo corrispondente alla posizione della torretta; </li>
+<li> ricorda: le torrette hanno un identificatore ciascuna, chiamato <tt>numeroTorretta</tt>; quella sinistra lo ha uguale a 0 e quella destra uguale a 2. </li> <br>
 Una volta individuati i candidati, si dovrà identificare quello più urgente, considerando la funzione <tt>ordinamentoBersagliPerAltezza()</tt>.<br>
 La funzione <tt>identificaBersaglio()</tt> alla fine dovrà ritornare uno ed un solo bersaglio.
 AIUTI
