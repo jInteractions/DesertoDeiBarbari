@@ -600,8 +600,12 @@ Script che gestiscono per intero la pagina lato client
       var risoltoTuttiObiettivi = false
       // Backup console classica
       var oldConsole = console;
+      // Tutorial apparso
+      var tutorialApparso = false;
          
       var mostraTutorial = function () {
+        tutorialApparso = true;
+        
         var makePopover = function( selector, options ) {
           var object        = $( selector );
           options.animation = false;
@@ -694,7 +698,6 @@ Script che gestiscono per intero la pagina lato client
         showPopover( 0 );  
         
         // chiamata ajax per settare il tutorial
-        console.log("aaa")
         updateTutorialSuperato( "<?php echo $_SESSION["email"]; ?>" );
       };
       
@@ -869,16 +872,19 @@ Script che gestiscono per intero la pagina lato client
             resetCodice(resetCodeId);
           }); 
         }
+        <?php
+        if( $infoUtente["tutorial"] == 0 ) {
+          echo " 
+          $('#modalDialoghi').on('hidden.bs.modal', function () {
+            if( tutorialApparso === false )
+              mostraTutorial();
+          } );";
+        } 
+        ?>
         
         console = new Terminale( "#terminale" );
 
         ricaricaCodice();
-        
-        <?php
-        if( $infoUtente["tutorial"] == 0 ){
-          echo 'mostraTutorial();';
-        } 
-        ?>
       } );
 
       /** Funzione che carica il codice nel gioco e resetta
