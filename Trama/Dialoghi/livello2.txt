@@ -45,17 +45,17 @@ L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino. Sar&#xE0
 AIUTI
 Come prima cosa &#xE8; necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>, nel seguente modo:
 <pre><code>var sbloccoCalibrazione = true;
-</code><pre>
+</code></pre>
 Il secondo passo prevede di cambiare la condizione dell&#x27;<i>if</i>, rendedola come segue:
 <pre><code>if ( accessoConfigurazionePianeti === false )
-</code><pre>
+</code></pre>
 
 OBIETTIVO - Tab 2
 L&#x27;obiettivo &#xE8; quello di modificare correttamente il grosso blocco di istruzioni <i>if-else if</i>, in modo che venga eseguito il codice corretto per il pianeta Bastiani.
 AIUTI
 Per avere la corretta configurazione di puntamento e sparo &#xE8; necessario entrare nel corretto pezzo del blocco di istruzioni <i>if-else if</i>: il modo migliore &#xE8; quello di sostituire il codice del pianeta con 6, dunque inserire prima del primo <i>if</i> la seguente istruzione:
 <pre><code>_codicePianeta = 6;
-</code><pre>
+</code></pre>
 
 MANUALE
 Un altro punto fondamentale nei codici sorgenti del sistema antimissilistico Hob-2000 &#xE8; rappresentato dalle <b>istruzioni di controllo</b>.
