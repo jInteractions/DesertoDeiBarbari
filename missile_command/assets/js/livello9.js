@@ -5,12 +5,41 @@ function Livello9 ( callbackFineLivello ) {
 Livello9.prototype = Object.create( CoreLevel.prototype );
 Livello9.prototype.constructor = Livello9;
 
+Livello9.prototype.inizializzaLivello = function ( numeroOndata ) {
+  var mySelf = this;
+  
+  this.numeroOndata = numeroOndata;
+  
+  this.inizializzaMirino();
+  this.coreGame = new CoreGame( this.canvas, this.mirino, {
+    coloreSfondo: 'black',
+    coloreTerreno: 'red',
+    coloreTestoPrimario: 'blue',
+    coloreTestoSecondario: 'red'
+  });
+  var coeff = this.calcolaCoefficienteOndata();
+  this.coreGame.aggiornaCoefficienteOndata( coeff );
+  this.inizializzaTorrette();
+  
+  if( this.numeroOndata === 1 ) {
+    this.inizializzaBasi();
+  } else {
+    $.each( this.basi, function ( indice, base ) {
+      base.coreGame = mySelf.coreGame
+    } );
+    mySelf.coreGame.basi = mySelf.basi;
+  }
+  
+  this.inizializzaArmiNemiche();
+  this.inizializzaArmiTerrestri();
+}
+
 Livello9.prototype.inizializzaBasi = function ( ) {
-  this.coreGame.aggiungiBase( new BaseMilitare( 80,  430, false, 100, 'red', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 80,  430, true, 100, 'cyan', this.coreGame ) );
   this.coreGame.aggiungiBase( new BaseMilitare( 130,  430, true, 100, 'cyan', this.coreGame ) );  
-  this.coreGame.aggiungiBase( new BaseMilitare( 180,  430, false, 100, 'red', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 180,  430, true, 100, 'cyan', this.coreGame ) );
   this.coreGame.aggiungiBase( new BaseMilitare( 300,  430, true, 100, 'cyan', this.coreGame ) );
-  this.coreGame.aggiungiBase( new BaseMilitare( 350,  430, false, 100, 'red', this.coreGame ) );
+  this.coreGame.aggiungiBase( new BaseMilitare( 350,  430, true, 100, 'cyan', this.coreGame ) );
   this.coreGame.aggiungiBase( new BaseMilitare( 400,  430, true, 100, 'cyan', this.coreGame ) );
 }
 
@@ -23,27 +52,7 @@ Livello9.prototype.inizializzaArmiNemiche = function ( ) {
   var numeroMissiliSdoppiabili = rand( 0, numeroMissili );
   var ritardoRand;
   var bersagli = this.coreGame.bersagliAttaccabili();
-  
-  var bersagliPrioritari = [];
-  $.each( this.coreGame.basi, function ( i, b ) {
-    if( b.vitale === false )
-      bersagliPrioritari.push( {x: b.x + 15, y: b.y - 10, tipo: b} )
-  } );
-  var bersagliNonBasi = this.coreGame.bersagliAttaccabili().filter( function( b ) {
-    if( b.tipo instanceof BaseMilitare )
-      return false;
-    return true;
-  } );
-  var bersagliPrioritariEsauriti = true;
-  $.each( bersagliPrioritari, function( i, b ) {
-    if( b.tipo.attiva === true )
-      bersagliPrioritariEsauriti = false;
-  } )
-  if( bersagliPrioritariEsauriti === true )
-    var bersagli = this.coreGame.bersagliAttaccabili();
-  else
-    var bersagli = bersagliNonBasi.concat( bersagliPrioritari );
-  
+    
   for( var i = 0; i < numeroMissili ; i++ ) {
     var xRand = rand( 0, areaPertenza );
     var velRand = rand( velMin, velMax );
