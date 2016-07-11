@@ -125,7 +125,7 @@ var controlloPermessiCalibrazione = function () {
     && risultato[ 1 ] === true
     && risultato[ 2 ] === 4
   ) {
-    console.log("Permessi di calibrazione mira sbloccati.\n Procedere al sistema di configurazione planetario.\n");
+    console.log("Permessi di calibrazione mira sbloccati.\n Procedere al sistema di configurazione planetario.");
     return true;
   } else {
     console.log(
@@ -153,7 +153,7 @@ var controlloConfigurazioneParametriPianeti = function () {
     && atmosfera === "respirabile"
     && settore === 7
   ) {
-    console.log("Configurazione sistema antimissile... Pianeta Bastiani. Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.\n");
+    console.log("Configurazione sistema antimissile... Pianeta Bastiani. Informazioni aggiornate correttamente.\nBuon proseguimento con il sistema Hob-2000.");
     return true;
   } else {
     console.log(
