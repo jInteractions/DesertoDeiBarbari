@@ -107,3 +107,18 @@ var aggiungiLivelloSuccessivo = function (livello, email){
         }
     });
 }
+
+var updateTutorialSuperato = function ( email ){
+    $.ajax( {
+        type: "POST",
+        url: host + "php/setTutorialPassato.php",
+        data: "email=" + email,
+        dataType: "text",
+        success: function (result) {
+            oldConsole.log(result);
+        },
+        error: function (error) {
+            oldConsole.log(error);
+        }
+    } );
+}

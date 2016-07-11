@@ -68,6 +68,8 @@
         $informazioniLivelloAttuale = selectFrom_LIVELLO_By_idlivello($connection,$_GET["idlivello"]);
         $fileVirtualiAggiornati = select_file_virtuali_aggiornati_From_LIVELLO_ESEGUITO_By_idlivello_email ($connection, $_GET["idlivello"], $_SESSION["email"]);
         $livelloEseguito = selectFrom_LIVELLO_ESEGUITO_By_idlivello_email($connection, $_GET["idlivello"], $_SESSION["email"]);
+        $infoUtente = selectFrom_UTENTE_By_email($connection, $_SESSION["email"]);
+      
         if(count($livelloEseguito)===0){
           echo "<h1>Livello non ancora sbloccato, non barare!</h1>";
           exit();
@@ -469,7 +471,7 @@
               </div>
             </div>
             <div class="panel accordionPanel">
-              <div class="accordionPanel-heading panel-heading" role="tab" id="headingTwo">
+              <div class="accordionPanel-heading panel-heading  panel-obiettivo" role="tab" id="headingTwo">
                 <h4 class="accordionPanel-title panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" id="collapseObiettivo" aria-expanded="false" aria-controls="collapseTwo">
                     Obiettivo
@@ -511,10 +513,10 @@
                 </div>
               </div>
             </div>
-            <div class="panel accordionPanel">
+            <div class="panel accordionPanel panel-manuale">
               <div class="accordionPanel-heading panel-heading" role="tab" id="headingThree">
                 <h4 class="accordionPanel-title panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="collapseManuale">
                     Manuale
                   </a>
                 </h4>
@@ -598,6 +600,103 @@ Script che gestiscono per intero la pagina lato client
       var risoltoTuttiObiettivi = false
       // Backup console classica
       var oldConsole = console;
+         
+      var mostraTutorial = function () {
+        var makePopover = function( selector, options ) {
+          var object        = $( selector );
+          options.animation = false;
+          object.popover( options );
+          popovers.push( object );
+          return object;
+        };
+        var makeButton = function( i ) {
+          var text = i < popovers.length - 1 ? 'Avanti' : 'Fine';
+          return '<br /><p><button class="btn btn-default" id="tourNavButton' + i + '">'+text+'</button></p>';
+        }
+        var showPopover = function( i ) {
+          var obj          = popovers[i];
+          var button       = $( makeButton( i ) );
+          obj.popover( 'toggle' );
+          var new_position = $( '.popover' ).offset();
+          var content      = $( '.popover-content' );
+          button.appendTo( content );
+          window.scrollTo( new_position.left, new_position.top - 60);
+
+          button.click(function () {
+            obj.popover( 'toggle' );
+            content.detach();
+            i++;
+            if (i < popovers.length)
+            {
+                showPopover( i );
+            }
+          });
+        };
+
+        var popovers = [];
+        makePopover( '.main-header', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Benvenuto nella plancia di comando delle postazioni antimissile del 42esimo battaglione dell'UTF-8.\nIo sono il sistema operativo HOB-2000 e ti accompagnerò in questa breve guida.\nClicca su AVANTI per proseguire.\n",
+          'trigger': 'manual',
+          'placement': 'bottom',
+        });
+        makePopover( '.gameContainer', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Questa è la schermata che mostra il settore del pianeta da te difeso. Il tuo lavoro consiste nella difesa delle basi, colorate in azzurro.",
+          'trigger': 'manual',
+          'placement': 'left',
+        });
+        makePopover( '.tab0default', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Questa è una delle schede in cui compare il codice sorgente.\nLe righe colorate di rosso sono quelle che non puoi modificare.",
+          'trigger': 'manual',
+          'placement': 'bottom',
+        });
+        makePopover( '#bottoneCaricaCodice', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Questo bottone serve per caricare le tue modifiche nel sistema.",
+          'trigger': 'manual',
+          'placement': 'bottom',
+        });
+         makePopover( '.panel-obiettivo', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Qui sono contenute le indicazioni sulle missione da svolgere. Tutte le missioni riguardano l'aggiustare il codice del sistema.",
+          'trigger': 'manual',
+          'placement': 'bottom',
+        });
+        makePopover( '#terminale', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Questo piccolo schermo è il terminale, che permette di visualizzare tutti i messaggi del sistema, come gli errori o le comunicazioni di successo.",
+          'trigger': 'manual',
+          'placement': 'left',
+        });
+        makePopover( '.crosshair', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Una volta completati tutti gli obiettivi dovrai respingere almeno un'ondata del nemico per passare al livello successivo.",
+          'trigger': 'manual',
+          'placement': 'bottom',
+        });
+        makePopover( '#bottoneSalvaCodice', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Questo bottone serve per salvare le tue modifiche nel cloud.",
+          'trigger': 'manual',
+          'placement': 'bottom',
+        });
+        makePopover( '#buttonModalAiuto1', {
+          'title': 'Guida al sistema HOB-2000.',
+          'content': "Se sei bloccato e non riesci ad andare avanti, pagando un prezzo in punti potrai sbloccare un aiuto per l'obiettivo.",
+          'trigger': 'manual',
+          'placement': 'bottom',
+        });
+        
+        $("#collapseObiettivo").click();
+        $("#collapseManuale").click();
+        showPopover( 0 );  
+        
+        // chiamata ajax per settare il tutorial
+        console.log("aaa")
+        updateTutorialSuperato( "<?php echo $_SESSION["email"]; ?>" );
+      };
       
       /** Funzione che inizializza l'editor di codeMirror dato
           l'id di un obiettivo */
@@ -669,9 +768,9 @@ Script che gestiscono per intero la pagina lato client
         var testoAiutoStr = "#testoAiuto" + indice;
         var titoloCodice = $(".tab"+indice+"default").text();
         var nomeBottoneAiuto = "#buttonModalAiuto" + indice;
-        oldConsole.log(testoAiutoStr);
-        oldConsole.log(titoloCodice);
-        oldConsole.log(nomeBottoneAiuto);
+        //oldConsole.log(testoAiutoStr);
+        //oldConsole.log(titoloCodice);
+        //oldConsole.log(nomeBottoneAiuto);
         getHelp(<?php echo $_GET["idlivello"]; ?>, titoloCodice, testoAiutoStr, "<?php echo $_SESSION["email"]; ?>", nomeBottoneAiuto);
         $(nomeBottoneAiuto).prop("disabled",true); 
         funzioneSalvaCodice();
@@ -679,7 +778,7 @@ Script che gestiscono per intero la pagina lato client
 
       /** Reset codice nella tab con id obiettivo "id" */
       var resetCodice = function ( id ) {
-        oldConsole.log( id )
+          //oldConsole.log( id )
           resetCodiceUtente(<?php echo $_GET["idlivello"]; ?>, $(".tab" + id + "default").text(), editorCodice[id]);
       };
 
@@ -707,9 +806,9 @@ Script che gestiscono per intero la pagina lato client
         for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
           //console.log( conAiuti.indexOf(i) )
           //console.log( $("#buttonModalAiuto" + i) )
-          oldConsole.log(conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop("disabled")+"\n");
-          oldConsole.log($("#buttonModalAiuto" + i).prop("disabled")+"\n");
-          oldConsole.log(conAiuti.indexOf(i)!=-1);
+          //oldConsole.log(conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop("disabled")+"\n");
+          //oldConsole.log($("#buttonModalAiuto" + i).prop("disabled")+"\n");
+          //oldConsole.log(conAiuti.indexOf(i)!=-1);
           if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop("disabled") ){
             //console.log( "aiuto usato" )
             richiestoAiuto[i] = "true";
@@ -738,7 +837,7 @@ Script che gestiscono per intero la pagina lato client
         
         // Questa funzione effettua l'highlight di tutto il codice in <code>
         hljs.initHighlightingOnLoad();
-
+        
         <?php 
           if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
             echo '$("#modalDialoghi").modal("show");';
@@ -774,7 +873,13 @@ Script che gestiscono per intero la pagina lato client
         console = new Terminale( "#terminale" );
 
         ricaricaCodice();
-     } );
+        
+        <?php
+        if( $infoUtente["tutorial"] == 0 ){
+          echo 'mostraTutorial();';
+        } 
+        ?>
+      } );
 
       /** Funzione che carica il codice nel gioco e resetta
           il livello. Questa funzione valida anche il codice 
