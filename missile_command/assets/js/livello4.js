@@ -186,11 +186,8 @@ var autenticazioneOperatoreNonTerrestre = function ( tentativo ) {
 // TAB 1
 
 /**********
-Ciao, caro. Il codice che vedi di seguito è una mia idea
-su come potrebbe essere un'arma sabotata da caricare
-al posto di quelle standard all'interno del codice del
-Nemico. Aggiusta i parametri della classe per rendere
-l'arma più consona alle tue esigenze.
+Ciao, caro. Il codice che vedi di seguito è una mia idea su come potrebbe essere un'arma sabotata da caricare al posto di quelle standard all'interno del codice del Nemico.
+Aggiusta i parametri della classe per rendere l'arma più consona alle tue esigenze.
 Saluti,
 Zurlin
 **********/
@@ -233,15 +230,14 @@ function ArmaNemicaSabotata () {
 
 /**********
 File di creazione delle batterie antiterrestri.
-Ricordiamo che è necessario autenticarsi in seguito a
-qualunque modifica.
+Ricordiamo che è necessario autenticarsi in seguito a qualunque modifica.
 **********/
 
 var inizializzaBatteriaAntiterrestri = function () {
 //###START_MODIFICABILE###
   // Variabile contenente la batteria antiterrestre
   // di tipo standard.
-  var batteria = new ArmaNemicaSabotata();
+  var batteria = new BatteriaAntiterrestre();
   return batteria;
 //###END_MODIFICABILE###
 }
@@ -261,13 +257,9 @@ var inizializzaBatteriaAntiterrestri = function () {
 
 /**********
 Ciao, caro.
-Nella funzione generaPassword() hai un esempio di funzione ricorsiva
-per il calcolo della password necessaria per salvare le modifiche.
-Questo codice prova ad indovinare la password generando tutte le combinazioni
-possibili dei caratteri '0', '1' e '2'.
-Nella funzione hackingPassword() queste combinazioni vengono mandate
-al server centrale del Nemico, continuando finché non viene approvata una
-delle combinazioni.
+Nella funzione generaPassword() hai un esempio di funzione ricorsiva per il calcolo della password necessaria per salvare le modifiche.
+Questo codice prova ad indovinare la password generando tutte le combinazioni possibili dei caratteri '0', '1' e '2'.
+Nella funzione hackingPassword() queste combinazioni vengono mandate al server centrale del Nemico, continuando finché non viene approvata una delle combinazioni.
 Spero di non aver fatto errori.
 Saluti,
 Zurlin
