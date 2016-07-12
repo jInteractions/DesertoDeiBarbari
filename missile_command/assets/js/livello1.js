@@ -212,6 +212,9 @@ ATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione automatica
 Inserire il proprio nome utente nella variabile "nome", la propria matricola nella variabile "matricola" e la propria password nella variabile "password".
 Creare poi la corretta stringaAccesso, utilizzando la concatenazione di variabili che contengono una stringa.
 **********/
+
+/* /\/\/\ Gen. Ortiz /\/\/\
+Se hai bisogno di ricordarti cosa devi fare, controlla la sezione "Obiettivo" corrispondente al nome di questo file, presente sulla tua plancia di comando.*/
 var autenticazioneManuale = function () {
 //###START_MODIFICABILE###
   // Ricorda: il simbolo = permette di assegnare il valore alla variabile.

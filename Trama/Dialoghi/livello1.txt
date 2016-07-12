@@ -37,6 +37,7 @@ Ortiz
 Mi aspetto grandi cose da te, capitano. Non deludermi.
 
 OBIETTIVO - Tab 1
+Nota: ogni obiettivo &#xE8; legato ad un file modificabile. Come puoi vedere l&#x27;obiettivo ha lo stesso nome del file a cui &#xE8; collegato.
 L&#x27;obiettivo &#xE8; costruire la frase d&#x27;accesso corretta per sbloccare il sistema di puntamento e sparo. Devi dunque inserire:
 <li>nella variabile <tt>nome</tt>, la stringa &#x22;Cpt Simeoni&#x22;;</li>
 <li>nella variabile <tt>matricola</tt>, il numero 150716;</li>
