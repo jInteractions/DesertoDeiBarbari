@@ -1,7 +1,5 @@
 function Livello6 ( callbackFineLivello ) {
   CoreLevel.call( this, callbackFineLivello );
-  
-  console.log( t1() );
 }
 
 Livello6.prototype = Object.create( CoreLevel.prototype );
@@ -190,6 +188,17 @@ Livello6.prototype.mostraSchermataIniziale = function ( punteggio ) {
   } );                     
 }
 
+var _x;
+var _y;
+var _tSelezionata;
+
+function _SistemaFinto () { }
+_SistemaFinto.prototype.sparo = function ( x, y, torrettaSelezionata ) {
+  this._x = x;
+  this._y = y;
+  this._tSelezionata = torrettaSelezionata;
+}
+
 var azionaComandoSparo = function ( torrettaSelezionata, sistema, x, y ) {
   sistema.sparo( x, y, torrettaSelezionata );
 }
@@ -202,7 +211,7 @@ Questa funzione potrebbe essere d'ispirazione per altri scopi...
 **********/
 var azionaMacchinaCaffeConClick = function ( pulsantieraMacchinaCaffe ) {
   // Comandi plancia azionati da click del mouse, notale il 'click'
-  $( pulsantieraMacchinaCaffe ).bind( 'click', function ( ) {
+  $( pulsantieraMacchinaCaffe ).bind( 'click', function ( eventoClick ) {
     // Questa parte di codice si attiva quando si clicca
     macchinaCaffe.faiIlCaffe();
   } );
@@ -279,11 +288,11 @@ var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sis
   
     // Selezione della torretta corrispondente, "which" significa "quale" in inglese
     var torrettaSelezionata;
-    if( tastoPremuto.which === 49 ) // tasto 1
+    if( tastoPremuto.which === 49 ) // Pressione tasto "1"
       torrettaSelezionata = torrette[0];
-    if( tastoPremuto.which === 50 ) // tasto 2
+    if( tastoPremuto.which === 50 ) // Pressione tasto "2"
       torrettaSelezionata = torrette[1];
-    if( tastoPremuto.which === 51 ) // tasto 3
+    if( tastoPremuto.which === 51 ) // Pressione tasto "3"
       torrettaSelezionata = torrette[2];
     
     // Lancio del missile
@@ -291,18 +300,8 @@ var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sis
   } );
 //###END_MODIFICABILE###
 }
+
 // test
-
-var _x;
-var _y;
-var _tSelezionata;
-
-function _SistemaFinto () { }
-_SistemaFinto.prototype.sparo = function ( x, y, torrettaSelezionata ) {
-  this._x = x;
-  this._y = y;
-  this._tSelezionata = torrettaSelezionata;
-}
     
 var t1 =
 //(
@@ -358,7 +357,7 @@ azionaComandoSparo( 'click', torrettaSelezionata, sistema, x, y );
 */
 
 /* SOLUZIONE
-$( planciaComandi ).bind( 'click', function ( evento ) {  
+$( planciaComandi ).bind( 'click', function ( eventoClick ) {  
     
     // Selezione coordinate a cui sparare
     var x = mirino.x;
