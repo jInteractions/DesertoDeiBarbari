@@ -6,7 +6,7 @@ Il generale non si &#xE8; fatto vedere nemmeno stamattina? Eh eh eh...
 Simeoni
 Purtroppo no, caro Prosdocimo. Stavo pensando infatti che senza ordini sono un po&#x27; limitato...
 Prosdocimo
-Beh potrei aver sentito qualcosa in mensa, oggi a pranzo...
+Beh potrei aver sentito qualcosa davanti alla macchinetta del caff&#xE8;, oggi a pranzo...
 Simeoni
 Smettila con i tuoi giochetti e parla.
 Prosdocimo
@@ -18,37 +18,38 @@ Prosdocimo
 Simeoni
 Pi&#xF9; o meno... in pratica cliccando con il mouse che uso per muovere il mirino, attivo un meccanismo di sparo che seleziona la torretta migliore.
 Prosdocimo
-Esattamente. Si tratta di andare a modificare la parte di codice che si occupa del meccanismo di sparo.
+Esattamente. Si tratta di andare a modificare la parte di codice che si occupa del meccanismo di sparo. E pensare che si sono ispirati alla macchinetta del caff&#xE8;, eh eh eh...
 Simeoni
 Ottimo. Ho solo una domanda. Esistono questi tecnici? C&#x27;&#xE8; davvero qualcuno che sta imparando il JS?
 Prosdocimo
 &#xC8; davvero cos&#xEC; importante? Eh eh eh...
 
-OBIETTIVO
-L&#x27;obiettivo &#xE8; quello di cambiare il codice contenuto all&#x27;interno del meccanismo che si attiva tramite il click del mouse, cio&#xE8; il contenuto del blocco:
-<pre><code>$( planciaComandi ).on( &#x27;click&#x27;, function () { /* codice da inserire */ } );
-</code></pre>
-Nel file <tt>TrovaTorrettaMigliore.js</tt> &#xE8; infatti contenuto l&#x27;algoritmo di selezione automatica della torretta, non modificabile. Si deve inserire dunque nel meccanismo attivato dal mouse la chiamata a tale funzione.<br> Questa chiamata necessita di tre prametri:
-<li> torrette, che abbiamo gi&#xE0;;</li>
-<li> una <i>x</i> corretta per il bersaglio;</li>
-<li> una <i>y</i> corretta per il bersaglio.</li>
-La <i>x</i> e la <i>y</i> rappresentano le coordinate nel piano cartesiano dell&#x27;area di sparo delle torrette.<br>
-Si deve poi creare una variabile che conterr&#xE0; il valore restituito da tale chiamata di funzione; poi effettuare un&#x27;altra chiamata, questa volta alla funzione <tt>azionaComandoSparo()</tt>, con i seguenti parametri:
-<li> la torretta selezionata con la chiamata precedente;</li>
-<li> la variabile <tt>sistema</tt>;</li>
-<li> la <i>x</i> corretta;</li>
-<li> la <i>y</i> corretta.</li>
-
+OBIETTIVO - Tab 3
+Il codice che devi scrivere si basa su tre componenti principali:
+<li> la funzione della macchinetta del caff&#xE8;, da cui i tecnici (o Prosdocimo) hanno preso ispirazione per il nuovo meccanismo di sparo tramite click;</li>
+<li> l&#x27;algoritmo, contenuto nella funzione <tt>torrettaPiuVicina()</tt>, che seleziona la torretta pi&#xF9; vicina al bersaglio;</li>
+<li> l&#x27;attuale funzione per l&#x27;azionamento del comando di sparo, basato su pulsanti.</li>
+L&#x27;obiettivo &#xE8; quello di modificare il codice della funzione <tt>azionamentoComandiPlancia()</tt>, in modo che si possa sparare con la torretta pi&#xF9; vicina all'obiettivo utilizzando il click del mouse.<br>
+Per prima cosa si deve modificare correttamente la chiamata alla funzione <tt>bind</tt>, in modo che non risponda pi&#xF9; alla pressione del pulsante ma al click del mouse.<br>
+Successivamente sar&#xE0; necessario utilizzare l&#x27;algoritmo per selezionare la torretta corretta.
 AIUTI
-Un modo per creare il nuovo meccanismo di sparo prevede di inserire nel punto opportuno del codice il corretto valore nelle variabili <i>x</i> ed <i>y</i>:
-<pre><code>var x = mirino.x;
-var y = mirino.y;
+La modifica alla funzione <tt>bind()</tt> pu&#242; essere compiuta nel seguente modo, passando da:
+<pre><code>$( planciaComandi ).bind( 'keyup', function ( tastoPremuto )
 </code></pre>
-Poi &#xE8; necessario salvare il valore restituito dalla chiamata alla funzione in una variabile:
-<pre><code>var torrettaSelezionata = torrettaVicina( torrette, x, y);
+a:
+<pre><code>$( planciaComandi ).bind( 'click', function ( eventoClick )
 </code></pre>
-Ed utilizzare tale variabile per effettuare una seconda chiamata di funzione:
-<pre><code>azionaComandoSparo( &#x27;keyup&#x27;, torrettaSelezionata, sistema, x, y );
+Successivamente si devono eliminare le seguenti righe:
+<pre><code>var torrettaSelezionata;
+if( tastoPremuto.which === 49 )
+&#x9;torrettaSelezionata = torrette[0];
+if( tastoPremuto.which === 50 )
+&#x9;torrettaSelezionata = torrette[1];
+if( tastoPremuto.which === 51 )
+&#x9;torrettaSelezionata = torrette[2];
+</code></pre>
+sostituendole con:
+<pre><code>var torrettaSelezionata = torrettaPiuVicina( torrette, x, y );
 </code></pre>
 
 MANUALE
