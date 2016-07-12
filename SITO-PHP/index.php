@@ -50,6 +50,8 @@
   <div style="display:none;">
     <img id="nave-madre" src="http://localhost:8888/assets/img/mothership-sfondo.png" />
   </div>
+  <div id="dummy-div" style="display:none;">
+  </div>
     
   <?php
     require "php/config.php";
@@ -903,7 +905,9 @@ Script che gestiscono per intero la pagina lato client
             updateStatisticheUtenti(<?php echo $_GET["idlivello"]; ?>, "<?php echo $_SESSION["email"]; ?>", nOndata, risultatoOndata.punteggio, risultatoOndata.missiliAbbattuti, risultatoOndata.missiliRimasti, risultatoOndata.minacceAbbattute, risultatoOndata.torretteSalvate, risultatoOndata.missiliSparati, risultatoOndata.morti);
             ++nOndata;
             punteggioTotale += risultatoOndata.punteggio;
+            
             coreLevel.inizializzaLivello(nOndata);
+            
             coreLevel.mostraSchermataIniziale( punteggioTotale ); 
           } else {
             nOndata = 1;
@@ -984,7 +988,9 @@ Script che gestiscono per intero la pagina lato client
           }
 
           coreLevel = new Livello<?php echo $_GET["idlivello"]?>( callback );
+          oldConsole.log("2");
           coreLevel.inizializzaLivello(nOndata);
+          
           coreLevel.mostraSchermataIniziale( punteggioTotale );
         }
      }    
