@@ -210,6 +210,7 @@ Il codice seguente permette l'autenticazione manuale di un operatore, tramite la
 ATTENZIONE! Utilizzare solo in caso di fallimento dell'autenticazione automatica.
 
 Inserire il proprio nome utente nella variabile "nome", la propria matricola nella variabile "matricola" e la propria password nella variabile "password".
+Creare poi la corretta stringaAccesso, utilizzando la concatenazione di variabili che contengono una stringa.
 **********/
 var autenticazioneManuale = function () {
 //###START_MODIFICABILE###
@@ -217,7 +218,7 @@ var autenticazioneManuale = function () {
   var nome = "captano";
   var matricola = 0;
   var password = "utf";
-  // Ricorda: il simbolo + tra due stringhe indica la loro concatenazione.
+  // Ricorda: il simbolo + tra due variabili di tipo stringa indica la loro concatenazione.
   var stringaAccesso = "UTF-8" + nome + "&&--"+ password + "%" + matricola;
 //###END_MODIFICABILE###
   

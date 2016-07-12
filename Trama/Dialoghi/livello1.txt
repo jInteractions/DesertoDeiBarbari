@@ -40,7 +40,7 @@ OBIETTIVO - Tab 1
 L&#x27;obiettivo &#xE8; costruire la frase d&#x27;accesso corretta per sbloccare il sistema di puntamento e sparo. Devi dunque inserire:
 <li>nella variabile <tt>nome</tt>, la stringa &#x22;Cpt Simeoni&#x22;;</li>
 <li>nella variabile <tt>matricola</tt>, il numero 150716;</li>
-<li>nella variabile <tt>password</tt>, la stringa &#x22;utf-8_tuono&#x22;.</li> <br>
+<li>nella variabile <tt>password</tt>, la stringa &#x22;utf-8_tuono&#x22;;</li> <br>
 Dovrai poi inserire nella variabile <tt>stringaAccesso</tt> la corretta composizione della parola d&#x27;accesso, che dovr&#xE0; essere della forma: <br>
 <tt>nome%matricola&#x3C;password&#x3E;</tt>.
 AIUTI <br>
@@ -68,6 +68,7 @@ Prendi per esempio la riga:
 <pre><code>var x;
 </code></pre>
 Essa indica che ogni volta che nel codice sorgente compare la parola <i>x</i>, essa rappresenta la <b>variabile</b> cos&#xEC; chiamata. <br>
+Ricorda: ogni istruzione deve finire con il carattere &#x22;<tt>;</tt>&#x22;.
 Una variabile altro non &#xE8; che un contenitore, una &#x22;scatola&#x22; in cui inserire dei valori. <br>
 Prendi per esempio l&#x27;istruzione:
 <pre><code>var x = 4;
@@ -77,13 +78,15 @@ Esistono differenti tipologie di valori che si possono inserire in una variabile
 Esempi di valori numerici sono: 4, 6, 12.5, 24.3, ma anche operazioni aritmetiche come 16+5, 4*3, 5-12 o 24/6. <br>
 Una <b>stringa</b> &#xE8; invece un insieme di caratteri, come &#x22;Bastiani&#x22;, &#x22;Ortiz&#x22; o &#x22;battaglia&#x22;. Pu&#xF2; anche contenere numeri: per esempio, &#x22;UTF-8&#x22; &#xE8; una stringa. <br>
 Un&#x27;operazione utile da effettuare sulle stringhe &#xE8; la cosiddetta <b>concatenazione</b>, cio&#xE8; l&#x27;unione di due o pi&#xF9; stringhe. Per esempio:
-<pre><code>var stringaDiProva = &#x22;anti&#x22; + &#x22;missile&#x22;;
+<pre><code>var stringaPrimaParte = &#x22;anti&#x22;;
+var stringaSecondaParte = &#x22;missile&#x22;;
+var stringaDiProva = stringaPrimaParte + stringaSecondaParte;
 </code></pre>
 indica che nella variabile <tt>stringaDiProva</tt> &#xE8; contenuta la stringa &#x22;antimissile&#x22;.
 Nota bene! Il nome della variabile pu&#xF2; contenere lettere e numeri, pi&#xF9; il carattere speciale &#x22;_&#x22;, ma nient&#x27;altro. Il nome di una variabile non pu&#xF2; mai iniziare con un numero, ma pu&#xF2; averne in mezzo ed anche alla fine. Per esempio:
 <pre><code>var 7Nani;
 </code></pre>
-&#xE8; errato, mentre
+&#xE8; errato, mentre:
 <pre><code>var numero1;
 var caricatore6Cannone;
 </code></pre>
