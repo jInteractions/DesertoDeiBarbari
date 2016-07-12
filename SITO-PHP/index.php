@@ -773,9 +773,6 @@ Script che gestiscono per intero la pagina lato client
         var testoAiutoStr = "#testoAiuto" + indice;
         var titoloCodice = $(".tab"+indice+"default").text();
         var nomeBottoneAiuto = "#buttonModalAiuto" + indice;
-        //oldConsole.log(testoAiutoStr);
-        //oldConsole.log(titoloCodice);
-        //oldConsole.log(nomeBottoneAiuto);
         getHelp(<?php echo $_GET["idlivello"]; ?>, titoloCodice, testoAiutoStr, "<?php echo $_SESSION["email"]; ?>", nomeBottoneAiuto);
         $(nomeBottoneAiuto).prop("disabled",true); 
         funzioneSalvaCodice();
@@ -783,7 +780,6 @@ Script che gestiscono per intero la pagina lato client
 
       /** Reset codice nella tab con id obiettivo "id" */
       var resetCodice = function ( id ) {
-          //oldConsole.log( id )
           resetCodiceUtente(<?php echo $_GET["idlivello"]; ?>, $(".tab" + id + "default").text(), editorCodice[id]);
       };
 
@@ -811,9 +807,6 @@ Script che gestiscono per intero la pagina lato client
         for (var i = 0; i < <?php echo count($jsonLivello["fileVirtuali"]); ?>; i++) {
           //console.log( conAiuti.indexOf(i) )
           //console.log( $("#buttonModalAiuto" + i) )
-          //oldConsole.log(conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop("disabled")+"\n");
-          //oldConsole.log($("#buttonModalAiuto" + i).prop("disabled")+"\n");
-          //oldConsole.log(conAiuti.indexOf(i)!=-1);
           if (conAiuti.indexOf(i)!=-1 && $("#buttonModalAiuto" + i).prop("disabled") ){
             //console.log( "aiuto usato" )
             richiestoAiuto[i] = "true";
@@ -988,7 +981,6 @@ Script che gestiscono per intero la pagina lato client
           }
 
           coreLevel = new Livello<?php echo $_GET["idlivello"]?>( callback );
-          oldConsole.log("2");
           coreLevel.inizializzaLivello(nOndata);
           
           coreLevel.mostraSchermataIniziale( punteggioTotale );

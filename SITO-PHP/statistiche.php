@@ -444,7 +444,7 @@
       var areaChartDataPunteggio = {
         labels: [<?php 
             foreach($informazioniLivelliEsistenti as $chiave => $valore) {
-              if($chiave + 1 == count($informazioniLivelliEseguiti))
+              if($chiave + 1 == count($informazioniLivelliEsistenti))
                 echo '"'.$valore["nome"].'"';
               else
                 echo '"'.$valore["nome"].'", ';
@@ -474,7 +474,7 @@
       var areaChartDataMorti = {
         labels: [<?php 
             foreach($informazioniLivelliEsistenti as $chiave => $valore) {
-              if($chiave + 1 == count($informazioniLivelliEseguiti))
+              if($chiave + 1 == count($informazioniLivelliEsistenti))
                 echo '"'.$valore["nome"].'"';
               else
                 echo '"'.$valore["nome"].'", ';
@@ -504,7 +504,7 @@
       var areaChartDataOndate = {
         labels: [<?php 
             foreach($informazioniLivelliEsistenti as $chiave => $valore) {
-              if($chiave + 1 == count($informazioniLivelliEseguiti))
+              if($chiave + 1 == count($informazioniLivelliEsistenti))
                 echo '"'.$valore["nome"].'"';
               else
                 echo '"'.$valore["nome"].'", ';
