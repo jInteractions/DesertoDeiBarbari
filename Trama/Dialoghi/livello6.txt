@@ -56,12 +56,12 @@ MANUALE
 <b>Chiamata di funzione</b><br>
 Si prenda una funzione di prova, come la seguente:
 <pre><code>
-var calcolaSomma ( a, b ) {
+var calcolaSomma = function ( a, b ) {
 &#x9;return a + b;
 }
 </code></pre>
 Per effetuare una chiamata a tale funzione, &#xE8; necessario creare una variabile che contenga il risultato dell&#x27;operazione, e inserire tra le parentesi i valori che nella funzione diventeranno <tt>a</tt> e <tt>b</tt>:
-<pre><code>var risultatoSomma( 4, 5 );
+<pre><code>var risultatoSomma = calcolaSomma( 4, 5 );
 </code></pre>
 Nella variabile <tt>risultatoSomma</tt> ora c&#x27;&#xE8; il numero 9.<br>
 <b>Area di sparo</b><br>

@@ -49,7 +49,7 @@ Mellara
 Allora è deciso. Presto, cominciate a lavorare su questa nuova arma... me lo sento, stanno arrivando.
 
 OBIETTIVO - Tab 2
-L'obiettivo è la creazione di un'arma speciale in grado di eseguire un attacco speciale coordinato tra tutte le torrette, creando uno sbarramento di fuoco.<br>
+L'obiettivo è la creazione di un'arma speciale in grado di eseguire un attacco coordinato tra tutte le torrette, creando uno sbarramento di fuoco.<br>
 Tale arma viene attivata premendo la barra spaziatrice.<br>
 Ispirandoti alla funzione <tt>comandoSparoSingolo()</tt> dovrai implementare la funzione <tt>comandoSparoMultiplo()</tt>, in grado di fornire alle torrette gli ordini di sparo con le coordinate sulle quali dirigere i propri missili.
 AIUTI
