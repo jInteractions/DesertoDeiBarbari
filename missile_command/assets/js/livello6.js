@@ -210,7 +210,7 @@ Funzione che abilita il click del mouse per azionare la macchinetta del caffè.
 Questa funzione potrebbe essere d'ispirazione per altri scopi...
 **********/
 var azionaMacchinaCaffeConClick = function ( pulsantieraMacchinaCaffe ) {
-  // Comandi plancia azionati da click del mouse, notale il 'click'
+  // Comandi plancia azionati da click del mouse, notare il 'click'
   $( pulsantieraMacchinaCaffe ).bind( 'click', function ( eventoClick ) {
     // Questa parte di codice si attiva quando si clicca
     macchinaCaffe.faiIlCaffe();
@@ -220,8 +220,7 @@ var azionaMacchinaCaffeConClick = function ( pulsantieraMacchinaCaffe ) {
 // TAB 2
 
 /**********
-Funzione che date le coordinate del bersaglio
-determina la torretta migliore, e funzionante,
+Funzione che date le coordinate del bersaglio determina la torretta migliore, e funzionante,
 per colpire il bersaglio.
 
 Questa funzione prende come parametri:
@@ -266,9 +265,7 @@ var torrettaPiuVicina = function ( torrette, x, y ) {
 // TAB 3
  
 /**********
-Funzione che abilita i comandi della plancia. Attualmente prendo i tasti 1, 2, 3
-sulla tastiera si fa fuoco con la torretta rispettivamente sinistra, centrale e
-destra.
+Funzione che abilita i comandi della plancia. Attualmente prendo i tasti 1, 2, 3 sulla tastiera si fa fuoco con la torretta rispettivamente sinistra, centrale e destra.
 Il comando click è abilitato ma non funzionante.
 
 La funzione prende come parametri:

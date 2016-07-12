@@ -30,7 +30,7 @@ Il codice che devi scrivere si basa su tre componenti principali:
 <li> l&#x27;algoritmo, contenuto nella funzione <tt>torrettaPiuVicina()</tt>, che seleziona la torretta pi&#xF9; vicina al bersaglio;</li>
 <li> l&#x27;attuale funzione per l&#x27;azionamento del comando di sparo, basato su pulsanti.</li>
 L&#x27;obiettivo &#xE8; quello di modificare il codice della funzione <tt>azionamentoComandiPlancia()</tt>, in modo che si possa sparare con la torretta pi&#xF9; vicina all'obiettivo utilizzando il click del mouse.<br>
-Per prima cosa si deve modificare correttamente la chiamata alla funzione <tt>bind</tt>, in modo che non risponda pi&#xF9; alla pressione del pulsante ma al click del mouse.<br>
+Per prima cosa si deve modificare correttamente la chiamata alla funzione <tt>bind()</tt>, in modo che non risponda pi&#xF9; alla pressione del pulsante ma al click del mouse.<br>
 Successivamente sar&#xE0; necessario utilizzare l&#x27;algoritmo per selezionare la torretta corretta.
 AIUTI
 La modifica alla funzione <tt>bind()</tt> pu&#242; essere compiuta nel seguente modo, passando da:
@@ -53,7 +53,7 @@ sostituendole con:
 </code></pre>
 
 MANUALE
-Chiamata di funzione<br>
+<b>Chiamata di funzione</b><br>
 Si prenda una funzione di prova, come la seguente:
 <pre><code>
 var calcolaSomma ( a, b ) {
@@ -64,7 +64,7 @@ Per effetuare una chiamata a tale funzione, &#xE8; necessario creare una variabi
 <pre><code>var risultatoSomma( 4, 5 );
 </code></pre>
 Nella variabile <tt>risultatoSomma</tt> ora c&#x27;&#xE8; il numero 9.<br>
-Area di sparo<br>
+<b>Area di sparo</b><br>
 L&#x27;area di sparo &#xE8; un piano cartesiano: le coordinate vengono dunque espresse in termini di <i>x</i> e <i>y</i>, che indicano la posizione di un punto all&#x27;interno di quest&#x27;area.<br>
 Il mirino ha dunque una <i>x</i> ed una <i>y</i>, che indicano precisamente dove si trova in quel momento il puntatore collegato al mouse.
 
