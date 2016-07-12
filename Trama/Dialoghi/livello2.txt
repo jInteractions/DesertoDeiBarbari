@@ -41,7 +41,9 @@ Prosdocimo
 Lo saranno, giovane capitano. Parola di Prosdocimo! Per&#xF2; facciamo cos&#xEC;: non dire al tuo generale che ti ho aiutato e che hai utilizzato questo file. Eh eh eh...
 
 OBIETTIVO - Tab 1
-L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino. Sar&#xE0; dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>. Fatto questo &#xE8; necessario entrare nella parte di codice raggiungibile dall&#x27;<i>else</i> dell&#x27;struzione <i>if-else</i>, modificando il confronto all'interno delle parentesi tonde che seguono la parola chiave <i>if</i>: infatti la parte di codice dell'<i>else</i> imposta correttamente la variabile <tt>_codicePianeta</tt>.
+L&#x27;obiettivo &#xE8; quello di sbloccare la calibrazione del mirino.<br>
+Come prima cosa sar&#xE0; dunque necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>.<br>
+Fatto questo &#xE8; necessario modificare la condizione del secondo <i>if</i>, in modo tale da entrare nella parte di codice raggiungibile dall&#x27;<i>else</i>: in questo modo viene impostata correttamente la variabile <tt>_codicePianeta</tt>.
 AIUTI
 Come prima cosa &#xE8; necessario rendere vera la variabile <tt>sbloccoCalibrazione</tt>, nel seguente modo:
 <pre><code>var sbloccoCalibrazione = true;
