@@ -353,7 +353,7 @@
         </li>
         <li>
           <a href="dashboard.php">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Livelli</span>
           </a>
         </li>
         <li>
