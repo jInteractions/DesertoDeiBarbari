@@ -300,7 +300,7 @@ var sistemaRaffreddamento = function ( ) {
     // Ciclo per la gestione delle pompe di raffreddamento.
     // Deve rimanere attivo finché la temperatura T non è
     // uguale o superiore alla soglia.
-    while( T === sogliaTemperaturaMinima ) {
+    while( T <= sogliaTemperaturaMinima ) {
       azionaPompeRaffreddamento();
       T = rilevaTemperatura();
     }
