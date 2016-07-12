@@ -13,7 +13,8 @@ Livello1.prototype.inizializzaMirino = function ( ) {
   }
 }
 
-Livello1.prototype.inizializzaLivello = function ( ) {
+/*
+Livello1.prototype.inizializzaLivello = function (  ) {
   this.inizializzaMirino();
   this.coreGame = new CoreGame( this.canvas, this.mirino, {
     coloreSfondo: 'black',
@@ -27,7 +28,7 @@ Livello1.prototype.inizializzaLivello = function ( ) {
   this.inizializzaArmiTerrestri();
   // chiamata alla funzione di autenticazione manuale
   this.setupListeners();
-}
+}*/
 
 Livello1.prototype.inizializzaTorrette = function () {
   var nMissili = 10;
@@ -158,10 +159,10 @@ var controlloAccesso = function () {
   } else {
     console.log(
       "Nome: " + nome
-      + "Matricola: " + matricola
-      + "Password: " + Array(password.length + 1).join("*")
-      + "Stringa: " + stringa
-      + "Informazioni non corrette."
+      + "\nMatricola: " + matricola
+      + "\nPassword: " + Array(password.length + 1).join("*")
+      + "\nStringa: " + stringa
+      + "\nInformazioni non corrette."
     );
     return false;
   }
