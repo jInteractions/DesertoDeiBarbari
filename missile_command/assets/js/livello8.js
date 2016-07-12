@@ -281,12 +281,9 @@ Livello8.prototype.esaminaCanaliRadio = function ( ) {
 // TAB 1
 
 /**********
-Benvenuto nel file di configurazione delle trasmissioni del sistema Hob-2000.
-Questo codice permette di impostare correttamente la trasmissione radio
-tra le diverse basi del fronte.
-È inoltre possibile modificare tale file per aggiungere funzioni di
-codifica e decodifica delle trasmissioni, semplicemente scrivendo
-il codice per le funzioni codificaSegnale() e decodificaSegnale().
+Benvenuto nel file di configurazione delle trasmissioni del sistema HOB-2000.
+Questo codice permette di impostare correttamente la trasmissione radio tra le diverse basi del fronte.
+È inoltre possibile modificare tale file per aggiungere funzioni di codifica e decodifica delle trasmissioni, semplicemente scrivendo il codice per le funzioni codificaSegnale() e decodificaSegnale().
 **********/
 
 // Classe del trasmettitore.
@@ -333,8 +330,7 @@ var trasmissione = function ( canaleTrasmissione ) {
 // TAB 2
 
 /**********
-Questo è il file per scrivere il codice delle funzioni di
-codifica e decodifica.
+Questo è il file per scrivere il codice delle funzioni di codifica e decodifica.
 Fanne buon uso.
 /\/\/\ Gen. Ortiz /\/\/\
 **********/

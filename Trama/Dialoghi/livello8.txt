@@ -38,8 +38,8 @@ Nota bene! Le basi colorate di rosso sono quelle ausiliarie, mentre quelle azzur
 La funzione di codifica andr&#xE0; dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.<br>
 La funzione di decodifica deve invece ripristinare il collegamento esattamente com&#x27;era prima della codifica: riscambiando cio&#xE8; i codici dei canali radio.
 AIUTI
-La funzione codificaSegnale() pu&#xF2; essere implementata nel modo seguente:<br>
-var temporaneo;
+La funzione <tt>codificaSegnale()</tt> pu&#xF2; essere implementata nel modo seguente:
+<pre><code>var temporaneo;
 temporaneo = canaleTrasmissione[0];
 canaleTrasmissione[0] = canaleTrasmissione[1];
 canaleTrasmissione[1] = temporaneo;
@@ -49,8 +49,9 @@ canaleTrasmissione[3] = temporaneo;
 temporaneo = canaleTrasmissione[4];
 canaleTrasmissione[4] = canaleTrasmissione[5];
 canaleTrasmissione[5] = temporaneo;
-Mentre la funzione decodificaSegnale(), che deve effettuare l&#x27;operazione contraria, pu&#xF2; essere scritta nel modo seguente:<br>
-var temporaneo;
+</code></pre>
+Mentre la funzione <tt>decodificaSegnale()</tt>, che deve effettuare l&#x27;operazione contraria, pu&#xF2; essere scritta nel modo seguente:
+<pre><code>var temporaneo;
 temporaneo = canaleTrasmissione[1];
 canaleTrasmissione[1] = canaleTrasmissione[0];
 canaleTrasmissione[0] = temporaneo;
@@ -60,15 +61,19 @@ canaleTrasmissione[2] = temporaneo;
 temporaneo = canaleTrasmissione[5];
 canaleTrasmissione[5] = canaleTrasmissione[4];
 canaleTrasmissione[4] = temporaneo;
+</code></pre>
 Nota bene! La variabile temporanea permette di scambiare agilmente i valori dei canali: senza sarebbe molto pi&#xF9; complicata.
 
 MANUALE
-La codifica e la decodifica di un messaggio avvengono in maniera molto semplice. Prendiamo per esempio la parola:<br>
-aiuto<br>
-Supponiamo che la nostra codifica preveda di prendere ogni lettera della parola e sostituirla con la lettera immediatamente successiva nell&#x27;alfabeto. La parola aiuto diventa dunque:<br>
-bjvup<br>
-Il nemico se non sa qual &#xE8; la codifica da noi utilizzata, quindi difficilmente comprender&#xE0; cosa vuol dire la parola bjvup. Quando noi per&#xF2; riceviamo il messaggio, conoscendo la codifica sostituiamo ogni lettera con quella che la precede nell&#x27;alfabeto, ottenendo di nuovo la parola:<br>
-aiuto<br>
+La <i>codifica</i> e la <i>decodifica</i> di un messaggio avvengono in maniera molto semplice. Prendiamo per esempio la parola:
+<pre><code>aiuto
+</code></pre>
+Supponiamo che la nostra codifica preveda di prendere ogni lettera della parola e sostituirla con la lettera immediatamente successiva nell&#x27;alfabeto. La parola aiuto diventa dunque:
+<pre><code>bjvup
+</code></pre>
+Il nemico se non sa qual &#xE8; la codifica da noi utilizzata, quindi difficilmente comprender&#xE0; cosa vuol dire la parola <tt>bjvup</tt>.<br> Quando noi per&#xF2; riceviamo il messaggio, conoscendo la codifica sostituiamo ogni lettera con quella che la precede nell&#x27;alfabeto, ottenendo di nuovo la parola:
+<pre><code>aiuto
+</code></pre>
 La decodifica &#xE8; dunque l&#x27;operazione inversa della codifica: senza conoscere la codifica sar&#xE0; per&#xF2; molto difficile leggere un messaggio codificato.
 
 DIALOGO FINALE
