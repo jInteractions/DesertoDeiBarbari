@@ -230,104 +230,106 @@ Livello8.prototype.mostraSchermataIniziale = function ( punteggio ) {
   } );                     
 }
 
-// interfaccia codice utente - livello
-
-var canaleTrasmissione = [
-  { radioIdentificatore: "BX1", 
-    testo: "[21:05] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
-  { radioIdentificatore: "AX2", 
-    testo: "[21:02] Parla base AX2, ci serve immediato aiuto, siamo sotto attacco!"},
-  { radioIdentificatore: "BX3", 
-    testo: "[21:08] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
-  { radioIdentificatore: "AX4", 
-    testo: "[21:12] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
-  { radioIdentificatore: "BX5", 
-   testo: "[21:20] Ricevuto! Accorriamo immediatamente!"},
-  { radioIdentificatore: "AX6", 
-   testo: "[21:06] Non possiamo fare nulla! dovete contattare BX5 solo loro hanno i mezzi per aiutarvi!"},
-]
-
 Livello8.prototype.esaminaCanaliRadio = function ( ) {
-  var lettere = ["a","b","c","d","e","f","g","h","i","l","m","n","o","p","q","r","s","t","u","v","z"];
+  var basi = this.coreGame.basi;
+  var messaggi = [];
+  messaggi[0] = "[21:06] Parla base BX0, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[1] = "[21:04] Parla base AX1, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[2] = "[21:02] Parla base BX2, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[3] = "[21:08] Parla base AX3, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[4] = "[21:01] Parla base BX4, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[5] = "[21:02] Parla base AX5, ci serve immediato aiuto, siamo sotto attacco!";
   var canale = [];
-  var tx = new Trasmettitore( canale );
-  var basi = this.coreGame.basi
-  $.each( basi, function ( i, b ) {
-    var id = "";
-    if( b.vitale === true ) {
-      id += "AX" + i; 
-    } else {
-      id += "BX" + i;
-    }
-    var messaggio = ""; 
-    for( var j = 0; j < rand(10, 20); ++j )
-      messaggio += lettere[rand(0, lettere.length-1)];
-    
-    tx.inviaMessaggio( id, messaggio, i );
-  } );
-  codificaSegnale( canale );
+  canale[0] = { idRadio: "BX0", messaggio: messaggi[0] };
+  canale[1] = { idRadio: "AX1", messaggio: messaggi[1] };
+  canale[2] = { idRadio: "BX2", messaggio: messaggi[2] };
+  canale[3] = { idRadio: "AX3", messaggio: messaggi[3] };
+  canale[4] = { idRadio: "BX4", messaggio: messaggi[4] };
+  canale[5] = { idRadio: "AX5", messaggio: messaggi[5] };
+  
+  var canaleMescolato = spedisciMessaggiBasi( );
   
   var bersagliPrioritari = [];
-  $.each( canale, function( i, c ) {
-    if( c.radioIdentificatore.indexOf("AX") >= 0)
+  $.each( canaleMescolato, function( i, c ) {
+    if( c.idRadio.indexOf("AX") >= 0)
       bersagliPrioritari.push( basi[i] );
   } );
   
-  trasmissione( canaleTrasmissione );
-    
+  messaggi = riceviMessaggiBasi( canaleMescolato );
+
   return bersagliPrioritari;
 }
 
 // TAB 1
 
 /**********
-Benvenuto nel file di configurazione delle trasmissioni del sistema HOB-2000.
-Questo codice permette di impostare correttamente la trasmissione radio tra le diverse basi del fronte.
-È inoltre possibile modificare tale file per aggiungere funzioni di codifica e decodifica delle trasmissioni, semplicemente scrivendo il codice per le funzioni codificaSegnale() e decodificaSegnale().
+Funzione che invia i messaggi da parte delle basi sul mezzo di comunicazione.
+Il mezzo di comunicazione è un array di 6 elementi chiamato "canaliTrasmissione" aventi struttura: { idRadio: "AX1", messaggio: "[00:12] Questo è un messaggio di prova" }.
+I messaggi provenienti dalla base numero 0, ossia quella più a destra, vengono inseriti nel canaliTrasmissione[0] e così via...
+
+Questa funzione ritorna i "canaliTrasmissione" caricati con messaggi e identificatori radio opportunatamente mescolati per confondere il nemico tramite "mescolaCanali()".
 **********/
-
-// Classe del trasmettitore.
-function Trasmettitore ( canaleTrasmissione ) {
-  this.canaleTrasmissione = canaleTrasmissione;
+function spedisciMessaggiBasi ( ) {  
+  var messaggi = [];
+  messaggi[0] = "[21:06] Parla base BX0, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[1] = "[21:04] Parla base AX1, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[2] = "[21:02] Parla base BX2, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[3] = "[21:08] Parla base AX3, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[4] = "[21:01] Parla base BX4, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[5] = "[21:02] Parla base AX5, ci serve immediato aiuto, siamo sotto attacco!";
+  
+  var canaliTrasmissione = [];
+  canaliTrasmissione[0] = { idRadio: "BX0", messaggio: messaggi[0] };
+  canaliTrasmissione[1] = { idRadio: "AX1", messaggio: messaggi[1] };
+  canaliTrasmissione[2] = { idRadio: "BX2", messaggio: messaggi[2] };
+  canaliTrasmissione[3] = { idRadio: "AX3", messaggio: messaggi[3] };
+  canaliTrasmissione[4] = { idRadio: "BX4", messaggio: messaggi[4] };
+  canaliTrasmissione[5] = { idRadio: "AX5", messaggio: messaggi[5] };
+  
+  // I canali di trasmissione vengono mescolati per confondere il nemico.
+  mescolaCanali( canaliTrasmissione );
+  
+  return canaliTrasmissione;
 }
 
-// Funzione di invio del messaggio.
-// Dato un identificatore del mittente, un messaggio ed un canale radio,
-// il testo viene inviato sul canale corretto.
-Trasmettitore.prototype.inviaMessaggio = function ( identificatoreRadio, messaggio, numeroCanale ) {
-  var messaggioRadio = {
-    radioIdentificatore: identificatoreRadio,
-    testo: messaggio
-  }  
-  this.canaleTrasmissione[ numeroCanale ] = messaggioRadio;
-}
+/**********
+Funzione che riceve i messaggi dai canali di tramissione e li smista alle relative basi.
+"canaliTrasmissione" è un array di 6 elementi aventi struttura: { idRadio: "AX1", messaggio: "[00:12] Questo è un messaggio di prova" }.
 
-// Funzione di ricezione del messaggio.
-Trasmettitore.prototype.riceviMessaggio = function ( identificatoreRadio, numeroCanale ) {
-  return this.canaleTrasmissione[numeroCanale].testo;
-}
+Ecco la mappatura tra canali radio e id
 
-// Funzione di trasmissione.
-var trasmissione = function ( canaleTrasmissione ) {
-  var identificatoreRadio = "AX2";
-  var messaggio = "[21:02] Parla base AX2, ci serve immediato aiuto, siamo sotto attacco!";
-  var numeroCanale = 1;
-  
-  trasmettitore = new Trasmettitore( canaleTrasmissione );
-  
-  console.log( messaggio );
-  trasmettitore.inviaMessaggio( identificatoreRadio, messaggio, numeroCanale );
-  
-  // Le funzioni seguenti devi scriverle tu!
-  // /\/\/\ Gen. Ortiz /\/\/\
-  codificaSegnale( canaleTrasmissione );
-  decodificaSegnale( canaleTrasmissione );
-  
-  var messaggioRicevuto = trasmettitore.riceviMessaggio( "BX5", 4 );
-  console.log( messaggioRicevuto );
+**********/
+function riceviMessaggiBasi ( canaliTrasmissione ) { 
+  // Vengono riordinati i canali di trasmissione per consentire la corretta ricezione
+  riordinaCanali( canaliTrasmissione );
+    
+  var messaggiRicevuti = [];
+  messaggiRicevuti[0] = canaliTrasmissione[0].messaggio;
+  messaggiRicevuti[1] = canaliTrasmissione[1].messaggio;
+  messaggiRicevuti[2] = canaliTrasmissione[2].messaggio;
+  messaggiRicevuti[3] = canaliTrasmissione[3].messaggio;
+  messaggiRicevuti[4] = canaliTrasmissione[4].messaggio;
+  messaggiRicevuti[5] = canaliTrasmissione[5].messaggio;
+  return messaggiRicevuti;
 }
 
 // TAB 2
+
+/**********
+********/
+var determinaBersagliDaColpire = function ( canaleTrasmissione ) {
+  var bersagliPrioritari = [];
+  
+  // Ecco come vengono identificate le basi vitali dal nemico
+  for( var i = 0; i < canaleTrasmissione.length; ++i ) {
+    if( c.idRadio[0] === "A" && c.idRadio[1] === "X" )
+      bersagliPrioritari.push( basi[i] );
+  }
+  
+  return bersagliPrioritari;
+}
+
+// TAB 3
 
 /**********
 Questo è il file per scrivere il codice delle funzioni di codifica e decodifica.
@@ -335,64 +337,122 @@ Fanne buon uso.
 /\/\/\ Gen. Ortiz /\/\/\
 **********/
 
-// Funzione per la codifica del segnale radio.
-var codificaSegnale = function ( canaleTrasmissione ) {
+/**********
+Funzione per il mescolamento dei canali di trasmissione per confondere il nemico.
+Prende come input un array di 6 elementi chiamato "canaliTrasmissione" aventi struttura: { idRadio: "AX1", messaggio: "[00:12] Questo è un messaggio di prova" }.
+
+Questa funzione deve mescolare i canali di trasmissione in modo tale che ad una base vitale sia associato il canale di tramissione di una base non vitale. Il nemico colpirà con priorità quest'ultima ignorando l'altra.
+Esempio:
+  base in posizione 0 (non vitale) ---> canale 0
+  base in posizione 1 (vitale)     ---> canale 1
+  
+  Invertendo il canale 0 con il canale 1 il nemico crederà che la base non vitale occupi la posizione 1 mentre quella vitale la 0.
+**********/
+var mescolaCanali = function ( canaleTrasmissione ) {
 //###START_MODIFICABILE###
-  // Codice da scrivere
+  // Funzione da implementare!
 //###END_MODIFICABILE###
 }
 
-// Funzione per la decodifica del segnale radio.
-var decodificaSegnale = function ( canaleTrasmissione ) {
+
+/**********
+Funzione per il riordinamento dei canali di tramissione a seguito del mescolamento per confondere il nemico.
+Prende come input un array di 6 elementi chiamato "canaliTrasmissione" aventi struttura: { idRadio: "AX1", messaggio: "[00:12] Questo è un messaggio di prova" }.
+**********/
+var riordinaCanali = function ( canaleTrasmissione ) {
 //###START_MODIFICABILE###
-  // Codice da scrivere
+  // Funzione da implementare!
 //###END_MODIFICABILE###
 }
 
 // test
-
-/*( function () {
-  var lettere = ["a","b","c","d","e","f","g","h","i","l","m","n","o","p","q","r","s","t","u","v","z"];
+var t1 = 
+//( 
+  function () {
+  var basi = [ 
+    new BaseMilitare( 80,  430, false, 100, 'red', null ),
+    new BaseMilitare( 130,  430, true, 100, 'cyan', null ),
+    new BaseMilitare( 180,  430, false, 100, 'red', null ),
+    new BaseMilitare( 300,  430, true, 100, 'cyan', null ),
+    new BaseMilitare( 350,  430, false, 100, 'red', null ),
+    new BaseMilitare( 400,  430, true, 100, 'cyan', null ) 
+  ];
+  
+  var messaggi = [];
+  messaggi[0] = "[21:06] Parla base BX0, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[1] = "[21:04] Parla base AX1, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[2] = "[21:02] Parla base BX2, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[3] = "[21:08] Parla base AX3, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[4] = "[21:01] Parla base BX4, ci serve immediato aiuto, siamo sotto attacco!";
+  messaggi[5] = "[21:02] Parla base AX5, ci serve immediato aiuto, siamo sotto attacco!";
   var canale = [];
-  var tx = new Trasmettitore( canale );
-  var basi = [ new BaseMilitare( 80,  430, false, 100, 'red', this.coreGame ),
-    new BaseMilitare( 130,  430, true, 100, 'cyan', this.coreGame ),
-    new BaseMilitare( 180,  430, false, 100, 'red', this.coreGame ),
-    new BaseMilitare( 300,  430, true, 100, 'cyan', this.coreGame ),
-    new BaseMilitare( 350,  430, false, 100, 'red', this.coreGame ),
-    new BaseMilitare( 400,  430, true, 100, 'cyan', this.coreGame ) ];
-  $.each( basi, function ( i, b ) {
-    var id = "";
-    if( b.vitale === true ) {
-      id += "AX" + i; 
-    } else {
-      id += "BX" + i;
-    }
-    var messaggio = ""; 
-    for( var j = 0; j < rand(10, 20); ++j )
-      messaggio += lettere[rand(0, lettere.length-1)];
+  canale[0] = { idRadio: "BX0", messaggio: messaggi[0] };
+  canale[1] = { idRadio: "AX1", messaggio: messaggi[1] };
+  canale[2] = { idRadio: "BX2", messaggio: messaggi[2] };
+  canale[3] = { idRadio: "AX3", messaggio: messaggi[3] };
+  canale[4] = { idRadio: "BX4", messaggio: messaggi[4] };
+  canale[5] = { idRadio: "AX5", messaggio: messaggi[5] };
+  
+  var canaleMescolato = spedisciMessaggiBasi( );
     
-    tx.inviaMessaggio( id, messaggio, i );
-  } );
-  var backupCanale = canale.slice(0);
-  codificaSegnale( canale );  
-  
   var bersagliPrioritari = [];
-  $.each( canale, function( i, c ) {
-    if( c.radioIdentificatore.indexOf("AX") >= 0)
+  $.each( canaleMescolato, function( i, c ) {
+    if( c.idRadio.indexOf("AX") >= 0 )
       bersagliPrioritari.push( basi[i] );
+  } ); 
+    
+  var esito = true;
+  var cause = [];
+  $.each( bersagliPrioritari, function( i, b ) {
+    if( b.vitale === true ) {
+      cause.push("Una base vitale viene ancora bersagliata!");
+      esito = false;
+    }
+  } );
+        
+  var messaggiRicevuti = riceviMessaggiBasi( canaleMescolato );
+      
+  $.each( canale, function( i, m ) {
+    if( m.messaggio !== messaggiRicevuti[i] ) {
+      cause.push("Le trasmissioni non sono riordinate per bene, alcune basi ricevono messaggi sbagliati!");
+      esito = false;
+    }
   } );
   
-  var esito = true;
-  $.each( bersagliPrioritari, function( i, b ) {
-    esito = esito && ( b.vitale === false );
-  } )
+  //return esito;
+  //return {esito: esito, cause: cause};  
+}
+//) ();
+
+
+
+
+/* SOLUZIONE
+  var temp;
+  temp = canaleTrasmissione[0]
+  canaleTrasmissione[0] = canaleTrasmissione[1]
+  canaleTrasmissione[1] = temp;
   
-  decodificaSegnale( canale );
-  $.each( canale, function( i, c ) {
-    esito = esito && ( c.radioIdentificatore === backupCanale[i].radioIdentificatore &&
-      c.testo === backupCanale[i].testo )
-  } )
+  temp = canaleTrasmissione[2];
+  canaleTrasmissione[2] = canaleTrasmissione[3];
+  canaleTrasmissione[3] = temp;
   
-  return esito;  
-}) (); */
+  temp = canaleTrasmissione[4];
+  canaleTrasmissione[4] = canaleTrasmissione[5];
+  canaleTrasmissione[5] = temp; 
+  
+  var temp;
+  temp = canaleTrasmissione[1];
+  canaleTrasmissione[1] = canaleTrasmissione[0];
+  canaleTrasmissione[0] = temp;
+  
+  temp = canaleTrasmissione[3];
+  canaleTrasmissione[3] = canaleTrasmissione[2];
+  canaleTrasmissione[2] = temp;
+  
+  temp = canaleTrasmissione[5];
+  canaleTrasmissione[5] = canaleTrasmissione[4];
+  canaleTrasmissione[4] = temp;
+  */
+  
+  
