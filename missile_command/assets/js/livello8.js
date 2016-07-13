@@ -295,9 +295,6 @@ function spedisciMessaggiBasi ( ) {
 /**********
 Funzione che riceve i messaggi dai canali di tramissione e li smista alle relative basi.
 "canaliTrasmissione" è un array di 6 elementi aventi struttura: { idRadio: "AX1", messaggio: "[00:12] Questo è un messaggio di prova" }.
-
-Ecco la mappatura tra canali radio e id
-
 **********/
 function riceviMessaggiBasi ( canaliTrasmissione ) { 
   // Vengono riordinati i canali di trasmissione per consentire la corretta ricezione
