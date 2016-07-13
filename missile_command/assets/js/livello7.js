@@ -355,17 +355,20 @@ MissileTestataMultipla.prototype.identificaObiettivo = function ( obiettivi ) {
     if( obiettivo.tipo === "terrestre" ) {
       var x = obiettivo.x;
       var y = obiettivo.y;
-      // Variabile contenente la quota a cui il missile si sdoppia.
-      var altezza = this.calcolaAltezzaSdoppiamento( x, y );
+  
+      // Vengono memorizzare le coordinate del bersaglio.
       this.agganciaBersaglio( obiettivo );
+      
+      // Viene restituita l'altezza alla quale il missile detona e si sdoppia.
+      var altezzaEsplosione = this.calcolaAltezzaSdoppiamento( y );
       return altezza;
     }
   }
 }
 
 // Funzione per il calcolo della quota di sdoppiamento del missile.
-MissileTestataMultipla.prototype.calcolaAltezzaSdoppiamento = function ( x, y ) {
-  return (Math.abs(430 - y) / 2) + y;
+MissileTestataMultipla.prototype.calcolaAltezzaSdoppiamento = function ( y ) {
+  return ( Math.abs(430 - y) / 2 ) + y;
 }
 
 // Funzione per agganciare l'obiettivo del missile.
@@ -417,10 +420,11 @@ MissileStandard.prototype.miraBersaglio = function ( listaBersagli ) {
       var x = bersaglio.x;
       var y = bersaglio.y;
     
-      var coordinateEsplosione = { esplosioneX: x, esplosioneY: y };
       this.agganciaObiettivo( bersaglio );
       
-      return coordinateEsplosione.esplosioneY;
+      // Altezza a cui avviene l'esplosione.
+      var altezzaEsplosione = y;
+      return altezza;
 //###END_MODIFICABILE###
     }
     ++i;
