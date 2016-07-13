@@ -231,7 +231,14 @@ CoreLevel.prototype.setupListeners = function( ) {
   $( '.gameContainer' ).off();
   $( '.gameContainer' ).focus();
   $( '.gameContainer' ).bind( 'keyup', function( event ) {
+    if( event.which !== 49
+      && event.which !== 50
+      && event.which !== 51 )
+      console.errore("Utilizza 1, 2, e 3 per sparare!")
     mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, event.which );
+  });
+  $( '.gameContainer' ).bind( 'click', function( event ) {
+    console.errore("Utilizza 1, 2, e 3 per sparare!")
   });
   $( '.gameContainer' ).on( 'mouseover', function( event ) {
     mySelf.coreGame.mirino.stato = Mirino.TRACCIAMENTO;
