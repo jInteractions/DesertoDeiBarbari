@@ -617,7 +617,7 @@ Script che gestiscono per intero la pagina lato client
         };
         var makeButton = function( i ) {
           var text = i < popovers.length - 1 ? 'Avanti' : 'Fine';
-          return '<br /><p><button class="btn btn-default" id="tourNavButton' + i + '">'+text+'</button></p>';
+          return '<div style="text-align: right; margin-top: 15px;"><button class="btn btn-default" id="tourNavButton' + i + '">'+text+'</button></div>';
         }
         var showPopover = function( i ) {
           var obj          = popovers[i];
@@ -648,13 +648,13 @@ Script che gestiscono per intero la pagina lato client
         });
         makePopover( '.gameContainer', {
           'title': 'Guida al sistema HOB-2000.',
-          'content': "Questa è la schermata che mostra il settore del pianeta da te difeso. Il tuo lavoro consiste nella difesa delle basi, colorate in azzurro.",
+          'content': "Il tuo lavoro consiste nella difesa delle basi, colorate in azzurro, sparando ai missili nemici con i tasti 1, 2, 3.",
           'trigger': 'manual',
           'placement': 'left',
         });
         makePopover( '.tab0default', {
           'title': 'Guida al sistema HOB-2000.',
-          'content': "Questa è una delle schede in cui compare il codice sorgente.\nLe righe colorate di rosso sono quelle che non puoi modificare.",
+          'content': "Questa è una delle schede in cui compare il codice sorgente.\nLe righe colorate in giallo sono quelle che non puoi modificare.",
           'trigger': 'manual',
           'placement': 'bottom',
         });
@@ -679,18 +679,6 @@ Script che gestiscono per intero la pagina lato client
         makePopover( '.crosshair', {
           'title': 'Guida al sistema HOB-2000.',
           'content': "Una volta completati tutti gli obiettivi dovrai respingere almeno un'ondata del nemico per passare al livello successivo.",
-          'trigger': 'manual',
-          'placement': 'bottom',
-        });
-        makePopover( '#bottoneSalvaCodice', {
-          'title': 'Guida al sistema HOB-2000.',
-          'content': "Questo bottone serve per salvare le tue modifiche nel cloud.",
-          'trigger': 'manual',
-          'placement': 'bottom',
-        });
-        makePopover( '#buttonModalAiuto1', {
-          'title': 'Guida al sistema HOB-2000.',
-          'content': "Se sei bloccato e non riesci ad andare avanti, pagando un prezzo in punti potrai sbloccare un aiuto per l'obiettivo.",
           'trigger': 'manual',
           'placement': 'bottom',
         });
