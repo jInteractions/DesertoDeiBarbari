@@ -284,20 +284,17 @@ Il codice seguente permette di modificare la soglia di temperatura minima, cioè
 
 Questo codice vale per tutte le torrette.
 **********/
-
 var sistemaRaffreddamento = function ( ) {
   T = rilevaTemperatura();
-//###START_MODIFICABILE###
-  // Variabile contenente la soglia di temperatura minima.
+  // Variabile contenente la soglia di temperatura minima. raggiunta la quale la torretta si sblocca.
   var sogliaTemperaturaMinima = 500;
-//###END_MODIFICABILE###
   
   if( T >= 799 ) {
 //###START_MODIFICABILE###
     // Ciclo per la gestione delle pompe di raffreddamento.
-    // Deve rimanere attivo finché la temperatura T non è
-    // uguale o superiore alla soglia.
-    while( T <= sogliaTemperaturaMinima ) {
+    // La torretta deve essere raffreddata fino a che la temperatura T
+    // non scende sotto la soglia minima.
+    while( T >= sogliaTemperaturaMinima ) {
       azionaPompeRaffreddamento();
       T = rilevaTemperatura();
     }
@@ -306,8 +303,9 @@ var sistemaRaffreddamento = function ( ) {
 }
 
 // test
-/* 
-( function () {
+
+//( 
+function () {
   var esito = true;
   
   _deltaTemperatura = 1;
@@ -324,5 +322,4 @@ var sistemaRaffreddamento = function ( ) {
   
   return esito; 
 }
-) ();
-*/
+//) ();
