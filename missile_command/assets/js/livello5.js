@@ -168,12 +168,8 @@ _Compressore.prototype.aumentaPressione = function ( combustibile, pressione, en
 
 /**********
 Benvenuto nel file di configurazione della torretta centrale del sistema Hob-2000.
-Ogni torretta contiene tre variabili fondamentali:
-l'energia per il compressore del gas di propulsione,
-l'energia per lo spostamento del cannone e
-la pressione del carburante del missile.
-Cambiare queste configurazioni solo se si notano malfunzionamenti
-nel meccanismo di sparo delle torrette.
+Ogni torretta contiene tre variabili fondamentali: l'energia per il compressore del gas di propulsione, l'energia per lo spostamento del cannone e la pressione del carburante del missile.
+Cambiare queste configurazioni solo se si notano malfunzionamenti nel meccanismo di sparo delle torrette.
 **********/
 
 // Classe della torretta centrale.
@@ -247,12 +243,8 @@ TorrettaCentrale.prototype.spara = function ( x, y ) {
 
 /**********
 Benvenuto nel file di configurazione della torretta sinistra del sistema Hob-2000.
-Ogni torretta contiene tre variabili fondamentali:
-l'energia per il compressore del gas di propulsione,
-l'energia per lo spostamento del cannone e
-la pressione del carburante del missile.
-Cambiare queste configurazioni solo se si notano malfunzionamenti
-nel meccanismo di sparo delle torrette.
+Ogni torretta contiene tre variabili fondamentali: l'energia per il compressore del gas di propulsione, l'energia per lo spostamento del cannone e la pressione del carburante del missile.
+Cambiare queste configurazioni solo se si notano malfunzionamenti nel meccanismo di sparo delle torrette.
 **********/
 
 // Classe della torretta sinistra
@@ -325,12 +317,8 @@ TorrettaSinistra.prototype.spara = function ( x, y ) {
 
 /**********
 Benvenuto nel file di configurazione della torretta destra del sistema Hob-2000.
-Ogni torretta contiene tre variabili fondamentali:
-l'energia per il compressore del gas di propulsione,
-l'energia per lo spostamento del cannone e
-la pressione del carburante del missile.
-Cambiare queste configurazioni solo se si notano malfunzionamenti
-nel meccanismo di sparo delle torrette.
+Ogni torretta contiene tre variabili fondamentali: l'energia per il compressore del gas di propulsione, l'energia per lo spostamento del cannone e la pressione del carburante del missile.
+Cambiare queste configurazioni solo se si notano malfunzionamenti nel meccanismo di sparo delle torrette.
 **********/
 
 // Classe della torretta destra

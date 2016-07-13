@@ -395,8 +395,7 @@ MissileTestataMultipla.prototype.detonazione = function ( ) {
 
 /**********
 Benvenuto nel file di configurazione missili standard del sistema Hob-2000.
-In questo codice è possibile modificare diverse proprietà dei missili,
-in particolare i bersagli mirati, gli obiettivi agganciati e l'esplosione.
+In questo codice è possibile modificare diverse proprietà dei missili, in particolare i bersagli mirati, gli obiettivi agganciati e l'esplosione.
 **********/
 
 // Classe che identifica il missile standard terrestre.

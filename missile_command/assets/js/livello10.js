@@ -836,12 +836,10 @@ var coordinateIntercettaBersaglio = function (
 // TAB 1
 
 /**********
-Funzione che ordina i bersagliNonOrdinati in ordine di altezza:
-i bersagli piu' vicini al suolo sono quelli piu' pericolosi.
+Funzione che ordina i bersagliNonOrdinati in ordine di altezza: i bersagli piu' vicini al suolo sono quelli piu' pericolosi.
 
 Questa funzione prende come parametro:
-  - bersagliNonOrdinati: array di oggetti con struttura 
-    { x: 157, y: 597, tipo: tipologia };
+  - bersagliNonOrdinati: array di oggetti con struttura { x: 157, y: 597, tipo: tipologia };
 Questa funzione modifica permanentemente l'array passato, riordinandolo.
 **********/
 var ordinamentoBersagliPerAltezza = function ( bersagliNonOrdinati ) {
@@ -853,9 +851,7 @@ var ordinamentoBersagliPerAltezza = function ( bersagliNonOrdinati ) {
 // TAB 2
 
 /**********
-Classe che implementa le torrette automatiche in grado 
-di intercettare con un missile le minacce individuate.
- 
+Classe che implementa le torrette automatiche in grado di intercettare con un missile le minacce individuate.
 La torretta automatica viene costruita con:
   - numeroTorretta: intero che identifica la torretta (0 sinistra, 2 destra);
   - posizione: struttura del tipo { x: 50, y: 430 } che identifica la posizione della torretta;
@@ -871,8 +867,7 @@ function TorrettaAutomatica ( numeroTorretta, posizione, velocitaMissili ) {
 Funzione che identifica il missile che sara' intercettato.
 
 Prende come parametro:
-  - bersagli: array di oggetti con struttura { x: 157, y: 597, tipo: tipologia }.
-    tipo e' a sua volta un oggetto di classe MissileNemico o MissileTerreste.
+  - bersagli: array di oggetti con struttura { x: 157, y: 597, tipo: tipologia }; tipo e' a sua volta un oggetto di classe MissileNemico o MissileTerreste.
 Restituisce come valore:
   - un oggetto di con struttura bersaglio { x: 157, y: 597, tipo: tipologia } 
 **********/
@@ -889,8 +884,7 @@ TorrettaAutomatica.prototype.identificaBersaglio = function ( bersagli ) {
 }
 
 /**********
-Funzione che dato un bersaglio ricava le coordinate dove sparare il
-missile in grado di intercettarlo.
+Funzione che dato un bersaglio ricava le coordinate dove sparare il missile in grado di intercettarlo.
 
 Prende come parametro:
   - bersaglio: oggetto con struttura { x: 157, y: 597, tipo: tipologia }
@@ -915,8 +909,7 @@ TorrettaAutomatica.prototype.mira = function ( bersaglio ) {
 }
 
 /**********
-Funzione che effettua il lancio di un missile verso
-le coordinate, passate come parametro.
+Funzione che effettua il lancio di un missile verso le coordinate, passate come parametro.
 **********/
 TorrettaAutomatica.prototype.sparo = function ( x, y ) {
   var missile = new MissileTorrettaAutomatica( x, y );
@@ -924,15 +917,12 @@ TorrettaAutomatica.prototype.sparo = function ( x, y ) {
 }
 
 /**********
-Funzione che descrive il processo di identificazione, mira e sparo
-necessari ad ogni missile per intercettare una minaccia.
+Funzione che descrive il processo di identificazione, mira e sparo necessari ad ogni missile per intercettare una minaccia.
 Questa funzione prende come parametro:
   - bersagliPossibili: un array di oggetti con 
     struttura { x: 157, y: 597, tipo: tipologia } che rappresentano
     tutti i missili (amici e non) in volo in quel momento.    
-Obiettivo di questa funzione è permettere l'indentificazione di
-un bersaglio tra quelli possibili, ricavare le coordinate per
-intercettarlo ed infine sparare un missile.
+Obiettivo di questa funzione è permettere l'indentificazione di un bersaglio tra quelli possibili, ricavare le coordinate per intercettarlo ed infine sparare un missile.
 **********/
 TorrettaAutomatica.prototype.cicloSparoAutomatico = function ( bersagliPossibili ) {
 //###START_MODIFICABILE###
