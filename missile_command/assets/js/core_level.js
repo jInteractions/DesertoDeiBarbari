@@ -435,7 +435,7 @@ $(document).ready( function () {
   //&& e.erroriParole.length === 0 ) {
   //esiti = caricaCodice.esecuzioneTest();
   //console.log( esiti );
-    var coreLevel = new Livello9( callback );
+    var coreLevel = new Livello10( callback );
     coreLevel.inizializzaLivello( nOndata );
     coreLevel.mostraSchermataIniziale( punteggioTotale );
   //}

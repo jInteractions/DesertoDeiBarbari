@@ -836,31 +836,18 @@ var coordinateIntercettaBersaglio = function (
 // TAB 1
 
 /**********
-Funzione che ordina i bersagliNonOrdinati in ordine di altezza: i bersagli piu' vicini al suolo sono quelli piu' pericolosi.
-
-Questa funzione prende come parametro:
-  - bersagliNonOrdinati: array di oggetti con struttura { x: 157, y: 597, tipo: tipologia };
-Questa funzione modifica permanentemente l'array passato, riordinandolo.
-**********/
-var ordinamentoBersagliPerAltezza = function ( bersagliNonOrdinati ) {
-  bersagliNonOrdinati.sort( function( bersaglio1, bersaglio2 ) {
-    return bersaglio1.y >= bersaglio2.y; 
-  } );
-}
-
-// TAB 2
-
-/**********
 Classe che implementa le torrette automatiche in grado di intercettare con un missile le minacce individuate.
 La torretta automatica viene costruita con:
   - numeroTorretta: intero che identifica la torretta (0 sinistra, 2 destra);
   - posizione: struttura del tipo { x: 50, y: 430 } che identifica la posizione della torretta;
   - velocitaMissili: intero che descrive la velocita dei missili sparati.
 **********/
-function TorrettaAutomatica ( numeroTorretta, posizione, velocitaMissili ) {
+function TorrettaAutomatica ( numeroTorretta, posizione, velocitaMissili, xMinAreaSparo, xMaxAreaSparo ) {
   this.numeroTorretta = numeroTorretta;
   this.posizioneTorretta = posizione;
   this.velocitaMissili = velocitaMissili;
+  this.xMinAreaSparo = xMinAreaSparo;
+  this.xMaxAreaSparo = xMaxAreaSparo;
 }
 
 /**********
@@ -872,14 +859,19 @@ Restituisce come valore:
   - un oggetto di con struttura bersaglio { x: 157, y: 597, tipo: tipologia } 
 **********/
 TorrettaAutomatica.prototype.identificaBersaglio = function ( bersagli ) {
-  var lunghezzaAreaPortata = 510;
-  var altezzaAreaPortata = 460;
-  var bersagliCandidati = [];
-  var candidato = undefined;
+  var candidato;
 //###START_MODIFICABILE###
   // Implementare individuazione bersaglio tra i bersagli
+  var i = 0;
+  for (;i<bersagli.length;i++){
+  	if(bersagli[i].tipo instanceof MissileNemico){
+	  candidato = bersagli[i];
+      break;
+    }
+  }
+    
+    console.log( candidato )
 //###END_MODIFICABILE###
-  candidato = bersagliCandidati[0];
   return candidato;
 }
 
@@ -934,13 +926,19 @@ TorrettaAutomatica.prototype.cicloSparoAutomatico = function ( bersagliPossibili
   //  2) mirare;
   //  3) fare fuoco.
   
+  var bersaglio = this.identificaBersaglio (bersagliPossibili);
+  var coordinate = this.mira(bersaglio.x, bersaglio.y);
+  console.log(bersaglio.x);
+  console.log(bersaglio.y);
+  if(this.xMinAreaSparo < coordinate.x 
+     && coordinate.x < this.xMaxAreaSparo)
+    this.sparo(coordinate.x, coordinate.y);
 //###END_MODIFICABILE###  
 }
 
 // test
 
 var t1 = 
-(
 function ( ) {
   var esito = true;
 
@@ -973,28 +971,60 @@ function ( ) {
 
   _missiliSparati = []; 
   var candidati = bersagli.filter( function ( b ) {
-    if( numeroTorretta === 0 )
-      return (b.tipo instanceof MissileNemico && b.x < 510/2 );
-    if( numeroTorretta === 2 )
-      return (b.tipo instanceof MissileNemico && b.x >= 510/2);
+    return (b.tipo instanceof MissileNemico);
+  } );
+     
+  var bersaglioUtente = torretta.identificaBersaglio( bersagli );
+
+  if( bersaglioUtente === undefined ) {
+    console.log( "bersaglio undef" );
+    return false;
+  }
+  var trovato = false;
+  $.each( candidati, function ( i, c ) {
+    if( bersaglioUtente.x === c.x 
+       && bersaglioUtente.y === c.y ) 
+    trovato = true;
   } );
   
-  ordinamentoBersagliPerAltezza( candidati );
-  var bersaglio = candidati[0];
+  if( trovato === false )
+    console.log( "individua bersaglio errore" );
   
-  var coordinate = coordinateIntercettaBersaglio( bersaglio.x, bersaglio.y, 
-    bersaglio.xArrivo, bersaglio.yArrivo,
-    2, bersaglio.velocita, torretta.posizioneTorretta );  
+  esito = esito & trovato;
   
-  torretta.cicloSparoAutomatico( bersagli );
-
-  if( _missiliSparati.length !== 1 ) {
-    return esito;
+  var coordinate = coordinateIntercettaBersaglio( bersaglioUtente.x, bersaglioUtente.y, 
+    bersaglioUtente.xArrivo, bersaglioUtente.yArrivo,
+    2, bersaglioUtente.velocita, torretta.posizioneTorretta );  
+  
+  var coordinateUtente = torretta.mira( bersaglioUtente );
+  
+  if( coordinateUtente.x !== coordinate.x
+    || coordinateUtente.y !== coordinate.y ) {
+    olCconsole.log( "mira sbagliata" );
+    esito = false
   }
   
+  
+  torretta.sparo( coordinateUtente.x, coordinateUtente.y );
+  
+  if( _missiliSparati.length !== 1 ) {
+    console.log("missile non sparato")
+    return false;
+  }
+  
+  _missiliSparati = [];
+  torretta.cicloSparoAutomatico( bersagli );
   var missile = _missiliSparati[0];
-  if( missile.x !== coordinate.x || missile.y !== coordinate.y )
-     esito = false;
+  if( missile.x !== coordinate.x || missile.y !== coordinate.y ) {
+    console.log( " ciclosparo non va " );
+    esito = false;
+  }
 
+  console.log( coordinateUtente );
+  console.log( coordinate );
+  console.log( _missiliSparati );
+  
   return esito;
-} ) ();
+} 
+
+//) ();
