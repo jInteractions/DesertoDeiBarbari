@@ -316,7 +316,13 @@ function riceviMessaggiBasi ( canaliTrasmissione ) {
 // TAB 2
 
 /**********
-********/
+Ciao, caro.
+Questa funzione è utilizzata dal vostro Nemico per determinare i bersagli terrestri da colpire. 
+Come puoi notare vengono colpite prima le basi il cui canale di trasmissione contiene
+l'identificatore radio "AX".
+Spero ti sia utile,
+Zurlin
+**********/
 var determinaBersagliDaColpire = function ( canaleTrasmissione ) {
   var bersagliPrioritari = [];
   
@@ -405,7 +411,6 @@ var t1 =
   var cause = [];
   $.each( bersagliPrioritari, function( i, b ) {
     if( b.vitale === true ) {
-      cause.push("Una base vitale viene ancora bersagliata!");
       esito = false;
     }
   } );
@@ -414,18 +419,13 @@ var t1 =
       
   $.each( canale, function( i, m ) {
     if( m.messaggio !== messaggiRicevuti[i] ) {
-      cause.push("Le trasmissioni non sono riordinate per bene, alcune basi ricevono messaggi sbagliati!");
       esito = false;
     }
   } );
   
-  //return esito;
-  //return {esito: esito, cause: cause};  
+  return esito;
 }
 //) ();
-
-
-
 
 /* SOLUZIONE
   var temp;
