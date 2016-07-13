@@ -172,9 +172,7 @@ var controlloConfigurazioneParametriPianeti = function () {
 
 /**********
 Benvenuto nel file di sblocco dei permessi di calibrazione.
-Il seguente file permette di sbloccare ed accedere alle funzionalità
-di configurazione planetaria, fondamentiali per la corretta impostazione
-delle armi.
+Il seguente file permette di sbloccare ed accedere alle funzionalità di configurazione planetaria, fondamentiali per la corretta impostazione delle armi.
 **********/
 
 // Variabile contenente il codice del pianeta su cui si trovano le armi.
@@ -234,12 +232,9 @@ var sbloccoPermessiCalibrazione = function () {
 
 /**********
 Benvenuto nel file di configurazione planetaria del sistema Hob-2000.
-Troverai in elenco le caratteristiche di ogni pianeta,
-necessarie per il corretto funzionamento del sistema stesso.
-Ogni pianeta ha cinque caratteristiche: il nome, la forza gravitazionale,
-il vento, l'atmosfera e il settore galattico.
-Tali caratteristiche influiscono pesantemente sulle capacità di sparo,
-rendendo potenzialmente inutilizzabili le armi se configurate per il pianeta errato.
+Troverai in elenco le caratteristiche di ogni pianeta, necessarie per il corretto funzionamento del sistema stesso.
+Ogni pianeta ha cinque caratteristiche: il nome, la forza gravitazionale, il vento, l'atmosfera e il settore galattico.
+Tali caratteristiche influiscono pesantemente sulle capacità di sparo, rendendo potenzialmente inutilizzabili le armi se configurate per il pianeta errato.
 **********/
 
 var configurazioneParametriPianeti = function () {
@@ -248,45 +243,55 @@ var configurazioneParametriPianeti = function () {
   var vento;
   var atmosfera;
   var settoreGalattico;
-  
+  console.log("Il codice del pianeta selezionato è: " + _codicePianeta);  
 //###START_MODIFICABILE###
   if ( _codicePianeta === 1 ) {
+//###END_MODIFICABILE###
     nomePianeta = "Terra";
     forzaGravitazionale = 1;
     vento = 1;
     atmosfera = "respirabile";
     settoreGalattico = 0;
+//###START_MODIFICABILE###
   } else if ( _codicePianeta === 2 ) {
+//###END_MODIFICABILE###
     nomePianeta = "Buzzati";
     forzaGravitazionale = 2;
     vento = 19.06;
     atmosfera = "respirabile";
     settoreGalattico = 5;
+//###START_MODIFICABILE###
   } else if ( _codicePianeta === 3 ) {
+//###END_MODIFICABILE###
     nomePianeta = "Colombre";
     forzaGravitazionale = 0.5;
     vento = 0.7;
     atmosfera = "non_respirabile";
     settoreGalattico = 6;
+//###START_MODIFICABILE###
   } else if ( _codicePianeta === 4 ) {
+//###END_MODIFICABILE###
     nomePianeta = "Buttafuoco";
     forzaGravitazionale = 4.5;
     vento = 80;
     atmosfera = "non_respirabile";
     settoreGalattico = 3;
+//###START_MODIFICABILE###
   } else if ( _codicePianeta === 5 ) {
+//###END_MODIFICABILE###
     nomePianeta = "Barnabo";
     forzaGravitazionale = 13;
     vento = 0;
     atmosfera = "parzialmente_respirabile";
     settoreGalattico = 1;
+//###START_MODIFICABILE###
   } else if ( _codicePianeta === 6 ) {
+//###END_MODIFICABILE###
     nomePianeta = "Bastiani";
     forzaGravitazionale = 4.2;
     vento = 23;
     atmosfera = "respirabile";
     settoreGalattico = 7;
-//###END_MODIFICABILE###
     // /\/\/\ £Nos****Kn£$%BsorJOJSONHbooooooLK666dbw**
     // **&fgHJS666&78765&4%4$$L£sC&GSTntadjr /\/\/\
   } else if ( _codicePianeta === "00110111" ) {
