@@ -322,11 +322,10 @@ var hackingPassword = function () {
 }
 
 // test
-// (
-var t1 = 
-function () {
+/*
+( function () {
   hackingPassword();
   var risultato = _login;
   return risultato;
 }
-//) (); 
+) (); */
