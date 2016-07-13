@@ -473,13 +473,15 @@
               <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                 <div class="accordionPanel-body panel-body">
                   <?php 
+                    $numeroObiettivo = 0;
                     foreach($jsonLivello["fileVirtuali"] as $chiave => $valore)
                     {
                       if($valore["consultazione"]===false){
+                        $numeroObiettivo = $numeroObiettivo+1;
                         if(is_null($fileVirtualiAggiornati["fileVirtuali"])){
                   ?>
                           <p>
-                            <?php echo '<div class="divObiettivo">'.'<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="titoloObiettivo"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="iconaOkObiettivo glyphicon glyphicon-unchecked"></span>'.$valore["nomeFile"].'</p><br>'.$valore["descrizione"].'</div>'; ?>
+                            <?php echo '<div class="divObiettivo">'.'<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="titoloObiettivo"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="iconaOkObiettivo glyphicon glyphicon-unchecked"></span>Obiettivo '.$numeroObiettivo.', nel file "'.$valore["nomeFile"].'":</p><br>'.$valore["descrizione"].'</div>'; ?>
                           </p>
                         <?php
                           echo '<button type="button" class="btn btn-lg btn-info center-block" data-toggle="modal" id="buttonModalAiuto'.$chiave.'" data-target="#modalAiuto'.$chiave.'">Aiuto</button>';
@@ -487,7 +489,7 @@
                         } else {
                          ?>
                           <p>
-                            <?php echo '<div class="divObiettivo">'.'<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="titoloObiettivo"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="iconaOkObiettivo glyphicon glyphicon-unchecked"></span>'.$valore["nomeFile"].'</p><br>'.$valore["descrizione"].'</div>'; ?>
+                            <?php echo '<div class="divObiettivo">'.'<p id="obiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="titoloObiettivo"><span id="spanObiettivo'.str_replace(".","",$valore["nomeFile"]).'" class="iconaOkObiettivo glyphicon glyphicon-unchecked"></span>Obiettivo '.$numeroObiettivo.', nel file "'.$valore["nomeFile"].'":</p><br>'.$valore["descrizione"].'</div>'; ?>
                           </p>
                         <?php
                           if (strcmp($fileVirtualiAggiornati["fileVirtuali"][$chiave]["aiutoUtilizzato"], "true")===0){
@@ -632,48 +634,41 @@ Script che gestiscono per intero la pagina lato client
         var popovers = [];
         makePopover( '.main-header', {
           'title': 'Guida al sistema HOB-2000.',
-          'content': "Benvenuto nella plancia di comando delle postazioni antimissile del 42esimo battaglione dell'UTF-8.\nIo sono il sistema operativo HOB-2000 e ti accompagnerò in questa breve guida.\nClicca su AVANTI per proseguire.\n",
+          'content': "Benvenuto nella plancia di comando delle postazioni antimissile.\nIo sono il sistema operativo HOB-2000 e ti accompagnerò in questa breve guida.\n",
           'trigger': 'manual',
           'placement': 'bottom',
         });
-        makePopover( '.gameContainer', {
-          'title': 'Guida al sistema HOB-2000.',
-          'content': "Il tuo lavoro consiste nella difesa delle basi, colorate in azzurro, sparando ai missili nemici con i tasti 1, 2, 3.",
-          'trigger': 'manual',
-          'placement': 'left',
-        });
         makePopover( '.tab0default', {
           'title': 'Guida al sistema HOB-2000.',
-          'content': "Questa è una delle schede in cui compare il codice sorgente.\nLe righe colorate in giallo sono quelle che non puoi modificare.",
+          'content': "Questa è una delle schede in cui compare il codice sorgente.\nLe righe colorate in giallo sono quelle che non puoi modificare, le altre dovrai modificarle per risolvere i problemi.",
           'trigger': 'manual',
           'placement': 'bottom',
         });
         makePopover( '#bottoneCaricaCodice', {
           'title': 'Guida al sistema HOB-2000.',
-          'content': "Questo bottone serve per caricare le tue modifiche nel sistema.",
+          'content': "Questo bottone serve per eseguire le tue modifiche nel gioco.",
           'trigger': 'manual',
           'placement': 'bottom',
         });
          makePopover( '.panel-obiettivo', {
           'title': 'Guida al sistema HOB-2000.',
-          'content': "Qui sono contenute le indicazioni sulle missione da svolgere. Tutte le missioni riguardano l'aggiustare il codice del sistema.",
+          'content': "Qui sono contenuti gli obiettivi. Per completarli dovrai aggiustare il codice del sistema.",
           'trigger': 'manual',
           'placement': 'bottom',
         });
         makePopover( '#terminale', {
           'title': 'Guida al sistema HOB-2000.',
-          'content': "Questo piccolo schermo è il terminale, che permette di visualizzare tutti i messaggi del sistema, come gli errori o le comunicazioni di successo.",
+          'content': "Questo è il terminale, che permette di visualizzare tutti i messaggi del sistema, come gli errori o le comunicazioni di successo.",
           'trigger': 'manual',
           'placement': 'left',
         });
-        makePopover( '.crosshair', {
+        makePopover( '.gameContainer', {
           'title': 'Guida al sistema HOB-2000.',
-          'content': "Una volta completati tutti gli obiettivi dovrai respingere almeno un'ondata del nemico per passare al livello successivo.",
+          'content': "Una volta completati tutti gli obiettivi dovrai respingere almeno un'ondata del nemico per passare al livello successivo. Difendendo le basi, colorate in azzurro, sparando ai missili nemici con i tasti 1, 2, 3.",
           'trigger': 'manual',
           'placement': 'bottom',
         });
         
-        $("#collapseObiettivo").click();
         $("#collapseManuale").click();
         showPopover( 0 );  
         
