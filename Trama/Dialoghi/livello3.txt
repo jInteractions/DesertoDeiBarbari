@@ -66,20 +66,15 @@ che deve diventare:
 </code></pre>
 
 OBIETTIVO - Tab 2
-L&#x27;obiettivo &#xE8; quello di impostare la corretta gestione del sistema di raffreddamento. Il primo punto da modificare &#xE8; la soglia della temperatura minima.<br>
+L&#x27;obiettivo &#xE8; quello di impostare la corretta gestione del sistema di raffreddamento.<br>
 La soglia di temperatura minima &#xE8; la temperatura alla quale le torrette surriscaldate tornano a funzionare.<br>
 Il sistema di raffreddamento delle torrette funziona nel modo seguente:
 <li> ogni volta che una torretta supera i 799&#xB0;C, si blocca; </li>
 <li> a questo punto le pompe di raffreddamento abbassano la temperatura della torretta; </li>
-<li> raggiunta la soglia di temperatura minima, la torretta si sblocca e ricomincia a sparare. </li> <br>
-Una soglia bassa permette dunque di sparare a lungo ma poi rimanere bloccati per molto tempo; una soglia alta permette di sparare poco ma con un tempo di raffreddamento (e dunque di blocco) decisamente minore.<br>
-Il secondo punto da modificare &#xE8; la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura &#xE8; maggiore o uguale alla soglia decisa in precedenza.
+<li> raggiunta la soglia di temperatura minima, la torretta si sblocca e ricomincia a sparare. </li>
+Il punto da modificare &#xE8; la condizione del ciclo while: il ciclo deve rimanere attivo se la temperatura &#xE8; maggiore o uguale alla soglia decisa in precedenza.
 AIUTI
-Come prima cosa &#xE8; necessario decidere la soglia minima della temperatura, per esempio:
-<pre><code>var sogliaTemperaturaMinima = 300;
-</code></pre>
-Ovviamente &#xE8; possibile lasciarla invariata.<br>
-Successivamente la condizione del ciclo deve essere modificata nel seguente modo:
+La condizione del ciclo deve essere modificata nel seguente modo:
 <pre><code>while( T &#x3E;= sogliaTemperaturaMinima )
 </code></pre>
 
