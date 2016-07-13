@@ -866,8 +866,10 @@ Script che gestiscono per intero la pagina lato client
         ?>
         
         console = new Terminale( "#terminale" );
-
+                
         ricaricaCodice();
+        
+        $("#collapseObiettivo").click();
       } );
 
       /** Funzione che carica il codice nel gioco e resetta
