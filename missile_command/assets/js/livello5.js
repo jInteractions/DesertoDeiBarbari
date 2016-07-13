@@ -216,7 +216,7 @@ TorrettaCentrale.prototype.spara = function ( x, y ) {
   var esito = true;
   
   var magazzino = [{ combustibile: 'O2' }, { combustibile: 'H2' }, { combustibile: 'H2O2' }]
-  var torretta = new TorrettaDestra( magazzino, new _Caricatore( ), 
+  var torretta = new TorrettaCentrale( magazzino, new _Caricatore( ), 
                                     new _Compressore( ), new _Generatore( ), 
                                     new _Mirino( ));
   torretta.caricaMissile();
@@ -291,7 +291,7 @@ TorrettaSinistra.prototype.spara = function ( x, y ) {
   var esito = true;
   
   var magazzino = [{ combustibile: 'O2' }, { combustibile: 'H2' }, { combustibile: 'H2O2' }]
-  var torretta = new TorrettaCentrale( magazzino, new _Caricatore( ), 
+  var torretta = new TorrettaSinistra( magazzino, new _Caricatore( ), 
                                     new _Compressore( ), new _Generatore( ), 
                                     new _Mirino( ));
   torretta.caricaMissile();
@@ -365,7 +365,7 @@ TorrettaDestra.prototype.spara = function ( x, y ) {
   var esito = true;
   
   var magazzino = [{ combustibile: 'O2' }, { combustibile: 'H2' }, { combustibile: 'H2O2' }]
-  var torretta = new TorrettaSinistra( magazzino, new _Caricatore( ), 
+  var torretta = new TorrettaDestra( magazzino, new _Caricatore( ), 
                                     new _Compressore( ), new _Generatore( ), 
                                     new _Mirino( ));
   torretta.caricaMissile();

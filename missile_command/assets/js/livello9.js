@@ -403,9 +403,8 @@ var comandoSparoMultiplo = function ( ordiniDiFuoco, torrette ) {
  
 // test
 
-//var t1 = 
-(
-function () {
+/*
+( function () {
   var esito = true;
 
   var torrette = [];
@@ -454,7 +453,7 @@ function () {
   } );
 
   return esito;
-} ) ();
+} ) (); */
       
       
 
