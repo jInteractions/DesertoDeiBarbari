@@ -826,13 +826,13 @@ Script che gestiscono per intero la pagina lato client
         $("#bottoneCaricaCodice").click(function(){funzioneSalvaCodice(); ricaricaCodice();});
         $("#bottoneLivelloSuccessivo").click(function () {          
           if(<?php echo $_GET["idlivello"]; ?>!=10)
-            location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
+            location.href = "gioco.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
           else
             location.href = "fineGioco.php";
         });
         $("#bottoneLivelloSuccessivoModal").click(function () {        
           if(<?php echo $_GET["idlivello"]; ?>!=10)
-            location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
+            location.href = "gioco.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
           else
             location.href = "fineGioco.php";
         });

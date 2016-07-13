@@ -129,7 +129,7 @@
                   $livelloMax = $valore["idlivello"];
                 }
               }
-              echo '<a href="index.php?idlivello='.$livelloMax.'">';
+              echo '<a href="gioco.php?idlivello='.$livelloMax.'">';
             ?>
             <i class="fa fa-play"></i> <span>Gioca</span>
           </a>
@@ -199,7 +199,7 @@
         </div>
       <?php
         if($livelloDisponibile)
-          echo '<a href="index.php?idlivello='.$valore["idlivello"].'" class="small-box-footer">Gioca livello <i class="fa fa-arrow-circle-right"></i></a>';
+          echo '<a href="gioco.php?idlivello='.$valore["idlivello"].'" class="small-box-footer">Gioca livello <i class="fa fa-arrow-circle-right"></i></a>';
       ?>
         
       </div>

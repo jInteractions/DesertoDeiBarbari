@@ -129,7 +129,7 @@
                   $livelloMax = $valore["idlivello"];
                 }
               }
-              echo '<a href="index.php?idlivello='.$livelloMax.'">';
+              echo '<a href="gioco.php?idlivello='.$livelloMax.'">';
             ?>
             <i class="fa fa-play"></i> <span>Gioca</span>
           </a>
