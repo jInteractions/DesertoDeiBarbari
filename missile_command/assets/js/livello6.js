@@ -47,11 +47,6 @@ Livello6.prototype.setupListeners = function( ) {
   $( '.gameContainer' ).off();
   $( '.gameContainer' ).focus();
   
-  /*
-  $( '.gameContainer' ).bind( 'keyup', function( event ) {
-    mySelf.sparo( mySelf.coreGame.mirino.x, mySelf.coreGame.mirino.y, event.which );
-  });
-  */
   azionamentoComandiPlancia( '.gameContainer', this.coreGame.batterieAntimissile,     this.coreGame.mirino, mySelf );
   
   $( '.gameContainer' ).on( 'mouseover', function( event ) {

@@ -130,9 +130,9 @@ var controlloPermessiCalibrazione = function () {
   } else {
     console.log(
       "Sblocco Calibrazione: " + risultato[ 0 ]
-      + "Accesso Configurazione Pianeti: " + risultato[ 1 ]
-      + "Codice Pianeta: " + risultato[ 2 ]
-      + "Informazioni non corrette."
+      + "\nAccesso Configurazione Pianeti: " + risultato[ 1 ]
+      + "\nCodice Pianeta: " + risultato[ 2 ]
+      + "\nInformazioni non corrette."
     );
     return false;
   } 
@@ -158,11 +158,11 @@ var controlloConfigurazioneParametriPianeti = function () {
   } else {
     console.log(
       "Nome pianeta: " + nome
-      + "Forza Gravitazionale: " + grav
-      + "Vento: " + vento
-      + "Atmosfera: " + atmosfera
-      + "Settore Galattico: " + settore
-      + "Informazioni non corrette."
+      + "\nForza Gravitazionale: " + grav
+      + "\nVento: " + vento
+      + "\nAtmosfera: " + atmosfera
+      + "\nSettore Galattico: " + settore
+      + "\nInformazioni non corrette."
     );
     return false;
   }

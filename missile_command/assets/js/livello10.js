@@ -882,10 +882,9 @@ TorrettaAutomatica.prototype.identificaBersaglio = function ( bersagli ) {
   var bersagliCandidati = [];
   var candidato = undefined;
 //###START_MODIFICABILE###
-  
   // Implementare individuazione bersaglio tra i bersagli
-  
 //###END_MODIFICABILE###
+  candidato = bersagliCandidati[0];
   return candidato;
 }
 
@@ -950,7 +949,6 @@ TorrettaAutomatica.prototype.cicloSparoAutomatico = function ( bersagliPossibili
 
 // test
 
-var t1 = 
 var t1 = 
 (
 function ( ) {

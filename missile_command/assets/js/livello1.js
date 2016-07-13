@@ -13,23 +13,6 @@ Livello1.prototype.inizializzaMirino = function ( ) {
   }
 }
 
-/*
-Livello1.prototype.inizializzaLivello = function (  ) {
-  this.inizializzaMirino();
-  this.coreGame = new CoreGame( this.canvas, this.mirino, {
-    coloreSfondo: 'black',
-    coloreTerreno: 'yellow',
-    coloreTestoPrimario: 'blue',
-    coloreTestoSecondario: 'red'
-  });
-  this.inizializzaTorrette();
-  this.inizializzaBasi();
-  this.inizializzaArmiNemiche();
-  this.inizializzaArmiTerrestri();
-  // chiamata alla funzione di autenticazione manuale
-  this.setupListeners();
-}*/
-
 Livello1.prototype.inizializzaTorrette = function () {
   var nMissili = 10;
   var nSoldati = 10;
