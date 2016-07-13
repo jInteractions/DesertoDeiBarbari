@@ -861,8 +861,9 @@ pre {
 }
 
 .CodeMirror-lines .disabled {
-	background: rgba(255, 0, 0, 0.5); /* semi-transparent so we can see selection over it */
+	background: rgba(255, 255, 163, 0.55); /* semi-transparent so we can see selection over it */
 }
+
 .titoloObiettivo {
   font-size: 16pt;
   font-weight: 600;
