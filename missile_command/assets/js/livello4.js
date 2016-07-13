@@ -259,7 +259,7 @@ var inizializzaBatteriaAntiterrestri = function () {
 /**********
 Ciao, caro.
 Nella funzione generaPassword() hai un esempio di funzione ricorsiva per il calcolo della password necessaria per salvare le modifiche.
-Questo codice prova ad indovinare la password generando tutte le combinazioni possibili dei caratteri 'x', '%' e 'A'.
+Questo codice prova ad indovinare la password generando tutte le combinazioni possibili dei caratteri 'A', 'B' e 'C'.
 Nella funzione hackingPassword() queste combinazioni vengono mandate al server centrale del Nemico, continuando finché non viene approvata una delle combinazioni.
 Spero di non aver fatto errori.
 Saluti,
