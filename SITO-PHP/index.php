@@ -309,7 +309,18 @@
                 <img src="assets/img/avatar/Simeoni.png" class="img-circle" alt="User Image">
                 <p>
                   <?php echo $utente["email"];?>
-                  <small>Livello 1</small>
+                  <small>
+                    Livello 
+                  <?php 
+                    $livelloMassimo = 0;
+                    foreach($informazioniLivelliEseguiti as $chiave => $valore) {
+                      if($valore["idlivello"] > $livelloMassimo){
+                        $livelloMassimo = $valore["idlivello"];
+                      }
+                    }
+                    echo $livelloMassimo;
+                  ?>
+                </small>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -834,11 +845,17 @@ Script che gestiscono per intero la pagina lato client
             mostraAiuto(this.id.replace("bottoneAiuto", ""));
         });
         $("#bottoneCaricaCodice").click(function(){funzioneSalvaCodice(); ricaricaCodice();});
-        $("#bottoneLivelloSuccessivo").click(function () {
+        $("#bottoneLivelloSuccessivo").click(function () {          
+          if(<?php echo $_GET["idlivello"]; ?>!=10)
             location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
+          else
+            location.href = "fineGioco.php";
         });
-        $("#bottoneLivelloSuccessivoModal").click(function () {
+        $("#bottoneLivelloSuccessivoModal").click(function () {        
+          if(<?php echo $_GET["idlivello"]; ?>!=10)
             location.href = "index.php?idlivello=" + <?php echo ($_GET["idlivello"]+1); ?>;
+          else
+            location.href = "fineGioco.php";
         });
         $("#bottoneSalvaCodice").click(funzioneSalvaCodice);
 

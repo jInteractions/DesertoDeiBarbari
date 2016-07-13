@@ -878,3 +878,12 @@ pre {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.titoloFineGioco {
+  text-align: center;
+}
+
+.testoFineGioco {
+  margin-right: 100px;
+  margin-left: 140px;
+}

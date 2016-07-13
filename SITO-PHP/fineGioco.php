@@ -177,56 +177,12 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <div class="row rigaDashboard">
-      <?php 
-      foreach($informazioniLivelliEsistenti as $chiave => $valore) {
-        $livelloDisponibile=false;
-        $livelloSuccessivoDisponibile=false;
-        foreach($informazioniLivelliEseguiti as $chiaveEseguito => $valoreEseguito) {
-          if($valore["idlivello"]===$valoreEseguito["idlivello"])
-            $livelloDisponibile=true;
-          if(($valore["idlivello"]+1)===$valoreEseguito["idlivello"])
-            $livelloSuccessivoDisponibile=true;
-        }
-        if($livelloDisponibile)
-          echo '<div class="small-box box-dashboard bg-green-active">';
-        else
-          echo '<div class="small-box box-dashboard bg-green-active">';
-      ?>
-        <div class="inner">
-          <h3><?php echo $valore["nome"] ?></h3>
-
-          <p><?php 
-                if($livelloSuccessivoDisponibile)
-                  echo "Livello completato!";
-                else
-                  if (!$livelloDisponibile)
-                    echo "Livello non ancora sbloccato";
-                  else
-                    echo "Livello da completare";
-          ?></p>
-                  
-                    
-        </div>
-        <div class="icon">
-          <?php 
-          if($livelloSuccessivoDisponibile)
-            echo '<i class="ion ion-thumbsup"></i>';
-          else
-            if (!$livelloDisponibile)
-              echo '<i class="ion ion-locked"></i>';
-            else
-              echo '<i class="ion ion-alert-circled"></i>';?>
-          
-        </div>
-      <?php
-        if($livelloDisponibile)
-          echo '<a href="index.php?idlivello='.$valore["idlivello"].'" class="small-box-footer">Gioca livello <i class="fa fa-arrow-circle-right"></i></a>';
-      ?>
-        
-      </div>
-      <?php 
-      } 
-      ?>
+      <h1 class="titoloFineGioco">Complimenti!</h1> 
+      <h2 class="titoloFineGioco"> Sei riuscito a completare il gioco e salvare la galassia!</h2>
+      <br>
+      <h3 class="testoFineGioco">Puoi rigiocare i livelli tutte le volte che vuoi, in modo da aumentare il tuo punteggio e magari diventare il primo in classifica!<br><br>
+      Se vuoi scoprire come questo gioco &#232; stato creato puoi guardare il codice sorgente su <a href="https://github.com/jInteractions/DesertoDeiBarbari">GitHub</a>.<br><br><br></h3>
+      <h4 class="titoloFineGioco">Alessio Bortolotti, Sebastian Davrieux, Andrea Segalini, Francesco Trombi</h4>
     </div>
   </div>
 
