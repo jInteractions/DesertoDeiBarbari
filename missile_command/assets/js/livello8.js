@@ -294,7 +294,7 @@ function spedisciMessaggiBasi ( ) {
 
 /**********
 Funzione che riceve i messaggi dai canali di tramissione e li smista alle relative basi.
-"canaliTrasmissione" è un array di 6 elementi aventi struttura: { idRadio: "AX1", messaggio: "[00:12] Questo è un messaggio di prova" }.
+canaliTrasmissione è un array di 6 elementi aventi struttura: { idRadio: "AX1", messaggio: "[00:12] Questo è un messaggio di prova" }.
 **********/
 function riceviMessaggiBasi ( canaliTrasmissione ) { 
   // Vengono riordinati i canali di trasmissione per consentire la corretta ricezione
@@ -369,9 +369,8 @@ var riordinaCanali = function ( canaleTrasmissione ) {
 }
 
 // test
-var t1 = 
-//( 
-  function () {
+/*
+( function () {
   var basi = [ 
     new BaseMilitare( 80,  430, false, 100, 'red', null ),
     new BaseMilitare( 130,  430, true, 100, 'cyan', null ),
@@ -422,7 +421,7 @@ var t1 =
   
   return esito;
 }
-//) ();
+) (); */
 
 /* SOLUZIONE
   var temp;
