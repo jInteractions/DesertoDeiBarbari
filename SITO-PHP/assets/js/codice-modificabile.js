@@ -7,16 +7,18 @@ var determinaPartiModificabili = function ( codice ) {
   var contatore = 0;
   for( var i = 0; i < lineeCodice.length; ++i) {
     var lineaCorrente = lineeCodice[i];
-
-    if (lineaCorrente.indexOf("\/\/###START_MODIFICABILE") === 0) {
+    
+    if (lineaCorrente.indexOf("\/\/###START_MODIFICABILE###") === 0) {
       lineeCodice.splice(i, 1);
       i--;
       delimitatori[contatore] = {inizio: null, fine: null}
-      delimitatori[contatore].inizio = i + 1;     
-    } else if (lineaCorrente.indexOf("\/\/###END_MODIFICABILE") === 0) {
+      delimitatori[contatore].inizio = i + 1;    
+    
+    } else if (lineaCorrente.indexOf("\/\/###END_MODIFICABILE###") === 0) {
       lineeCodice.splice(i, 1);
       i--;
-      delimitatori[contatore].fine = i + 1; 
+      delimitatori[contatore].fine = i + 1;
+      
       contatore++;
     }
   }
@@ -58,11 +60,6 @@ var inserisciCodiceEditor = function ( editor, codice ) {
 
   editor.clearHistory();
   editor.refresh();
-  
-  
-
-  
-
 };
 
 /** Estrae il codice dall'editor, reinserisce i marcatori 
@@ -76,15 +73,26 @@ var salvaCodiceEditor = function ( editor ) {
   var inizio = 0;
   var fine = 0;
   var offset = 0;
-  for(var i = 0; i < delimitatori.length; ++i) {
+  var delimitatore0 = delimitatori[0].find();
+  var i = 0;
+  if( delimitatore0.from.line === 0 ) {
+    inizio = delimitatore0.to.line
+    i = 1;
+  }
+  
+  for( i ; i < delimitatori.length; ++i) {
     var delimitatore = delimitatori[i].find();
+  
     fine = delimitatore.from.line;
-
-    lineeCodice.splice(fine + offset, 0, "\/\/###END_MODIFICABILE"); offset++;
-    lineeCodice.splice(inizio - 1 + offset, 0, "\/\/###START_MODIFICABILE"); offset++;  
-
+    
+    lineeCodice.splice(inizio + offset, 0, "\/\/###START_MODIFICABILE###"); 
+    offset++;
+   
+    lineeCodice.splice(fine + offset, 0, "\/\/###END_MODIFICABILE###"); 
+    offset++;
+    
     inizio = delimitatore.to.line;
   }
-
+  
   return lineeCodice.join("\n");
 };
