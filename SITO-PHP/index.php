@@ -184,11 +184,11 @@
           </div>
           <div class="modal-footer">
             <h5>Puoi passare al livello successivo o continuare a combattere per migliorare il punteggio.</h5> 
-            <div class="col-md-3 col-md-offset-6 colonna">
-              <button type="button" class="btn btn-info center-block" data-dismiss="modal">Continua a giocare</button>
+            <div class="col-md-6 col-md-offset-2 colonna">
+              <button type="button" class="btn btn-info center-block" data-dismiss="modal">Continua a combattere in questo livello</button>
             </div>
-            <div class="col-md-3 colonna">
-              <button type="button" class="btn btn-warning center-block" id="bottoneLivelloSuccessivoModal"> Livello successivo </button>
+            <div class="col-md-4 colonna">
+              <button type="button" class="btn btn-warning center-block" id="bottoneLivelloSuccessivoModal"> Passa al livello successivo </button>
             </div>
           </div>
         </div>
