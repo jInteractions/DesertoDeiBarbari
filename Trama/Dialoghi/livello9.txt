@@ -50,6 +50,7 @@ Allora è deciso. Presto, cominciate a lavorare su questa nuova arma... me lo se
 
 OBIETTIVO - Tab 2
 L'obiettivo è la creazione di un'arma speciale in grado di eseguire un attacco coordinato tra tutte le torrette, creando uno sbarramento di fuoco.<br>
+Ogni torretta utilizza un'intera fila di missili dal caricatore: quindi alla prima pressione della barra spaziatrice sparerà al più 4 missili, alla seconda al più 3, alla terza al più 2 e alla quarta al più 1.<br>
 Tale arma viene attivata premendo la barra spaziatrice.<br>
 Ispirandoti alla funzione <tt>comandoSparoSingolo()</tt> dovrai implementare la funzione <tt>comandoSparoMultiplo()</tt>, in grado di fornire alle torrette gli ordini di sparo con le coordinate sulle quali dirigere i propri missili.
 AIUTI
