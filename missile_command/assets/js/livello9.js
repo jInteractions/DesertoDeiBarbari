@@ -390,7 +390,7 @@ var comandoSparoSingolo = function ( x, y, torrette ) {
 Funzione che comanda a tutte le torrette di sparare missili lungo una linea creando uno sbarramento di fuoco in cielo.
 
 Prende come parametri:
-  - ordiniDiFuoco: un array di oggetti con struttura { numeroTorretta: 0, x: 416, y: 188 } dove x ed y sono le coordinate a cui sparare mentre numeroTorretta rappresenta l'identificatore della torretta a cui è diretto l'ordine;
+  - ordiniDiFuoco: un array di strutture { numeroTorretta: 0, x: 416, y: 188 } dove x ed y sono le coordinate a cui sparare mentre numeroTorretta rappresenta l'identificatore della torretta a cui è diretto l'ordine;
   - torrette: array di oggetti torretta le quali possiedono un indice ( torretta.indice ) e consentono lo sparo tramite il metodo torretta.cicloSparo().
     
 Obiettivo della funzione è far sparare le torrette in accordo con gli ordini contenuti in ordiniDiFuoco.
