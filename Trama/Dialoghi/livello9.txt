@@ -65,6 +65,7 @@ for( var i = 0; i < l; ++i ) {
 }
 
 MANUALE
+<b>Array</b>
 Ti ricordi? Un array &#xE8; una variabile che contiene pi&#xF9; valori. Un esempio di array pu&#xF2; essere il seguente:
 <pre><code>var numeri = [1, 2, 3, 4];
 </code></pre>
@@ -79,14 +80,41 @@ Nota bene! Ogni elemento di un array ha un numero, che indica la sua posizione a
 <pre><code>var a = numeri[ 0 ];
 var b = numeri[ 4 ];
 </code></pre>
-In questo codice, <tt>a</tt> contiene il valore 1, che occupa la posizione 0 all&#x27;interno dell&#x27;array; la variabile <tt>b</tt> contiene invece il valore 5, che occupa la posizione 4.
+In questo codice, <tt>a</tt> contiene il valore 1, che occupa la posizione 0 all&#x27;interno dell&#x27;array; la variabile <tt>b</tt> contiene invece il valore 5, che occupa la posizione 4.<br>
+Un&#x27;operazione molto importante applicabile agli array &#xE8; quella per determinarne la lunghezza.<br>
+Si prenda un esempio di array di stringhe:
+<pre><code>var personaggi = ["Simeoni", "Ortiz", "Prosdocimo"];
+</code></pre>
+La lunghezza di un array corrisponde al numero di elementi che esso contiene: in questo caso &#xE8; pari a 3, dato che <tt>personaggi</tt> contiene tre stringhe. Per ottenere tale numero &#xE8; necessario effettuare la seguente operazione:
+<pre><code>var lunghezzaArray = personaggi.length;
+</code></pre>
+La variabile <tt>lunghezzaArray</tt> contiene il numero 3, che &#xE8; il numero di elementi presenti in <tt>personaggi</tt>.<br>
+<b>Struttura</b>
+<b>Struttura</b><br>
 Una <b>struttura</b> è invece simile ad una classe, ma possiede solamente campi e nessuna funzione. Eccone un esempio:
 <pre><code>var soldato = {grado: "colonnello", matricola: 150716};
 </code></pre>
-È possibile accedere ad un campo di una struttura in maniera molto semplice:
+&#200; possibile accedere ad un campo di una struttura in maniera molto semplice:
 <pre><code>var matricola = soldato.matricola;
 </code></pre>
-In questo caso, la variabile <tt>matricola</tt> conterrà il valore 150716.
+In questo caso, la variabile <tt>matricola</tt> conterrà il valore 150716.<br>
+Ovviamente &#xE8; possibile utilizzare le strutture per creare degli array.<br>
+L&#x27;esempio seguente mostra come fare un array di strutture, utilizzando la struttura vista in precedenza:
+<pre><code>var soldato1 = {grado: "colonnello", matricola: 150716};
+var soldato2 = {grado: "soldato semplice", matricola: 150717};
+var soldato3 = {grado: "generale", matricola: 150718};
+// Si crea l'array che deve contenere i soldati
+var arraySoldati = [];
+// Si riempie questo array
+arraySoldati.push(soldato1);
+arraySoldati.push(soldato2);
+arraySoldati.push(soldato3);
+</code></pre>
+Per accedere al campo <tt>grado</tt> della variabile <tt>soldato2</tt>, per esempio, &#xE8; necessario effettuare la seguente operazione:
+<pre><code>// Ricorda! Gli indici degli array partono da 0.
+var gradoSoldato2 = arraySoldati[1].grado;
+</code></pre>
+La variabile <tt>gradoSoldato2</tt> contiene dunque la stringa <tt>soldato semplice</tt>.
 
 DIALOGO FINALE
 Mellara
