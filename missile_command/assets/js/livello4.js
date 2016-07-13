@@ -16,7 +16,7 @@ Livello4.prototype.inizializzaArmiNemiche = function () {
   
   if ( _login === false ) {
     var combinazioniPossibili = [];
-    var combinazione = ['0', '0', '0'];
+    var combinazione = ['*', '*', '*'];
     generaPassword( combinazioniPossibili, combinazione, 0 );
     console.log( "Password generate: " )
     $.each( combinazioniPossibili, function ( i, c ) {
@@ -157,14 +157,12 @@ var controlloInizializzazioneBatteriaAntiterrestri = function () {
   }
   return batteria;
 }
-
-var _simboli = ['0', '1', '2'];
-
-var _password = [
-  _simboli[ rand( 0, 2 ) ],
-  _simboli[ rand( 0, 2 ) ],
-  _simboli[ rand( 1, 2 ) ]
-];
+  var _simboli = ['A', 'B', 'C'];
+  var _password = [
+    _simboli[ rand( 0, 2 ) ],
+    _simboli[ rand( 0, 2 ) ],
+    _simboli[ rand( 1, 2 ) ]
+  ];
 
 var _login = false;
 
@@ -183,6 +181,9 @@ var autenticazioneOperatoreNonTerrestre = function ( tentativo ) {
   }
 }
 
+var copiaArray = function ( array ) {
+  return array.slice( 0 );
+}
 // TAB 1
 
 /**********
@@ -258,7 +259,7 @@ var inizializzaBatteriaAntiterrestri = function () {
 /**********
 Ciao, caro.
 Nella funzione generaPassword() hai un esempio di funzione ricorsiva per il calcolo della password necessaria per salvare le modifiche.
-Questo codice prova ad indovinare la password generando tutte le combinazioni possibili dei caratteri '0', '1' e '2'.
+Questo codice prova ad indovinare la password generando tutte le combinazioni possibili dei caratteri 'x', '%' e 'A'.
 Nella funzione hackingPassword() queste combinazioni vengono mandate al server centrale del Nemico, continuando finché non viene approvata una delle combinazioni.
 Spero di non aver fatto errori.
 Saluti,
@@ -266,28 +267,41 @@ Zurlin
 **********/
 
 // Simboli utilizzati per la password.
-var _simboli = ['0', '1', '2'];
-
-// Funzione per la generazione di tutte le password possibili.
+var simboli = ['A', 'B', 'C'];
+/**********
+Funzione per la generazione di tutte le password possibili.
+Provo tutti i simboli per la prima cifra:
+    - A * *
+    - B * * 
+    - C * *
+A questo punto il gioco è fatto: per le restanti cifre * * ripeto la stessa procedura come se volessi generare tutte le combinazioni di una password di lunghezza 2:
+    - A * * -> A A *
+            -> A B *
+            -> A C *
+e così via... 
+**********/
 var generaPassword = function ( combinazioniPossibili, combinazione, k ) {
+  var combinazione = copiaArray( combinazione );
+  // k indica il numero della cifra che si sta cercando di indovinare
 //###START_MODIFICABILE###
-  if (k === 2)
-    combinazioniPossibili.push( combinazione.slice( 0 ) );
+  if (k === 2) {
+//###END_MODIFICABILE###
+    combinazioniPossibili.push( combinazione );
+  }
   else {
   	var i = 0;
     for( i; i < 3; i++ ) {
-      combinazione[ k ] = _simboli[ i ];
+      combinazione[ k ] = simboli[ i ];
       generaPassword( combinazioniPossibili, combinazione, k + 1 );
     }
   }
-//###END_MODIFICABILE###
 }
 
 // Funzione per il test delle combinazioni.
 var hackingPassword = function () {
   var combinazioniPossibili = [];
   // Variabile con la combinazione di partenza.
-  var combinazione = ['0', '0', '0'];
+  var combinazione = ['*', '*', '*'];
   // Chiamata alla funzione di generazione delle password,
   // che inserisce tutte quelle possibili nella variabile
   // combinazioniPossibili.
@@ -308,8 +322,11 @@ var hackingPassword = function () {
 }
 
 // test
-/* (function () {
+// (
+var t1 = 
+function () {
   hackingPassword();
   var risultato = _login;
   return risultato;
-}) (); */
+}
+//) (); 
