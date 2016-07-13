@@ -215,8 +215,7 @@ var azionaMacchinaCaffeConClick = function ( pulsantieraMacchinaCaffe ) {
 // TAB 2
 
 /**********
-Funzione che date le coordinate del bersaglio determina la torretta migliore, e funzionante,
-per colpire il bersaglio.
+Funzione che date le coordinate del bersaglio determina la torretta migliore, e funzionante, per colpire il bersaglio.
 
 Questa funzione prende come parametri:
   - torretta: un array di torrette;
@@ -295,9 +294,8 @@ var azionamentoComandiPlancia = function ( planciaComandi, torrette, mirino, sis
 
 // test
     
-var t1 =
-//(
-  function () {
+/* 
+( function () {
     var coloreMissili = [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'];
     var nMissili = coloreMissili.length;
     var nSoldati = 10;
@@ -337,7 +335,7 @@ var t1 =
     
     return esito;
   }
-//) ();
+) (); */
 
 /*
 var torrettaSelezionata;
