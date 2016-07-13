@@ -369,8 +369,7 @@ var sceltaTorrettaMigliore = function ( x, y, _torrette ) {
 // TAB 1
 
 /**********
-Funzione che comanda ad una torretta, scelta opportunamente, di
-lanciare un missile alla coordinata indicata.
+Funzione che comanda ad una torretta, scelta opportunamente, di lanciare un missile alla coordinata indicata.
 
 Prende come parametri:
   - x: intero che indentifica la coordinata x del bersaglio;
@@ -388,21 +387,13 @@ var comandoSparoSingolo = function ( x, y, torrette ) {
 // TAB 2
 
 /**********
-Funzione che comanda a tutte le torrette di sparare missili
-lungo una linea creando uno sbarramento di fuoco in cielo.
+Funzione che comanda a tutte le torrette di sparare missili lungo una linea creando uno sbarramento di fuoco in cielo.
 
 Prende come parametri:
-  - ordiniDiFuoco: un array di oggetti con struttura 
-    { numeroTorretta: 0, x: 416, y: 188 } dove x ed
-    y sono le coordinate a cui sparare mentre numeroTorretta
-    rappresenta l'identificatore della torretta a cui è diretto
-    l'ordine;
-  - torrette: array di oggetti torretta le quali possiedono
-    un indice ( torretta.indice ) e consentono lo sparo
-    tramite il metodo torretta.cicloSparo().
+  - ordiniDiFuoco: un array di oggetti con struttura { numeroTorretta: 0, x: 416, y: 188 } dove x ed y sono le coordinate a cui sparare mentre numeroTorretta rappresenta l'identificatore della torretta a cui è diretto l'ordine;
+  - torrette: array di oggetti torretta le quali possiedono un indice ( torretta.indice ) e consentono lo sparo tramite il metodo torretta.cicloSparo().
     
-Obiettivo della funzione è far sparare le torrette in accordo
-con gli ordini contenuti in ordiniDiFuoco.
+Obiettivo della funzione è far sparare le torrette in accordo con gli ordini contenuti in ordiniDiFuoco.
 **********/
 var comandoSparoMultiplo = function ( ordiniDiFuoco, torrette ) {
 //###START_MODIFICABILE###
