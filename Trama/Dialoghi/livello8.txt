@@ -35,10 +35,10 @@ Corretto.
 OBIETTIVO - Tab 2
 L&#x27;obiettivo &#xE8; quello di riempire due funzioni: la prima necessaria per la codifica del segnale radio e la seconda per la decodifica.<br>
 Nota bene! Le basi colorate di rosso sono quelle ausiliarie, mentre quelle azzurre sono le basi vitali.<br>
-La funzione di codifica andr&#xE0; dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.<br>
+Nella funzione di codifica andr&#xE0; dunque sostituito il segnale di una base ausiliaria con quello di una base vitale e viceversa, scambiando completamente i due tipi di base agli occhi del Nemico.<br>
 La funzione di decodifica deve invece ripristinare il collegamento esattamente com&#x27;era prima della codifica: riscambiando cio&#xE8; i codici dei canali radio.
 AIUTI
-La funzione <tt>codificaSegnale()</tt> pu&#xF2; essere implementata nel modo seguente:
+La funzione <tt>mescolaCanali()</tt> pu&#xF2; essere implementata nel modo seguente:
 <pre><code>var temporaneo;
 temporaneo = canaleTrasmissione[0];
 canaleTrasmissione[0] = canaleTrasmissione[1];
@@ -50,7 +50,7 @@ temporaneo = canaleTrasmissione[4];
 canaleTrasmissione[4] = canaleTrasmissione[5];
 canaleTrasmissione[5] = temporaneo;
 </code></pre>
-Mentre la funzione <tt>decodificaSegnale()</tt>, che deve effettuare l&#x27;operazione contraria, pu&#xF2; essere scritta nel modo seguente:
+Mentre la funzione <tt>riordinaCanali()</tt>, che deve effettuare l&#x27;operazione contraria, pu&#xF2; essere scritta nel modo seguente:
 <pre><code>var temporaneo;
 temporaneo = canaleTrasmissione[1];
 canaleTrasmissione[1] = canaleTrasmissione[0];
