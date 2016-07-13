@@ -27,11 +27,11 @@ Prosdocimo
 OBIETTIVO - Tab 3
 Il codice che devi scrivere si basa su tre componenti principali:
 <li> la funzione della macchinetta del caff&#xE8;, da cui i tecnici (o Prosdocimo) hanno preso ispirazione per il nuovo meccanismo di sparo tramite click;</li>
-<li> l&#x27;algoritmo, contenuto nella funzione <tt>torrettaPiuVicina()</tt>, che seleziona la torretta pi&#xF9; vicina al bersaglio;</li>
+<li> la funzione <tt>torrettaPiuVicina()</tt>, che contiene l&#x27;algoritmo per selezionare la torretta pi&#xF9; vicina al bersaglio;</li>
 <li> l&#x27;attuale funzione per l&#x27;azionamento del comando di sparo, basato su pulsanti.</li>
 L&#x27;obiettivo &#xE8; quello di modificare il codice della funzione <tt>azionamentoComandiPlancia()</tt>, in modo che si possa sparare con la torretta pi&#xF9; vicina all'obiettivo utilizzando il click del mouse.<br>
 Per prima cosa si deve modificare correttamente la chiamata alla funzione <tt>bind()</tt>, in modo che non risponda pi&#xF9; alla pressione del pulsante ma al click del mouse.<br>
-Successivamente sar&#xE0; necessario utilizzare l&#x27;algoritmo per selezionare la torretta corretta.
+Successivamente sar&#xE0; necessario utilizzare la funzione <tt>torrettaPiuVicina()</tt> per selezionare la torretta corretta.
 AIUTI
 La modifica alla funzione <tt>bind()</tt> pu&#242; essere compiuta nel seguente modo, passando da:
 <pre><code>$( planciaComandi ).bind( 'keyup', function ( tastoPremuto )
