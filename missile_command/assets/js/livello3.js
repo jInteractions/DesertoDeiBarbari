@@ -304,8 +304,8 @@ var sistemaRaffreddamento = function ( ) {
 
 // test
 
-//( 
-function () {
+/*
+( function () {
   var esito = true;
   
   _deltaTemperatura = 1;
@@ -322,4 +322,4 @@ function () {
   
   return esito; 
 }
-//) ();
+) (); */
