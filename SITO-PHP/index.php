@@ -309,28 +309,7 @@
                 <img src="assets/img/avatar/Simeoni.png" class="img-circle" alt="User Image">
                 <p>
                   <?php echo $utente["email"];?>
-                  <small>
-                    Livello 
-                  <?php 
-                    $livelloMassimo = 0;
-                    foreach($informazioniLivelliEseguiti as $chiave => $valore) {
-                      if($valore["idlivello"] > $livelloMassimo){
-                        $livelloMassimo = $valore["idlivello"];
-                      }
-                    }
-                    echo $livelloMassimo;
-                  ?>
-                </small>
                 </p>
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profilo</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Disconessione</a>
-                </div>
               </li>
             </ul>
           </li>
