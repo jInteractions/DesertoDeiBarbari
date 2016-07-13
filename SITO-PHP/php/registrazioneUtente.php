@@ -13,7 +13,7 @@
       $cookie_value = $_POST["user"];
       setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
       //header('Location: http://localhost:8888/dashboard.php');
-      echo '<script>window.location.replace("http://localhost:8888/dashboard.php");</script>';
+      echo '<script>window.location.replace("http://localhost:8888/storia.html");</script>';
     } else
 		  echo "Registrazione errata.";
 	}
