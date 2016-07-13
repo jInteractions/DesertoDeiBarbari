@@ -61,9 +61,9 @@ Bene. Buona fortuna, maggiore.
 OBIETTIVO - Tab 1
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.<br>
 Le torrette hanno tre caratteristiche fondamentali:
-<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile <tt>energiaCompressore</tt>;</li>
-<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile <tt>energiaMirino</tt>;</li>
-<li>la pressione del carburante del missile, indicata dalla variabile <tt>pressioneCarburante</tt>.</li>
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile <tt>energiaCompressore</tt>: questa variabile controlla la velocit&#xE0; dei missili;</li>
+<li>l&#x27;energia per lo spostamento del cannone indicata dalla variabile <tt>energiaMirino</tt>: questa variabile indica la velocit&#xE0; con cui il cannone riesce a seguire il mirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile <tt>pressioneCarburante</tt>: anche questa variabile influenza la velocit&#xE0; dei missili.</li>
 Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deve essere applicato anche alle altre torrette, in modo da ottenerne tre uguali.<br>
 L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta centrale devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
@@ -96,9 +96,9 @@ Tutte le torrette dovranno utilizzare tale valore per la variabile <tt>pressione
 OBIETTIVO - Tab 2
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.<br>
 Le torrette hanno tre caratteristiche fondamentali:
-<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile <tt>energiaCompressore</tt>;</li>
-<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile <tt>energiaMirino</tt>;</li>
-<li>la pressione del carburante del missile, indicata dalla variabile <tt>pressioneCarburante</tt>.</li>
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile <tt>energiaCompressore</tt>: questa variabile controlla la velocit&#xE0; dei missili;</li>
+<li>l&#x27;energia per lo spostamento del cannone indicata dalla variabile <tt>energiaMirino</tt>: questa variabile indica la velocit&#xE0; con cui il cannone riesce a seguire il mirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile <tt>pressioneCarburante</tt>: anche questa variabile influenza la velocit&#xE0; dei missili.</li>
 Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deve essere applicato anche alle altre torrette, in modo da ottenerne tre uguali.<br>
 L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta sinistra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
@@ -131,9 +131,9 @@ Tutte le torrette dovranno utilizzare tale valore per la variabile <tt>pressione
 OBIETTIVO - Tab 3
 Come sempre si hanno tre torrette: quella centrale, quella sinistra e quella destra.<br>
 Le torrette hanno tre caratteristiche fondamentali:
-<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile <tt>energiaCompressore</tt>;</li>
-<li>l&#x27;energia per il movimento per lo spostamento del cannone, che deve seguire il mirino, indicata dalla variabile <tt>energiaMirino</tt>;</li>
-<li>la pressione del carburante del missile, indicata dalla variabile <tt>pressioneCarburante</tt>.</li>
+<li>l&#x27;energia del compressore del gas di propulsione, indicata dalla variabile <tt>energiaCompressore</tt>: questa variabile controlla la velocit&#xE0; dei missili;</li>
+<li>l&#x27;energia per lo spostamento del cannone indicata dalla variabile <tt>energiaMirino</tt>: questa variabile indica la velocit&#xE0; con cui il cannone riesce a seguire il mirino;</li>
+<li>la pressione del carburante del missile, indicata dalla variabile <tt>pressioneCarburante</tt>: anche questa variabile influenza la velocit&#xE0; dei missili.</li>
 Queste tre variabili devono contenere il valore corretto, dunque n&#xE9; troppo alto, n&#xE9; troppo basso. Alcune torrette hanno gi&#xE0; il valore corretto per quella particolare caratteristica: tale valore deve essere applicato anche alle altre torrette, in modo da ottenerne tre uguali.<br>
 L&#x27;obiettivo &#xE8; comprendere quali dei valori della torretta destra devono essere applicati alle altre e quali devono essere scartati in favore di valori provenienti dalle altre torrette.
 AIUTI
