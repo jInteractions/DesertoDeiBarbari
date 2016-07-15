@@ -8,6 +8,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <link rel="icon" href="assets/img/DesertoBarbari.png" type="image/png" />
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>Deserto dei Barbari</title>

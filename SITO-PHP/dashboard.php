@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="icon" href="assets/img/DesertoBarbari.png" type="image/png" />
 
     <title>Deserto dei Barbari</title>
 

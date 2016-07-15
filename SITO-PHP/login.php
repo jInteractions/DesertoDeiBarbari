@@ -15,6 +15,8 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/css/AdminLTE.css">
   <link rel="stylesheet" href="assets/css/blue.css">
+  
+  <link rel="icon" href="assets/img/DesertoBarbari.png" type="image/png" />
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
