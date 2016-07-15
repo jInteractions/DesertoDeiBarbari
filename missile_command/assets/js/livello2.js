@@ -172,7 +172,7 @@ var controlloConfigurazioneParametriPianeti = function () {
 
 /**********
 Benvenuto nel file di sblocco dei permessi di calibrazione.
-Il seguente file permette di sbloccare ed accedere alle funzionalità di configurazione planetaria, fondamentiali per la corretta impostazione delle armi.
+Il seguente file permette di sbloccare ed accedere alle funzionalità di configurazione planetaria, fondamentali per la corretta impostazione delle armi.
 **********/
 
 // Variabile contenente il codice del pianeta su cui si trovano le armi.

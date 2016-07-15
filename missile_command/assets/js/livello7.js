@@ -361,7 +361,7 @@ MissileTestataMultipla.prototype.identificaObiettivo = function ( obiettivi ) {
       
       // Viene restituita l'altezza alla quale il missile detona e si sdoppia.
       var altezzaEsplosione = this.calcolaAltezzaSdoppiamento( y );
-      return altezza;
+      return altezzaEsplosione;
     }
   }
 }
@@ -424,7 +424,7 @@ MissileStandard.prototype.miraBersaglio = function ( listaBersagli ) {
       
       // Altezza a cui avviene l'esplosione.
       var altezzaEsplosione = y;
-      return altezza;
+      return altezzaEsplosione;
 //###END_MODIFICABILE###
     }
     ++i;
