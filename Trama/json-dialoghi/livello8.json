@@ -1,7 +1,7 @@
 {
   "nomeLivello": "Una nuova minaccia",
   "numeroLivello": 8,
-  "costoAiuti": 16000,
+  "costoAiuti": 5000,
 
   "dialogoIniziale":
   [

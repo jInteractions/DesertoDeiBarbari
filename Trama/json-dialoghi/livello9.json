@@ -1,7 +1,7 @@
 {
 	"nomeLivello": "Mellara",
 	"numeroLivello": 9,
-	"costoAiuti": 18000,
+	"costoAiuti": 6000,
 
 	"dialogoIniziale": [{
 		"nome": "Simeoni",
