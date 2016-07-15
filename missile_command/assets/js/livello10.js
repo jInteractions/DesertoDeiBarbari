@@ -924,6 +924,7 @@ TorrettaAutomatica.prototype.cicloSparoAutomatico = function ( bersagliPossibili
 // test
 
 var t1 = 
+(
 function ( ) {
   var esito = true;
 
@@ -1022,4 +1023,4 @@ function ( ) {
   
   return esito;
 } 
-//) ();
+) ();
