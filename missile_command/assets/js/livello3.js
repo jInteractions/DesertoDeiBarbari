@@ -294,7 +294,7 @@ var sistemaRaffreddamento = function ( ) {
     // Ciclo per la gestione delle pompe di raffreddamento.
     // La torretta deve essere raffreddata fino a che la temperatura T
     // non scende sotto la soglia minima.
-    while( T >= sogliaTemperaturaMinima ) {
+    while( T <= sogliaTemperaturaMinima ) {
       azionaPompeRaffreddamento();
       T = rilevaTemperatura();
     }
