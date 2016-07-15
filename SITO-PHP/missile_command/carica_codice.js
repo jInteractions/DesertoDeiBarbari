@@ -33,6 +33,7 @@ CaricaCodice.prototype.validazioneCodiceUtente = function () {
   var mySelf = this;
   var errori = { erroriSintassi: [], erroriParole: [], erroriCiclo: [] };
   
+  console.output = false;
   $.each( this.fileVirtuali, function ( indice, file ) {
     var e = mySelf.verificaCicliInfiniti( file );
     errori.erroriCiclo = errori.erroriCiclo.concat( e );
@@ -47,6 +48,7 @@ CaricaCodice.prototype.validazioneCodiceUtente = function () {
     var e = mySelf.controlloParoleVietate( file );
     errori.erroriParole = errori.erroriParole.concat( e );
   } );
+  console.output = true;
   
   return errori;
 }
@@ -155,11 +157,11 @@ CaricaCodice.prototype.esecuzioneTest = function () {
   var esiti = [];
   var errori = [];
   
+  console.output = false;
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
     window.eval( fileVirtuale.codice );
   } );
         
-  console.output = false;
   $.each( this.fileVirtuali, function ( indice, fileVirtuale ) {
     if( fileVirtuale.consultazione === false ) {
       risultato = true;
