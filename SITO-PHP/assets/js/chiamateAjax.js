@@ -61,6 +61,7 @@ var updateCodiceUtente = function (livello, email, richiestoAiuto, nomeFile, cod
         dataType: "text",
         success: function (result) {
           oldConsole.log(result);
+          toastr["success"]("Codice salvato correttamente!");
         },
         error: function (error) {
           oldConsole.log(error);

@@ -23,9 +23,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/css/AdminLTE.css">
     <link rel="stylesheet" href="assets/css/skins/skin-blue.css">
+    
     
     <link rel="stylesheet" href="/assets/css/highlighter-theme.css">
   
@@ -563,6 +565,7 @@
     <script>
       $.widget.bridge('uibutton', $.ui.button);
     </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/chiamateAjax.js"></script>
@@ -578,6 +581,7 @@
     <script src="missile_command/elementi_gioco/missili.js"></script>
     <script src="missile_command/elementi_gioco/batteria_antimissile.js"></script>
     <script src="assets/js/scripts.js"></script>
+    
     <script src="assets/js/app.js"></script>
 
     <!-- Bootstrap WYSIHTML5 -->
@@ -701,7 +705,25 @@ Script che gestiscono per intero la pagina lato client
         });
         inserisciCodiceEditor(x, x.getValue());
         return x;
-};
+      };
+      
+      toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-center",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "900",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
       
       /** Classe terminale che sostituira la console */
       function Terminale( idTerminale ) {        
