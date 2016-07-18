@@ -314,6 +314,11 @@
                   <?php echo $utente["email"];?>
                 </p>
               </li>
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a href="login.php" class="btn btn-default btn-flat">Disconessione</a>
+                </div>
+              </li>
             </ul>
           </li>
         </ul>
