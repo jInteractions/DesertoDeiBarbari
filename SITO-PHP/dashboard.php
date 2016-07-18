@@ -52,8 +52,42 @@
     }
     $connection = connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, false);
     $informazioniLivelliEseguiti = selectFrom_LIVELLO_ESEGUITO_By_email($connection, $_SESSION["email"]);
-    $informazioniLivelliEsistenti = selectAllFrom_LIVELLO($connection); 
+    $informazioniLivelliEsistenti = selectAllFrom_LIVELLO($connection);
   ?>
+    
+  <?php 
+      foreach($informazioniLivelliEsistenti as $chiave => $valore)
+      {
+        echo '<div class="modal fade" id="modalResetCodice'.$valore["idlivello"].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">';
+    ?>
+
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Reset codice</h4>
+        </div>
+        <div class="modal-body">
+          <!-- /.panel -->
+          <div class="panel panel-default">
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+              Sei sicuro di voler ripristinare il codice iniziale? 
+            </div>
+            <!-- /.panel-body -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <?php echo '<button type="button" id="resetCode'.$valore["idlivello"].'" class="btn btn-primary" data-dismiss="modal">Sì</button>'; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php 
+    }
+  ?>  
+  
   <div class="wrapper">
     
     <header class="main-header">
@@ -200,10 +234,11 @@
           
         </div>
       <?php
-        if($livelloDisponibile)
-          echo '<a href="gioco.php?idlivello='.$valore["idlivello"].'" class="small-box-footer">Gioca livello <i class="fa fa-arrow-circle-right"></i></a>';
+        if($livelloDisponibile){
+          echo '<a href="gioco.php?idlivello='.$valore["idlivello"].'" class="small-box-footer" style="font-size: 20px;">Gioca livello <i class="fa fa-arrow-circle-right"></i></a>';
+          echo '<a href="#" class="small-box-footer" data-toggle="modal" data-target="#modalResetCodice'.$valore["idlivello"].'">Reset livello <i class="fa fa-refresh"></i></a>';
+        }
       ?>
-        
       </div>
       <?php 
       } 
@@ -224,7 +259,18 @@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
       $.widget.bridge('uibutton', $.ui.button);
+      $(document).ready( function ( ) {
+        for (var i = 1; i <= <?php echo count($informazioniLivelliEsistenti); ?>; i++) {
+          $("#resetCode"+i).click( function () {
+            var resetCodeId = $(this).attr('id').replace('resetCode', '');
+            //resetCodice(resetCodeId);
+            console.log("Arrivati a reset livello");
+            resetLivello(<?php echo '"'.$_SESSION["email"].'"';?>, resetCodeId);
+          }); 
+        }
+      });
     </script>
+    <script src="assets/js/chiamateAjax.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/app.js"></script>

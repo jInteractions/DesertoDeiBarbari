@@ -122,3 +122,19 @@ var updateTutorialSuperato = function ( email ){
         }
     } );
 }
+
+var resetLivello = function ( email, idLivello ){
+    $.ajax( {
+        type: "POST",
+        url: host + "php/resetLivello.php",
+        data: "email=" + email + "&" +
+        "idlivello=" + idLivello,
+        dataType: "text",
+        success: function (result) {
+            oldConsole.log(result);
+        },
+        error: function (error) {
+            oldConsole.log(error);
+        }
+    } );
+}
